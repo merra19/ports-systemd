@@ -15,5 +15,5 @@ build() {
     install -Dm755 "$srcdir"/c89 "$pkgdir"/usr/bin/c89
 	install -Dm755 "$srcdir"/c99 "$pkgdir"/usr/bin/c99
 
-	sed -i 's/systemctl enable iptables.service/scratch isinstalled systemd \&\& systemctl enable iptables.service/' "$pkgdir"/usr/share/blfs-bootscripts/Makefile
+	sed -i 's/systemctl enable iptables.service/if scratch isinstalled systemd ;then systemctl enable iptables.service;fi/' "$pkgdir"/usr/share/blfs-bootscripts/Makefile
 }
