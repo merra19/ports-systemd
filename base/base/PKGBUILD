@@ -12,7 +12,7 @@
 # depends	: e2fsprogs freetype libtasn1 nano linux-firmware
 # depends	: dosfstools mdadm py3-flit-core fcron dbus cracklib
 # depends	: sudo logrotate libpwquality cmake brotli fakeroot
-# depends	: lsb-tools c-ares amd-ucode
+# depends	: lsb-tools c-ares
 
 pkgname=base
 pkgver=20230101

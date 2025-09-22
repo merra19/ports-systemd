@@ -411,6 +411,30 @@ main() {
 	rm -f "$INITRAMFS"
 	( cd $INITDIR ; find . | LANG=C $CPIO -o -H newc --quiet | $comp ) > $INITRAMFS
 
+	# Prepare early loading of microcode if available
+	if ls /usr/lib/firmware/intel-ucode/* >/dev/null 2>&1 ||
+	ls /usr/lib/firmware/amd-ucode/*   >/dev/null 2>&1; then
+
+		WDIR=$(mktemp /tmp/unsorted.XXXXXXXXXX)
+		DSTDIR=$WDIR/kernel/x86/microcode
+		mkdir -p $DSTDIR
+
+		if [ -d /usr/lib/firmware/amd-ucode ]; then
+			cat /usr/lib/firmware/amd-ucode/microcode_amd*.bin > $DSTDIR/AuthenticAMD.bin
+		fi
+
+		if [ -d /usr/lib/firmware/intel-ucode ]; then
+			cat /usr/lib/firmware/intel-ucode/* > $DSTDIR/GenuineIntel.bin
+		fi
+
+		( cd $WDIR; find . | cpio -o -H newc --quiet ) > microcode.img
+		cat microcode.img $INITRAMFS > tmpfile
+		mv tmpfile $INITRAMFS
+		rm microcode.img
+
+		rm -rf $WDIR
+	fi
+
 	cleanup
 	[ $QUIET ] || echo "Generating initramfs done: $INITRAMFS ($(du -h $INITRAMFS | awk '{print $1}'))"
 	

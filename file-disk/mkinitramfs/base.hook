@@ -20,9 +20,13 @@ build_hook() {
 		add_binary $bin
 	done
 
-	for bin in 	chroot modprobe blkid switch_root lsmod insmod ; do
+	for bin in 	chroot modprobe blkid switch_root  ; do
 		add_binary /sbin/$bin
 	done
+
+	add_symlink /usr/bin/lsmod kmod
+	add_symlink /usr/bin/insmod kmod
+
 
 	add_file /usr/share/terminfo/l/linux
 	add_file /lib/ld-linux-x86-64.so.2
