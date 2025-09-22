@@ -47,7 +47,7 @@ build() {
     #sed -i '262i $(info KBUILD_CFLAGS = $(KBUILD_CFLAGS))' arch/x86/Makefile
 
     yes "" | make oldconfig
-	make menuconfig
+	#make menuconfig
     make all
 
     kernver=${pkgver}$(grep CONFIG_LOCALVERSION= .config | cut -d '"' -f2)
