@@ -1,0 +1,20 @@
+# description	: Makes power profiles handling available over D-Bus
+# depends	: py3-gobject polkit upower meson systemd
+
+pkgname=power-profiles-daemon
+pkgver=0.30
+pkgrel=1
+source=(https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/archive/$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D gtk_doc=false \
+        -D tests=false \
+        build
+	ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+}

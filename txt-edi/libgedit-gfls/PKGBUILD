@@ -1,0 +1,19 @@
+# description	: A module dedicated to file loading and saving
+# depends	: gtk3
+
+pkgname=libgedit-gfls
+pkgver=0.3.0
+pkgrel=1
+source=(https://gitlab.gnome.org/World/gedit/libgedit-gfls/-/archive/$pkgver/$pkgname-$pkgver.tar.bz2)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D gtk_doc=false \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

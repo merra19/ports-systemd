@@ -1,0 +1,21 @@
+# description	: Basepack of plugins for GStreamer
+# depends	: gst-plugins-base bzip2 zlib meson cairo flac gdk-pixbuf
+# depends	: lame libsoup3 libvpx mpg123 nasm pulseaudio speex taglib
+# depends	: speexdsp v4l-utils wayland aalib
+# todo      : libdv
+
+pkgname=gst-plugins-good
+pkgver=1.26.5
+pkgrel=1
+source=(https://gstreamer.freedesktop.org/src/$pkgname/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

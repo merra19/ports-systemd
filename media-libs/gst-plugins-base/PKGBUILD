@@ -1,0 +1,21 @@
+# description	: Basepack of plugins for gstreamer
+# depends	: alsa-lib gstreamer libgudev libvorbis libogg libpng opus
+# depends	: gobject-introspection iso-codes meson mesa graphene
+# depends	: libjpeg-turbo wayland-protocols pango xorg-libs zlib
+
+pkgname=gst-plugins-base
+pkgver=1.26.5
+pkgrel=1
+source=(http://gstreamer.freedesktop.org/src/$pkgname/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        --wrap-mode=nodownload \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

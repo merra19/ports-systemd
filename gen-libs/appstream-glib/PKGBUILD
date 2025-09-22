@@ -1,0 +1,22 @@
+# description	: Provides GObjects and helper methods to read and write AppStream metadata
+# depends	: util-linux libarchive curl  gdk-pixbuf gtk3 freetype
+# depends	: fontconfig libyaml gperf libxslt
+
+pkgname=appstream-glib
+pkgver=0.8.3
+pkgrel=1
+source=(http://people.freedesktop.org/~hughsient/appstream-glib/releases/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D rpm=false \
+        build
+	ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+
+    rm -v -rf "$pkgdir"/usr/share/installed-tests
+}

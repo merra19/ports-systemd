@@ -1,0 +1,35 @@
+# description	: Virtual filesystem implementation for GIO
+# depends	: glib dbus gcr4 libcap libsoup3 udisks openssh libxslt
+# depends	: libarchive libgudev systemd fuse libxml2 avahi bluez
+# depends	: libusb libsecret libcdio libcdio-paranoia libgcrypt
+# optional  : samba apache
+# todo      : libmtp libgdata
+
+pkgname=gvfs
+pkgver=1.56.1
+pkgrel=1
+source=(https://download.gnome.org/sources/gvfs/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D onedrive=false \
+        -D fuse=false \
+        -D gphoto2=false \
+        -D afc=false \
+        -D bluray=false \
+        -D nfs=false \
+        -D mtp=false \
+        -D smb="$(scratch isinstalled samba && echo "true" || echo "false")" \
+        -D dnssd=false \
+        -D goa=false \
+        -D google=false \
+        -D cdda=false \
+        -D http=true \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

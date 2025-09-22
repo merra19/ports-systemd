@@ -1,0 +1,38 @@
+# description	: compiz like 3D wayland compositor
+# depends	: nlohmann-json glib libevdev libinput wayland wf-config
+# depends	: wayland-protocols wlroots glm libglvnd libjpeg-turbo
+# depends	: libpng cairo libxkbcommon pango pixman dbus libxcb
+# depends	: xkeyboard-config cmake vulkan-headers libxml2 libdrm
+# depends	: polkit seatd xwayland glslang libdisplay-info mesa
+# depends	: xcb-util-errors xcb-utilities yyjson systemd
+
+pkgname=wayfire
+pkgver=0.10.0
+pkgrel=1
+source=(https://github.com/WayfireWM/$pkgname/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
+        wayfire-session.desktop wayfire-session wayfire.env)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D xwayland=auto \
+        -D use_system_wlroots=enabled \
+        -D use_system_wfconfig=enabled \
+        -D b_lto=true \
+        -D b_pie=true \
+        build
+    sed "/WF_SRC_DIR/d" -i build/config.h
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+    install -Dm 0755 "$srcdir"/wayfire-session "$pkgdir"/usr/share/wayland-sessions/wayfire-session
+    install -Dm 0644 "$srcdir"/wayfire-session.desktop "$pkgdir"/usr/share/wayland-sessions/wayfire.desktop
+    install -Dm 0644 "$srcdir"/wayfire.env "$pkgdir"/etc/wayfire.env
+
+    rm -f "$pkgdir"/usr/include/wayfire/nonstd/safe-list.hpp
+    install -Dm644 wayfire.desktop "$pkgdir"/usr/share/wayland-sessions/wayfire.desktop
+    install -Dm 0644 wayfire.ini "$pkgdir"/usr/share/wayfire/wayfire.ini
+}

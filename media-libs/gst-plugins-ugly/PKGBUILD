@@ -1,0 +1,20 @@
+# description	: Basepack of plugins for gstreamer
+# depends	: gst-plugins-base meson python liba52 x264 libmpeg2
+# depends	: libcdio libcdio-paranoia
+
+pkgname=gst-plugins-ugly
+pkgver=1.26.5
+pkgrel=1
+source=(https://gstreamer.freedesktop.org/src/$pkgname/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D gpl=enabled \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

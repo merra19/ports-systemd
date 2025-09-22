@@ -1,0 +1,28 @@
+# description	: KDE Plasma
+# depends	: plasma5support
+
+pkgname=kpipewire
+pkgver=6.4.4
+pkgrel=1
+source=(https://download.kde.org/stable/plasma/$pkgver/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    # Add a fix to build with FFMpeg > 8.0 
+    for i in libx264encoder h264vaapiencoder libopenh264encoder ;do
+        #sed -i 's/FF_PROFILE_/AV_PROFILE_/' src/$i.cpp
+        :
+    done
+
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_INSTALL_LIBEXECDIR=libexec \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D BUILD_QT5=OFF \
+        -D BUILD_TESTING=OFF \
+        -Wno-dev
+    make -C build
+    make DESTDIR="$pkgdir" install -C build
+
+}

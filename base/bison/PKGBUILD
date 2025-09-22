@@ -1,0 +1,17 @@
+# description	: A general-purpose (yacc-compatible) parser generator
+# depends	: m4 flex gettext
+
+pkgname=bison
+pkgver=3.8.2
+pkgrel=1
+source=(https://mirror.lyrahosting.com/gnu/bison/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --docdir=/usr/share/doc/$pkgname-$pkgver
+    make
+    make DESTDIR="$pkgdir" install
+}

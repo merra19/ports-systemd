@@ -1,0 +1,18 @@
+# description	: Creation/expansion of ISO-9660 filesystems on CD/DVD media supported by libburn
+# depends	: libburn libisofs tcl attr acl zlib readline
+
+pkgname=libisoburn
+pkgver=1.5.6
+pkgrel=1
+source=(https://files.libburnia-project.org/releases/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+		--prefix=/usr \
+        --disable-static \
+		--enable-pkg-check-modules
+	make
+    make DESTDIR="$pkgdir" install
+}

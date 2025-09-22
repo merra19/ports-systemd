@@ -1,0 +1,29 @@
+# description	: Fast, feature-rich, GPU-based terminal
+# depends	: python bash gcc simde dbus zlib libxkbcommon wayland
+# depends	: ttf-nerd-fonts-symbols wayland-protocols fontconfig go
+# depends	: freetype hicolor-icon-theme lcms2 libglvnd libpng
+# depends	: librsync xorg-libs libcanberra imagemagick py3-pygments
+# depends	: openssl xxhash nerd-fonts
+
+pkgname=kitty
+pkgver=0.42.2
+pkgrel=1
+source=(https://github.com/kovidgoyal/$pkgname/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    export CGO_CPPFLAGS="$CPPFLAGS"
+    export CGO_CFLAGS="$CFLAGS"
+    export CGO_CXXFLAGS="$CXXFLAGS"
+    export CGO_LDFLAGS="$LDFLAGS"
+    export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
+
+    python3 setup.py linux-package --update-check-interval=0
+
+	mkdir -p "$pkgdir"
+	cp -r linux-package "$pkgdir"/usr/
+
+	# remove useless "optimised" python
+	find "$pkgdir" \( -name "*.opt-1.pyc" -o -name "*.opt-2.pyc" \) -delete
+}

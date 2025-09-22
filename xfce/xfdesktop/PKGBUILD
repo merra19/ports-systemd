@@ -1,0 +1,17 @@
+# description	: Desktop manager for the Xfce desktop environment
+# depends	: libwnck exo garcon libxfce4windowing libnotify thunar
+# depends	: gettext pkgconf intltool startup-notification
+
+pkgname=xfdesktop
+pkgver=4.20.1
+pkgrel=1
+source=(https://archive.xfce.org/src/xfce/xfdesktop/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+}

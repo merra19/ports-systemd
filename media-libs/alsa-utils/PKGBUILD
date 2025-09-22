@@ -1,0 +1,24 @@
+# description	: Advanced Linux Sound Architecture  Utils (alsactl, alsamixer, etc.)
+# depends	: alsa-lib fltk fftw libsamplerate xmlto
+
+pkgname=alsa-utils
+pkgver=1.2.14
+pkgrel=1
+source=(https://www.alsa-project.org/files/pub/utils/$pkgname-$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname-$pkgver
+
+    ./configure \
+        --disable-alsaconf \
+        --disable-xmlto \
+        --with-curses=ncursesw
+    make
+    make DESTDIR="$pkgdir"  install
+
+    mkdir -p "$pkgdir"/etc
+    cat > "$pkgdir"/etc/asound.conf << "EOF"
+defaults.pcm.card 0
+defaults.ctl.card 0
+EOF
+}

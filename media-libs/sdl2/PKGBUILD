@@ -1,0 +1,20 @@
+# description	: Simple Direct Media Layer 2
+# depends	: alsa-lib libsamplerate libunwind xorg-proto pipewire
+# depends	: pulseaudio libxkbcommon nasm ibus wayland-protocols
+# depends	: xorg-libs
+
+pkgname=sdl2
+_pkgname=SDL2
+pkgver=2.32.8
+pkgrel=1
+source=(https://www.libsdl.org/release/SDL2-$pkgver.tar.gz)
+
+build() {
+	cd ${_pkgname}-$pkgver
+
+	./configure \
+        --prefix=/usr
+	make
+	make DESTDIR="$pkgdir" install
+	rm -v "$pkgdir"/usr/lib/libSDL2*.a
+}

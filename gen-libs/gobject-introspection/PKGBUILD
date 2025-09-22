@@ -1,0 +1,19 @@
+# description	: Introspection system for GObject-based libraries
+# depends	: glib meson shared-mime-info desktop-file-utils 
+# depends	: libffi bison flex
+
+pkgname=gobject-introspection
+pkgver=1.84.0
+pkgrel=1
+source=(https://download.gnome.org/sources/gobject-introspection/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

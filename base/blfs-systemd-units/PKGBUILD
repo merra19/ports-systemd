@@ -1,0 +1,19 @@
+# description	: LFS bootscript
+
+pkgname=blfs-systemd-units
+pkgver=20241211
+pkgrel=1
+source=(https://www.linuxfromscratch.org/blfs/downloads/systemd/$pkgname-$pkgver.tar.xz
+        c89 c99)
+        
+build() {
+    cd $pkgname-$pkgver
+            
+    mkdir -p "$pkgdir"/usr/share/blfs-bootscripts
+    cp -r Makefile blfs "$pkgdir"/usr/share/blfs-bootscripts
+
+    install -Dm755 "$srcdir"/c89 "$pkgdir"/usr/bin/c89
+	install -Dm755 "$srcdir"/c99 "$pkgdir"/usr/bin/c99
+
+	sed -i 's/systemctl enable iptables.service/scratch isinstalled systemd \&\& systemctl enable iptables.service/' "$pkgdir"/usr/share/blfs-bootscripts/Makefile
+}

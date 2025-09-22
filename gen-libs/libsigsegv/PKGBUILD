@@ -1,0 +1,19 @@
+# description	: Library for handling page faults in user mode
+# depends	: glibc
+
+pkgname=libsigsegv
+pkgver=2.15
+pkgrel=1
+options=(!lto)
+source=(https://mirror.lyrahosting.com/gnu/libsigsegv/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --enable-shared \
+        --disable-static
+    make
+    make DESTDIR="$pkgdir" install
+}

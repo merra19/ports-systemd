@@ -1,0 +1,22 @@
+# description	: A portable, bytecode-compiled implementation of Common Lisp
+# depends	: glibc libxcrypt libsigsegv gdbm readline zlib libnsl
+
+pkgname=clisp
+pkgver=2.49.95
+pkgrel=1
+source=(https://anduin.linuxfromscratch.org/BLFS/clisp/clisp-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    mkdir build &&
+    cd    build &&
+
+    FORCE_UNSAFE_CONFIGURE=1 \
+    ../configure \
+        --srcdir=../ \
+        --prefix=/usr \
+        --docdir=/usr/share/doc/$pkgname-$pkgver
+    make -j1
+    make -j1 DESTDIR="$pkgdir" install
+}

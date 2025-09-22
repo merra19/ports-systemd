@@ -1,0 +1,31 @@
+# description	: X.Org X servers
+# depends	: pixman xkeyboard-config libxcvt mesa libepoxy libtirpc
+# depends	: dbus xorg-proto xorg-fonts libunwind libxdmcp systemd
+# depends	: xorg-legacy libxau libglvnd openssl  
+
+pkgname=xorg-server
+pkgver=21.1.18
+pkgrel=1
+options=(!lto)
+source=(https://www.x.org/pub/individual/xserver/$pkgname-$pkgver.tar.xz
+        https://www.linuxfromscratch.org/patches/blfs/12.4/$pkgname-$pkgver-tearfree_backport-1.patch)
+
+build() {
+	cd $pkgname-$pkgver
+
+    patch -Np1 -i ../$pkgname-$pkgver-tearfree_backport-1.patch
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        --localstatedir=/var \
+        -D glamor=true \
+        -D xkb_output_dir=/var/lib/xkb \
+        build
+	ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+
+    chmod u+s /"$pkgdir"/usr/bin/Xorg   
+
+    mkdir -pv "$pkgdir"/etc/X11/xorg.conf.d 
+}

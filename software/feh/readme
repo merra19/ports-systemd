@@ -1,0 +1,17 @@
+[*] Virtualization --->                                         [VIRTUALIZATION]
+  <*/M>   Kernel-based Virtual Machine (KVM) support                       [KVM]
+  # Enable the option for your CPU:
+  < /*/M>   KVM for Intel (and compatible) processors support        [KVM_INTEL]
+  < /*/M> KVM for AMD processors support                               [KVM_AMD]
+
+To use the “bridge” network device, as explained below, check that bridge-utils-1.7.1 is installed 
+ and the following options in the kernel configuration are enabled
+ 
+  [*] Networking support --->                                                [NET]
+  Networking options --->
+    <*/M> 802.1d Ethernet Bridging                                      [BRIDGE]
+
+Device Drivers --->
+  [*] Network device support --->                                   [NETDEVICES]
+    [*]   Network core driver support                                 [NET_CORE]
+    <*/M>   Universal TUN/TAP device driver support                        [TUN]

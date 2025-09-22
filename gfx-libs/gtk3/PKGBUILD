@@ -1,0 +1,31 @@
+# description	: Gimp ToolKit +
+# depends	: at-spi2-core glib libepoxy iso-codes libcloudproviders
+# depends	: intltool gdk-pixbuf pango shared-mime-info cups colord
+# depends	: gobject-introspection wayland wayland-protocols librsvg
+# depends	: libxkbcommon docbook-xml libxslt libglvnd xorg-proto
+# depends	: xorg-libs docbook-xsl-nons sassc hicolor-icon-theme
+# todo      : tinysparql
+
+pkgname=gtk3
+pkgver=3.24.50
+pkgrel=3
+source=(https://download.gnome.org/sources/gtk/${pkgver%.*}/gtk-$pkgver.tar.xz
+        settings.ini $pkgname.hooks)
+
+build() {
+	cd gtk-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+		-D man=true \
+		-D broadway_backend=true \
+        -D cloudproviders=true \
+        build
+	ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+
+    install -Dm 644 "$srcdir"/settings.ini "$pkgdir"/etc/gtk-3.0/settings.ini
+
+    install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+}

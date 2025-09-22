@@ -1,0 +1,24 @@
+#!/bin/sh
+
+#!/bin/sh
+
+if [[ $EUID -eq 0 ]]; then
+    echo "This script must be NOT run as root" 1>&2
+    exit 1
+fi
+
+
+cd $HOME
+
+mkdir -pv $HOME/.config/openbox $HOME/.config/polybar 
+mkdir -pv $HOME/.config/rofi $HOME/Documents $HOME/Images
+mkdir -p $HOME/.config/polybar/scripts
+
+cp -r /usr/local/share/openbox/{autostart,environment,menu.xml,rc.xml} $HOME/.config/openbox/
+cp -r /usr/local/share/polybar/* $HOME/.config/polybar/
+cp -r /usr/local/share/rofi/* $HOME/.config/rofi/
+
+cp /usr/local/share/openbox/thumb-1920-1147144.png $HOME/Images/thumb-1920-1147144.png
+
+echo "dbus-launch --exit-with-session openbox-session" > $HOME/.xinitrc
+

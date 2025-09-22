@@ -1,0 +1,34 @@
+# description	: Stupid content tracker: distributed VCS designed for speed and efficiency
+# depends	: curl gnupg pcre2 openssl zlib tk fcron perl py3-asciidoc
+# depends	: openssh pam systemd xmlto perl-io-socket-ssl
+
+pkgname=git
+pkgver=2.50.1
+pkgrel=1
+source=(https://www.kernel.org/pub/software/scm/git/$pkgname-$pkgver.tar.xz)
+
+getversionpkg() {
+    awk 'NR==1 {print $1}' /var/lib/scratchpkg/db/$1 2>/dev/null
+}
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+        --prefix=/usr \
+		--with-gitconfig=/etc/gitconfig \
+		--with-python=python3
+	make
+
+	perlver=$(getversionpkg perl)
+
+	if [ -z "$perlver"  ];then
+		echo "missing perl"
+	fi
+
+	make DESTDIR="$pkgdir" perllibdir=/usr/lib/perl5/${perlver%.*}/site_perl install
+
+    # bash completion
+    mkdir -p "$pkgdir"/usr/share/bash-completion/completions/
+    install -m 0644 ./contrib/completion/git-completion.bash "$pkgdir"/usr/share/bash-completion/completions/git
+}

@@ -1,0 +1,19 @@
+# description	: Keymap handling library for toolkits and window systems
+# depends	: xkeyboard-config meson wayland wayland-protocols libxcb
+
+pkgname=libxkbcommon
+pkgver=1.11.0
+pkgrel=1
+source=(https://github.com/lfs-book/libxkbcommon/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D enable-docs=false \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

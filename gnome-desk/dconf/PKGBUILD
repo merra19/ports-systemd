@@ -1,0 +1,19 @@
+# description	: Simple low-level configuration system
+# depends	: glib docbook-xml libxslt gettext pkgconf dbus vala
+
+pkgname=dconf
+pkgver=0.40.0
+pkgrel=1
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D bash_completion=false \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

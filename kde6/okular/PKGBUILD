@@ -1,0 +1,25 @@
+# description	: Universal document viewer based on KDE Frameworks
+# depends	: kde-frameworks6 plasma-activities libkexiv2 libtiff
+# depends	: phonon poppler qca freetype zlib
+
+pkgname=okular
+pkgver=25.08.0
+pkgrel=1
+options=(!zipman)
+source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    SKIP_OPTIONAL='Discount;DjVuLibre;EPub;LibSpectre;LibZip'
+
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D BUILD_TESTING=OFF \
+        -D FORCE_NOT_REQUIRED_DEPENDENCIES="$SKIP_OPTIONAL" \
+        -D CMAKE_DISABLE_FIND_PACKAGE_Qt5TextToSpeech="$(scratch isinstalled qt5-speech && echo "OFF" || echo "ON")" \
+        -Wno-dev
+    make -C build
+    make DESTDIR="$pkgdir" install -C build
+}

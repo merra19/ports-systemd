@@ -1,0 +1,14 @@
+# description :	Tools to create and extract Squashfs filesystems
+# depends	: zlib lzo xz lz4 zstd help2man
+
+pkgname=squashfs-tools
+pkgver=4.7.2
+pkgrel=1
+source=(https://downloads.sourceforge.net/squashfs/squashfs$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	make -C $pkgname XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 ZSTD_SUPPORT=1
+	make -C $pkgname install INSTALL_PREFIX="$pkgdir/usr" INSTALL_MANPAGES_DIR='$(INSTALL_PREFIX)/share/man/man1'
+}

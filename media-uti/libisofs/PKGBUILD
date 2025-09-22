@@ -1,0 +1,17 @@
+# description	: Open-source library for reading, mastering and writing optical discs
+# depends	: glibc attr acl zlib
+
+pkgname=libisofs
+pkgver=1.5.6
+pkgrel=1
+source=(https://files.libburnia-project.org/releases/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+		--prefix=/usr \
+        --disable-static
+	make
+    make DESTDIR="$pkgdir" install
+}

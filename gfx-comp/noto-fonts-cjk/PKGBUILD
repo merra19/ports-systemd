@@ -1,0 +1,18 @@
+# description	: Google's CJK font family
+# depends	: fontconfig
+
+pkgname=noto-fonts-cjk
+pkgver=20190416
+pkgrel=1
+commit=be6c059ac1587e556e2412b27f5155c8eb3ddbe6
+source=($pkgname-$pkgver.tar.gz::https://github.com/notofonts/noto-cjk/archive/$commit.tar.gz
+        70-noto-cjk.conf)
+
+build() {
+    cd noto-cjk-$commit
+
+    install -Dm644 *.ttc -t "$pkgdir"/usr/share/fonts/noto-cjk
+    install -Dm644 "$srcdir"/70-noto-cjk.conf -t "$pkgdir"/usr/share/fontconfig/conf.avail
+    install -d "$pkgdir"/usr/share/fontconfig/conf.default
+    ln -rs "$pkgdir"/usr/share/fontconfig/conf.avail/* "$pkgdir"/usr/share/fontconfig/conf.default
+}

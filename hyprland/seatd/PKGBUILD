@@ -1,0 +1,25 @@
+# description	: Minimal seat management daemon and universal library
+# depends	: meson ninja systemd
+
+pkgname=seatd
+pkgver=0.9.1
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://git.sr.ht/~kennylevinsen/seatd/archive/$pkgver.tar.gz
+        $pkgname.hooks)
+
+build() {
+	cd $pkgname-$pkgver
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D examples=disabled \
+        -D server=enabled \
+        -D libseat-logind=systemd \
+        -D man-pages=disabled \
+        build
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+    install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+}

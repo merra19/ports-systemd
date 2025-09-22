@@ -1,0 +1,25 @@
+# description	: D-Bus abstraction for enumerating power devices, querying history and statistics
+# depends	: libgudev libusb gobject-introspection glib libxslt
+# depends	: py3-gobject docbook-xsl-nons systemd
+
+pkgname=upower
+pkgver=1.90.9
+pkgrel=1
+source=(https://gitlab.freedesktop.org/$pkgname/$pkgname/-/archive/v$pkgver/$pkgname-v$pkgver.tar.bz2
+        rules)
+backup=(etc/UPower/UPower.conf)
+
+build() {
+	cd $pkgname-v$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D gtk-doc=false \
+        -D man=true \
+        build
+	ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+
+	install -Dm 644 "$srcdir"/rules "$pkgdir"/usr/share/polkit-1/rules.d/org.freedesktop.upower.rules
+}

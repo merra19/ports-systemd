@@ -1,0 +1,23 @@
+# description	: The Shared MIME-info Database specification
+# depends	: glib libxml2 xmlto docbook-xml
+
+pkgname=shared-mime-info
+pkgver=2.4
+pkgrel=1
+options=(!makeflags)
+source=(https://gitlab.freedesktop.org/xdg/shared-mime-info/-/archive/$pkgver/$pkgname-$pkgver.tar.gz
+        $pkgname.hooks)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D update-mimedb=true \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+    install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+}

@@ -1,0 +1,36 @@
+# description	: Firmware files for Linux
+# depends	: xz zstd rdfind
+
+pkgname=linux-firmware
+pkgver=20250808
+pkgrel=1
+pkgnameparallel=parallel
+pkgverparallel=20250822
+options=(!strip)
+source=(https://gitlab.com/kernel-firmware/linux-firmware/-/archive/$pkgver/$pkgname-$pkgver.tar.gz
+        https://mirror.lyrahosting.com/gnu/$pkgnameparallel/$pkgnameparallel-$pkgverparallel.tar.bz2)
+NO_STRIP="yes"
+
+build() {
+    cd $pkgnameparallel-$pkgverparallel
+    ./configure --prefix=/usr --enable-static
+    make
+    make DESTDIR="$srcdir"/tmp install
+
+    export PATH="$PATH:$srcdir"/tmp/usr/bin
+
+    cd "$srcdir"/$pkgname-$pkgver
+
+	## install upstream linux-firmare files
+	export ZSTD_NBTHREADS=4 ZSTD_CLEVEL=19
+	make FIRMWAREDIR="$pkgdir/usr/lib/firmware" install-zst
+    # De-duplicate needs to be explicit since 20241017
+    make FIRMWAREDIR="$pkgdir/usr/lib/firmware" dedup
+
+	dangling=$(cd "$pkgdir" && find . -type l ! -exec test -e {} \; -print)
+	if [ -n "$dangling" ]; then
+		error "dangling symlinks:"
+		echo "$dangling" >&2
+		return 1
+	fi
+}

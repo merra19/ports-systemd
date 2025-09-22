@@ -1,0 +1,28 @@
+Current release: r12.4-65 – September 6th, 2025 
+
+September 13th, 2025
+
+    [zeckma] - Update to inih-62. Fixes #22091.
+
+    [zeckma] - Update to wireplumber-0.5.11. Fixes #22051.
+
+    [zeckma] - Update to pipewire-1.4.8. Fixes #22099.
+
+    [bdubbs] - Update to feh-3.11.2. Fixes #22083.
+
+    [bdubbs] - Update to numpy-2.3.3 (Python module). Fixes #22080.
+
+    [bdubbs] - Update to librsvg-2.61.1. Fixes #22079.
+
+    [bdubbs] - Update to libproxy-0.5.11. Fixes #22078.
+
+    [bdubbs] - Update to p11-kit-0.25.7. Fixes #22077.
+
+    [bdubbs] - Update to xcb-util-cursor-0.1.6 (XCB Utility). Fixes #22076.
+
+
+
+
+
+note: ffmpeg-8.0  incompatibility with xine-lib,vlc
+      updated ffmpeg-8.0 mpv,opencv,kpipewire spectacle depend kpipewire

@@ -1,0 +1,33 @@
+# description	: Vulkan Installable Client Driver (ICD) Loader
+# depends	: wayland-32 xorg-libs-32 libxcb-32 vulkan-loader
+
+pkgname=vulkan-loader-32
+pkgver=1.4.321
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v$pkgver.tar.gz)
+
+build() {
+    cd Vulkan-Loader*
+
+    ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32 "
+    CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign "
+    CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign "
+    LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign "
+    export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+	cmake -B build32 \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+		-D VULKAN_HEADERS_INSTALL_DIR=/usr \
+		-D CMAKE_INSTALL_LIBDIR=lib32 \
+		-D CMAKE_INSTALL_SYSCONFDIR=/etc \
+		-D CMAKE_INSTALL_DATADIR=/share \
+		-D CMAKE_SKIP_RPATH=True \
+		-D BUILD_TESTS=Off \
+		-D BUILD_WSI_XCB_SUPPORT=On \
+		-D BUILD_WSI_XLIB_SUPPORT=On \
+		-D BUILD_WSI_WAYLAND_SUPPORT=On \
+		-D CMAKE_BUILD_TYPE=Release \
+		-Wno-dev
+	make -C build32
+    make DESTDIR="$pkgdir" install -C build32
+}

@@ -1,0 +1,22 @@
+# description	: A thumbnail service for Thunar
+# depends	: glib freetype libpng gdk-pixbuf curl libjpeg-turbo 
+# depends	: poppler intltool gettext pkgconf libgsf
+# optional  : gstreamer gstreamer!!gst-libav 
+# optional  : gstreamer!!gst-plugins-bad gstreamer!!gst-plugins-good
+# optional  : gstreamer!gst-plugins-ugly
+
+pkgname=tumbler
+pkgver=4.20.0
+pkgrel=1
+options=(!lto)
+source=(https://archive.xfce.org/src/xfce/tumbler/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make
+	make DESTDIR="$pkgdir" install
+}

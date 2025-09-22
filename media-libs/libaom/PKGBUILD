@@ -1,0 +1,21 @@
+# description	: Alliance for Open Media AV1 Codec SDK
+# depends	: cmake ninja yasm
+
+pkgname=libaom
+pkgver=3.12.1
+pkgrel=1
+source=(https://storage.googleapis.com/aom-releases/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    cmake -B aom-build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D BUILD_SHARED_LIBS=1 \
+        -D ENABLE_DOCS=no \
+        -G Ninja
+    ninja -C aom-build
+    DESTDIR="$pkgdir" ninja install -C aom-build
+    rm -v "$pkgdir"/usr/lib/libaom.a
+}

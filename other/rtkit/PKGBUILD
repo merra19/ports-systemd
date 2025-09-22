@@ -1,0 +1,29 @@
+# description	: Realtime Policy and Watchdog Daemon
+# depends	: dbus polkit systemd meson
+
+pkgname=rtkit
+pkgver=0.13
+pkgrel=1
+source=(https://github.com/heftig/rtkit/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
+		$pkgname.hooks rtkit-0.13_daemon_verbosity.patch)
+
+build() {
+	cd $pkgname-$pkgver
+
+	# The rtkit-daemon service is a lot more verbose than other services
+	# when it doesn't have anything to do. Stop logging the debug messages
+	# by default to avoid flooding the system log.
+	patch -Np1 -i ../rtkit-0.13_daemon_verbosity.patch
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+		-D installed_tests=false \
+        build
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+	mv "$pkgdir"/usr/bin "$pkgdir"/usr/sbin
+
+	install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+}

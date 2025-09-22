@@ -1,0 +1,16 @@
+# description	: Extremely fast non-cryptographic hash algorithm
+# depends	: glibc
+
+pkgname=xxhash
+pkgver=0.8.3
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/Cyan4973/xxHash/archive/refs/tags/v$pkgver.tar.gz)
+
+build() {
+	cd xxHash-$pkgver
+
+    make PREFIX=/usr DISPATCH=1
+    make PREFIX=/usr DISPATCH=1 DESTDIR="$pkgdir" install
+
+    rm -f "$pkgdir"/usr/lib/libxxhash.a
+}

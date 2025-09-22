@@ -1,0 +1,20 @@
+# description	: Widget library for baloo
+# depends	: extra-cmake-modules qt6 kde-frameworks6
+
+pkgname=baloo-widgets
+pkgver=25.08.0
+pkgrel=1
+source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D BUILD_TESTING=OFF \
+        -D BUILD_WITH_QT6=ON \
+        -Wno-dev
+    make -C build
+    make DESTDIR="$pkgdir" install -C build
+}

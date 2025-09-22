@@ -1,0 +1,24 @@
+# description	: X.org input driver based on libinput
+# depends	: libinput xorg-proto xlibre-xserver systemd
+
+pkgname=xlibre-xf86-input-libinput
+pkgver=1.5.1.0
+pkgrel=1
+source=(https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd xf86-input-libinput-xlibre-xf86-input-libinput-$pkgver
+
+    LDFLAGS="$LDFLAGS -Wl,-z,lazy $DEBUGFLAGS"
+    export LDFLAGS
+
+    autoreconf -fiv
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --localstatedir=/var \
+        --disable-static
+    make
+    make DESTDIR="$pkgdir" install
+}

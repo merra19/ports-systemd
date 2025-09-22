@@ -1,0 +1,18 @@
+# description	: Library for manipulating Unicode and C strings according to Unicode standard
+# depends	: glibc
+
+pkgname=libunistring
+pkgver=1.3
+pkgrel=1
+source=(https://mirror.lyrahosting.com/gnu/$pkgname/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+        --prefix=/usr \
+        --disable-static \
+        --docdir=/usr/share/doc/$pkgname-$pkgver
+	make
+    make DESTDIR="$pkgdir" install
+}

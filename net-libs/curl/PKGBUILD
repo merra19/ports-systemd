@@ -1,0 +1,35 @@
+# description	: A Client that groks URL
+# depends	: openssl zlib zstd perl nghttp2 libpsl libssh2 gnutls
+# depends	: libidn2 make-ca brotli c-ares
+# optional  : openldap
+
+pkgname=curl
+pkgver=8.15.0
+pkgrel=1
+options=(!lto)
+source=(https://curl.se/download/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    scratch isinstalled openldap && OPT_CURL='--with-gssapi' ||  OPT_CURL='--disable-ldap'
+
+
+    ./configure \
+        --prefix=/usr \
+        --disable-static \
+		--enable-ipv6 \
+		--with-libidn2 \
+		--with-nghttp2 \
+		--with-openssl \
+		--with-zsh-functions-dir \
+		--with-fish-functions-dir \
+		--with-pic \
+        --with-ca-path=/etc/ssl/certs \
+        --with-gssapi \
+        --with-libssh2 \
+        --enable-ares \
+        $OPT_CURL
+    make
+    make DESTDIR="$pkgdir" install
+}

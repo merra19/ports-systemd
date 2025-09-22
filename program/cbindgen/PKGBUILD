@@ -1,0 +1,34 @@
+# description	: A tool for generating C bindings to Rust code
+# depends	: rustc
+
+pkgname=cbindgen
+pkgver=0.29.0
+pkgrel=1
+source=(https://github.com/mozilla/cbindgen/archive/v$pkgver/$pkgname-$pkgver.tar.gz
+        local://$pkgname-$pkgver-cargo.tar.xz)
+
+createpack() {
+    mkdir -p vendor
+    cargo vendor vendor
+    tar -cJpf $pkgname-$pkgver-cargo.tar.xz vendor/
+    cp $pkgname-$pkgver-cargo.tar.xz /sources/src/
+}
+
+build() {
+	cd $pkgname-$pkgver
+
+    #createpack
+
+    mv "$srcdir"/vendor .
+    
+    mkdir -p .cargo
+    echo '[source.crates-io]' >> .cargo/config.toml
+    echo 'replace-with = "vendored-sources"' >> .cargo/config.toml
+    echo '[source.vendored-sources]' >> .cargo/config.toml
+    echo 'directory = "vendor"' >> .cargo/config.toml
+
+	cargo build --release
+
+    mkdir -p "$pkgdir"/usr/bin/
+    install -Dm755 target/release/cbindgen "$pkgdir"/usr/bin/
+}

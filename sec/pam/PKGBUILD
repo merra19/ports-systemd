@@ -1,0 +1,36 @@
+# description	: Linux-PAM (Pluggable Authentication Modules)
+# depends	: flex bison libxcrypt autoconf automake meson ninja 
+# depends	: docbook-xsl-ns docbook-xml libnsl libtirpc rpcsvc-proto
+
+pkgname=pam
+pkgver=1.7.1
+pkgrel=1
+source=(https://github.com/linux-pam/linux-pam/releases/download/v$pkgver/Linux-PAM-$pkgver.tar.xz
+	    system-account system-auth system-session system-password other system-password2 systemd-user)
+backup=(etc/security/access.conf etc/security/faillock.conf etc/security/group.conf etc/security/limits.conf etc/security/namespace.conf 
+        etc/security/namespace.init etc/security/pwhistory.conf etc/security/pam_env.conf etc/security/time.conf etc/environment)
+
+build() {
+    cd Linux-PAM-$pkgver
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+		-D docdir=/usr/share/doc/Linux-PAM-$pkgver \
+        build
+    ninja -C build
+
+    mkdir -p "$pkgdir"/etc/pam.d
+
+    DESTDIR="$pkgdir" ninja install -C build
+
+	# install our pam.d files
+    cd "$srcdir"
+    
+    install -m 0644 system-account system-auth system-session system-password other \
+        systemd-user "$pkgdir"/etc/pam.d/
+
+    if ( scratch isinstalled libpwquality ); then  
+        cp system-password2  "$pkgdir"/etc/pam.d/system-password 
+    fi
+}

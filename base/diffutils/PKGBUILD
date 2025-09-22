@@ -1,0 +1,17 @@
+# description	: Tools to make diffs and compare files
+# depends	: glibc
+
+pkgname=diffutils
+pkgver=3.12
+pkgrel=1
+options=(!lto)
+source=(https://mirror.lyrahosting.com/gnu/diffutils/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+}

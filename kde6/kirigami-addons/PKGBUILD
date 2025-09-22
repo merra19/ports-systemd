@@ -1,0 +1,18 @@
+# description	: Add-ons for the Kirigami framework
+# depends	: kde-frameworks6 vulkan-loader
+
+pkgname=kirigami-addons
+pkgver=1.9.0
+pkgrel=1
+source=(https://download.kde.org/stable/kirigami-addons/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    cmake -B build \ -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D BUILD_TESTING=OFF \
+        -Wno-dev
+    make -C build
+    make DESTDIR="$pkgdir" install -C build
+}

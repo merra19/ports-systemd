@@ -1,0 +1,51 @@
+# description	: Fast C library for the Discrete Fourier Transform
+# depends	: perl
+
+pkgname=fftw
+pkgver=3.3.10
+pkgrel=1
+source=(https://www.fftw.org/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    mkdir double-build  single-build ldouble-build
+    cd double-build
+
+    ../configure \
+        --prefix=/usr \
+        --enable-shared \
+        --disable-static \
+        --enable-threads \
+        --enable-fortran \
+        --enable-openmp
+    make
+    make DESTDIR="$pkgdir" install
+
+    cd ../single-build 
+
+    ../configure \
+        --prefix=/usr \
+        --enable-shared  \
+        --disable-static \
+        --enable-threads \
+        --enable-fortran \
+        --enable-float \
+        --enable-openmp
+    make
+    make DESTDIR="$pkgdir" install
+
+    cd ../ldouble-build
+
+    ../configure \
+        --prefix=/usr \
+        --enable-shared  \
+        --disable-static \
+        --enable-threads \
+        --enable-fortran \
+        --enable-long-double \
+        --enable-openmp
+    make
+    make DESTDIR="$pkgdir" install
+}
+

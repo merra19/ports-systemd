@@ -1,0 +1,30 @@
+# description	: Core libraries for Xine movie player
+# depends	: zlib xorg-libs ffmpeg alsa-lib pulseaudio libdvdnav
+# depends	: faad2 flac gdk-pixbuf glu imagemagick liba52 libdvdcss
+# depends	: libmad libmng libnsl libva libvdpau libvorbis libvpx
+# depends	: mesa sdl12-compat speex v4l-utils aalib
+# optional  : samba
+
+pkgname=xine-lib
+pkgver=1.2.13
+pkgrel=1
+source=(https://downloads.sourceforge.net/xine/$pkgname-$pkgver.tar.xz
+		https://www.linuxfromscratch.org/patches/blfs/12.4/xine-lib-1.2.13-upstream_fixes-1.patch
+		https://www.linuxfromscratch.org/patches/blfs/12.4/xine-lib-1.2.13-gcc15_fixes-1.patch)
+
+build() {
+	cd $pkgname-$pkgver
+
+	# First, fix building this package with ffmpeg-7.0 and later
+	patch -Np1 -i ../xine-lib-1.2.13-upstream_fixes-1.patch
+	# Next, fix building this package with gcc-15.x
+	patch -Np1 -i ../xine-lib-1.2.13-gcc15_fixes-1.patch
+
+	./configure \
+		--prefix=/usr \
+		--disable-vcd \
+		--with-external-dvdnav \
+		--docdir=/usr/share/doc/$pkgname-$pkgver
+	make
+    make DESTDIR="$pkgdir" install
+}

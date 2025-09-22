@@ -1,0 +1,27 @@
+# description	: A library for manipulating block devices
+# depends	: gobject-introspection libbytesize libnvme parted  
+# depends	: cryptsetup glib kmod util-linux lvm2 systemd keyutils
+# depends	: json-glib smartmontools btrfs-progs mdadm libatasmart
+# todo      : escrow!!nss escrow!!volume_key 
+
+pkgname=libblockdev
+pkgver=3.3.1
+pkgrel=1
+options=(!lto)
+source=(https://github.com/storaged-project/libblockdev/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+        --prefix=/usr \
+		--sysconfdir=/etc \
+		--with-python3 \
+		--without-escrow \
+		--without-gtk-doc \
+		--without-nvdimm \
+		--with-tools \
+		--with-smartmontools
+	make
+    make DESTDIR="$pkgdir" install
+}

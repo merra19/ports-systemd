@@ -1,0 +1,54 @@
+#!/bin/bash
+
+usage() {
+	cat <<-__EOF__
+		usage: setup [plasma|xfce|hyprland|rofi]
+
+		write xinitrc file in HOME
+        and create ~/.cache folder
+
+        rofi:
+         cp dotfiles config to .config.rofi
+
+		options:
+		help  Show this help
+
+	__EOF__
+	exit $1
+}
+
+writehome() {
+    echo "$1" > ~/.xinitrc 
+}
+
+
+if [[ $EUID -eq 0 ]]; then
+    echo "This script must be NOT run as root" 1>&2
+    exit 1
+fi
+
+[ ! -d ~/.cache ] && mkdir -p ~/.cache 
+
+case $1 in
+    xfce)
+        writehome "dbus-launch --exit-with-x11 startxfce4"
+        ;;
+    plasma)
+        writehome "dbus-launch --exit-with-x11 /usr/bin/startplasma-x11"
+        ;;
+    rofi)
+        mkdir ~/.config/rofi
+        if scratch isinstalled rofi-dotfiles;then
+            cp -r /usr/local/share/rofi/* ~/.config/rofi/
+        else
+            echo "rofi-dotfiles not installed"
+        fi
+        ;;
+    help)
+        usage ; exit 0
+        ;;
+    *)
+        usage ; exit 0
+        ;;
+esac
+

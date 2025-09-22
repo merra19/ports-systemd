@@ -1,0 +1,22 @@
+# description	: XFS filesystem utilities
+# depends	: util-linux icu inih liburcu linux-api-headers
+
+pkgname=xfsprogs
+pkgver=6.15.0
+pkgrel=1
+source=(https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	make DEBUG=-DNDEBUG \
+		OPTIMIZER="$CFLAGS" \
+		INSTALL_USER=root \
+		INSTALL_GROUP=root \
+		LOCAL_CONFIGURE_OPTIONS="--localstatedir=/var"
+
+	make PKG_DOC_DIR=/usr/share/doc/$pkgname-$pkgver DIST_ROOT="${pkgdir}" install
+	make PKG_DOC_DIR=/usr/share/doc/$pkgname-$pkgver DIST_ROOT="${pkgdir}" install-dev
+
+	rm -rfv "$pkgdir"/usr/lib/libhandle.{a,la}
+}

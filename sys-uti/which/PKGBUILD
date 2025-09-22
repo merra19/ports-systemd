@@ -1,0 +1,16 @@
+# description	: Prints out location of specified executables that are in your path
+# depends	: glibc
+
+pkgname=which
+pkgver=2.23
+pkgrel=1
+source=(https://mirror.lyrahosting.com/gnu/which/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr
+    make    
+    make DESTDIR="$pkgdir" install
+}

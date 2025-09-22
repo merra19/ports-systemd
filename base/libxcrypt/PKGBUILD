@@ -1,0 +1,36 @@
+# description	: Extended crypt library for descrypt, md5crypt, bcrypt, and others
+# depends	: glibc pkgconf
+
+pkgname=libxcrypt
+pkgver=4.4.38
+pkgrel=1
+source=(https://github.com/besser82/libxcrypt/releases/download/v$pkgver/libxcrypt-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    mkdir build build2
+
+    cd build
+
+    ../configure \
+        --prefix=/usr \
+        --disable-werror \
+        --enable-hashes=strong,glibc \
+        --enable-obsolete-api=no \
+        --disable-static \
+        --disable-failure-tokens
+    make
+    make DESTDIR="$pkgdir" install
+
+    cd ../build2
+
+    ../configure \
+        --prefix=/usr \
+        --enable-hashes=strong,glibc \
+        --enable-obsolete-api=glibc \
+        --disable-static \
+        --disable-failure-tokens
+    make
+    cp -av --remove-destination .libs/libcrypt.so.1* "$pkgdir"/usr/lib
+}

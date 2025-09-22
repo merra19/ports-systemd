@@ -1,0 +1,18 @@
+# description	: Text formatter used for man pages
+# depends	: perl texinfo xorg-libs
+
+pkgname=groff
+pkgver=1.23.0
+pkgrel=1
+options=(!makeflags)
+source=(https://mirror.lyrahosting.com/gnu/groff/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    PAGE=A4 \
+    ./configure \
+         --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+}

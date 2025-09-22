@@ -1,0 +1,16 @@
+# description	: A tool to find and launch installed applications for the Xfce desktop
+# depends	: garcon gettext intltool pkgconf
+
+pkgname=xfce4-appfinder
+pkgver=4.20.0
+pkgrel=1
+source=(https://archive.xfce.org/src/xfce/xfce4-appfinder/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+}

@@ -1,0 +1,29 @@
+# description	: Meta port for base system
+# depends	: filesystem blfs-systemd-units iana-etc glibc zlib bzip2
+# depends	: xz zstd file readline m4 bc man-pages flex tcl binutils 
+# depends	: libgmp libmpfr libmpc attr acl libcap libxcrypt gcc 
+# depends	: pkgconf ncurses sed psmisc gettext bison grep bash 
+# depends	: bash-completion shadow libtool gdbm gperf expat less 
+# depends	: perl perl-xml-parser inetutils intltool autoconf 
+# depends	: automake openssl kmod elfutils libffi python py3-wheel
+# depends	: ninja meson coreutils diffutils gawk findutils groff
+# depends	: gzip iproute2 kbd libpipeline make patch tar texinfo
+# depends	: make-ca curl grub systemd man-db procps-ng util-linux
+# depends	: e2fsprogs freetype libtasn1 nano linux-firmware
+# depends	: dosfstools mdadm py3-flit-core fcron dbus cracklib
+# depends	: sudo logrotate libpwquality cmake brotli fakeroot
+# depends	: lsb-tools c-ares amd-ucode
+
+pkgname=base
+pkgver=20230101
+pkgrel=1
+source=(10-eth-static.network)
+
+build() {
+    mkdir -p "$pkgdir"/etc
+
+    dircolors -p > "$pkgdir"/etc/dircolors
+    clear > "$pkgdir"/etc/issue
+
+    install -Dm 644 "$srcdir"/10-eth-static.network "$pkgdir"/etc/systemd/network/10-eth-static.network
+}

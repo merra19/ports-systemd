@@ -1,0 +1,17 @@
+# description	: New GNU Portable Threads Library
+# depends	: glibc
+
+pkgname=npth
+pkgver=1.8
+pkgrel=1
+options=(!lto)
+source=( https://www.gnupg.org/ftp/gcrypt/$pkgname/$pkgname-$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+        --prefix=/usr
+	make
+    make DESTDIR="$pkgdir" install
+}

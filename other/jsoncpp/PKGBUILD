@@ -1,0 +1,19 @@
+# description	: C++ JSON reader and writer
+# depends	: python meson
+
+pkgname=jsoncpp
+pkgver=1.9.6
+pkgrel=1
+source=(https://github.com/open-source-parsers/$pkgname/archive/$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=release \
+        --default-library shared \
+        build
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

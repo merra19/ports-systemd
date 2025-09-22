@@ -1,0 +1,37 @@
+# description	: High-quality and portable font engine
+# depends	: libpng-32 zlib-32 bzip2-32 brotli-32 freetype
+
+pkgname=freetype-32
+_pkgname=freetype
+pkgver=2.13.3
+pkgrel=1
+source=(https://downloads.sourceforge.net/freetype/freetype-$pkgver.tar.xz
+        https://downloads.sourceforge.net/freetype/freetype-doc-$pkgver.tar.xz)
+
+build() {
+    cd ${_pkgname}-$pkgver
+
+    sed -ri "s:.*(AUX_MODULES.*valid):\1:" modules.cfg &&
+
+    sed -r "s:.*(#.*SUBPIXEL_RENDERING) .*:\1:" \
+        -i include/freetype/config/ftoption.h
+
+	export CC="gcc -m32 -mstackrealign"
+	export CXX="g++ -m32 -mstackrealign"
+	export PKG_CONFIG_LIBDIR="/usr/lib32/pkgconfig"
+
+    scratch isinstalled openldap &&  OPT_FREETYPE="--with-ldap" || OPT_FREETYPE="--with-ldap"
+    
+    ./configure \
+        --prefix=/usr \
+        --enable-freetype-config \
+        --disable-static \
+        --with-harfbuzz="$(isinstalled harfbuzz-32 && echo 'yes' || echo 'no' )" \
+        --with-brotli=yes \
+        --libdir=/usr/lib32 \
+        --host=i686-pc-linux-gnu
+    make
+    make DESTDIR="$PWD"/DESTDIR install
+    mkdir -p "$pkgdir"/usr/lib32
+    cp -Rv DESTDIR/usr/lib32/* "$pkgdir"/usr/lib32
+}

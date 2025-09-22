@@ -1,0 +1,32 @@
+# description	: Transport Independent RPC library (SunRPC replacement)
+# depends	: xz-32 libtirpc
+
+pkgname=libtirpc-32
+_pkgname=libtirpc
+pkgver=1.3.6
+pkgrel=1
+source=(https://downloads.sourceforge.net/libtirpc/$_pkgname-$pkgver.tar.bz2
+        https://www.linuxfromscratch.org/patches/blfs/12.4/libtirpc-1.3.6-gcc15_fixes-1.patch)
+
+build() {
+    cd $_pkgname-$pkgver
+
+	export CC="gcc -m32 -mstackrealign"
+	export CXX="g++ -m32 -mstackrealign"
+	export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+    # First, apply a patch to make the package compatible with gcc-15
+    patch -Np1 -i ../libtirpc-1.3.6-gcc15_fixes-1.patch
+    
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --libdir=/usr/lib32 \
+        --disable-static \
+        --disable-gssapi \
+        --host=i686-pc-linux-gnu
+    make
+    make DESTDIR=$PWD/DESTDIR install
+    mkdir -p "$pkgdir"/usr/lib32
+    cp -Rv DESTDIR/usr/lib32/* "$pkgdir"/usr/lib32
+}

@@ -1,0 +1,26 @@
+# description	: User-land utilities for LVM2 (device-mapper) software
+# depends	: libaio util-linux readline libnvme mdadm which systemd
+
+pkgname=lvm2
+pkgver=2.03.34
+pkgrel=1
+source=($pkgname-$pkgver.tgz::https://sourceware.org/pub/lvm2/LVM2.$pkgver.tgz)
+backup=(etc/lvm/lvm.conf etc/lvm/lvmlocal.conf)
+
+build() {
+	cd LVM2.$pkgver
+	
+	PATH=:$PATH:/usr/sbin \
+	./configure \
+        --prefix=/usr \
+		--enable-cmdlib \
+		--enable-pkgconfig \
+		--enable-udev_sync
+	make
+	make DESTDIR="$pkgdir" install
+    make DESTDIR="$pkgdir" install_systemd_units
+
+    # The default configuration still references the obsolete /var/lock directory.
+    # This creates a deadlock at boot time
+    sed -e '/locking_dir =/{s/#//;s/var/run/}' -i "$pkgdir"/etc/lvm/lvm.conf
+}

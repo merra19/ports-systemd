@@ -1,0 +1,17 @@
+# description	: Used to generate Makefile.in from Makefile.am
+# depends	: autoconf gzip help2man
+
+pkgname=automake
+pkgver=1.18.1
+pkgrel=1
+source=(https://mirror.lyrahosting.com/gnu/automake/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --docdir=/usr/share/doc/$pkgname-$pkgver
+    make
+    make DESTDIR="$pkgdir" install
+}

@@ -1,0 +1,28 @@
+# description	: Required tools for WireGuard, such as wg(8) and wg-quick(8)
+# depends	: iptables
+
+pkgname=wireguard-tools
+pkgver=1.0.20250521
+pkgrel=1
+options=(!lto)
+source=(https://git.zx2c4.com/wireguard-tools/snapshot/$pkgname-$pkgver.tar.xz
+        wireguard.conf)
+
+build() {
+    cd $pkgname-$pkgver
+
+    make -C src/
+	make -C src/ \
+		DESTDIR="$pkgdir" \
+		WITH_BASHCOMPLETION=yes \
+                WITH_WGQUICK=yes \
+                WITH_SYSTEMDUNITS=yes \
+                install
+
+    install -d "$pkgdir"/usr/share/$pkgname/examples
+	cp -r contrib/ "$pkgdir"/usr/share/$pkgname/examples/
+
+    install -Dm 0744 "$srcdir"/wireguard.conf "$pkgdir"/etc/wireguard.conf
+    install -d "$pkgdir"/etc/modules-load.d
+    echo "wireguard" > "$pkgdir"/etc/modules-load.d/wireguard.conf
+}

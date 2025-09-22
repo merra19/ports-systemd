@@ -1,0 +1,86 @@
+Name      UUID GUID
+-------------------
+bin 	    1
+sys              2
+kmem             3
+tape             4
+tty              5
+daemon           6
+floppy           7
+disk             8
+lp 	        9
+dialout         10
+audio           11
+video           12
+utmp            13
+cdrom           15
+adm 		    16
+atd 	    17 	17
+messagebus 	18 	18
+lpadmin 	  	19
+named 	    20 	20
+gdm 	    21 	21
+fcron 	    22 	22
+systemd-journal 23  23
+input           24
+apache 	    25 	25
+smmsp 	    26 	26
+polkitd 	27 	27
+rpc 	    28 	28
+exim 	    31 	31
+postfix 	32 	32
+postdrop 		33
+sendmail 	34 	
+mail 		    34
+vmailman 	35 	35
+news 	    36 	36
+kdm 	    37 	37
+fetchmail 	38 	
+mariadb 	40 	40
+postgres 	41 	41
+dovecot 	42 	42
+dovenull 	43 	43
+ftp 	    45 	45
+proftpd 	46 	46
+vsftpd 	    47 	47
+rsyncd 	    48 	48
+lighttpd    49  49
+sshd 	    50 	50
+stunnel 	51 	51
+dhcpcd 	    52 	52
+svn 	    56 	56
+svntest 		57
+git 	    58 	58
+games 	    60 	60
+kvm 		    61
+wireshark 		62
+sddm 	    64 	64
+lightdm 	65 	65
+scanner 		70
+colord 	    71 	71
+systemd-journal-gateway 73 	73
+systemd-journal-remote 	74 	74
+systemd-journal-upload 	75 	75
+systemd-network 		76 	76
+systemd-resolve 		77 	77
+systemd-timesync 		78 	78
+systemd-coredump 		79 	79
+uuidd 	    80 	80
+systemd-oom             81  81
+ldap 	    83 	83
+avahi 	    84 	84
+avahi-autoipd 	85 	85
+netdev 		86
+ntp 	    87 	87
+unbound 	88 	88
+plugdev 		90
+wheel 		    97
+anonymous 	    98
+pcscd       102 102
+rtkit       133 133
+seat            202
+flatpak     313 313
+gamemode        385
+users           999
+nobody 	    65534 	
+nogroup 		65534 

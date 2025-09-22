@@ -1,0 +1,27 @@
+# description	: Lists open files for running Unix processes
+# depends	: libtool bzip2 fftw libjpeg-turbo openjpeg xorg-libs
+# depends	: lcms2 pango perl libpng ghostscript librsvg libtiff cups
+# depends	: libwebp xorg-proto xz zlib ttf-dejavu 7zip libraw libjxl
+# depends	: curl wget xdg-utils xterm jasper libgxps ghostscript 
+# depends	: llvm ffmpeg sane 
+# todo      : gimp inkscape enscript potrace
+
+pkgname=imagemagick
+pkgver=7.1.2.1
+_version="$(echo $pkgver  | sed 's/\(.*\)\./\1-/')"
+pkgrel=1
+source=(https://www.imagemagick.org/archive/releases/ImageMagick-$_version.tar.xz)
+
+build() {
+	cd ImageMagick-$_version
+
+	./configure \
+        --prefix=/usr  \
+        --sysconfdir=/etc \
+        --enable-hdri \
+        --with-modules \
+        --with-perl \
+        --disable-static
+	make
+    make DESTDIR="$pkgdir" DOCUMENTATION_PATH=/usr/share/doc/$pkgname-$pkgver install
+}

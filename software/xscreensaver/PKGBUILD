@@ -1,0 +1,28 @@
+# description	: Modular screen saver and locker for the X Window System
+# depends	: systemd gdk-pixbuf gtk3 libjpeg-turbo glu mesa libxml2
+# depends	: pam libpng  libgcrypt xorg-applications
+
+pkgname=xscreensaver
+pkgver=6.12
+pkgrel=1
+source=(https://www.jwz.org/xscreensaver/$pkgname-$pkgver.tar.gz
+        xscreensaver)
+
+bsdtar() {
+tar $@;
+}
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --with-systemd 
+    make
+    
+    mkdir -p "$pkgdir"/etc/pam.d
+
+	make install_prefix="$pkgdir" install
+
+    install -Dm 644 "$srcdir"/xscreensaver "$pkgdir"/etc/pam.d/xscreensaver
+}

@@ -1,0 +1,24 @@
+# description	: Rotates, compresses, and mails system logs
+# depends	: popt acl fcron systemd
+
+pkgname=logrotate
+pkgver=3.22.0
+pkgrel=1
+source=(https://github.com/logrotate/logrotate/releases/download/$pkgver/$pkgname-$pkgver.tar.xz
+        logrotate.conf sys.log logrotate.service logrotate.timer)
+
+build() {
+	cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+
+    install -Dm 644 "$srcdir"/logrotate.conf "$pkgdir"/etc/logrotate.conf 
+    mkdir -p "$pkgdir"/etc/logrotate.d
+    install -Dm 644 "$srcdir"/sys.log "$pkgdir"/etc/logrotate.d/sys.log
+
+    install -Dm 644 "$srcdir"/logrotate.service "$pkgdir"/usr/lib/systemd/system/logrotate.service
+    install -Dm 644 "$srcdir"/logrotate.timer "$pkgdir"/usr/lib/systemd/system/logrotate.timer
+} 

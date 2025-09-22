@@ -1,0 +1,18 @@
+# description	: Building blocks for modern GNOME applications
+# depends	: gtk4 appstream vala xorg-proto sassc
+
+pkgname=libadwaita
+pkgver=1.7.6
+pkgrel=1
+source=(https://download.gnome.org/sources/libadwaita/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

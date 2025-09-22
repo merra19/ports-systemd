@@ -1,0 +1,17 @@
+# description	: Meta port for KDE
+# depends	: kde-pre-conf kde-frameworks6 plasma-activities-stats
+# depends	: oxygen-icons ark gwenview dolphin konsole kate okular
+# depends	: dolphin-plugins kde-plasma6 networkmanager xlibre
+# depends	: xdg-desktop-portal-gtk
+# todo      : flatpak-kcm
+
+pkgname=kde
+pkgver=6.0.0
+pkgrel=1
+source=(kde kde-np kscreensaver)
+
+build() {
+    install -Dm 644 kde "$pkgdir"/etc/pam.d/kde
+    install -Dm 644 kde-np "$pkgdir"/etc/pam.d/kde-np
+    install -Dm 644 kscreensaver "$pkgdir"/etc/pam.d/kscreensaver
+}

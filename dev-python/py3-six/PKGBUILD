@@ -1,0 +1,15 @@
+# description	: Python 2 and 3 compatibility library
+# depends	: python py3-gpep517 py3-setuptools py3-wheel
+
+pkgname=py3-six
+pkgver=1.17.0
+pkgrel=1
+options=(!lto)
+source=(https://files.pythonhosted.org/packages/source/s/six/${pkgname#*-}-$pkgver.tar.gz)
+
+build() {
+	cd ${pkgname#*-}-$pkgver
+    
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}

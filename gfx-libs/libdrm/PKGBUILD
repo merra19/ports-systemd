@@ -1,0 +1,21 @@
+# description	: X.Org libdrm library
+# depends	: meson libxslt docbook-xml py3-docutils docbook-xsl-nons
+# depends	: libatomic_ops xorg-libs
+
+pkgname=libdrm
+pkgver=2.4.125
+pkgrel=1
+source=(https://dri.freedesktop.org/libdrm/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D udev=true \
+        -D valgrind=disabled \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

@@ -1,0 +1,19 @@
+# description	: C library for the Public Suffix List
+# depends	: libidn2 libunistring python icu
+
+pkgname=libpsl
+pkgver=0.21.5
+pkgrel=1
+options=(!lto)
+source=(https://github.com/rockdaboot/libpsl/releases/download/$pkgver/libpsl-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

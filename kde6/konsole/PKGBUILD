@@ -1,0 +1,22 @@
+# description	: KDE's terminal emulator
+# depends	: icu kde-frameworks6
+
+pkgname=konsole
+pkgver=25.08.0
+pkgrel=1
+source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz
+        https://www.linuxfromscratch.org/patches/blfs/12.4/konsole-adjust_scrollbar-1.patch)
+
+build() {
+	cd $pkgname-$pkgver
+
+    patch -Np1 -i ../konsole-adjust_scrollbar-1.patch
+
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D BUILD_TESTING=OFF \
+        -Wno-dev
+    make -C build
+    make DESTDIR="$pkgdir" install -C build
+}

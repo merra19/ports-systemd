@@ -1,0 +1,22 @@
+# description	: KIO plugins present a filesystem-like view of arbitrary data
+# depends	: kde-frameworks6 kdsoap-ws-discovery-client libproxy
+# depends	: plasma-activities-stats qcoro6 libkexiv2 libtirpc taglib
+# optional  : samba
+
+pkgname=kio-extras
+pkgver=25.08.0
+pkgrel=1
+source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D BUILD_TESTING=OFF \
+        -D BUILD_ACTIVITIES="OFF" \
+        -Wno-dev
+    make -C build
+    make DESTDIR="$pkgdir" install -C build
+}

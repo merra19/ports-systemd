@@ -1,0 +1,19 @@
+# description	: Low-level pixel manipulation routines
+# depends	: glibc libpng
+
+pkgname=pixman
+pkgver=0.46.4
+pkgrel=1
+options=(!lto)
+source=(https://www.cairographics.org/releases/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

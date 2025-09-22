@@ -1,0 +1,4 @@
+DISTRIB_ID="Linux From Scratch"
+DISTRIB_RELEASE="r12.4"
+DISTRIB_CODENAME="r12.4-systemd"
+DISTRIB_DESCRIPTION="Linux From Scratch"

@@ -1,0 +1,27 @@
+# description	: PC/SC Architecture smartcard middleware library
+# depends	: glibc polkit systemd python meson
+
+pkgname=pcsclite
+pkgver=2.3.3
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/LudovicRousseau/PCSC/archive/refs/tags/$pkgver.tar.gz
+        $pkgname.hooks)
+
+build() {
+	cd PCSC-$pkgver
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D libsystemd=true \
+        -D libudev=true \
+        -D polkit=true \
+        -D serial=true \
+        build
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+    install -d "$pkgdir/usr/lib/pcsc/drivers"
+
+    install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+}

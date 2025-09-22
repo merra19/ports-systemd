@@ -1,0 +1,19 @@
+# description	: A vector graphics library with cross-device output support
+# depends	: lzo pixman fontconfig libpng zlib glib libxcb libdrm
+# depends	: xorg-proto binutils libxml2 xorg-libs
+
+pkgname=cairo
+pkgver=1.18.4
+pkgrel=1
+source=( https://www.cairographics.org/releases/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

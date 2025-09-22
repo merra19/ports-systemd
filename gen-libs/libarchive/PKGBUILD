@@ -1,0 +1,21 @@
+# description	: Multi-format archive and compression library
+# depends	: glibc acl zlib xz bzip2 lz4 zstd openssl lzo pcre2
+# depends	: nettle 
+
+pkgname=libarchive
+pkgver=3.8.1
+pkgrel=1
+options=(!lto)
+source=(https://github.com/libarchive/libarchive/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --disable-static \
+        --without-expat \
+        --without-xml2
+    make
+    make DESTDIR="$pkgdir" install
+}

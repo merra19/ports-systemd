@@ -1,0 +1,60 @@
+# description	: Controlling the startup, running, and shutdown of the system
+# depends	: acl-32 xz-32 libcap-32 libarchive-32 curl-32 systemd
+
+pkgname=systemd-32
+_pkgname=systemd
+pkgver=257.8
+pkgrel=1
+source=(https://github.com/systemd/systemd/archive/v$pkgver/systemd-$pkgver.tar.gz)
+
+build() {
+    cd ${_pkgname}-$pkgver
+
+    # Remove two unneeded groups, render and sgx, from the default udev rules:
+    sed  -i -e 's/GROUP="render"/GROUP="video"/' \
+            -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
+
+    mkdir build32
+    cd build32
+    
+	export CC="gcc -m32 -mstackrealign"
+	export CXX="g++ -m32 -mstackrealign"
+	export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+	LANG=en_US.UTF-8 \
+    meson setup .. \
+        --prefix=/usr \
+        --buildtype=release \
+		--libdir=lib32 \
+        -D default-dnssec=no \
+        -D firstboot=false \
+        -D install-tests=false \
+        -D ldconfig=false \
+        -D sysusers=false \
+        -D rpmmacrosdir=no \
+        -D homed=disabled \
+        -D userdb=false \
+        -D man=disabled \
+        -D mode=release \
+        -D pam=enabled \
+        -D pamconfdir=/etc/pam.d \
+        -D dev-kvm-mode=0660 \
+        -D nobody-group=nogroup \
+        -D sysupdate=disabled \
+        -D ukify=disabled \
+        -D libcryptsetup=disabled \
+        -D libcryptsetup-plugins=disabled \
+		-D kmod=disabled \
+		-D seccomp=disabled \
+		-D qrencode=disabled \
+        -D docdir=/usr/share/doc/$pkgname-$pkgver
+    ninja
+    DESTDIR=$PWD/DESTDIR ninja install
+
+    mkdir -p "$pkgdir"/usr/lib32
+    cp -Rv DESTDIR/usr/lib32/* "$pkgdir"/usr/lib32
+
+    #mkdir -pv "$pkgdir"/usr/lib32/pkgconfig &&
+    #cp -av libudev.so{,*[0-9]} "$pkgdir"/usr/lib32/ &&
+    #sed -e "s;/usr/lib;&32;g" src/libudev/libudev.pc > "$pkgdir"/usr/lib32/pkgconfig/libudev.pc
+}

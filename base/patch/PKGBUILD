@@ -1,0 +1,16 @@
+# description	: Utility to apply diffs to files
+# depends	: attr
+
+pkgname=patch
+pkgver=2.8
+pkgrel=1
+source=(https://mirror.lyrahosting.com/gnu/patch/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+}

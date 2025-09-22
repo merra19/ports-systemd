@@ -1,0 +1,26 @@
+# description	: Changes keyboard's numlock state under X
+# depends	: xorg-libs
+
+pkgname=numlockx
+pkgver=1.2
+pkgrel=1
+source=(https://github.com/rg3/numlockx/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	sed -i '/^K_/d; s/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/' configure.in
+	sed -i 's/@X_.*@//g' Makefile.am
+
+    autoreconf -fiv
+
+    X_LDFLAGS="$LDFLAGS"
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --disable-static \
+        --docdir=/usr/share/doc/$pkgname-$pkgver
+    make
+    make DESTDIR="$pkgdir" install
+}

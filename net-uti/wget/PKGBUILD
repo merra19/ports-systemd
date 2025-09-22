@@ -1,0 +1,23 @@
+# description	: Network utility to retrieve files from the WWW
+# depends	: openssl util-linux perl texinfo libpsl pcre2 libidn2
+# depends	: gnutls libproxy
+
+pkgname=wget
+pkgver=1.25.0
+pkgrel=1
+options=(!lto)
+source=(https://mirror.lyrahosting.com/gnu/wget/$pkgname-$pkgver.tar.gz)
+backup=(etc/wgetrc)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --enable-nls \
+        --with-ssl=openssl \
+        --enable-libproxy
+    make
+    make DESTDIR="$pkgdir" install
+}

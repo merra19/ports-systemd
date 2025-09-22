@@ -1,0 +1,19 @@
+# description	: Version 2 of an advanced replacement library for libraries like libXpm
+# depends	: bzip2  giflib libjpeg-turbo highway libjxl xz libpng
+# depends	: librsvg xorg-libs libtiff libwebp zlib xorg-proto
+# todo      : libspectre libheif libid3tag
+
+pkgname=imlib2
+pkgver=1.12.5
+pkgrel=1
+source=(https://downloads.sourceforge.net/enlightenment/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	./configure \
+        --prefix=/usr \
+        --disable-static
+    make
+    make DESTDIR="$pkgdir" install
+}

@@ -1,0 +1,21 @@
+# description	: Open Firmware device tree compiler
+# depends	: libyaml swig meson py3-setuptools
+
+pkgname=dtc
+pkgver=1.7.2
+pkgrel=1
+source=(https://kernel.org/pub/software/utils/dtc/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+		-D python=disabled \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+	rm "$pkgdir"/usr/lib/libfdt.a
+}

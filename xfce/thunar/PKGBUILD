@@ -1,0 +1,19 @@
+# description	: File manager for the Xfce desktop environment
+# depends	: exo hicolor-icon-theme libgudev libnotify pcre2 libexif  
+# depends	: tumbler gvfs 
+
+pkgname=thunar
+pkgver=4.20.4
+pkgrel=1
+source=(https://archive.xfce.org/src/xfce/thunar/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --docdir=/usr/share/doc/$pkgname-$pkgver
+    make
+    make DESTDIR="$pkgdir" install
+}

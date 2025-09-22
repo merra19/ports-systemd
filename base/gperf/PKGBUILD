@@ -1,0 +1,18 @@
+# description	: A perfect hash function generator
+# depends	: glibc
+
+pkgname=gperf
+pkgver=3.3
+pkgrel=1
+options=(!makeflags)
+source=(https://mirror.lyrahosting.com/gnu/gperf/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --docdir=/usr/share/doc/$pkgname-$pkgver
+    make
+    make DESTDIR="$pkgdir" install
+}

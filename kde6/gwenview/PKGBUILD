@@ -1,0 +1,22 @@
+# description	: Image viewer by KDE
+# depends	: exiv2 kimageannotator kde-frameworks6 lcms2 libkdcraw
+# depends	: plasma-activities 
+
+pkgname=gwenview
+pkgver=25.08.0
+pkgrel=1
+options=(!lto)
+source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_INSTALL_LIBEXECDIR=libexec \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D BUILD_TESTING=OFF \
+        -Wno-dev
+    make -C build
+    make DESTDIR="$pkgdir" install -C build
+}

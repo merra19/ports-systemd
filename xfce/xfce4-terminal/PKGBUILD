@@ -1,0 +1,18 @@
+# description	: A terminal emulator for the Xfce desktop environment
+# depends	: pcre2 libxfce4ui vte intltool 
+
+pkgname=xfce4-terminal
+pkgver=1.1.5
+pkgrel=1
+source=(https://archive.xfce.org/src/apps/xfce4-terminal/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

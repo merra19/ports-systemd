@@ -1,0 +1,17 @@
+# description	: A small and lightweight parser library for ATA S.M.A.R.T. hard disks
+# depends	: systemd
+
+pkgname=libatasmart
+pkgver=0.19
+pkgrel=1
+source=(http://0pointer.de/public/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+        --prefix=/usr \
+        --disable-static
+	make
+    make DESTDIR="$pkgdir" docdir=/usr/share/doc/$pkgname-$pkgver install
+}

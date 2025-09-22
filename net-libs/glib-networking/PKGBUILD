@@ -1,0 +1,20 @@
+# description	: Network-related giomodules for glib
+# depends	: glib gnutls gsettings-desktop-schemas meson libproxy
+
+pkgname=glib-networking
+pkgver=2.80.1
+pkgrel=1
+source=(https://ftp.gnome.org/pub/gnome/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D libproxy=enabled \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+}

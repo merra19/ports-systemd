@@ -1,0 +1,19 @@
+# description	: A panel plug-in for PulseAudio volume control
+# depends	: pulseaudio libnotify xfce4-panel keybinder-3.0
+# depends	: libxfce4windowing pavucontrol wireplumber libcanberra
+ 
+pkgname=xfce4-pulseaudio-plugin
+pkgver=0.5.1
+pkgrel=1
+source=(https://archive.xfce.org/src/panel-plugins/xfce4-pulseaudio-plugin/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

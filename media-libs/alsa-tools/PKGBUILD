@@ -1,0 +1,35 @@
+# description	: Advanced Linux Sound Architecture tools
+# depends	: alsa-lib fltk gtk3
+
+pkgname=alsa-tools
+pkgver=1.2.14
+pkgrel=1
+source=(https://www.alsa-project.org/files/pub/tools/$pkgname-$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname-$pkgver
+
+    rm -rf qlo10k1 echomixer envy24control rmedigicontrol Makefile gitcompile
+
+    scratch isinstalled gtk3 || rm -rf hdajackretask hdajacksensetest
+
+    for tool in *
+    do
+    case $tool in
+        seq )
+        tool_dir=seq/sbiload
+        ;;
+        * )
+        tool_dir=$tool
+        ;;
+    esac
+
+    pushd $tool_dir
+        ./configure --prefix=/usr
+        make
+        make DESTDIR="$pkgdir"  install
+    popd
+
+    done
+    unset tool tool_dir
+}

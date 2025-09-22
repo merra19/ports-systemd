@@ -1,0 +1,22 @@
+# description	: Desktop integration portal
+# depends	: json-glib wireplumber pipewire fuse gdk-pixbuf systemd
+# depends	: bubblewrap dbus geoclue libportal gstreamer
+# depends	: gst-plugins-base
+
+pkgname=xdg-desktop-portal
+pkgver=1.20.3
+pkgrel=1
+options=(!lto)
+source=(https://github.com/flatpak/xdg-desktop-portal/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D tests=disabled \
+        build
+	ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+}

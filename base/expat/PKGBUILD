@@ -1,0 +1,23 @@
+# description	: Stream-oriented XML parser library
+# depends	: glibc
+
+pkgname=expat
+pkgver=2.7.1
+_pkgver=${pkgver//./_}
+pkgrel=1
+source=(https://github.com/libexpat/libexpat/releases/download/R_$_pkgver/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    scratch isinstalled xmlto &&  export DOCBOOK_TO_MAN="xmlto man --skip-validation"
+
+    ./configure \
+        --prefix=/usr \
+        --disable-static \
+        --docdir=/usr/share/doc/$pkgname-$pkgver
+    make
+    make DESTDIR="$pkgdir" install
+
+    install -v -m644 doc/*.{html,css} "$pkgdir"/usr/share/doc/$pkgname-$pkgver
+}

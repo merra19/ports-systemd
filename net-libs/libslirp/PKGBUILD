@@ -1,0 +1,18 @@
+# description	: A TCP-IP emulator used to provide virtual networking services
+# depends	: glib
+
+pkgname=libslirp
+pkgver=4.9.1
+pkgrel=1
+source=(https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v$pkgver/$pkgname-v$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname-v$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

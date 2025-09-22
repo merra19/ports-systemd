@@ -1,0 +1,42 @@
+#!/bin/sh
+
+build_hook() {
+	for dir in dev usr/lib/firmware run sys proc \
+		etc/modprobe.d etc/udev/rules.d; do
+		add_dir /$dir
+	done
+
+	for dir in bin lib sbin lib32; do
+		add_dir /usr/$dir
+		add_symlink  /$dir usr/$dir
+	done
+
+	add_dir /lib64
+	
+	for bin in bash sh cat mv cp killall ls mkdir mount find xargs grep fgrep \
+		umount sed sleep ln rm uname chmod \
+		readlink basename \
+		kmod  setsid awk; do
+		add_binary $bin
+	done
+
+	for bin in 	chroot modprobe blkid switch_root lsmod insmod ; do
+		add_binary /sbin/$bin
+	done
+
+	add_file /usr/share/terminfo/l/linux
+	add_file /lib/ld-linux-x86-64.so.2
+
+	add_symlink /lib64 ../lib/ld-linux-x86-64.so.2
+	add_symlink /lib64/ld-lsb-x86-64.so.3 ../lib/ld-linux-x86-64.so.2
+
+
+	find /usr/lib/systemd | while read -r file; do
+		
+		binpath=$(command -v $file)
+
+		if [ -d $file ] ;then add_dir $file 
+		elif [ -z "$binpath" ] && [ -f $file ]; then add_file $file
+		elif [ -f $file ] ;then add_binary $file ;fi
+	done
+}

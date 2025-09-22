@@ -1,0 +1,19 @@
+# description	: Script for converting XML and DocBook documents to a variety of output formats"
+# depends	: docbook-xml docbook-xsl-nons libxslt lynx
+
+pkgname=xmlto
+pkgver=0.0.29
+pkgrel=1
+options=(!lto)
+source=(https://pagure.io/xmlto/archive/$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    autoreconf -fiv 
+	LINKS="/usr/bin/links" \
+	./configure \
+        --prefix=/usr
+	make
+    make DESTDIR="$pkgdir" install
+}

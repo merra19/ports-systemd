@@ -1,0 +1,17 @@
+# description	: Power Manager for Xfcn
+# depends	: libnotify upower xfce4-panel polkit networkmanager
+
+pkgname=xfce4-power-manager
+pkgver=4.20.0
+pkgrel=1
+source=(https://archive.xfce.org/src/xfce/xfce4-power-manager/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
+
+build() {
+  cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make
+    make DESTDIR="$pkgdir" install
+}

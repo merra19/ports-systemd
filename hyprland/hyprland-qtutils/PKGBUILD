@@ -1,0 +1,17 @@
+# description	: Hyprland QT/qml utility apps
+# depends	: hyprland-qt-support hyprutils qt6 cmake
+
+pkgname=hyprland-qtutils
+pkgver=0.1.4
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/hyprwm/$pkgname/archive/refs/tags/v$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	cmake -B build \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_BUILD_TYPE=Release
+	cmake --build build
+    DESTDIR="$pkgdir" cmake --install build
+}

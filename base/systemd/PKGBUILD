@@ -1,0 +1,56 @@
+# description	: Controlling the startup, running, and shutdown of the system
+# depends	: meson acl xz py3-jinja2 gperf libcap libarchive kmod
+
+pkgname=systemd
+pkgver=257.8
+pkgrel=1
+options=(!lto)
+source=(https://github.com/systemd/systemd/archive/v$pkgver/$pkgname-$pkgver.tar.gz
+        https://anduin.linuxfromscratch.org/LFS/systemd-man-pages-$pkgver.tar.xz
+        system-hooks.sh)
+noextract=(systemd-man-pages-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    # Remove two unneeded groups, render and sgx, from the default udev rules:
+    sed  -i -e 's/GROUP="render"/GROUP="video"/' \
+            -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
+
+    mkdir -p build
+    cd       build
+
+    meson setup .. \
+        --prefix=/usr \
+        --buildtype=release \
+        -D default-dnssec=no \
+        -D firstboot=false \
+        -D install-tests=false \
+        -D ldconfig=false \
+        -D sysusers=false \
+        -D rpmmacrosdir=no \
+        -D homed=disabled \
+        -D userdb=false \
+        -D man=disabled \
+        -D mode=release \
+        -D pam=enabled \
+        -D pamconfdir=/etc/pam.d \
+        -D dev-kvm-mode=0660 \
+        -D nobody-group=nogroup \
+        -D sysupdate=disabled \
+        -D ukify=disabled \
+        -D docdir=/usr/share/doc/$pkgname-$pkgver
+    ninja
+    DESTDIR="$pkgdir" ninja install
+
+    rm -f "$pkgdir"/etc/pam.d/systemd-user
+
+    install -d "$pkgdir"/usr/share/man
+    tar -xf "$srcdir"/systemd-man-pages-$pkgver.tar.xz \
+        --no-same-owner --strip-components=1 \
+        -C "$pkgdir"/usr/share/man
+    install -D -m0755 "$srcdir"/system-hooks.sh "$pkgdir"/usr/share/blfs-bootscripts/system-hooks.sh
+
+    install -dm0755 "$pkgdir/etc/ld.so.conf.d/"
+    echo '/usr/lib/systemd' > "$pkgdir/etc/ld.so.conf.d/systemd.conf"
+}

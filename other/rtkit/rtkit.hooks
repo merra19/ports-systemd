@@ -1,0 +1,4 @@
+#!/bin/sh
+
+getent group rtkit > /dev/null || groupadd -g 133 rtkit
+getent passwd rtkit > /dev/null || useradd -d /dev/null -c "Rtkit User" -g rtkit -s /bin/false -u 133 rtkit

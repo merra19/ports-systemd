@@ -1,0 +1,17 @@
+# description	: Window manager for the Xfce desktop environment
+# depends	: libwnck libxfce4ui gettext pkgconf polkit intltool
+# depends	: startup-notification 
+
+pkgname=xfwm4
+pkgver=4.20.0
+pkgrel=1
+source=(https://archive.xfce.org/src/xfce/xfwm4/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+}

@@ -1,0 +1,20 @@
+# description	: Tool to setup encrypted devices with dm-crypt
+# depends	: openssl popt json-c lvm2 util-linux libpwquality
+# depends	: argon2 asciidoctor
+
+pkgname=cryptsetup
+pkgver=2.8.1
+pkgrel=1
+options=(!lto)
+source=(https://www.kernel.org/pub/linux/utils/cryptsetup/v${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+        --prefix=/usr \
+        --disable-ssh-token \
+        --enable-asciidoc 
+	make
+    make DESTDIR="$pkgdir" install
+}

@@ -1,0 +1,34 @@
+# description	: SYSLINUX, PXELINUX, ISOLINUX, EXTLINUX and MEMDISK bootloaders
+# depends	: glibc perl mtools /util-linux
+
+pkgname=syslinux
+pkgver=6.03
+pkgrel=1
+options=(!strip !lto)
+source=(http://www.kernel.org/pub/linux/utils/boot/$pkgname/$pkgname-$pkgver.tar.xz
+		syslinux-6.03-sysmacros.patch fix-build-with-glibc-2.36.patch
+		isolinux.cfg splash.png)
+
+build() {
+    cd $pkgname-$pkgver
+
+	export CFLAGS=" -O2 -pipe"
+	# fix build with GCC 14
+	export CFLAGS="${CFLAGS} -Wno-implicit-function-declaration"
+
+	mkdir venom
+	for i in chain.c32 isolinux.bin ldlinux.c32 libutil.c32 reboot.c32 vesamenu.c32 libcom32.c32 poweroff.c32; do
+		cp $(find bios -name $i) venom
+	done
+
+	patch -p1 -i ../fix-build-with-glibc-2.36.patch
+	patch -p1 -i ../syslinux-6.03-sysmacros.patch
+
+	export CFLAGS="$CFLAGS -fcommon"
+
+	make OPTFLAGS="$CFLAGS" installer
+	make OPTFLAGS="$CFLAGS" INSTALLROOT="$pkgdir" MANDIR=/usr/share/man install
+
+	cp venom/* "$pkgdir"/usr/share/syslinux
+	cp "$srcdir"/isolinux.cfg "$srcdir"/splash.png "$pkgdir"/usr/share/$pkgname
+}

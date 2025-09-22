@@ -1,0 +1,29 @@
+# description	: An excellent console-based web browser with ssl support
+# depends	: gnutls ncurses zlib bzip2 libarchive sharutils
+
+pkgname=lynx
+pkgver=2.9.2
+pkgrel=1
+source=(https://invisible-mirror.net/archives/lynx/tarballs/$pkgname$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname$pkgver
+
+	./configure \
+        --prefix=/usr \
+		--sysconfdir=/etc/lynx \
+		--datadir=/usr/share/doc/$pkgname-$pkgver \
+        --enable-nls \
+		--with-zlib \
+		--with-bzlib \
+		--with-ssl \
+        --with-screen=ncursesw \
+        --enable-locale-charset \
+		--enable-ipv6
+	make
+	make DESTDIR="$pkgdir" install-full
+
+    sed -e '/#LOCALE/     a LOCALE_CHARSET:TRUE' -i "$pkgdir"/etc/lynx/lynx.cfg
+    sed -e '/#DEFAULT_ED/ a DEFAULT_EDITOR:vi' -i "$pkgdir"/etc/lynx/lynx.cfg
+    sed -e '/#PERSIST/    a PERSISTENT_COOKIES:TRUE' -i "$pkgdir"/etc/lynx/lynx.cfg
+}

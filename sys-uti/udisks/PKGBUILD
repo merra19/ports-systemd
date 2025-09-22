@@ -1,0 +1,28 @@
+# description	: Daemon providing interfaces to work with storage devices
+# depends	: libatasmart libblockdev libgudev glib libxslt polkit 
+# depends	: gobject-introspection lvm2 util-linux dbus systemd
+# depends	: linux-api-headers acl btrfs-progs dosfstools gptfdisk 
+# depends	: mdadm
+
+pkgname=udisks
+pkgver=2.10.2
+pkgrel=1
+options=(!lto)
+source=(https://github.com/storaged-project/udisks/releases/download/udisks-$pkgver/$pkgname-$pkgver.tar.bz2
+        rules)
+backup=(etc/udisks2/udisks2.conf)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+        --prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static \
+        --enable-available-modules 
+	make
+	make DESTDIR="$pkgdir" install
+
+	install -Dm 644 "$srcdir"/rules "$pkgdir"/usr/share/polkit-1/rules.d/org.freedesktop.udisks2.rules
+}

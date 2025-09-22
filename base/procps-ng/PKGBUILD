@@ -1,0 +1,22 @@
+# description	: Standard informational utilities and process-handling tools
+# depends	: ncurses systemd
+
+pkgname=procps-ng
+pkgver=4.0.5
+pkgrel=1
+options=(!lto)
+source=(https://sourceforge.net/projects/procps-ng/files/Production/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --disable-static \
+		--disable-kill \
+        --enable-watch8bit \
+        --with-systemd \
+        --docdir=/usr/share/doc/$pkgname-$pkgver
+    make
+    make DESTDIR="$pkgdir" install
+}

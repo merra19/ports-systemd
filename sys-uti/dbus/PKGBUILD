@@ -1,0 +1,29 @@
+# description	: A message bus system, a simple way for applications to talk to each other
+# depends	: expat xorg-proto xorg-libs systemd
+
+pkgname=dbus
+pkgver=1.16.2
+pkgrel=1
+options=(!lto)
+source=(https://dbus.freedesktop.org/releases/dbus/$pkgname-$pkgver.tar.xz
+        malloc_trim.patch memory.patch)
+
+build() {
+    cd $pkgname-$pkgver
+
+    patch -Np1 -i ../malloc_trim.patch
+    patch -Np1 -i ../memory.patch
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        --wrap-mode=nofallback \
+        p11-build 
+    ninja -C p11-build 
+    DESTDIR=${pkgdir} ninja install -C p11-build
+   
+    chown -v root:messagebus "$pkgdir"/usr/libexec/dbus-daemon-launch-helper &&
+    chmod -v      4750       "$pkgdir"/usr/libexec/dbus-daemon-launch-helper
+
+    ln -sfv /etc/machine-id "$pkgdir"/var/lib/dbus
+}

@@ -1,0 +1,45 @@
+# description	: OpenGL-like graphic library for Linux
+# depends	: py3-mako elfutils bison flex libdrm llvm libglvnd 
+# depends	: vulkan-loader wayland-protocols lm-sensors libgcrypt
+# depends	: glslang expat zlib zstd xorg-proto xorg-libs libxcb
+# depends	: py3-ply rust-bindgen cbindgen libva libvdpau py3-yaml
+# depends	: libunwind nettle make-ca libclc
+
+pkgname=mesa
+pkgver=25.2.2
+pkgrel=1
+options=(!lto)
+syn=2.0.87
+unicodeident=1.0.12
+quote=1.0.35
+procmacro2=1.0.86
+paste=1.0.14
+source=(https://mesa.freedesktop.org/archive/$pkgname-$pkgver.tar.xz
+        syn-$syn.tar.gz::https://crates.io/api/v1/crates/syn/$syn/download
+        unicode-ident-$unicodeident.tar.gz::https://crates.io/api/v1/crates/unicode-ident/$unicodeident/download
+        quote-$quote.tar.gz::https://crates.io/api/v1/crates/quote/$quote/download
+        proc-macro2-$procmacro2.tar.gz::https://crates.io/api/v1/crates/proc-macro2/$procmacro2/download
+        paste-$paste.tar.gz::https://crates.io/api/v1/crates/paste/$paste/download)
+noextract=(syn-$syn.tar.gz unicode-ident-$unicodeident.tar.gz quote-$quote.tar.gz proc-macro2-$procmacro2.tar.gz paste-$paste.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    mkdir -p subprojects/packagecache
+    cp ../*.tar.gz subprojects/packagecache
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D glvnd=enabled \
+        -D platforms=x11,wayland \
+        -D gallium-drivers=auto \
+        -D vulkan-drivers=auto \
+        -D gles1=disabled \
+        -D video-codecs=all \
+        -D valgrind=disabled \
+        -D libunwind=disabled \
+        build
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

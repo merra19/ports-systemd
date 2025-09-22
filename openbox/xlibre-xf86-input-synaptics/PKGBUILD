@@ -1,0 +1,24 @@
+# description	: Driver for Synaptics touchpads
+# depends	: libevdev xlibre-xserver systemd
+
+pkgname=xlibre-xf86-input-synaptics
+pkgver=1.10.0.2
+pkgrel=1
+source=(https://github.com/X11Libre/xf86-input-synaptics/archive/refs/tags/xlibre-xf86-input-synaptics-$pkgver.tar.gz)
+
+build() {
+    cd xf86-input-synaptics-xlibre-xf86-input-synaptics-$pkgver
+
+    LDFLAGS="$LDFLAGS -Wl,-z,lazy $DEBUGFLAGS"
+    export LDFLAGS
+
+    autoreconf -fiv
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --localstatedir=/var \
+        --disable-static
+    make
+    make DESTDIR="$pkgdir" install
+}

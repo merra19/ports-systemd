@@ -1,0 +1,26 @@
+# description	: GNOME compositing window manager based on Clutter
+# depends	: glib gobject-introspection graphene desktop-file-utils
+# depends	: libxkbcommon libei libglvnd gnome-settings-daemon 
+# depends	: wayland wayland-protocols libinput bash-completion
+# depends	: pipewire libdisplay-info gtk4 xorg-libs libxcb libxau
+# depends	: xorg-proto gettext linux-api-headers libxcvt xwayland
+# depends	: startup-notification
+
+pkgname=mutter
+pkgver=48.4
+pkgrel=1
+source=(https://download.gnome.org/sources/mutter/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D tests=disabled \
+        -D profiler=false \
+        -D bash_completion=false \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

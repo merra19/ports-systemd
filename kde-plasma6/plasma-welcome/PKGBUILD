@@ -1,0 +1,22 @@
+# description	: KDE Plasma
+# depends	: kdeplasma-addons
+
+pkgname=plasma-welcome
+pkgver=6.4.4
+pkgrel=1
+source=(https://download.kde.org/stable/plasma/$pkgver/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_INSTALL_LIBEXECDIR=libexec \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D BUILD_QT5=OFF \
+        -D BUILD_TESTING=OFF \
+        -Wno-dev
+    make -C build
+    make DESTDIR="$pkgdir" install -C build
+
+}

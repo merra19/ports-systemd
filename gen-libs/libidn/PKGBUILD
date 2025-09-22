@@ -1,0 +1,28 @@
+# description	: Internationalized Domain Names (IDN) implementation
+# depends	: glibc gettext java
+
+pkgname=libidn
+pkgver=1.43
+pkgrel=1
+source=(https://mirror.lyrahosting.com/gnu/libidn/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    if [ -z "$JAVA_HOME" ];then
+        echo "JAVA_HOME not set.  source /etc/profile"
+        abort 1
+    fi
+
+	./configure \
+        --prefix=/usr \
+        --disable-static \
+        --enable-java
+	make
+    make DESTDIR="$pkgdir" install
+
+    find doc -name "Makefile*" -delete
+    rm -rf -v doc/{gdoc,idn.1,stamp-vti,man,texi}
+    mkdir -pv  "$pkgdir"/usr/share/doc/$pkgname-$pkgver
+    cp -r -v doc/* "$pkgdir"/usr/share/doc/$pkgname-$pkgver
+}

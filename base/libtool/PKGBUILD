@@ -1,0 +1,19 @@
+# description	: A shared library tool for developers
+# depends	: glibc
+
+pkgname=libtool
+pkgver=2.5.4
+pkgrel=1
+source=(https://mirror.lyrahosting.com/gnu/libtool/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+
+    ## Remove excluded files
+    rm -f "$pkgdir"/usr/lib/libltdl.a
+}

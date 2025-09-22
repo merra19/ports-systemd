@@ -1,0 +1,16 @@
+# description	: Standard tool to compile source trees
+# depends	: glibc
+
+pkgname=make
+pkgver=4.4.1
+pkgrel=1
+source=(https://mirror.lyrahosting.com/gnu/make/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+}

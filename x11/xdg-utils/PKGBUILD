@@ -1,0 +1,17 @@
+# description	: Portland utils for cross-platform/cross-toolkit/cross-desktop interoperability
+# depends	: xmlto lynx dbus desktop-file-utils gawk shared-mime-info
+# depends	: xorg-applications
+
+pkgname=xdg-utils
+pkgver=1.2.1
+pkgrel=1
+source=(https://gitlab.freedesktop.org/xdg/xdg-utils/-/archive/v$pkgver/$pkgname-v$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-v$pkgver
+
+	./configure \
+        --prefix=/usr
+	make
+    make DESTDIR="$pkgdir" install
+}

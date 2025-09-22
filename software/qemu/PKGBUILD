@@ -1,0 +1,40 @@
+# description	: A fast, lightweight imageviewer using imlib2
+# depends	: glib pixman alsa-lib dtc libslirp sdl2 pipewire bluez
+# depends	: curl fuse gnutls gtk3 keyutils libaio libusb libgcrypt
+# depends	: libjpeg-turbo libseccomp libssh2 libpng libtasn1 pam
+# depends	: lzo nettle mesa vte
+
+pkgname=qemu
+pkgver=10.0.3
+pkgrel=1
+source=(https://download.qemu.org/$pkgname-$pkgver.tar.xz
+		https://www.linuxfromscratch.org/patches/blfs/12.4/qemu-10.0.3-python_fixes-1.patch)
+
+build() {
+    cd $pkgname-$pkgver
+
+	# Fix an incompatibility with pip-25.2 and late
+    patch -Np1 -i ../qemu-10.0.3-python_fixes-1.patch
+
+	QEMU_ARCH=x86_64-softmmu
+
+	mkdir -vp build &&
+	cd        build &&
+
+	../configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--target-list=$QEMU_ARCH \
+		--audio-drv-list=alsa \
+		--disable-pa \
+		--enable-slirp \
+		--docdir=/usr/share/doc/qemu-10.0.3 &&
+
+	unset QEMU_ARCH &&
+
+	make
+    make DESTDIR="$pkgdir" install
+
+	ln -sv qemu-system-`uname -m` "$pkgdir"/usr/bin/qemu
+}

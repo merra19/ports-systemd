@@ -1,0 +1,24 @@
+# description	: Less plugins for GStreamer
+# depends	: gst-plugins-base meson libdvdread libdvdnav
+# depends	: bzip2 libva wayland soundtouch bluez curl faac faad2
+# depends	: fdk-aac json-glib lcms2 libaom libass libexif librsvg
+# depends	: libsndfile libssh2 libusb libwebp libxkbcommon libxml2
+# depends	: neon libgcrypt openjpeg opus pango libqrencode sbc 
+# depends	: vulkan-loader shaderc x265 zxing-cpp gtk3
+
+pkgname=gst-plugins-bad
+pkgver=1.26.5
+pkgrel=1
+source=(https://gstreamer.freedesktop.org/src/gst-plugins-bad/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D gpl=enabled \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

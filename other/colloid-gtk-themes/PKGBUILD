@@ -1,0 +1,26 @@
+# description	: Colloid GTK Theme
+# depends	: sassc gtk-engine-murrine gnome-themes-extra
+# depends	: colloid-icon-themes
+
+pkgname=colloid-gtk-themes
+pkgver=2025.07.31
+_pkgver="${pkgver//./-}"
+pkgrel=1
+options=(!strip)
+source=($pkgname-$pkgver.tar.gz::https://github.com/vinceliuice/Colloid-gtk-theme/archive/refs/tags/$_pkgver.tar.gz)
+
+build() {
+    cd Colloid-gtk-theme-$_pkgver
+
+    sed -i 's/clean_theme && install_theme/install_theme/g' install.sh
+
+    sed -i 's/xfce4-session/xfce4-sessionxx/' install.sh
+
+    install -d "$pkgdir"/usr/share/themes
+    ./install.sh -t all -d "$pkgdir"/usr/share/themes
+    ./install.sh -t all -s compact -d "$pkgdir"/usr/share/themes
+
+    # Firefox theme
+    install -d "$pkgdir"/usr/share/doc/colloid-gtk-themes
+    cp -r src/other/firefox "$pkgdir/usr/share/doc/colloid-gtk-themes/"
+}

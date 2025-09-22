@@ -1,0 +1,23 @@
+# description	: Location and timezone database and weather-lookup library
+# depends	: glib gobject-introspection libxml2 libsoup3 meson vala
+# depends	: geocode-glib py3-gobject
+
+pkgname=libgweather
+pkgver=4.4.4
+pkgrel=1
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz
+        https://www.linuxfromscratch.org/patches/blfs/12.4/libgweather-4.4.4-upstream_fix-1.patch)
+
+build() {
+	cd $pkgname-$pkgver
+
+    patch -Np1 -i ../libgweather-4.4.4-upstream_fix-1.patch
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D gtk_doc=false \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

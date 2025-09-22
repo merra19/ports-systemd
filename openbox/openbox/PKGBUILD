@@ -1,0 +1,28 @@
+# description	: Standards compliant, fast, light-weight, extensible window manager
+# depends	: gettext pkgconf glib libxml2 fontconfig cairo libxau
+# depends	: xorg-libs imlib2 startup-notification librsvg pango
+# depends	: py3-xdg
+
+pkgname=openbox
+pkgver=3.6.1
+pkgrel=1
+source=(http://openbox.org/dist/openbox/$pkgname-$pkgver.tar.gz
+        https://www.linuxfromscratch.org/patches/blfs/12.4/openbox-3.6.1-py3-1.patch)
+
+build() {
+    cd $pkgname-$pkgver
+
+    patch -Np1 -i ../openbox-3.6.1-py3-1.patch
+
+    autoreconf -fiv
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --disable-static \
+        --docdir=/usr/share/doc/$pkgname-$pkgver
+    make
+    make DESTDIR="$pkgdir" install
+
+    rm -v "$pkgdir"/usr/share/xsessions/openbox-{gnome,kde}.desktop
+}
