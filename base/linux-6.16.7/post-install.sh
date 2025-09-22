@@ -5,7 +5,7 @@ kname="${name#*-}-LFS"
 export name kname
 
 pkg_postinst() {
-	cd boot
+	cd /boot
 	mkinitramfs -k $kname
     depmod $kname
 

@@ -12,7 +12,15 @@ source=(https://gitlab.com/kernel-firmware/linux-firmware/-/archive/$pkgver/$pkg
 NO_STRIP="yes"
 
 build() {
+    mkdir -p kernel/x86/microcode
+    cat linux-firmware-$pkgver/amd-ucode/microcode_amd*.bin > kernel/x86/microcode/AuthenticAMD.bin
+
+    echo kernel/x86/microcode/AuthenticAMD.bin | bsdcpio -o -H newc -R 0:0 > amd-ucode.img
+
+    install -Dt "$pkgdir"/boot -m644 amd-ucode.img
+	
     cd $pkgnameparallel-$pkgverparallel
+
     ./configure --prefix=/usr --enable-static
     make
     make DESTDIR="$srcdir"/tmp install
