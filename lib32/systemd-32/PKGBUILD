@@ -47,14 +47,12 @@ build() {
 		-D kmod=disabled \
 		-D seccomp=disabled \
 		-D qrencode=disabled \
+		-D glib=disabled \
+		-D dbus=disabled \
         -D docdir=/usr/share/doc/$pkgname-$pkgver
     ninja
     DESTDIR=$PWD/DESTDIR ninja install
 
     mkdir -p "$pkgdir"/usr/lib32
     cp -Rv DESTDIR/usr/lib32/* "$pkgdir"/usr/lib32
-
-    #mkdir -pv "$pkgdir"/usr/lib32/pkgconfig &&
-    #cp -av libudev.so{,*[0-9]} "$pkgdir"/usr/lib32/ &&
-    #sed -e "s;/usr/lib;&32;g" src/libudev/libudev.pc > "$pkgdir"/usr/lib32/pkgconfig/libudev.pc
 }
