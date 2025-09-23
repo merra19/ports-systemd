@@ -34,7 +34,12 @@ build_hook() {
 	add_symlink /lib64 ../lib/ld-linux-x86-64.so.2
 	add_symlink /lib64/ld-lsb-x86-64.so.3 ../lib/ld-linux-x86-64.so.2
 
+	if [ -d /usr/lib/elogind ]; then
+		cp_dir /usr/lib/elogind /usr/lib
+	fi
+}
 
+toto() {
 	find /usr/lib/systemd | while read -r file; do
 		
 		binpath=$(command -v $file)

@@ -6,6 +6,35 @@
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 
+cp_dir() {
+	src=$1
+	dst=$2
+
+	if [ -z "$src" ] || [ -z "$dst" ]; then
+		msgwarn "missing : source or destination"
+		return 1
+	fi
+
+	if [ ${src:0:1}  != "/"  ] || [ ${dst:0:1}  != "/"  ] ;then
+		msgwarn "source or destination not starting with / "
+		return 1
+	fi
+
+	if [ ! -d "$src" ]; then
+		msgwarn "source not found"
+		return 0
+	fi
+
+	if [ ! -d "$INITDIR$dst" ]; then
+		msgwarn "destination not found"
+		return 0
+	fi
+
+	cp -a "$src" "$INITDIR$dst"
+
+	unset src dst	
+}
+
 add_binary() {
 	binpath=$(command -v $1)
 	if [ -z "$binpath" ]; then

@@ -3,7 +3,7 @@
 build_hook() {
 
 	for f in mdadm mdmon ; do
-		if [ -x /usr/sbin/$f ] ; then add_binary "sbin/$f"; fi
+		if [ -x /usr/sbin/$f ] ; then add_binary "/sbin/$f"; fi
 	done
 
 	if [ -x /usr/sbin/lvm ] ; then 

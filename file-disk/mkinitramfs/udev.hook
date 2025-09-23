@@ -2,11 +2,22 @@
 
 build_hook() {
 	add_file /etc/udev/udev.conf
-	#add_file /lib/udev/rules.d/50-udev-default.rules
-	#add_file /lib/udev/rules.d/60-persistent-storage.rules
-	#add_file /lib/udev/rules.d/64-btrfs.rules
-	#add_file /lib/udev/rules.d/80-drivers.rules
+	add_binary udevadm
+	add_binary /lib/udev/ata_id
+	add_binary /lib/udev/scsi_id
 
+	if [ -d /usr/lib/udev ]; then
+		cp_dir /usr/lib/udev /usr/lib
+	fi
+
+	if [ -x /usr/lib/udev/udevd ] ; then
+		add_binary /usr/lib/udev/udevd 
+	elif [ -x /usr/lib/systemd/systemd-udevd ]; then
+		add_binary /usr/lib/systemd/systemd-udevd
+	fi
+}
+
+toto2() {
 	find /usr/lib/udev | while read -r file; do
 		
 		binpath=$(command -v $file)
@@ -15,17 +26,23 @@ build_hook() {
 		elif [ -z "$binpath" ] && [ -f $file ]; then add_file $file
 		elif [ -f $file ] ;then add_binary $file ;fi
 	done
-
-	#add_binary udevd
-	add_binary udevadm
-	add_binary /lib/udev/ata_id
-	add_binary /lib/udev/scsi_id
-	add_binary /usr/lib/systemd/systemd-udevd
-
 }
 
+
 run_earlyhook() {
-	/usr/lib/systemd/systemd-udevd --daemon --resolve-names=never
+	# udevd location depends on version
+	if [ -x /sbin/udevd ]; then
+		UDEVD=/sbin/udevd
+	elif [ -x /lib/udev/udevd ]; then
+		UDEVD=/lib/udev/udevd
+	elif [ -x /lib/systemd/systemd-udevd ]; then
+		UDEVD=/lib/systemd/systemd-udevd
+	else
+		echo "Cannot find udevd nor systemd-udevd"
+		problem
+	fi
+
+	${UDEVD} --daemon --resolve-names=never
 	#udevadm trigger --action=add    --type=subsystems
 	#udevadm trigger --action=add    --type=devices
 	#udevadm trigger --action=change --type=devices
