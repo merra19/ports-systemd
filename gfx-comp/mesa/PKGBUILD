@@ -7,7 +7,7 @@
 
 pkgname=mesa
 pkgver=25.2.2
-pkgrel=1
+pkgrel=2
 options=(!lto)
 syn=2.0.87
 unicodeident=1.0.12
@@ -19,7 +19,8 @@ source=(https://mesa.freedesktop.org/archive/$pkgname-$pkgver.tar.xz
         unicode-ident-$unicodeident.tar.gz::https://crates.io/api/v1/crates/unicode-ident/$unicodeident/download
         quote-$quote.tar.gz::https://crates.io/api/v1/crates/quote/$quote/download
         proc-macro2-$procmacro2.tar.gz::https://crates.io/api/v1/crates/proc-macro2/$procmacro2/download
-        paste-$paste.tar.gz::https://crates.io/api/v1/crates/paste/$paste/download)
+        paste-$paste.tar.gz::https://crates.io/api/v1/crates/paste/$paste/download
+		amd_vulkan_prefixes.sh amd_vulkan_prefixes.bash-completion)
 noextract=(syn-$syn.tar.gz unicode-ident-$unicodeident.tar.gz quote-$quote.tar.gz proc-macro2-$procmacro2.tar.gz paste-$paste.tar.gz)
 
 build() {
@@ -42,4 +43,12 @@ build() {
         build
     ninja -C build
     DESTDIR="$pkgdir" ninja install -C build
+
+    install -Dm755 "${srcdir}"/amd_vulkan_prefixes.sh "${pkgdir}"/usr/bin/vk_radv
+    install -Dm755 "${srcdir}"/amd_vulkan_prefixes.sh "${pkgdir}"/usr/bin/vk_amdvlk
+    install -Dm755 "${srcdir}"/amd_vulkan_prefixes.sh "${pkgdir}"/usr/bin/vk_pro
+    
+    install -Dm755 "${srcdir}"/amd_vulkan_prefixes.bash-completion "${pkgdir}"/usr/share/bash-completion/completions/vk_radv
+    install -Dm755 "${srcdir}"/amd_vulkan_prefixes.bash-completion "${pkgdir}"/usr/share/bash-completion/completions/vk_amdvlk
+    install -Dm755 "${srcdir}"/amd_vulkan_prefixes.bash-completion "${pkgdir}"/usr/share/bash-completion/completions/vk_pro
 }
