@@ -1,0 +1,17 @@
+# description	: Input device event monitor and query tool
+# depends	: glibc xmlto py3-asciidoc
+
+pkgname=evtest
+pkgver=1.36
+pkgrel=1
+source=(https://gitlab.freedesktop.org/libevdev/evtest/-/archive/evtest-${pkgver}/evtest-evtest-${pkgver}.tar.gz)
+
+build() {
+	cd $pkgname-$pkgname-$pkgver
+
+    ./autogen.sh
+    ./configure \
+        --prefix=/usr 
+    make
+	make DESTDIR="$pkgdir" install
+}

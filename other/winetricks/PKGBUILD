@@ -1,0 +1,13 @@
+# description	: A unit test framework for C
+# depends	: glibc cabextract p7zip unzip wget wine xdg-utils
+
+pkgname=winetricks
+pkgver=20250102
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/Winetricks/winetricks/archive/$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    make DESTDIR="$pkgdir" install
+}

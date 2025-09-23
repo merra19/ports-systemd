@@ -1,0 +1,19 @@
+# description	: Extracts files from Microsoft cabinet archive files
+# depends	: glibc perl libmspack
+
+pkgname=cabextract
+pkgver=1.11
+pkgrel=1
+source=(https://www.cabextract.org.uk/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--mandir=/usr/share/man \
+		--with-external-libmspack=yes
+	make
+    make DESTDIR="$pkgdir" install
+}
