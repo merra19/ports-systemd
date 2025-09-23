@@ -4,8 +4,7 @@
 pkgname=cbindgen
 pkgver=0.29.0
 pkgrel=1
-source=(https://github.com/mozilla/cbindgen/archive/v$pkgver/$pkgname-$pkgver.tar.gz
-        local://$pkgname-$pkgver-cargo.tar.xz)
+source=(https://github.com/mozilla/cbindgen/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 createpack() {
     mkdir -p vendor
@@ -17,10 +16,12 @@ createpack() {
 build() {
 	cd $pkgname-$pkgver
 
-    #createpack
+	if [ ! -f /sources/src/$pkgname-$pkgver-cargo.tar.xz ];then
+    	createpack
+	else
+		tar -xf /sources/src/$pkgname-$pkgver-cargo.tar.xz
+	fi
 
-    mv "$srcdir"/vendor .
-    
     mkdir -p .cargo
     echo '[source.crates-io]' >> .cargo/config.toml
     echo 'replace-with = "vendored-sources"' >> .cargo/config.toml

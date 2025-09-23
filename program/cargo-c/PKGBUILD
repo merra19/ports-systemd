@@ -5,8 +5,7 @@ pkgname=cargo-c
 pkgver=0.10.15
 pkgrel=1
 source=(https://github.com/lu-zero/cargo-c/archive/v$pkgver/$pkgname-$pkgver.tar.gz
-        $pkgname-$pkgver.lock::https://github.com/lu-zero/cargo-c/releases/download/v$pkgver/Cargo.lock
-        local://$pkgname-$pkgver-cargo.tar.xz)
+        $pkgname-$pkgver.lock::https://github.com/lu-zero/cargo-c/releases/download/v$pkgver/Cargo.lock)
 
 createpack() {
     mkdir -p vendor
@@ -20,10 +19,12 @@ build() {
 
     cp ../$pkgname-$pkgver.lock ./Cargo.lock
 
-    #createpack
+	if [ ! -f /sources/src/$pkgname-$pkgver-cargo.tar.xz ];then
+    	createpack
+	else
+		tar -xf /sources/src/$pkgname-$pkgver-cargo.tar.xz
+	fi
 
-    mv "$srcdir"/vendor .
-    
     mkdir -p .cargo
     echo '[source.crates-io]' >> .cargo/config.toml
     echo 'replace-with = "vendored-sources"' >> .cargo/config.toml

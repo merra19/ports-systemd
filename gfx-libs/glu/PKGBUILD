@@ -4,7 +4,7 @@
 pkgname=glu
 pkgver=9.0.3
 pkgrel=1
-source=(ftp://ftp.freedesktop.org/pub/mesa/glu/$pkgname-$pkgver.tar.xz)
+source=(https://archive.mesa3d.org/glu/$pkgname-$pkgver.tar.xz)
 
 build() {
 	cd $pkgname-$pkgver
