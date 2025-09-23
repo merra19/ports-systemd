@@ -1,0 +1,17 @@
+# description	: Redundant data find - a program that finds duplicate files
+# depends	: py3-pillow py3-vdf winetricks zenity
+
+pkgname=protontricks
+pkgver=1.13.0
+pkgrel=1
+source=(https://pypi.org/packages/source/p/protontricks/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	sed -i "/^from /s/\._vdf/vdf/g" src/protontricks/steam.py
+	rm -r src/protontricks/_vdf
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}

@@ -1,5 +1,5 @@
 # description	: A unit test framework for C
-# depends	: glibc cabextract p7zip unzip wget wine xdg-utils
+# depends	: glibc cabextract unzip wget wine xdg-utils zenity
 
 pkgname=winetricks
 pkgver=20250102

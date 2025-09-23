@@ -1,0 +1,14 @@
+# description	: A module for (de)serialization to and from VDF, Valve's key-value text forma
+# depends	: py3-flit-core py3-gpep517 py3-setuptools
+
+pkgname=py3-vdf
+pkgver=4.0
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/solsticegamestudios/vdf/archive/refs/tags/v$pkgver.tar.gz)
+
+build() {
+	cd ${pkgname#*-}-$pkgver
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}
