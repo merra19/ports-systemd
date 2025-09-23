@@ -12,7 +12,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D lynx=false \
+        -D lynx=disabled \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build
