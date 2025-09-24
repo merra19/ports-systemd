@@ -179,7 +179,7 @@ package_manager_detect() {
         # Packages required to run this install script (stored as an array)
         INSTALLER_DEPS=(git iproute2 dialog make-ca)
         # Packages required to run Pi-hole (stored as an array)
-        PIHOLE_DEPS=(fcron curl findutils sudo unzip libidn2 psmisc libcap nmap jq netcat)
+        PIHOLE_DEPS=(fcron curl findutils sudo unzip libidn2 psmisc libcap nmap jq nmap)
         # Packages required for the Web admin interface (stored as an array)
         # It's useful to separate this from Pi-hole, since the two repos are also setup separately
         PIHOLE_WEB_DEPS=(lighttpd)
