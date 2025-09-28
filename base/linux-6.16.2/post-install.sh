@@ -8,7 +8,7 @@ pkg_postinst() {
     version="$(awk 'NR==1 {print $1}' /var/lib/scratchpkg/db/$name)"
     
     cd /boot
-    mkinitramfs $kname
+    mkinitramfs -k $kname
     depmod $kname
 
     # run all dkms scripts

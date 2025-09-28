@@ -1,9 +1,53 @@
 #!/bin/bash
 
-if [ -z $1 ] ; then
-    kernver=$(cat /lib/modules/KERNELVERSION)
-else
-    kernver=$1
-fi
+usage() {	
+	cat << EOF
+Usage:
+  $(basename $0) [option] [argument]
+  
+Options:
+  -k <version>  custom kernel version (default: $KERNEL)
+  -o <output>   custom output name (default: $INITRAMFS)
+  -h            print this help msg
+	
+EOF
+}
+
+needarg() {
+	if [ ! "$1" ]; then
+		echo "ERROR: argument is needed for this option!"
+		exit 1
+	fi
+}		
+
+parse_opt() {
+	while [ $1 ]; do
+		case $1 in
+			-k)	needarg $2
+				KERNEL_VERSION=$2
+				shift 1 ;;
+			-o)	needarg $2
+				OUTPUT=$2
+				shift 1 ;;
+			-h)	usage; exit 0 ;;
+			*)	echo "ERROR: invalid option '$1'"
+				exit 1 ;;
+		esac
+		shift
+	done
+}
+
+parse_opt "$@"
+
 cd /boot
-mkinitramfs -k $kernver
+
+if [ -n "$KERNEL_VERSION" ] && [ ! -d "/usr/lib/modules/$KERNEL_VERSION" ] ; then
+  echo "No modules directory named $KERNEL_VERSION"
+  exit 1
+fi
+
+if [ "$OUTPUT" ] ; then
+	mkinitramfs -k $KERNEL_VERSION -o $OUTPUT
+else
+	mkinitramfs -k $KERNEL_VERSION
+fi

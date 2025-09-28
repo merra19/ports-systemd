@@ -1,5 +1,5 @@
 # description	: Linux Kernel
-# depends	: linux-firmware openssl cpio bc mkinitramfs
+# depends	: linux-firmware openssl cpio bc initramfs
 # depends	: elfutils libnvme harfbuzz
 
 pkgname=linux

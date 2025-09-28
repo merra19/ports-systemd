@@ -1,5 +1,0 @@
-#!/bin/sh
-
-build_hook() {
-	cp_dir /usr/lib/systemd /usr/lib
-}
