@@ -1,6 +1,6 @@
 # description	: Scalable Vector Graphics (SVG) rendering library
 # depends	: cairo glib gdk-pixbuf pango gobject-introspection vala
-# depends	: cargo-c
+# depends	: cargo-c dav1d
 
 pkgname=librsvg
 pkgver=2.61.0

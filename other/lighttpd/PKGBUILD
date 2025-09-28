@@ -39,8 +39,8 @@ build() {
 
     install --directory --mode=0755 --owner=lighttpd --group=lighttpd "$pkgdir"/var/cache/lighttpd
 
-	install -D -m644 -t "${pkgdir}"/usr/lib/systemd/system/ ${pkgname}1.4/doc/systemd/lighttpd.service
-	install -D -m644 -t "${pkgdir}"/usr/lib/systemd/system/ ${pkgname}1.4/doc/systemd/lighttpd-{http,https}-{ipv4,ipv6}.socket
+	install -D -m644 -t "${pkgdir}"/usr/lib/systemd/system/ doc/systemd/lighttpd.service
+	install -D -m644 -t "${pkgdir}"/usr/lib/systemd/system/ doc/systemd/lighttpd-{http,https}-{ipv4,ipv6}.socket
 
 	pushd doc/config >/dev/null
 	find . -type f ! -name 'Makefile*' -exec install -D -m644 {} "$pkgdir"/usr/share/doc/lighttpd/config/{} \;
