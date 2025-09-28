@@ -1,0 +1,39 @@
+# description	: A set of tools for CD/DVD reading and recording, including cdrecord
+# depends	: alsa-lib acl libcap
+
+pkgname=cdrtools
+pkgver=3.02a09
+pkgver_short=${pkgver%a*}
+pkgrel=1
+backup=(etc/default/cdrecord etc/default/rscsi)
+options=(!makeflags)
+source=(https://downloads.sourceforge.net/cdrtools/$pkgname-$pkgver.tar.bz2)
+
+build() {
+	cd $pkgname-$pkgver_short
+
+	sed -i 's|/opt/schily|/usr|g'           DEFAULTS/Defaults.linux &&
+	sed -i 's|DEFINSGRP=.*|DEFINSGRP=root|' DEFAULTS/Defaults.linux &&
+	sed -i 's|INSDIR=\s*sbin|INSDIR=bin|'   rscsi/Makefile          &&
+
+	export GMAKE_NOWARN=true &&
+	export CFLAGS="$CFLAGS -std=gnu89 -fno-strict-aliasing" &&
+
+	make -j1 INS_BASE=/usr \
+			DEFINSUSR=root \
+			DEFINSGRP=root \
+			VERSION_OS="LinuxFromScratch"
+
+	GMAKE_NOWARN=true &&
+
+	make INS_BASE=/usr \
+		DEFINSUSR=root \
+		DEFINSGRP=root \
+		MANSUFF_LIB=3cdr \
+		DESTDIR="$pkgdir" \
+		install
+
+	install -v -m755 -d "$pkgdir"/usr/share/doc/$pkgname-$pkgver &&
+	install -v -m644 README.* READMEs/* ABOUT doc/*.ps \
+						"$pkgdir"/usr/share/doc/$pkgname-$pkgver
+}

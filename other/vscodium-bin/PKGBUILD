@@ -4,7 +4,7 @@
 # depends	: libxcb xorg-libs libxkbcommon pango xdg-utils p11-kit
 
 pkgname=vscodium-bin
-pkgver=1.104.16282
+pkgver=1.104.26450
 pkgrel=1
 options=(!strip)
 source=(https://github.com/VSCodium/vscodium/releases/download/$pkgver/VSCodium-linux-x64-$pkgver.tar.gz

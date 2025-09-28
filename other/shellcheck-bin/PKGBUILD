@@ -1,0 +1,14 @@
+# description	: Shell script analysis tool
+# depends	: glibc
+
+pkgname=shellcheck-bin
+pkgver=0.11.0
+pkgrel=1
+source=(https://github.com/koalaman/shellcheck/releases/download/v"$pkgver"/shellcheck-v"${pkgver}".linux.x86_64.tar.xz)
+
+build() {
+	cd shellcheck-v$pkgver
+
+
+	install -Dm755  shellcheck "$pkgdir"/usr/bin/shellcheck
+ }
