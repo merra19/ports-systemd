@@ -2,7 +2,7 @@
 # depends	: glibc
 
 pkgname=ttf-nerd-fonts-symbols
-pkgver=3.3.0
+pkgver=3.4.0
 pkgrel=1
 source=(SymbolsNerdFont-Regular-$pkgver.ttf::https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v$pkgver/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf
         SymbolsNerdFontMono-Regular-$pkgver.ttf::https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v$pkgver/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf

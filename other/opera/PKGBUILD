@@ -5,7 +5,7 @@
 # depends	: qt6
 
 pkgname=opera
-pkgver=122.0.5643.24
+pkgver=122.0.5643.92
 pkgrel=2
 source=(https://get.geo.opera.com/ftp/pub/$pkgname/desktop/$pkgver/linux/$pkgname-stable_${pkgver}_amd64.deb
         opera default)

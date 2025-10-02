@@ -2,7 +2,7 @@
 # depends	: glibc lz4 rustc
 
 pkgname=swww
-pkgver=0.9.5
+pkgver=0.11.2
 pkgrel=1
 source=($pkgname-$pkgver.tar.gz::https://github.com/LGFae/swww/archive/v$pkgver.tar.gz)
 
