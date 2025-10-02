@@ -1,0 +1,24 @@
+# description	: Wayfire compositor Meta with xfce
+# depends	: wayfire pavucontrol wofi nerd-fonts wireplumber
+# depends	: xdg-desktop-portal ttf-font-awesome polkit-gnome
+# depends	: wf-shell xfce xdg-desktop-portal-wlr 
+# depends	: wayfire-plugins-extra
+
+pkgname=wayfire-xfce
+pkgver=0.9.0
+pkgrel=1
+source=(setupwayfire wayfire.ini White-Haired_Anime_Girl_in_Garden.png
+        wf-shell.ini waybar-colors2.css config)
+
+build() {
+    mkdir -p "$pkgdir"/usr
+    install -Dm 0755 setupwayfire "$pkgdir"/usr/local/bin/setupwayfire
+
+    install -Dm 0644 White-Haired_Anime_Girl_in_Garden.png "$pkgdir"/usr/local/share/wayfire/backgrounds/White-Haired_Anime_Girl_in_Garden.png
+    install -Dm 0644 wayfire.ini "$pkgdir"/usr/local/share/wayfire/wayfire.ini
+    install -Dm 0644 wf-shell.ini "$pkgdir"/usr/local/share/wayfire/wf-shell.ini
+
+	install -Dm 0644 wf-shell.ini "$pkgdir"/usr/local/share/wofi/wf-shell.ini
+	install -Dm 0644 waybar-colors2.css "$pkgdir"/usr/local/share/wofi/wf-shell.ini
+	install -Dm 0644 config "$pkgdir"/usr/local/share/wofi/wf-shell.ini
+}
