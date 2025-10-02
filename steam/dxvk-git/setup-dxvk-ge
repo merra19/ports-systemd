@@ -1,0 +1,80 @@
+#!/bin/sh
+
+if [[ $EUID -eq 0 ]]; then
+    echo "This script must be NOT run as root" 1>&2
+    exit 1
+fi
+
+help() {	
+	cat << EOF
+Usage:
+  $(basename $0) [ <options> <arguments> ]
+
+Options:
+	-v=<protonge version>    proton-ge version to modify
+	-I                       install
+	-D                       uninstall  
+EOF
+}
+
+user="$(whoami)"
+
+steam=/home/$user/.steam/steam/compatibilitytools.d/
+
+INSTALL=no
+UNINSTALL=no
+
+while [ "$1" ]; do
+	case $1 in
+		-v=*) GE_VERSION="${1#*=}" ;;
+		  -I) INSTALL=yes ;;
+		  -D) UNINSTALL=yes ;;
+		   *) help ; exit 0 ;;
+	esac
+	shift
+done
+
+if [ "$INSTALL" = "yes" ] && [ "$UNINSTALL" = "yes" ];then 
+	echo "select Install or Uninstall"
+fi
+
+if [ "$INSTALL" = "no" ] && [ "$UNINSTALL" = "no" ];then 
+
+	echo "missing Install or Uninstall"
+
+fi
+
+if [ ! -d "$steam/GE-Proton$GE_VERSION" ];then
+	echo "missing proton-ge version $GE_VERSION"
+fi
+
+if [ "$INSTALL" = "yes" ];then
+
+	cd "$steam/GE-Proton$GE_VERSION"/files/lib/wine
+
+	if [ -d dxvk2 ];then
+		echo "Already installed"
+		exit
+	fi
+
+	cp -r dxvk dxvk2
+
+	cd dxvk
+	rm -f version
+	rm -f i386-windows/d3d* i386-windows/dxgi*
+	cp  /usr/share/dxvk/x32/*  i386-windows/
+
+	rm -f x86_64-windows/d3d* x86_64-windows/dxgi*
+	cp  /usr/share/dxvk/x64/*  x86_64-windows/
+
+else
+	cd "$steam/GE-Proton$GE_VERSION"/files/lib/wine
+
+	if [ ! -d dxvk2 ];then
+		echo "Not installed"
+		exit
+	fi
+
+	rm -rf dxvk
+	mv dxvk2 dxvk
+fi

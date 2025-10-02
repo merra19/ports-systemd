@@ -1,0 +1,99 @@
+# description	: A Vulkan-based compatibility layer for Direct3D 9/10/11 which allows running 3D applications on Linux using Wine (Windows DLL binary files)
+# depends	: vulkan-loader ninja meson glslang mingw-w64-gc
+
+pkgname=dxvk-git
+pkgver=2.7.1.7586c7d
+pkgrel=1
+commit=7586c7df1f6ea4ed5794448f63cf97bf80ba7801
+libdisplaycommit=275e6459c7ab1ddd4b125f28d0440716e4888078
+dxbccommit=77b6f093d1ee913b0a97665d88ef57cdd7ac310c
+spirv1commit=8b246ff75c6615ba4532fe4fde20f1be090c3764
+spirv2commit=c8ad050fcb29e42a2f57d9f59e97488f465c436d
+vulkancommit=234c4b7370a8ea3239a214c9e871e4b17c89f4ab
+dxcommit=9df86f2341616ef1888ae59919feaa6d4fad693d
+options=(!lto)
+source=($pkgname-$commit.zip::https://github.com/doitsujin/dxvk/archive/$commit.zip
+		libdisplay-info-$spirvcommit.tar.gz::https://github.com/doitsujin/libdisplay-info/archive/$libdisplaycommit.tar.gz
+		dxbc-spirv-$dxbccommit.tar.gz::https://github.com/doitsujin/dxbc-spirv/archive/$dxbccommit.tar.gz
+		spirv-headers-$spirv1commit.tar.gz::https://github.com/KhronosGroup/SPIRV-Headers/archive/$spirv1commit.tar.gz
+		spirv-headers-$spirv2commit.tar.gz::https://github.com/KhronosGroup/SPIRV-Headers/archive/$spirv2commit.tar.gz
+		vulkan-headers-$vulkancommit.tar.gz::https://github.com/KhronosGroup/Vulkan-Headers/archive/$vulkancommit.tar.gz
+		directx-headers-$dxcommit.tar.gz::https://github.com/misyltoad/mingw-directx-headers/archive/$dxcommit.tar.gz
+        setup_dxvk.sh setup_dxvk dxvk-extraopts.patch setup-dxvk-ge)
+
+build () {
+	mv -T libdisplay-info-$libdisplaycommit dxvk-$commit/subprojects/libdisplay-info
+	mv -T dxbc-spirv-$dxbccommit dxvk-$commit/subprojects/dxbc-spirv
+	mv -T Vulkan-Headers-$vulkancommit dxvk-$commit/include/vulkan
+	mv -T SPIRV-Headers-$spirv1commit dxvk-$commit/include/spirv
+	mv -T SPIRV-Headers-$spirv2commit dxvk-$commit/subprojects/dxbc-spirv/submodules/spirv_headers
+	mv -T mingw-directx-headers-$dxcommit dxvk-$commit/include/native/directx
+
+	cd dxvk-$commit
+
+    # Uncomment to enable extra optimizations
+    # Patch crossfiles with extra optimizations from makepkg.conf
+    patch -p1 -i "$srcdir"/dxvk-extraopts.patch
+
+    local -a split=($CFLAGS)
+    local -A flags
+    for opt in "${split[@]}"; do flags["${opt%%=*}"]="${opt##*=}"; done
+    local march="${flags["-march"]:-nocona}"
+    local mtune="${flags["-mtune"]:-core-avx2}"
+
+    CFLAGS="-O3 -march=$march -mtune=$mtune -pipe -mno-avx"
+    CXXFLAGS="-O3 -march=$march -mtune=$mtune -pipe -mno-avx"
+    LDFLAGS="-Wl,-O1,--sort-common,--as-needed"
+
+    # These flags are taken from Proton
+    CFLAGS+=" -mfpmath=sse -fwrapv -fno-strict-aliasing"
+    CXXFLAGS+=" -mfpmath=sse -fwrapv -fno-strict-aliasing"
+    LDFLAGS+=" -Wl,--file-alignment,4096"
+
+    export CFLAGS CXXFLAGS LDFLAGS
+
+    local cross_ldflags="$LDFLAGS"
+
+    local cross_cflags="$CFLAGS -mcmodel=small"
+    local cross_cxxflags="$CXXFLAGS -mcmodel=small"
+    sed -i build-win64.txt \
+        -e "s|@CARGS@|\'${cross_cflags// /\',\'}\'|g" \
+        -e "s|@CXXARGS@|\'${cross_cxxflags// /\',\'}\'|g" \
+        -e "s|@LDARGS@|\'${cross_ldflags// /\',\'}\'|g"
+
+    local cross_cflags="$CFLAGS -mstackrealign -mpreferred-stack-boundary=2"
+    local cross_cxxflags="$CXXFLAGS -mstackrealign -mpreferred-stack-boundary=2"
+    sed -i build-win32.txt \
+        -e "s|@CARGS@|\'${cross_cflags// /\',\'}\'|g" \
+        -e "s|@CXXARGS@|\'${cross_cxxflags// /\',\'}\'|g" \
+        -e "s|@LDARGS@|\'${cross_ldflags// /\',\'}\'|g"
+
+    meson setup "build/x32" \
+        --cross-file build-win32.txt \
+        --prefix "/usr/share/dxvk/x32" \
+        --bindir "" --libdir "" \
+        --buildtype "plain" \
+        --force-fallback-for=libdisplay-info \
+        -Db_ndebug=false \
+        --strip
+    ninja -C "build/x32" -v
+	DESTDIR="$pkgdir" ninja -C "build/x32" install
+
+    meson setup "build/x64" \
+        --cross-file build-win64.txt \
+        --prefix "/usr/share/dxvk/x64" \
+        --bindir "" --libdir "" \
+        --buildtype "plain" \
+        --force-fallback-for=libdisplay-info \
+        -Db_ndebug=false \
+        --strip
+    ninja -C "build/x64" -v
+	DESTDIR="$pkgdir" ninja -C "build/x64" install
+
+    install -Dm 755 -t "$pkgdir/usr/share/dxvk" "$srcdir"/setup_dxvk.sh
+    install -Dm 644 -t "$pkgdir/usr/share/dxvk" dxvk.conf
+    install -Dm 644 -t "$pkgdir/usr/share/doc/$pkgname" README.md
+    install -Dm 755 -t "$pkgdir/usr/bin" "$srcdir"/setup_dxvk
+
+	install -Dm 755 -t "$pkgdir/usr/bin" "$srcdir"/setup-dxvk-ge
+}
