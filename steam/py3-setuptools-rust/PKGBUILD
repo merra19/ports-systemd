@@ -3,7 +3,7 @@
 # depends	: py3-wheel
 
 pkgname=py3-setuptools-rust
-pkgver=1.11.1
+pkgver=1.12.0
 pkgrel=1
 source=($pkgname-$pkgver.tar.gz::https://github.com/PyO3/setuptools-rust/archive/refs/tags/v$pkgver.tar.gz)
 
