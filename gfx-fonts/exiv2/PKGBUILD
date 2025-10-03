@@ -2,7 +2,7 @@
 # depends	: curl cmake ninja inih zlib expat brotli
 
 pkgname=exiv2
-pkgver=0.28.5
+pkgver=0.28.7
 pkgrel=1
 source=(https://github.com/Exiv2/exiv2/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 

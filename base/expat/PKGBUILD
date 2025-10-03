@@ -2,7 +2,7 @@
 # depends	: glibc
 
 pkgname=expat
-pkgver=2.7.1
+pkgver=2.7.3
 _pkgver=${pkgver//./_}
 pkgrel=1
 source=(https://github.com/libexpat/libexpat/releases/download/R_$_pkgver/$pkgname-$pkgver.tar.xz)

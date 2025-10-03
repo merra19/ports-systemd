@@ -3,7 +3,7 @@
 
 pkgname=pcre2-32
 _pkgname=pcre2
-pkgver=10.45
+pkgver=10.46
 pkgrel=1
 source=(https://github.com/PCRE2Project/pcre2/releases/download/${_pkgname}-$pkgver/${_pkgname}-$pkgver.tar.bz2)
 

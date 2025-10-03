@@ -4,7 +4,7 @@
 # optional  : openldap
 
 pkgname=curl
-pkgver=8.15.0
+pkgver=8.16.0
 pkgrel=1
 options=(!lto)
 source=(https://curl.se/download/$pkgname-$pkgver.tar.xz)
