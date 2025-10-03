@@ -84,4 +84,7 @@ build () {
     install -Dm 644 -t "$pkgdir/usr/share/dxvk" dxvk.conf
     install -Dm 644 -t "$pkgdir/usr/share/doc/$pkgname" README.md
     install -Dm 755 -t "$pkgdir/usr/bin" "$srcdir"/setup_dxvk
+
+	rm -f "$pkgdir"/usr/share/dxvk/x32/*.a
+	rm -f "$pkgdir"/usr/share/dxvk/x64/*.a
 }
