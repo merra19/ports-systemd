@@ -26,7 +26,7 @@ udevd_live() {
 
   if [ ! -S /run/udev/control ]; then
     echo >&2 "  Skipped: Device manager is not running."
-    exit 0
+    return 0
   fi
 }
 

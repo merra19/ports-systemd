@@ -1,5 +1,6 @@
 # description	: Library to create desktop components for Wayland using the Layer Shell protocol
 # depends	: wayland-protocols wayland gtk3 pkgconf xorg-proto vala
+# depends	: gobject-introspection
 
 pkgname=gtk-layer-shell
 pkgver=0.9.2
@@ -15,7 +16,7 @@ build() {
         --wrap-mode=nofallback \
         -D tests=false \
         -D docs=false \
-        -D introspection=false \
+        -D introspection=true \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build
