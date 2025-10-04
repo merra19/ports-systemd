@@ -1,0 +1,14 @@
+# description	: Python ctype-based wrapper around libusb1
+# depends	: python py3-gpep517 py3-setuptools py3-wheel libusb
+
+pkgname=py3-libusb1
+pkgver=3.3.1
+pkgrel=1
+source=(https://pypi.python.org/packages/source/l/libusb1/libusb1-$pkgver.tar.gz)
+
+build() {
+	cd libusb1-$pkgver
+	
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}

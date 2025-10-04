@@ -1,0 +1,14 @@
+# description	: POSIX ACLs (Access Control Lists) for Python
+# depends	: python py3-gpep517 py3-setuptools py3-wheel acl
+
+pkgname=py3-pylibacl
+pkgver=0.7.3
+pkgrel=1
+source=(https://files.pythonhosted.org/packages/source/p/pylibacl/pylibacl-$pkgver.tar.gz)
+
+build() {
+	cd pylibacl-$pkgver
+	
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}
