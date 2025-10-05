@@ -1,0 +1,45 @@
+# description	: Elkowars Wacky Widgets is a standalone widget system made in Rust
+# depends	: gtk-layer-shell gtk3 libdbusmenu rustc glib cairo
+# depends	: gdk-pixbuf pango xorg-proto
+
+pkgname=eww
+pkgver=0.6.0
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/elkowar/eww/archive/refs/tags/v$pkgver.tar.gz
+		eww-0.6.0-update-crates.patch)
+
+createpack() {
+    mkdir -p vendor
+    cargo vendor vendor
+    tar -cJpf $pkgname-$pkgver-cargo.tar.xz vendor/
+    cp $pkgname-$pkgver-cargo.tar.xz /sources/src/
+}
+
+build() {
+    cd $pkgname-$pkgver
+
+	patch -Np1 -i ../eww-0.6.0-update-crates.patch
+
+	if [ ! -f /sources/src/$pkgname-$pkgver-cargo.tar.xz ];then
+    	createpack
+	else
+		tar -xf /sources/src/$pkgname-$pkgver-cargo.tar.xz
+	fi
+
+    mkdir -p .cargo
+    echo '[source.crates-io]' >> .cargo/config.toml
+    echo 'replace-with = "vendored-sources"' >> .cargo/config.toml
+    echo '[source.vendored-sources]' >> .cargo/config.toml
+    echo 'directory = "vendor"' >> .cargo/config.toml
+
+	export RUSTUP_TOOLCHAIN=stable
+	cargo fetch --target "x86_64-unknown-linux-gnu"
+
+	export RUSTUP_TOOLCHAIN=stable
+	export CARGO_TARGET_DIR=target
+	cargo build --frozen --release
+
+	install -vd "$pkgdir/etc/xdg/$pkgname/"
+	cp -vr examples/eww-bar "$pkgdir/etc/xdg/$pkgname/"
+	install -vDm755 target/release/$pkgname -t "$pkgdir/usr/bin/"
+}
