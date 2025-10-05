@@ -65,7 +65,6 @@
                     (label :class "info-icon" :text " :")
                     (label :class "info-icon" :text " :")
                     (label :class "info-icon" :text " :")
-                    (label :class "info-icon" :text " :")
                 )
                 (box :class "info-box-right" :orientation "v" :space-evenly false
                     (label :class "info-text" :halign "start" :text "${wm}")
