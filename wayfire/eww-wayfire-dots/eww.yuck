@@ -35,7 +35,7 @@
     "$HOME/.config/scripts/tempe")
 (defpoll temp :initial 30 :interval "10s" `sensors | rg temp1 | rg -o "\\d+.\\d+" | head -1`)
 
-(defpoll IP_ADDR :interval "24h" "ip -br address | grep UP | awk '{ print $3 }'")
+(defpoll IP_ADDR :interval "24h" "/sbin/ip -br address | grep UP | awk '{ print $3 }'")
 
 (deflisten window :initial "..." "$HOME/.config/scripts/window-title.sh")
 
