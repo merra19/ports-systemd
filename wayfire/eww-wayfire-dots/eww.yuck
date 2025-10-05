@@ -25,6 +25,8 @@
 (defpoll weather_wind :interval "3h"
 	"$HOME/.config/scripts/Weather.sh wind")
 
+(defpoll weather_feels_like_trad :interval "12h"  "$HOME/.config/scripts/Weather.sh weather_feels_like_trad")
+
 (defpoll memory :interval "15s"
     "$HOME/.config/scripts/memory")
 (defpoll cpu :interval "17s"
@@ -97,7 +99,7 @@
                                         :limit-width 32
                                         :justify "center"
                                         :wrap "true")
-            (label :class "weather-desc" :text "Feels Like: ${weather_feels_like}°C")
+			 (label :class "weather-desc" :text "${weather_feels_like_trad}: ${weather_feels_like}°C")
             (label :class "weather-desc" :halign "center" :text " ${weather_wind} km/h")
             (label :class "weather-desc" :halign "center" :text "  ${weather_humidity} %")
         )

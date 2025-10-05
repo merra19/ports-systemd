@@ -13,7 +13,8 @@ KEY="60d7b980f7da638967fed7f0aaf80f84"
 # CITYN=$(encode_to_url_format "$CITY")
 ID="3024635"
 UNITS="metric" # Available "metric" "imperial"
-WEATHER=$(curl -sf "api.openweathermap.org/data/2.5/weather?appid=$KEY&id=$ID&units=$UNITS")
+WEATHLANG=fr
+WEATHER=$(curl -sf "api.openweathermap.org/data/2.5/weather?appid=$KEY&id=$ID&units=$UNITS&lang=$WEATHLANG")
 #WEATHER=$(curl -sf "api.openweathermap.org/data/2.5/weather?q=$ID&appid=$KEY&units=$UNITS")
 #weather=`curl -sf "http://api.openweathermap.org/data/2.5/weather?APPID=$KEY&id=$ID&units=$UNIT"`
 
@@ -26,6 +27,11 @@ WEATHER_WIND=$(echo "$WEATHER" | jq -r ".wind" | cut -d ":" -f 2 -s | head -1 | 
 WEATHER_HUMIDITY=$(echo "$WEATHER" | jq ".main.humidity" | cut -d "." -f 1)
 WEATHER_ICON=""
 WEATHER_HEX=""
+
+case $WEATHLANG in
+	fr) WEATHER_FEELS_LIKE_TRAD="Temp. Apparente" ;;
+	*)  WEATHER_FEELS_LIKE_TRAD="Feels LIke" ;;
+esac
 
 case $WEATHER_ICON_CODE in
 	"01d")
@@ -107,6 +113,9 @@ case $WEATHER_ICON_CODE in
 esac
 
 case $1 in
+	"weather_feels_like_trad")
+		echo "$WEATHER_FEELS_LIKE_TRAD"
+		;;
 	"current_temp")
 		check_if_empty "$WEATHER_TEMP"
 		;;
