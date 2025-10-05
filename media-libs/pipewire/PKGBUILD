@@ -23,4 +23,7 @@ build() {
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build
+
+    # directories for overrides
+    mkdir -p "$pkgdir"/etc/pipewire/{client-rt,client,minimal,pipewire}.conf.d
 }
