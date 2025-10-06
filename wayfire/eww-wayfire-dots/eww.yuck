@@ -99,7 +99,7 @@
                                         :limit-width 32
                                         :justify "center"
                                         :wrap "true")
-			 (label :class "weather-desc" :text "${weather_feels_like_trad}: ${weather_feels_like}°C")
+            (label :class "weather-desc" :text "${weather_feels_like_trad}: ${weather_feels_like}°C")
             (label :class "weather-desc" :halign "center" :text " ${weather_wind} km/h")
             (label :class "weather-desc" :halign "center" :text "  ${weather_humidity} %")
         )
@@ -152,6 +152,7 @@
 (defwidget system []
     (box :class "sys_win" :orientation "h" :space-evenly "true" :hexpand "false" :vexpand "false" 
         (box :class "sys_cpu_box" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false"
+            (label :text "Cpu" :class "sys_cpu")
             (circular-progress 
                     :value cpu
                     :class "sys_cpu"
@@ -164,6 +165,7 @@
             (label :class "cpu_perc" :halign "center" :text "${cpu}%")
         )
         (box :class "sys_mem_box" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false"
+            (label :text "Mem" :class "sys_mem")
             (circular-progress 
                     :value memory
                     :class "sys_mem"
@@ -182,6 +184,7 @@
 (defwidget disktemp []
     (box :class "disk_temp" :orientation "h" :space-evenly "true" :hexpand "false" :vexpand "false" 
         (box :class "sys_disk_box" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false"
+          (label :text "Disk" :class "sys_disk")
           (circular-progress
                   :value disk
                   :class "sys_disk"
@@ -194,6 +197,7 @@
             (label :class "disk_perc" :halign "center" :text "${disk}%")
         )        
       (box :class "sys_tempe_box" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false"
+            (label :text "Temp" :class "sys_tempe")
             (circular-progress 
                     :value tempe
                     :class "sys_tempe"
@@ -236,7 +240,7 @@
                         :width "110px"
                         :height "60%"
                         :anchor "top left")
-    :stacking "fg"
+    :stacking "bottom"
     :windowtype "dock"
     :exclusive true
         (box :class "main-container"

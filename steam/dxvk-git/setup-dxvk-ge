@@ -7,13 +7,17 @@ fi
 
 help() {	
 	cat << EOF
+Replace vk3d and vk3dproton
+
 Usage:
   $(basename $0) [ <options> <arguments> ]
 
 Options:
+	-umu                     replace Umu instaed Proton-GE 
 	-v=<protonge version>    proton-ge version to modify
 	-I                       install
-	-D                       uninstall  
+	-D                       uninstall 
+	-L                       list  /home/<user>/.steam/steam/compatibilitytools.d
 EOF
 }
 
@@ -23,12 +27,31 @@ steam=/home/$user/.steam/steam/compatibilitytools.d/
 
 INSTALL=no
 UNINSTALL=no
+DXVK=no
+VKD3D=no
+
+if scratch isinstalled dxvk-git;then
+	DXVK=yes
+fi
+
+if scratch isinstalled vkd3d-proton-git;then
+	VKD3D=yes
+fi
+
+if [ "$DXVK" = "no" ] && [ "$VKD3D" = "no" ]; then
+	echo "dxvk and/or vkd3d is not installed"
+	help
+	exit 1
+fi
+
 
 while [ "$1" ]; do
 	case $1 in
 		-v=*) GE_VERSION="${1#*=}" ;;
 		  -I) INSTALL=yes ;;
 		  -D) UNINSTALL=yes ;;
+		  -L) ls /home/$user/.steam/steam/compatibilitytools.d/ ; exit 0 ;;
+		  -umu) UMU=yes ;;
 		   *) help ; exit 0 ;;
 	esac
 	shift
@@ -36,45 +59,85 @@ done
 
 if [ "$INSTALL" = "yes" ] && [ "$UNINSTALL" = "yes" ];then 
 	echo "select Install or Uninstall"
+	help
+	exit 1
 fi
 
 if [ "$INSTALL" = "no" ] && [ "$UNINSTALL" = "no" ];then 
-
 	echo "missing Install or Uninstall"
-
+	help
+	exit 1
 fi
 
-if [ ! -d "$steam/GE-Proton$GE_VERSION" ];then
-	echo "missing proton-ge version $GE_VERSION"
+if [ $UMU ] ;then
+	DIR="$steam/UMU-Proton-$GE_VERSION"
+else
+	DIR="$steam/GE-Proton$GE_VERSION"
+fi
+
+if [ ! -d "$DIR" ];then
+	echo "missing version $GE_VERSION"
+	ls "$steam"
+	exit 1
 fi
 
 if [ "$INSTALL" = "yes" ];then
 
-	cd "$steam/GE-Proton$GE_VERSION"/files/lib/wine
+	cd "$DIR"/files/lib/wine
 
-	if [ -d dxvk2 ];then
-		echo "Already installed"
-		exit
+	if [ "$DXVK" = "yes" ];then
+		if [ ! -d dxvk2 ];then
+			cp -r dxvk dxvk2
+		fi
+
+		echo "Updating dxvk"
+		cd dxvk
+		rm -f version
+		rm -f i386-windows/d3d* i386-windows/dxgi*
+		cp  /usr/share/dxvk/x32/*  i386-windows/
+
+		rm -f x86_64-windows/d3d* x86_64-windows/dxgi*
+		cp  /usr/share/dxvk/x64/*  x86_64-windows/
 	fi
 
-	cp -r dxvk dxvk2
+	if [ "$VKD3D" = "yes" ];then
+		if [ ! -d vkd3d-proton2 ];then
+			cp -r vkd3d-proton vkd3d-proton2
+		fi
 
-	cd dxvk
-	rm -f version
-	rm -f i386-windows/d3d* i386-windows/dxgi*
-	cp  /usr/share/dxvk/x32/*  i386-windows/
+		echo "Updating vkd3d-proton"
+		cd vkd3d-proton
 
-	rm -f x86_64-windows/d3d* x86_64-windows/dxgi*
-	cp  /usr/share/dxvk/x64/*  x86_64-windows/
+		rm -f version
+		rm -f i386-windows/d3d*
+		cp  /usr/lib/vkd3d-proton/win32/*  i386-windows/
+
+		rm -f x86_64-windows/d3d*
+		cp  /usr/lib/vkd3d-proton/win64/*  x86_64-windows/
+	fi
 
 else
-	cd "$steam/GE-Proton$GE_VERSION"/files/lib/wine
+	cd "$DIR"/files/lib/wine
 
-	if [ ! -d dxvk2 ];then
-		echo "Not installed"
-		exit
+	if [ "$DXVK" = "yes" ];then
+		if [ ! -d dxvk2 ];then
+			echo "dxvk Not installed"
+			exit
+		fi
+
+		echo "Removing dxvk"
+		rm -rf dxvk
+		mv dxvk2 dxvk
 	fi
 
-	rm -rf dxvk
-	mv dxvk2 dxvk
+	if [ "$VKD3D" = "yes" ];then
+		if [ ! -d vkd3d-proton2 ];then
+			echo "vkd3d-proton Not installed"
+			exit
+		fi
+
+		echo "Removing vkd3d-proton"
+		rm -rf vkd3d-proton
+		mv vkd3d-proton2 vkd3d-proton
+	fi
 fi

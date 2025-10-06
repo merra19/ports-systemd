@@ -1,0 +1,110 @@
+# description	: Direct3D 12 to Vulkan translation library By WineHQ
+# depends	: spirv-tools vulkan-loader perl-json spirv-headers
+# depends	: vulkan-headers xcb-utilities xorg-proto
+
+pkgname=vkd3d-proton-git
+pkgver=2.14.1.105417a
+pkgrel=1
+commit=105417aa2e9341baa8f0c15aa2046737e241a902
+dxilspirvcommit=b638587297114eecad6df11b9164889d33ff034c
+spirvheadercommit=3b9447dc98371e96b59a6225bd062a9867e1d203
+vulkancommit=b39ab380a44b6c8df462c34e976ea9ce2d2c336b
+spirvtoolscommit=e9a8ceeddbf7e3aaadac2ab6f8a6ab6437872e88
+spirvcrosscommit=4b7bcb7e5cf71015b3299088d22004bfe4e13a5e
+dxbcspirvcommit=fa3028393571cef91f7a6a8b665f5a49466be29a
+source=(https://github.com/HansKristian-Work/vkd3d-proton/archive/$commit.tar.gz
+		spirv-headers-$spirvheadercommit.tar.gz::https://github.com/KhronosGroup/SPIRV-Headers/archive/$spirvheadercommit.tar.gz
+		vulkan-headers-$vulkancommit.tar.gz::https://github.com/KhronosGroup/Vulkan-Headers/archive/$vulkancommit.tar.gz
+		spirv-tools-$spirvtoolscommit.tar.gz::https://github.com/KhronosGroup/SPIRV-Tools/archive/$spirvtoolscommit.tar.gz
+		spirv-cross-$spirvcrosscommit.tar.gz::https://github.com/KhronosGroup/SPIRV-Cross/archive/$spirvcrosscommit.tar.gz
+		dxil-spirv-$dxilspirvcommit.tar.gz::https://github.com/HansKristian-Work/dxil-spirv/archive/$dxilspirvcommit.tar.gz
+		dxbc-spirv-$dxbcspirvcommit.tar.gz::https://github.com/doitsujin/dxbc-spirv/archive/$dxbcspirvcommit.tar.gz
+		dxvk-extraopts.patch)
+
+build() {
+	cp -r SPIRV-Headers-$spirvheadercommit/* vkd3d-proton-$commit/khronos/SPIRV-Headers/
+	#mv -T SPIRV-Headers-$spirvheadercommit vkd3d-proton-$commit/khronos/SPIRV-Headers 
+	mv -T Vulkan-Headers-$vulkancommit vkd3d-proton-$commit/khronos/Vulkan-Headers
+	mv -T dxil-spirv-$dxilspirvcommit vkd3d-proton-$commit/subprojects/dxil-spirv
+	
+	mv -T dxbc-spirv-$dxbcspirvcommit vkd3d-proton-$commit/subprojects/dxbc-spirv
+	cp -r SPIRV-Headers-$spirvheadercommit/* vkd3d-proton-$commit/subprojects/dxbc-spirv/submodules/spirv_headers/
+	#mv -T SPIRV-Headers-$spirvheadercommit vkd3d-proton-$commit/subprojects/dxbc-spirv/submodules
+	
+	mv -T SPIRV-Cross-$spirvcrosscommit vkd3d-proton-$commit/subprojects/dxil-spirv/third_party/SPIRV-Cross
+	mv -T SPIRV-Tools-$spirvtoolscommit vkd3d-proton-$commit/subprojects/dxil-spirv/third_party/SPIRV-Tools
+	mv -T SPIRV-Headers-$spirvheadercommit vkd3d-proton-$commit/subprojects/dxil-spirv/third_party/spirv-headers
+
+
+    cd vkd3d-proton-$commit
+
+    # Uncomment to enable extra optimizations
+    # Patch crossfiles with extra optimizations from makepkg.conf
+    patch -p1 -i "$srcdir"/dxvk-extraopts.patch
+
+    local -a split=($CFLAGS)
+    local -A flags
+    for opt in "${split[@]}"; do flags["${opt%%=*}"]="${opt##*=}"; done
+    local march="${flags["-march"]:-nocona}"
+    local mtune="${flags["-mtune"]:-core-avx2}"
+
+    CFLAGS="-O3 -march=$march -mtune=$mtune -pipe -mno-avx"
+    CXXFLAGS="-O3 -march=$march -mtune=$mtune -pipe -mno-avx"
+    LDFLAGS="-Wl,-O1,--sort-common,--as-needed"
+
+    # These flags are taken from Proton
+    CFLAGS+=" -mfpmath=sse -fwrapv -fno-strict-aliasing"
+    CXXFLAGS+=" -mfpmath=sse -fwrapv -fno-strict-aliasing"
+    LDFLAGS+=" -Wl,--file-alignment,4096"
+
+    export CFLAGS CXXFLAGS LDFLAGS
+
+    local cross_ldflags="$LDFLAGS"
+
+    local cross_cflags="$CFLAGS -mcmodel=small"
+    local cross_cxxflags="$CXXFLAGS -mcmodel=small"
+
+    sed -i build-win64.txt \
+        -e "s|@CARGS@|\'${cross_cflags// /\',\'}\'|g" \
+        -e "s|@CXXARGS@|\'${cross_cxxflags// /\',\'}\'|g" \
+        -e "s|@LDARGS@|\'${cross_ldflags// /\',\'}\'|g"
+
+    local cross_cflags="$CFLAGS -mstackrealign -mpreferred-stack-boundary=2"
+    local cross_cxxflags="$CXXFLAGS -mstackrealign -mpreferred-stack-boundary=2"
+    sed -i build-win32.txt \
+        -e "s|@CARGS@|\'${cross_cflags// /\',\'}\'|g" \
+        -e "s|@CXXARGS@|\'${cross_cxxflags// /\',\'}\'|g" \
+        -e "s|@LDARGS@|\'${cross_ldflags// /\',\'}\'|g"
+
+
+	mkdir build-win64 &&
+	cd    build-win64 &&
+
+	meson setup .. \
+		--cross-file=../build-win64.txt \
+		--buildtype=release \
+		--prefix=$PWD/DESTDIR
+	ninja
+	ninja install
+	cd ..
+
+	mkdir   -pv "$pkgdir"/usr/lib/vkd3d-proton/win64
+	install -vDm755 build-win64/DESTDIR/bin/*.dll \
+				-t "$pkgdir"/usr/lib/vkd3d-proton/win64/
+
+	mkdir build-win32 &&
+	cd    build-win32 &&
+
+	meson setup .. \
+		--cross-file ../build-win32.txt \
+		--buildtype=release \
+		--prefix=$PWD/DESTDIR &&
+
+	ninja
+	ninja install
+	cd ..
+
+	mkdir   -pv "$pkgdir"/usr/lib/vkd3d-proton/win32
+	install -vDm755 build-win32/DESTDIR/bin/*.dll \
+				-t "$pkgdir"/usr/lib/vkd3d-proton/win32/
+}

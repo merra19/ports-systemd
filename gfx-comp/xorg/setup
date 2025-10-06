@@ -2,17 +2,18 @@
 
 usage() {
 	cat <<-__EOF__
-		usage: setup [plasma|xfce|hyprland|rofi]
-
-		write xinitrc file in HOME
-        and create ~/.cache folder
-
-        rofi:
-         cp dotfiles config to .config.rofi
+		usage: setup [plasma|xfce|hyprland|rofi|xfcewayland]
 
 		options:
-		help  Show this help
+			help  Show this help
 
+		xfcewayland:
+		    write xfce-wayland.sh to launch xfce with wayfire
+		other:
+		    write xinitrc file in HOME
+		    and create ~/.cache folder
+		rofi:
+		    cp dotfiles config to .config.rofi
 	__EOF__
 	exit $1
 }
@@ -41,6 +42,14 @@ case $1 in
     xfce)
         writehome "dbus-launch --exit-with-x11 startxfce4"
         ;;
+	xfcewayland)
+		cat > ~/xfce-wayland.sh << "EOF"
+#!/bin/sh
+
+  startxfce4 --wayland wayfire
+EOF
+		chmod +x ~/xfce-wayland.sh
+		;;
     plasma)
         writehome "dbus-launch --exit-with-x11 /usr/bin/startplasma-x11"
         ;;

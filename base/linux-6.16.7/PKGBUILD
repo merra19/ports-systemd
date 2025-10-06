@@ -4,7 +4,7 @@
 
 pkgname=linux-6.16.7
 pkgver=6.16.7
-pkgrel=1
+pkgrel=2
 options=(!strip)
 _srcvers=$pkgver.arch1
 _srctag=v${_srcvers%.*}-${_srcvers##*.}
@@ -13,7 +13,6 @@ source=(https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver%.0}.tar.xz
         novector.patch configarch)
 
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
-
 
 build() {
     zstd -d linux-$_srctag.patch.zst
@@ -39,12 +38,12 @@ build() {
     # clear EXTRAVERSION
     sed 's/-arch1//' -i Makefile
 
-    if [ "$MMARCH" = "native" ] ;then
-        sed -i "s/-march=x86-64 -mtune=generic/-march=$MMARCH  -mtune=generic/" arch/x86/Makefile
-        sed -i "s/-Ctarget-cpu=x86-64 -Ztune-cpu=generic/-Ctarget-cpu=$MMARCH/" arch/x86/Makefile
-    fi
+    sed -i "s/-march=x86-64 -mtune=generic/-march=$MMARCH -mtune=generic -mpopcnt -fivopts -fmodulo-sched/" arch/x86/Makefile
+    sed -i "s/-Ctarget-cpu=x86-64 -Ztune-cpu=generic/-Ctarget-cpu=$MMARCH/" arch/x86/Makefile
 
-    #sed -i '262i $(info KBUILD_CFLAGS = $(KBUILD_CFLAGS))' arch/x86/Makefile
+	# to show KBUILD_CFLAGS 
+	# after line: archprepare: $(cpufeaturemasks.hdr)
+    # sed -i '262i $(info KBUILD_CFLAGS = $(KBUILD_CFLAGS))' arch/x86/Makefile
 
     yes "" | make oldconfig
 	#make menuconfig
