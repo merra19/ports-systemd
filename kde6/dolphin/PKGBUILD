@@ -18,6 +18,4 @@ build() {
         -Wno-dev
     make -C build
     make DESTDIR="$pkgdir" install -C build
-
-    rm -rvf "$pkgdir"/usr/lib/systemd
 }
