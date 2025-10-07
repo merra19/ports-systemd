@@ -21,6 +21,7 @@ build() {
 		--libdir=/usr/lib \
 		--enable-lib \
 		--enable-util \
+		--disable-static \
 		--disable-example
     make
     make DESTDIR="${pkgdir}" install
