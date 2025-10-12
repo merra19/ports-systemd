@@ -8,10 +8,10 @@
 # optional  : samba
 
 pkgname=ffmpeg
-pkgver=7.1.1
+pkgver=7.1.2
 pkgrel=1
 source=(https://ffmpeg.org/releases/$pkgname-$pkgver.tar.xz
-        https://www.linuxfromscratch.org/patches/blfs/12.4/ffmpeg-$pkgver-chromium_method-1.patch)
+        https://www.linuxfromscratch.org/patches/blfs/svn/ffmpeg-$pkgver-chromium_method-1.patch)
 
 build() {
 	cd $pkgname-$pkgver

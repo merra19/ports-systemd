@@ -2,7 +2,7 @@
 # depends	: gdbm rustc openssl tcl tk libyaml libffi zlib libxcrypt
 
 pkgname=ruby
-pkgver=3.4.5
+pkgver=3.4.7
 pkgrel=1
 options=(!lto)
 source=(https://cache.ruby-lang.org/pub/ruby/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
@@ -15,10 +15,6 @@ build() {
         export CXXFLAGS="$CFLAGS"
     fi
 
-	#CFLAGS=${CFLAGS/-mrelax-cmpxchg-loop/}
-	#CXXFLAGS=${CXXFLAGS/-mrelax-cmpxchg-loop/}
-
-    #CC=clang CXX=clang++ \
     ./configure \
         --prefix=/usr \
         --disable-rpath \
