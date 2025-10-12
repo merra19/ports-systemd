@@ -1,4 +1,4 @@
-# description	: Hatch plugin for versioning with your preferred VCS"
+# description	: Hatch plugin for versioning with your preferred VCS
 # depends	: python py3-wheel py3-hatchling  py3-setuptools-scm
 
 pkgname=py3-hatch-vcs

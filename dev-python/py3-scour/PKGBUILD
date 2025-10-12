@@ -1,0 +1,14 @@
+# description	: Take an SVG file and produce a cleaner and more concise file
+# depends	: python py3-gpep517 py3-setuptools py3-wheel py3-six
+
+pkgname=py3-scour
+pkgver=0.38.2
+pkgrel=1
+source=(https://github.com/scour-project/scour/archive/v$pkgver/scour-$pkgver.tar.gz)
+
+build() {
+	cd scour-$pkgver
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}

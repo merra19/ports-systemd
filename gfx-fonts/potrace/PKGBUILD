@@ -1,0 +1,21 @@
+# description	: Transforming bitmaps into vector graphics
+# depends	: glibc zlib llvm
+
+pkgname=potrace
+pkgver=1.16
+pkgrel=1
+source=(https://downloads.sourceforge.net/potrace/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+		--prefix=/usr \
+		--disable-static \
+        --enable-a4 \
+        --enable-metric \
+        --with-libpotrace \
+		--docdir=/usr/share/doc/$pkgname-$pkgver
+	make
+	make DESTDIR="$pkgdir" install
+}

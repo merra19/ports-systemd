@@ -1,0 +1,27 @@
+# description	: Monospace bitmap font (for X11 and console)
+# depends	: python gzip gawk grub xorg-fonts freetype fontconfig
+# depends	: cabextract
+
+pkgname=ttf-ms-corefonts
+pkgver=1.0
+pkgrel=1
+source=(https://downloads.sourceforge.net/corefonts/andale32.exe
+		https://downloads.sourceforge.net/corefonts/arialb32.exe
+		https://downloads.sourceforge.net/corefonts/comic32.exe
+		https://downloads.sourceforge.net/corefonts/courie32.exe
+		https://downloads.sourceforge.net/corefonts/georgi32.exe
+		https://downloads.sourceforge.net/corefonts/impact32.exe
+		https://downloads.sourceforge.net/corefonts/webdin32.exe
+		https://downloads.sourceforge.net/corefonts/wd97vwr32.exe)
+
+build() {
+	for exe in ${source[@]} ; do
+		exe=${exe/https:\/\/downloads.sourceforge.net\/corefonts//}
+		cabextract --lowercase "$srcdir"/${exe} > /dev/null 
+	done
+	
+	cabextract -F 'tahoma.ttf' "$srcdir/viewer1.cab" > /dev/null
+	
+	mkdir -p "$pkgdir"/usr/share/fonts/TTF
+	install -Dm644 *.ttf "$pkgdir"/usr/share/fonts/TTF
+}

@@ -1,0 +1,15 @@
+# description	: httplib2 caching for requests
+# depends	: python py3-gpep517 py3-setuptools py3-wheel py3-msgpack
+# depends	: py3-requests
+
+pkgname=py3-cachecontrol
+pkgver=0.14.3
+pkgrel=1
+source=(https://github.com/psf/cachecontrol/archive/v$pkgver/cachecontrol-$pkgver.tar.gz)
+
+build() {
+	cd scour-$pkgver
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}

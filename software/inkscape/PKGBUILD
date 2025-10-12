@@ -1,0 +1,26 @@
+# description	: SVG based generic vector-drawing program
+# depends	: boost double-conversion gc gsl gtkmm-3.24 libxslt popt
+# depends	: poppler imagemagick lcms2 libcanberra potrace py3-scour
+# depends	: dbus py3-cachecontrol py3-cssselect py3-lxml py3-numpy
+# depends	: py3-pyserial aspell gspell
+
+pkgname=inkscape
+pkgver=1.4.2
+pkgrel=1
+source=(https://inkscape.org/gallery/item/56344/$pkgname-$pkgver.tar.xz
+		https://www.linuxfromscratch.org/patches/blfs/svn/inkscape-1.4.2-poppler_fixes-4.patch)
+
+build() {
+    cd $pkgname-$pkgver
+
+	patch -Np1 -i ../inkscape-1.4.2-poppler_fixes-4.patch
+
+	cmake -B build \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_BUILD_TYPE=Release \
+		-D WITH_DBUS=ON \
+		-W no-dev
+	make -C build
+    make DESTDIR="$pkgdir" install -C build
+}
+-
