@@ -8,7 +8,7 @@ pkgrel=1
 source=(https://github.com/psf/cachecontrol/archive/v$pkgver/cachecontrol-$pkgver.tar.gz)
 
 build() {
-	cd scour-$pkgver
+	cd cachecontrol-$pkgver
 
     gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d "$pkgdir" .dist/*.whl

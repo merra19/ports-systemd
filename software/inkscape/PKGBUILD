@@ -11,7 +11,7 @@ source=(https://inkscape.org/gallery/item/56344/$pkgname-$pkgver.tar.xz
 		https://www.linuxfromscratch.org/patches/blfs/svn/inkscape-1.4.2-poppler_fixes-4.patch)
 
 build() {
-    cd $pkgname-$pkgver
+    cd inkscape-1.4.2_2025-05-08_ebf0e940d0
 
 	patch -Np1 -i ../inkscape-1.4.2-poppler_fixes-4.patch
 

@@ -9,6 +9,9 @@ source=(https://downloads.sourceforge.net/potrace/$pkgname-$pkgver.tar.gz)
 build() {
 	cd $pkgname-$pkgver
 
+    CFLAGS="${CFLAGS/-mrelax-cmpxchg-loop/}"
+    CXXFLAGS="${CXXFLAGS/-mrelax-cmpxchg-loop/}"
+
 	./configure \
 		--prefix=/usr \
 		--disable-static \
