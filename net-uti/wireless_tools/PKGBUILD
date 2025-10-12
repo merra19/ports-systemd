@@ -1,4 +1,4 @@
-# description	: A collection of tools to configure IEEE 802.11 wireless LAN card
+# description	: A collection of tools to configure IEEE 802.11 wireless LAN cards
 # depends	: glibc
 
 pkgname=wireless_tools

@@ -1,4 +1,4 @@
-# description	:  Micro-compositor formerly known as steamcompgr
+# description	: Efficient micro-compositor for running games
 # depends	: wlroots sdl2 pipewire xorg-libs libdrm libxkbcommon
 # depends	: glslang vulkan-headers seatd luajit wayland glm
 # depends	: libdisplay-info vulkan-loader hwdata libcap stb libxcb

@@ -1,4 +1,4 @@
-# description	: C++ user interface toolkit for X and OpenGL
+# description	: Fast Light GUI Toolkit
 # depends	: xorg-proto libjpeg-turbo libpng zlib xorg-libs cairo
 # depends	: alsa-lib desktop-file-utils mesa glu
 

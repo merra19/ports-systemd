@@ -1,4 +1,4 @@
-# description	: HTTP client/server library for GNOME version 3
+# description	: HTTP client/server library for GNOME
 # depends	: glib nghttp2 sqlite brotli libpsl zlib libxml2 vala
 # depends	: gobject-introspection glib-networking
 

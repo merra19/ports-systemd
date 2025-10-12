@@ -1,4 +1,4 @@
-# description	: Systems programming language from Mozilla
+# description	: Systems programming language originally developed by Mozilla
 # depends	: cmake curl llvm llvm32 xz zlib openssl lld libssh2
 
 pkgname=rustc

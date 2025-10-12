@@ -1,4 +1,4 @@
-# description	: Windowing concept abstraction library for X11 and Wayland for Xfce
+# description	: Unified widget and session management libs for Xfce
 # depends	: gtk3 libwnck libdisplay-info gettext xfce4-dev-tools
 # depends	: wayland-protocols perl pkgconf
 

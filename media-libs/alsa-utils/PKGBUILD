@@ -1,4 +1,4 @@
-# description	: Advanced Linux Sound Architecture  Utils (alsactl, alsamixer, etc.)
+# description	: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 # depends	: alsa-lib fltk fftw libsamplerate xmlto
 
 pkgname=alsa-utils

@@ -1,4 +1,4 @@
-# description	: Lightweight in-process concurrent programming 
+# description	: Lightweight in-process concurrent programming
 # depends	: python py3-wheel py3-setuptools
 
 pkgname=py3-greenlet

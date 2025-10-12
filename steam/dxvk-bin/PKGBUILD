@@ -1,4 +1,4 @@
-# description	: A Vulkan-based compatibility layer for Direct3D 9/10/11 which allows running 3D applications on Linux using Wine (Windows DLL binary files)
+# description	: Vulkan-based implementation of D3D9, D3D10 and D3D11 for Linux / Wine
 # depends	: vulkan-loader
 
 pkgname=dxvk-bin

@@ -1,4 +1,4 @@
-# description	: UTF-8 with C++ in a Portable Way
+# description	: UTF-8 C++ library
 # depends	: cmake
 
 pkgname=utfcpp

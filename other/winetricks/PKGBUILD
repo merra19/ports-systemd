@@ -1,4 +1,4 @@
-# description	: A unit test framework for C
+# description	: Easy way to install DLLs needed to work around problems in Wine
 # depends	: glibc cabextract unzip wget wine xdg-utils zenity
 
 pkgname=winetricks

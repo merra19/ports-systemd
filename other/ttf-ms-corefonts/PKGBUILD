@@ -1,4 +1,4 @@
-# description	: Monospace bitmap font (for X11 and console)
+# description	: Microsoft's TrueType core fonts
 # depends	: python gzip gawk grub xorg-fonts freetype fontconfig
 # depends	: cabextract
 

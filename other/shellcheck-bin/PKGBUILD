@@ -1,4 +1,4 @@
-# description	: Shell script analysis tool
+# description	: Shell script analysis tool (binary package)
 # depends	: glibc
 
 pkgname=shellcheck-bin

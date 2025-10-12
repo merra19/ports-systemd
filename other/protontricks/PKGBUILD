@@ -1,4 +1,4 @@
-# description	: Redundant data find - a program that finds duplicate files
+# description	: app-emulation/winetricks wrapper for Proton (Steam Play) games
 # depends	: py3-pillow py3-vdf winetricks zenity
 
 pkgname=protontricks

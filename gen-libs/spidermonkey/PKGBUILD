@@ -1,4 +1,4 @@
-# description	: SpiderMonkey is Mozilla's JavaScript engine written in C and C++
+# description	: Mozilla's JavaScript engine written in C and C++
 # depends	: readline zlib icu which cbindgen
 
 pkgname=spidermonkey

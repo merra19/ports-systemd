@@ -1,4 +1,4 @@
-# description	: Terminal emulator for the X Window System
+# description	: Terminal Emulator for X Windows
 # depends	: ncurses xorg-libs luit ttf-dejavu
 
 pkgname=xterm

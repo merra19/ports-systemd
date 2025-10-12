@@ -1,4 +1,4 @@
-# description	: Blazing fast wayland wallpaper utility with IPC controls.
+# description	: A blazing fast wayland wallpaper utility
 # depends	: cairo hyprgraphics hyprlang hyprutils libglvnd cmake
 # depends	: hyprwayland-scanner pango wayland wayland-protocols
 # depends	: xorg-proto

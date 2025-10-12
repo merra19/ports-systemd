@@ -1,4 +1,4 @@
-# description	: Iconic font aggregator, collection, and patcher
+# description	: Symbols-only font containing the Nerd Font icons
 # depends	: glibc
 
 pkgname=nerd-fonts

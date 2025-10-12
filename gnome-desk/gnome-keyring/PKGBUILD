@@ -1,4 +1,4 @@
-# description	: Gnome Settings Daemon
+# description	: Password and keyring managing daemon
 # depends	: dbus gcr pam libxslt openssh libgcrypt glib meson
 # depends	: systemd
 

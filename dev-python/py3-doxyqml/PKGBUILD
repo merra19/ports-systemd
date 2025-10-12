@@ -1,4 +1,4 @@
-# description	: A Doxygen filter for python
+# description	: Allows using Doxygen to document QML classes
 # depends	: python py3-wheel py3-gpep517 py3-setuptools 
 # depends	: py3-flit-core doxygen
 

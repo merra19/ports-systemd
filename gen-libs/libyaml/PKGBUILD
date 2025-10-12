@@ -1,4 +1,4 @@
-# description	: Low-level, streaming YAML interface
+# description	: YAML 1.1 parser and emitter written in C
 # depends	: glibc
 
 pkgname=libyaml

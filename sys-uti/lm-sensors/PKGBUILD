@@ -1,4 +1,4 @@
-# description	: Hardware Monitoring user-space utilitie
+# description	: Hardware Monitoring user-space utilities
 # depends	: which perl
 
 pkgname=lm-sensors

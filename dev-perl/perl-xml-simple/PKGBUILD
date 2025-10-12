@@ -1,4 +1,4 @@
-# description	: IO::File interface for in-core strings
+# description	: An API for simple XML files
 # depends	: perl
 
 pkgname=perl-xml-simple

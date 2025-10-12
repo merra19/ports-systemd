@@ -1,4 +1,4 @@
-# description	: rdoc generator html with javascript search index
+# description	: Standalone tool for generating man pages with a simple syntax
 # depends	: glibc
 
 pkgname=scdoc

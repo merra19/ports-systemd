@@ -1,4 +1,4 @@
-# description	: A portable, bytecode-compiled implementation of Common Lisp
+# description	: Portable, bytecode-compiled implementation of Common Lisp
 # depends	: glibc libxcrypt libsigsegv gdbm readline zlib libnsl
 
 pkgname=clisp

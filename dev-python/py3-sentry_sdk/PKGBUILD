@@ -1,4 +1,4 @@
-# description	: Python SDK for Sentry.io
+# description	: Python client for Sentry
 # depends	: python py3-wheel py3-gpep517 py3-setuptools 
 # depends	: py3-flit-core py3-certifi py3-urllib3
 

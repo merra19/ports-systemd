@@ -1,4 +1,4 @@
-# description	: A typed linked list C header file only library
+# description	: Header-only implementation of a typed linked list in C
 # depends	: meson
 
 pkgname=tllist

@@ -1,4 +1,4 @@
-# description	: an advanced CDDA reader with error correction
+# description	: Advanced CDDA reader with error correction
 # depends	: libcdio
 
 pkgname=libcdio-paranoia

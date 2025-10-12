@@ -1,4 +1,4 @@
-# description	: An Extremely fast, In-Memory JSON and Interface Library for Modern C++
+# description	: Extremely fast, in memory, JSON and interface library for modern C++
 # depends	: cmake
 
 pkgname=glaze

@@ -1,4 +1,4 @@
-# description	: Iconic font designed for Bootstrap
+# description	: The iconic font
 # depends	: glibc
 
 pkgname=ttf-font-awesome 

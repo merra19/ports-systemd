@@ -1,4 +1,4 @@
-# description	: Lists open files for running Unix processes
+# description	: A collection of tools and libraries for many image formats
 # depends	: libtool bzip2 fftw libjpeg-turbo openjpeg xorg-libs
 # depends	: lcms2 pango perl libpng ghostscript librsvg libtiff cups
 # depends	: libwebp xorg-proto xz zlib ttf-dejavu 7zip libraw libjxl

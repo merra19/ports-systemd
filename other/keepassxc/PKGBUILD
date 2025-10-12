@@ -1,4 +1,4 @@
-# description	: KeePassXC - KeePass Cross-platform Community Editio
+# description	: KeePassXC - KeePass Cross-platform Community Edition
 # depends	: glibc argon2 botan qt5 libqrencode zlib zlib-minizip
 # depends	: hicolor-icon-theme libusb asciidoctor cmake
 

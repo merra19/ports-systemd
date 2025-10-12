@@ -1,4 +1,4 @@
-# description	: OpenCL (Open Computing Language) header files
+# description	: Unified C language headers for the OpenCL API
 # depends	: cmake python
 
 pkgname=opencl-headers

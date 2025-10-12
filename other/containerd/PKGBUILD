@@ -1,4 +1,4 @@
-# description	: Tool to display dialogs from the commandline and shell scripts
+# description	: A daemon to control runC
 # depends	: go btrfs-progs libseccomp
 
 pkgname=containerd

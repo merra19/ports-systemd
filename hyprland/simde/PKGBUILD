@@ -1,4 +1,4 @@
-# description	: Implementations of SIMD instruction sets
+# description	: Header-only library providing implementations of SIMD instruction sets
 # depends	: meson
 
 pkgname=simde

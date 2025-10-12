@@ -1,4 +1,4 @@
-# description	: Lightweight and flexible command-line JSON processor
+# description	: A lightweight and flexible command-line JSON processor
 # depends	: oniguruma autoconf automake bison flex python
 
 pkgname=jq

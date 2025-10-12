@@ -1,4 +1,4 @@
-# description	: xdg-desktop-portal backend for hyprland
+# description	: xdg-desktop-portal backend for Hyprland
 # depends	: hyprlang hyprutils hyprwayland-scanner inih sdbus-cpp
 # depends	: util-linux pipewire qt6 xdg-desktop-portal cmake
 # depends	: wayland wayland-protocols

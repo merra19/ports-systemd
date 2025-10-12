@@ -1,4 +1,4 @@
-# description	: High number of extra glyphs from popular 'iconic fonts' (common files)
+# description	: Symbols-only font containing the Nerd Font icons
 # depends	: glibc
 
 pkgname=ttf-nerd-fonts-symbols

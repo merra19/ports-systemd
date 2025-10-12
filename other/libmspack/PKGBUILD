@@ -1,4 +1,4 @@
-# description	: Extracts files from Microsoft cabinet archive files
+# description	: A library for Microsoft compression formats
 # depends	: glibc perl
 
 pkgname=libmspack

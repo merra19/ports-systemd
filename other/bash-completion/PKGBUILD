@@ -1,4 +1,4 @@
-# description	: Programmable completion for the bash shell
+# description	: Programmable Completion for bash
 # depends	: bash
 
 pkgname=bash-completion

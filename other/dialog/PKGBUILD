@@ -1,4 +1,4 @@
-# description	: A tool to display dialog boxes from shell scripts
+# description	: Tool to display dialog boxes from a shell
 # depends	: ncurses
 
 pkgname=dialog

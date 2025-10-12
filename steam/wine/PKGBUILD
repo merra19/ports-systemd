@@ -1,4 +1,4 @@
-# description	: A compatibility layer for running Windows programs
+# description	: Free implementation of Windows(tm) on Unix, with Wine-Staging patchset
 # depends	: attr desktop-file-utils fontconfig freetype gcc gettext
 # depends	: libpcap xorg-libs wayland alsa-lib pulseaudio mesa
 # depends	: ffmpeg giflib gnutls gtk3 cups libva vulkan-loader

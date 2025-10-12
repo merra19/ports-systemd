@@ -1,4 +1,4 @@
-# description	: Build and publish crates with pyo3, rust-cpython and cffi bindings - Python bindings
+# description	: Build and publish crates with pyo3, rust-cpython and cffi bindings
 # depends	: python py3-gpep517 py3-setuptools py3-wheel bzip2 rustc
 # depends	: dbus openssl py3-setuptools-rust py3-semantic-version
 

@@ -1,4 +1,4 @@
-# description	: OpenCL ICD Bindings
+# description	: Official Khronos OpenCL ICD Loader
 # depends	: glibc ruby mesa xmlto py3-asciidoc opencl-headers
 
 pkgname=opencl-loader

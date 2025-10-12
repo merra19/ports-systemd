@@ -1,4 +1,4 @@
-# description	: QML style provider for Hypr* QT app
+# description	: QML style provider for hypr* Qt apps
 # depends	: hyprlang qt6 cmake
 
 pkgname=hyprland-qt-support

@@ -1,4 +1,4 @@
-# description	: A module for (de)serialization to and from VDF, Valve's key-value text forma
+# description	: A module for (de)serialization to and from VDF, Valve's key-value text format
 # depends	: py3-flit-core py3-gpep517 py3-setuptools
 
 pkgname=py3-vdf

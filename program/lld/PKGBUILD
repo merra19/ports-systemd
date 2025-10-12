@@ -1,4 +1,4 @@
-# description	: Linker from the LLVM project
+# description	: The LLVM linker (link editor)
 # depends	: llvm cmake
 
 pkgname=lld

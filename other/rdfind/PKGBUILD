@@ -1,4 +1,4 @@
-# description	: Redundant data find - a program that finds duplicate files
+# description	: Find duplicate files based on their content
 # depends	: glibc nettle xxhash
 
 pkgname=rdfind

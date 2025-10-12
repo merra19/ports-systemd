@@ -1,4 +1,4 @@
-# description	: LibreOffice - Binary package for the full office suite
+# description	: A full office productivity suite. Binary package
 # depends       : avahi cups desktop-file-utils nss
 
 pkgname=libreoffice-bin

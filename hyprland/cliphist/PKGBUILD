@@ -1,4 +1,4 @@
-# description	: Wayland clipboard manager
+# description	: Wayland clipboard manager with support for multimedia
 # depends	: go wl-clipboard xdg-utils
 
 pkgname=cliphist

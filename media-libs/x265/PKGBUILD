@@ -1,4 +1,4 @@
-# description	: H.264 encoder plugin for GStreamer
+# description	: Library for encoding video streams into the H.265/HEVC format
 # depends	: cmake ninja nasm
 
 pkgname=x265

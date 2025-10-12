@@ -1,4 +1,4 @@
-# description	: 3D wayland compositor extra plugins
+# description	: extra plugins for wayfire
 # depends	: glibmm-2.66 glm wayfire wayland-protocols boost
 # depends	: libdisplay-info meson ninja nlohmann-json wcm
 

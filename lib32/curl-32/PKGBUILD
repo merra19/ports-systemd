@@ -1,4 +1,4 @@
-# description	: A Client that groks URL
+# description	: A Client that groks URLs
 # depends	: openssl-32 zlib-32 zstd-32 nghttp2-32 libpsl-32
 # depends	: libssh2-32 gnutls-32 libidn2-32 brotli-32 curl
 

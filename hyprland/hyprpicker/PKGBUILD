@@ -1,4 +1,4 @@
-# description	: 
+# description	: A wlroots-compatible Wayland color picker that does not suck
 # depends	: cairo hyprutils hyprwayland-scanner libxkbcommon wayland
 # depends	: wl-clipboard cmake libglvnd libjpeg-turbo pango meson
 # depends	: wayland-protocols wlroots

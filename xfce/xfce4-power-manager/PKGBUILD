@@ -1,4 +1,4 @@
-# description	: Power Manager for Xfcn
+# description	: Power manager for the Xfce desktop environment
 # depends	: libnotify upower xfce4-panel polkit networkmanager
 
 pkgname=xfce4-power-manager

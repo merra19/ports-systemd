@@ -1,4 +1,4 @@
-# description	: Wayfire Configuration Manager
+# description	: Wayfire Config Manager
 # depends	: gtk3 libepoxy wayland wayland-protocols meson wdisplays
 # depends	: wf-shell
 

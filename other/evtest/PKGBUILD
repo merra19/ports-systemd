@@ -1,4 +1,4 @@
-# description	: Input device event monitor and query tool
+# description	: Test program for capturing input device events
 # depends	: glibc xmlto py3-asciidoc
 
 pkgname=evtest

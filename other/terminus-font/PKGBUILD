@@ -1,4 +1,4 @@
-# description	: Monospace bitmap font (for X11 and console)
+# description	: A clean fixed font for the console and X11
 # depends	: python gzip gawk grub xorg-fonts freetype fontconfig
 # depends	: xorg-legacy
 

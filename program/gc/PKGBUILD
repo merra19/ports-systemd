@@ -1,4 +1,4 @@
-# description	: A garbage collector for C and C++
+# description	: The Boehm-Demers-Weiser conservative garbage collector
 # depends	: glibc libatomic_ops
 
 pkgname=gc

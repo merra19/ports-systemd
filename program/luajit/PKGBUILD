@@ -1,4 +1,4 @@
-# description	: Just-in-time compiler and drop-in replacement for Lua 5.1
+# description	: Just-In-Time Compiler for the Lua programming language
 # depends	: gcc
 
 pkgname=luajit

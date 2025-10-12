@@ -1,4 +1,4 @@
-# description	: Complete solution to record/convert/stream audio and video. Includes libavcodec
+# description	: Complete solution to record/convert/stream audio and video
 # depends	: bzip2 libass freetype lame gnutls libvorbis libvpx opus 
 # depends	: x264 x265 alsa-lib yasm dav1d libaom fdk-aac libva
 # depends	: libdrm libjxl libwebp openjpeg speexdsp vulkan-loader

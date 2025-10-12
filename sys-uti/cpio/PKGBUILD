@@ -1,4 +1,4 @@
-# description	: A file archival tool which can also read and write tar files
+# description	: File archival tool which can also read and write tar files
 # depends	: glibc
 
 pkgname=cpio

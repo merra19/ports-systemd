@@ -1,4 +1,4 @@
-# description	: HTTP client/server library for GNOME version 2
+# description	: HTTP client/server library for GNOME
 # depends	: glib nghttp2 sqlite libpsl zlib gobject-introspection 
 # depends	: vala glib-networking libxml2
 # optional	: samba brotli

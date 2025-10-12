@@ -1,4 +1,4 @@
-# description	: Helper application and MIME type associations for file types
+# description	: Provides /etc/mime.types file
 # depends	: glibc
 
 pkgname=mime-types

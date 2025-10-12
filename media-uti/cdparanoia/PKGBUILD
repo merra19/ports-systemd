@@ -1,4 +1,4 @@
-# description	: An audio CD extraction application
+# description	: An advanced CDDA reader with error correction
 # depends	: libtool autoconf automake linux-api-headers
 
 pkgname=cdparanoia

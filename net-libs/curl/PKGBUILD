@@ -1,4 +1,4 @@
-# description	: A Client that groks URL
+# description	: A Client that groks URLs
 # depends	: openssl zlib zstd perl nghttp2 libpsl libssh2 gnutls
 # depends	: libidn2 make-ca brotli c-ares
 # optional  : openldap

@@ -1,4 +1,4 @@
-# description	: Visual Studio Code (vscode) editor without MS branding/telemetry/licensing
+# description	: A community-driven, freely-licensed binary distribution of Microsoft's VSCode
 # depends	: at-spi2-core libsecret expat glib nspr nss alsa-lib 
 # depends	: libglvnd mesa curl dbus zlib lsof cairo gtk3 libdrm 
 # depends	: libxcb xorg-libs libxkbcommon pango xdg-utils p11-kit

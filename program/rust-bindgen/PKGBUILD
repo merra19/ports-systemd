@@ -1,4 +1,4 @@
-# description	: Automatically generates Rust FFI bindings to C and C++ libraries
+# description	: Automatically generates Rust FFI bindings to C and C++ libraries.
 # depends	: rustc llvm
 
 pkgname=rust-bindgen

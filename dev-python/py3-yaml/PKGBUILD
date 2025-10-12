@@ -1,4 +1,4 @@
-# description	: YAML parser and emitter for Python
+# description	: PyYAML-based module to produce pretty and readable YAML-serialized data
 # depends	: python py3-gpep517 py3-setuptools py3-wheel py3-pygdbmi
 # depends	: libyaml py3-cython
 

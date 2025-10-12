@@ -1,4 +1,4 @@
-# description	: A location information D-Bus service
+# description	: Location information D-Bus service
 # depends	: json-glib libsoup3 libnotify vala avahi modemmanager
 
 pkgname=geoclue

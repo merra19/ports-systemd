@@ -1,4 +1,4 @@
-# description	: Simple Direct Media Layer 2
+# description	: Simple Direct Media Layer
 # depends	: alsa-lib libsamplerate libunwind xorg-proto pipewire
 # depends	: pulseaudio libxkbcommon nasm ibus wayland-protocols
 # depends	: xorg-libs

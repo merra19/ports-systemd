@@ -1,4 +1,4 @@
-# description	: A toolkit for creating fast, portable, compelling dynamic UIs
+# description	: Clutter is a library for creating graphical user interfaces
 # depends	: glib gobject-introspection cogl gtk3 libinput json-glib
 # depends	: at-spi2-core libgudev libxkbcommon wayland
 

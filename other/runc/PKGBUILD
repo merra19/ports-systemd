@@ -1,4 +1,4 @@
-# description	:  A lightweight universal runtime container
+# description	: runc container cli tools
 # depends	: go libseccomp
 
 pkgname=runc

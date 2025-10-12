@@ -1,4 +1,4 @@
-# description	: Prebuilt Java JDK binaries
+# description	: Prebuilt Java JDK binaries provided by Eclipse Temurin
 # depends	: glibc zlib alsa-lib xorg-libs cups giflib man-db lcms2
 
 pkgname=java

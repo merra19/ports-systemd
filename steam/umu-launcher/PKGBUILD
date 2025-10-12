@@ -1,4 +1,4 @@
-# description	: The Unified Launcher for Windows Games on Linux, to run Proton with fixes outside of Steam
+# description	: Unified launcher for Windows games on Linux
 # depends	: bash curl dbus desktop-file-utils diffutils freetype
 # depends	: gcc gdk-pixbuf glibc hicolor-icon-theme alsa-plugins-32
 # depends	: libglvnd-32 libgpg-error-32 xorg-libs-32 libxcrypt-32

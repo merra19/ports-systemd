@@ -1,4 +1,4 @@
-# description	: A regular expressions library
+# description	: Regular expression library for different character encodings
 # depends	: glibc
 
 pkgname=oniguruma
