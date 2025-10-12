@@ -1,4 +1,4 @@
-# description	: Controlling the startup, running, and shutdown of the system
+# description	: System and service manager for Linux
 # depends	: acl-32 xz-32 libcap-32 libarchive-32 curl-32 systemd
 
 pkgname=systemd-32

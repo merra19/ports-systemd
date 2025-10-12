@@ -1,4 +1,4 @@
-# description	: (networked sound server
+# description	: networked sound server
 # depends	: alsa-lib-32 dbus-32 systemd-32 glib-32 libsndfile-32 
 # depends	: xorg-libs-32 libxcb-32 speexdsp-32 libcap-32
 # depends	: libsamplerate-32 pulseaudio
