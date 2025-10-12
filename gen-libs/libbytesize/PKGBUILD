@@ -1,4 +1,4 @@
-# description	: Tiny library providing a C 'class' for working with arbitrary big byte sizes
+# description	: Tiny library providing a C "class" for working with arbitrary big byte sizes
 # depends	: pcre2 py3-pygments py3-six libgmp libmpfr
 
 pkgname=libbytesize

@@ -1,4 +1,4 @@
-# description	: Vulkan Header files and API registry"
+# description	: Vulkan Header files and API registry
 # depends	: cmake
 
 pkgname=vulkan-headers

@@ -1,4 +1,4 @@
-# description	: Sources for time zone and daylight saving time data
+# description	: Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)
 # depends	: linux-api-headers
 
 pkgname=tzdata

@@ -1,4 +1,4 @@
-# description	: ISO language, territory, currency, script codes and their translation
+# description	: ISO language, territory, currency, script codes and their translations
 # depends	: python gettext
 
 pkgname=iso-codes

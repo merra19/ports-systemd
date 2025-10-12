@@ -1,4 +1,4 @@
-# description	: Netscape Portable Runtime"
+# description	: Netscape Portable Runtime
 # depends	: glibc
 
 pkgname=nspr

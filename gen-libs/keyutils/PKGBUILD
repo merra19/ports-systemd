@@ -1,4 +1,4 @@
-# description	: A set of python bindings for keyutils
+# description	: Linux Key Management Utilities
 # depends	: glibc
 
 pkgname=keyutils

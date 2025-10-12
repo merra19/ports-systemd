@@ -1,4 +1,4 @@
-# description	: A free implementation of the unicode bidirectional algorithm"
+# description	: A free implementation of the unicode bidirectional algorithm
 # depends	: meson
 
 pkgname=fribidi

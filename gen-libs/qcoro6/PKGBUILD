@@ -1,4 +1,4 @@
-# description	: uncompile an rgb color-name database
+# description	: C++ Coroutine Library for Qt
 # depends	: qt6
 
 pkgname=qcoro6

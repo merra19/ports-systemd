@@ -1,4 +1,4 @@
-# description	:  Unicode font data for the GRUB menu
+# description	:  GNU Unifont - a Pan-Unicode X11 bitmap iso10646 font
 # depends	: gzip
 
 pkgname=unifont

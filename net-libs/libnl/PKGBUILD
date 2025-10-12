@@ -1,4 +1,4 @@
-# description	: Libraries providing APIs to netlink protocol based Linux kernel interfaces"
+# description	: Libraries providing APIs to netlink protocol based Linux kernel interfaces
 # depends	: python
 
 pkgname=libnl

@@ -1,4 +1,4 @@
-# description	: Library for handling paper characteristics
+# description	: Flatpak portal library
 # depends	: glibc glib gtk3 gtk4 vala qt6 gobject-introspection
 
 pkgname=libportal

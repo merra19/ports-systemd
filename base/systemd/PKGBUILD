@@ -1,4 +1,4 @@
-# description	: Controlling the startup, running, and shutdown of the system
+# description	: System and service manager for Linux
 # depends	: meson acl xz py3-jinja2 gperf libcap libarchive kmod
 
 pkgname=systemd

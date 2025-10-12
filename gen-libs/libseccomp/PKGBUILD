@@ -1,4 +1,4 @@
-# description	: high level interface to Linux seccomp filter
+# description	: High level interface to Linux seccomp filter
 # depends	: which gperf py3-cython
 
 pkgname=libseccomp

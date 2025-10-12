@@ -1,4 +1,4 @@
-# description	: HTML parser based on the WHATWG HTML specification
+# description	: Tidy the layout and correct errors in HTML and XML documents
 # depends	: python py3-gpep517 py3-wheel cmake libxslt
 
 pkgname=tidy-html5

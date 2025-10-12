@@ -1,4 +1,4 @@
-# description	: Uniform Resource Identifiers (absolute and relative)"
+# description	: Uniform Resource Identifiers (absolute and relative)
 # depends	: perl
 
 pkgname=perl-uri

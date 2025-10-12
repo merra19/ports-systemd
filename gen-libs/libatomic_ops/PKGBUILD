@@ -1,4 +1,4 @@
-# description	: Implementation for atomic memory update operation
+# description	: Implementation for atomic memory update operations
 # depends	: glibc
 
 pkgname=libatomic_ops

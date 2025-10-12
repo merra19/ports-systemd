@@ -1,4 +1,4 @@
-# description	: Used to create autoconfiguration file
+# description	: Used to create autoconfiguration files
 # depends	: m4 perl
 
 pkgname=autoconf

@@ -1,4 +1,4 @@
-# description	: a portable, high level programming interface to various calling conventions
+# description	: Portable, high level programming interface to various calling conventions
 # depends	: glibc
 
 pkgname=libffi

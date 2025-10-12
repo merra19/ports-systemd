@@ -1,4 +1,4 @@
-# description	: Extremely Fast Compression algorithm"
+# description	: Extremely Fast Compression algorithm
 # depends	: glibc
 
 pkgname=lz4

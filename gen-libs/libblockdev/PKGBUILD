@@ -1,4 +1,4 @@
-# description	: A library for manipulating block devices
+# description	: Library for manipulating block devices
 # depends	: gobject-introspection libbytesize libnvme parted  
 # depends	: cryptsetup glib kmod util-linux lvm2 systemd keyutils
 # depends	: json-glib smartmontools btrfs-progs mdadm libatasmart

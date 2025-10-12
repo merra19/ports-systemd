@@ -1,4 +1,4 @@
-# description	: Interface for userspace programs to export a filesystem to the Linux kernel
+# description	: An interface for filesystems implemented in userspace
 # depends	: glibc meson pkgconf
 
 pkgname=fuse

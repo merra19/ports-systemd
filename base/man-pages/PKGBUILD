@@ -1,4 +1,4 @@
-# description	: Linux man pages
+# description	: A somewhat comprehensive collection of Linux man pages
 # depends	: bc
 
 pkgname=man-pages

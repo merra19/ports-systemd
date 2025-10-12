@@ -1,4 +1,4 @@
-# description	: library and tools for managing linux kernel modules
+# description	: Library and tools for managing linux kernel modules
 # depends	: xz zlib zstd openssl
 
 pkgname=kmod

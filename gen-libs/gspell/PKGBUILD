@@ -1,4 +1,4 @@
-# description	: Spell check library for GTK+ applications"
+# description	: Spell check library for GTK+ applications
 # depends	: glib gobject-introspection gtk3 icu meson enchant vala
 
 pkgname=gspell

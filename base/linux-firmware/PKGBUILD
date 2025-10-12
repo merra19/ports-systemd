@@ -1,4 +1,4 @@
-# description	: Firmware files for Linux
+# description	: Linux firmware files
 # depends	: xz zstd rdfind
 
 pkgname=linux-firmware

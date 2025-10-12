@@ -1,4 +1,4 @@
-# description	: Qualcomm MSM (Mobile Station Modem) Interface (QMI) modem protocol
+# description	: Qualcomm MSM (Mobile Station Modem) Interface (QMI) modem protocol library
 # depends	: gobject-introspection glib libgudev libmbim help2man
 
 pkgname=libqmi

@@ -1,4 +1,4 @@
-# description	: "Actions, Menus and Toolbars Kit for GTK applications
+# description	: Actions, Menus and Toolbars Kit for GTK applications
 # depends	: gtk3
 
 pkgname=libgedit-amtk

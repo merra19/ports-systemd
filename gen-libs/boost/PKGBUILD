@@ -1,4 +1,4 @@
-# description	: Boost Libraries for C++"
+# description	: Boost Libraries for C++
 # depends	: zlib bzip2 which icu python xz zstd py3-numpy
 
 pkgname=boost
