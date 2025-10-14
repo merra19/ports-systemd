@@ -8,8 +8,10 @@
 
 pkgname=gtk2
 pkgver=2.24.33
-pkgrel=1
+pkgrel=3
 source=(https://download.gnome.org/sources/gtk+/${pkgver%.*}/gtk+-$pkgver.tar.xz
+		gtk+-2.24.24-out-of-source.patch gtk+-2.24.31-update-icon-cache.patch
+		gtk+-2.24.33-respect-NM.patch gtk+-2.24.33-Fix-casts.patch
         $pkgname.hooks)
 
 build() {    
@@ -18,11 +20,28 @@ build() {
 	# fix build with GCC 14
 	export CFLAGS="$CFLAGS -Wno-incompatible-pointer-types -Wno-implicit-int"
 
+	# Fix tests running when building out of sources, bug #510596, upstream bug #730319
+	patch -Np1 -i ../gtk+-2.24.24-out-of-source.patch
+	# Rely on split gtk-update-icon-cache package, bug #528810
+	patch -Np1 -i ../gtk+-2.24.31-update-icon-cache.patch # requires eautoreconf
+	# Respect ${NM}, bug #725852
+	patch -Np1 -i ../gtk+-2.24.33-respect-NM.patch # requires eautoreconf
+	# Fix casts, bug #880617
+	patch -Np1 -i ../gtk+-2.24.33-Fix-casts.patch
+
 	rm -v gdk/gdkmarshalers.{c,h} gtk/gtkmarshal.{c,h} gtk/gtkmarshalers.{c,h} \
 		perf/marshalers.{c,h} gtk/gtkaliasdef.c gtk/gtkalias.h 
 
     sed -e 's#l \(gtk-.*\).sgml#& -o \1#' \
         -i docs/{faq,tutorial}/Makefile.in
+
+	sed 's/docs m4macros build/m4macros build/' -i Makefile.am
+	sed '/docs/d;/GTK_DOC_CHECK/d' -i configure.ac
+
+	libtoolize --force \
+			&& aclocal -I m4 \
+			&& autoconf \
+			&& automake --add-missing
 
     ./configure \
         --prefix=/usr \

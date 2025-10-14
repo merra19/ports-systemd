@@ -2,6 +2,7 @@
 # depends	: glib dbus gcr4 libcap libsoup3 udisks openssh libxslt
 # depends	: libarchive libgudev systemd fuse libxml2 avahi bluez
 # depends	: libusb libsecret libcdio libcdio-paranoia libgcrypt
+# depends	: libmtp
 # optional  : samba apache
 # todo      : libmtp libgdata
 
@@ -22,7 +23,7 @@ build() {
         -D afc=false \
         -D bluray=false \
         -D nfs=false \
-        -D mtp=false \
+        -D mtp=true \
         -D smb="$(scratch isinstalled samba && echo "true" || echo "false")" \
         -D dnssd=false \
         -D goa=false \
