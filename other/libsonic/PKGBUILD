@@ -2,15 +2,13 @@
 # depends	: glibc
 
 pkgname=libsonic
-pkgver=0.2.0
+pkgver=0.2.0_p20250419
 pkgrel=1
-source=($pkgname-$pkgver.tar.gz::https://github.com/waywardgeek/sonic/archive/refs/tags/release-$pkgver.tar.gz
-        ldflags.patch)
+commit=fda30fba867c08c82dbbecbcc72120652e40d5cb
+source=($pkgname-$pkgver.tar.gz::https://github.com/waywardgeek/sonic/archive/$commit.tar.gz )
 
 build() {
-    cd sonic-release-$pkgver
-
-    patch -N -i ../ldflags.patch
+    cd sonic-$commit
 
     make
     make DESTDIR="$pkgdir" install
