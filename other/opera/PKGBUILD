@@ -6,7 +6,7 @@
 
 pkgname=opera
 pkgver=122.0.5643.142
-pkgrel=2
+pkgrel=1
 source=(https://get.geo.opera.com/ftp/pub/$pkgname/desktop/$pkgver/linux/$pkgname-stable_${pkgver}_amd64.deb
         opera default)
 backup=(etc/$pkgname/default)
