@@ -1,0 +1,32 @@
+# description	: Graphical scanning frontend
+# depends	: glib sane zlib gtk2 xdg-utils libjpeg-turbo libpng
+# depends	: libtiff lcms2
+
+pkgname=xsane
+pkgver=0.999
+pkgrel=1
+source=(http://http.debian.net/debian/pool/main/x/$pkgname/${pkgname}_$pkgver.orig.tar.gz
+		xsane-0.995-xdg-open.patch
+		0165-xsane-0.999-lcms2.patch
+		0001-lcms2_configure.patch
+		xsane-preview-selection.patch
+		configure-add-stdlib-to-conftest.patch)
+
+build() {
+	cd $pkgname-$pkgver
+
+	# fix use "xdg-open" instead of "netscape" to launch help browser - taken from Fedora
+	patch -Np1 -i "${srcdir}/xsane-0.995-xdg-open.patch"
+	sed -i -e 's:png_ptr->jmpbuf:png_jmpbuf(png_ptr):' src/xsane-save.c
+	patch -Np1 -i "${srcdir}/0165-xsane-0.999-lcms2.patch"
+	patch -Np1 -i "${srcdir}/0001-lcms2_configure.patch"
+	patch -p1 -i ../xsane-preview-selection.patch # Fix selection preview
+	patch -p1 -i "${srcdir}/configure-add-stdlib-to-conftest.patch" # Fix failing build of conftest by adding stdlib.h to test program
+
+	./configure \
+		--prefix=/usr \
+		--mandir=/usr/share/man \
+		--disable-gimp
+	make
+    make DESTDIR="$pkgdir" install
+}

@@ -1,0 +1,17 @@
+# description	: Implementation of Microsoft's Media Transfer Protocol (MTP)
+# depends	: glibc libusb libgcrypt
+
+pkgname=libmtp
+pkgver=1.1.22
+pkgrel=1
+source=(https://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+		--prefix=/usr \
+		--with-udev=/usr/lib/udev
+	make
+    make DESTDIR="$pkgdir" install
+}

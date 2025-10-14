@@ -1,0 +1,17 @@
+# description	: Tools for generating printable PDF documents from any data source
+# depends	: py3-flit-core py3-gpep517 py3-setuptools freetype
+
+pkgname=py3-reportlab
+pkgver=4.4.4
+pkgrel=1
+source=(https://files.pythonhosted.org/packages/source/r/reportlab/reportlab-$pkgver.tar.gz)
+
+build() {
+	cd ${pkgname#*-}-$pkgver
+
+	# remove interpreter line from libraries
+	find src -type f -name "*.py" -exec sed -i '/^#!\//d' {} \;
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}

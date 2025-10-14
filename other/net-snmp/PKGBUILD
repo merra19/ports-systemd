@@ -1,0 +1,62 @@
+# description	: Software for generating and retrieving SNMP data
+# depends	: glibc bzip2 elfutils lm-sensors pciutils perl zlib
+# depends	: py3-setuptools pcre2 openssl libpcap
+
+pkgname=net-snmp
+pkgver=5.9.4
+pkgrel=1
+options=(!emptydirs !makeflags !lto)
+source=(https://downloads.sourceforge.net/$pkgname/$pkgname/$pkgver/$pkgname-$pkgver.tar.gz
+		net-snmp-5.8-pcap.patch 
+		net-snmp-5.8.1-mysqlclient.patch
+		net-snmp-5.9-MakeMaker.patch
+		net-snmp-5.9.3-0001-Fix-LDFLAGS-vs-LIBS-ordering.patch
+		net-snmp-5.9.3-0002-Tidy-up-net-snmp-config-output.patch
+		net-snmp-5.9.3-0003-Prune-Libs.private-entries-in-netsnmp-.pc.in.patch
+		net-snmp-5.9.3-0004-Search-for-ltinfo-in-configure-if-needed.patch
+		net-snmp-5.9.4-c99.patch
+		d3e95c87b32397815f6d5bcfc844259f2552697a.patch
+		346b6f8959513320e5b674fd670c49ba2cd43af5.patch
+		e5aadf1e78c624a8e4147d4b70a7795497a50e73.patch
+		7fc7edf676c527a0cfb661f9000a3d22738cf8e6.patch
+		snmpd.service snmptrapd.service)
+
+build() {
+	cd $pkgname-$pkgver
+
+	patch -Np1 -i ../net-snmp-5.8-pcap.patch
+	patch -Np1 -i ../net-snmp-5.8.1-mysqlclient.patch
+	patch -Np1 -i ../net-snmp-5.9-MakeMaker.patch
+	patch -Np1 -i ../net-snmp-5.9.3-0001-Fix-LDFLAGS-vs-LIBS-ordering.patch
+	patch -Np1 -i ../net-snmp-5.9.3-0002-Tidy-up-net-snmp-config-output.patch
+	patch -Np1 -i ../net-snmp-5.9.3-0003-Prune-Libs.private-entries-in-netsnmp-.pc.in.patch
+	patch -Np1 -i ../net-snmp-5.9.3-0004-Search-for-ltinfo-in-configure-if-needed.patch
+	patch -Np1 -i ../net-snmp-5.9.4-c99.patch
+
+	# pcre2 , Linux 6.7 compatibility parsing /proc/net/snmp
+	patch -Np1 -i ../d3e95c87b32397815f6d5bcfc844259f2552697a.patch
+	patch -Np1 -i ../346b6f8959513320e5b674fd670c49ba2cd43af5.patch
+	patch -Np1 -i ../e5aadf1e78c624a8e4147d4b70a7795497a50e73.patch
+	patch -Np1 -i ../7fc7edf676c527a0cfb661f9000a3d22738cf8e6.patch
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--mandir=/usr/share/man \
+		--enable-blumenthal-aes \
+		--enable-ipv6 \
+		--enable-ucd-snmp-compatibility \
+		--with-python-modules \
+		--with-default-snmp-version=3 \
+		--with-sys-contact='root@localhost' \
+		--with-sys-location='Unknown' \
+		--with-logfile='/var/log/snmpd.log' \
+		--with-mib-modules='host misc/ipfwacc ucd-snmp/diskio tunnel ucd-snmp/dlmod ucd-snmp/lmsensorsMib' \
+		--with-persistent-directory='/var/net-snmp'
+	make NETSNMP_DONT_CHECK_VERSION=1
+
+	sed -i -e "s:install --basedir=\$\$dir:install --basedir=\$\$dir --root=${pkgdir}:" Makefile
+	make DESTDIR="$pkgdir" INSTALL_PREFIX="$pkgdir" INSTALLDIRS=vendor install
+	install -D -m644 "$srcdir/snmpd.service" "$pkgdir/usr/lib/systemd/system/snmpd.service"
+	install -D -m644 "$srcdir/snmptrapd.service" "$pkgdir/usr/lib/systemd/system/snmptrapd.service"
+}
