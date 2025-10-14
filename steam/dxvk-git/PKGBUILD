@@ -2,32 +2,32 @@
 # depends	: vulkan-loader ninja meson glslang mingw-w64-gc
 
 pkgname=dxvk-git
-pkgver=2.7.1.7586c7d
+pkgver=2.7.1.c46d935
 pkgrel=1
-commit=7586c7df1f6ea4ed5794448f63cf97bf80ba7801
-libdisplaycommit=275e6459c7ab1ddd4b125f28d0440716e4888078
-dxbccommit=77b6f093d1ee913b0a97665d88ef57cdd7ac310c
-spirv1commit=8b246ff75c6615ba4532fe4fde20f1be090c3764
-spirv2commit=c8ad050fcb29e42a2f57d9f59e97488f465c436d
-vulkancommit=234c4b7370a8ea3239a214c9e871e4b17c89f4ab
-dxcommit=9df86f2341616ef1888ae59919feaa6d4fad693d
+commit=c46d935c5154b88b72ee0f545ce02e10c7b995cd
+libdisplay_commit=275e6459c7ab1ddd4b125f28d0440716e4888078
+dxbc_commit=e15dbd69c6174e594f016030703c236dd3c7d58a
+spirvinc_commit=8b246ff75c6615ba4532fe4fde20f1be090c3764
+dxbc_spirv_commit=c8ad050fcb29e42a2f57d9f59e97488f465c436d
+vulkan_commit=234c4b7370a8ea3239a214c9e871e4b17c89f4ab
+directx_commit=9df86f2341616ef1888ae59919feaa6d4fad693d
 options=(!lto)
 source=($pkgname-$commit.zip::https://github.com/doitsujin/dxvk/archive/$commit.zip
-		libdisplay-info-$spirvcommit.tar.gz::https://github.com/doitsujin/libdisplay-info/archive/$libdisplaycommit.tar.gz
-		dxbc-spirv-$dxbccommit.tar.gz::https://github.com/doitsujin/dxbc-spirv/archive/$dxbccommit.tar.gz
-		spirv-headers-$spirv1commit.tar.gz::https://github.com/KhronosGroup/SPIRV-Headers/archive/$spirv1commit.tar.gz
-		spirv-headers-$spirv2commit.tar.gz::https://github.com/KhronosGroup/SPIRV-Headers/archive/$spirv2commit.tar.gz
-		vulkan-headers-$vulkancommit.tar.gz::https://github.com/KhronosGroup/Vulkan-Headers/archive/$vulkancommit.tar.gz
-		directx-headers-$dxcommit.tar.gz::https://github.com/misyltoad/mingw-directx-headers/archive/$dxcommit.tar.gz
+		libdisplay-info-$spirvcommit.tar.gz::https://github.com/doitsujin/libdisplay-info/archive/$libdisplay_commit.tar.gz
+		dxbc-spirv-$dxbc_commit.tar.gz::https://github.com/doitsujin/dxbc-spirv/archive/$dxbc_commit.tar.gz
+		spirv-headers-$spirvinc_commit.tar.gz::https://github.com/KhronosGroup/SPIRV-Headers/archive/$spirvinc_commit.tar.gz
+		spirv-headers-$dxbc_spirv_commit.tar.gz::https://github.com/KhronosGroup/SPIRV-Headers/archive/$dxbc_spirv_commit.tar.gz
+		vulkan-headers-$vulkan_commit.tar.gz::https://github.com/KhronosGroup/Vulkan-Headers/archive/$vulkan_commit.tar.gz
+		directx-headers-$directx_commit.tar.gz::https://github.com/misyltoad/mingw-directx-headers/archive/$directx_commit.tar.gz
         setup_dxvk.sh setup_dxvk dxvk-extraopts.patch setup-dxvk-ge)
 
 build () {
-	mv -T libdisplay-info-$libdisplaycommit dxvk-$commit/subprojects/libdisplay-info
-	mv -T dxbc-spirv-$dxbccommit dxvk-$commit/subprojects/dxbc-spirv
-	mv -T Vulkan-Headers-$vulkancommit dxvk-$commit/include/vulkan
-	mv -T SPIRV-Headers-$spirv1commit dxvk-$commit/include/spirv
-	mv -T SPIRV-Headers-$spirv2commit dxvk-$commit/subprojects/dxbc-spirv/submodules/spirv_headers
-	mv -T mingw-directx-headers-$dxcommit dxvk-$commit/include/native/directx
+	mv -T libdisplay-info-$libdisplay_commit dxvk-$commit/subprojects/libdisplay-info
+	mv -T dxbc-spirv-$dxbc_commit dxvk-$commit/subprojects/dxbc-spirv
+	mv -T Vulkan-Headers-$vulkan_commit dxvk-$commit/include/vulkan
+	mv -T SPIRV-Headers-$spirvinc_commit dxvk-$commit/include/spirv
+	mv -T SPIRV-Headers-$dxbc_spirv_commit dxvk-$commit/subprojects/dxbc-spirv/submodules/spirv_headers
+	mv -T mingw-directx-headers-$directx_commit dxvk-$commit/include/native/directx
 
 	cd dxvk-$commit
 

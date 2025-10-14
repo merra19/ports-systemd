@@ -17,7 +17,7 @@ Options:
 	-v=<protonge version>    proton-ge version to modify
 	-I                       install
 	-D                       uninstall 
-	-L                       list  /home/<user>/.steam/steam/compatibilitytools.d
+	-L                       list  /home/$user/.steam/steam/compatibilitytools.d
 EOF
 }
 
