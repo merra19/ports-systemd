@@ -2,19 +2,28 @@
 # depends	: bzip2
 
 pkgname=unzip
-pkgver=6.0
-_version=$(echo $pkgver  | sed 's/\.//')
+pkgver=6.0_p29
+_version=$(echo ${pkgver%_p*}  | sed 's/\.//')
 pkgrel=1
 options=(!lto)
 source=(https://downloads.sourceforge.net/infozip/unzip$_version.tar.gz
-        https://www.linuxfromscratch.org/patches/blfs/12.2/unzip-$pkgver-consolidated_fixes-1.patch
-        https://www.linuxfromscratch.org/patches/blfs/12.2/unzip-$pkgver-gcc14-1.patch)
+		http://deb.debian.org/debian/pool/main/u/unzip/${pkgname}_${pkgver/_p/-}.debian.tar.xz
+		unzip-6.0-no-exec-stack.patch unzip-6.0-format-security.patch
+		unzip-6.0-fix-false-overlap-detection-on-32bit-systems.patch)
 
 build() {
     cd $pkgname$_version
 
-    patch -Np1 -i ../unzip-6.0-consolidated_fixes-1.patch
-    patch -Np1 -i ../unzip-6.0-gcc14-1.patch
+    #patch -Np1 -i ../unzip-6.0-consolidated_fixes-1.patch
+    #patch -Np1 -i ../unzip-6.0-gcc14-1.patch
+
+	for i in ../debian/patches/*.patch;do
+		patch -Np1 -i $i
+	done
+
+	patch -Np1 -i ../unzip-6.0-no-exec-stack.patch
+	patch -Np1 -i ../unzip-6.0-format-security.patch
+	patch -Np1 -i ../unzip-6.0-fix-false-overlap-detection-on-32bit-systems.patch
 
 	DEFINES='-DACORN_FTYPE_NFS -DWILD_STOP_AT_DIR -DLARGE_FILE_SUPPORT \
 		-DUNICODE_SUPPORT -DUNICODE_WCHAR -DUTF8_MAYBE_NATIVE -DNO_LCHMOD \
