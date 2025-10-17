@@ -8,12 +8,14 @@ pkgname=inkscape
 pkgver=1.4.2
 pkgrel=1
 source=(https://inkscape.org/gallery/item/56344/$pkgname-$pkgver.tar.xz
+		fix-build-with-poppler-25.10.0.patch
 		https://www.linuxfromscratch.org/patches/blfs/svn/inkscape-1.4.2-poppler_fixes-4.patch)
 
 build() {
     cd inkscape-1.4.2_2025-05-08_ebf0e940d0
 
 	patch -Np1 -i ../inkscape-1.4.2-poppler_fixes-4.patch
+	patch -Np1 -i ../fix-build-with-poppler-25.10.0.patch
 
 	cmake -B build \
 		-D CMAKE_INSTALL_PREFIX=/usr \
