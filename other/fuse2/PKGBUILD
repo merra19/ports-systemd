@@ -3,15 +3,18 @@
 
 pkgname=fuse2
 pkgver=2.9.9
-pkgrel=1
+pkgrel=3
 optios=(!lto)
 source=(https://github.com/libfuse/libfuse/releases/download/fuse-$pkgver/fuse-$pkgver.tar.gz
-        conditionally-define-closefrom.patch)
+        fuse-2.9.3-kernel-types.patch fuse-2.9.9-avoid-calling-umount.patch
+		fuse-2.9.9-closefrom-glibc-2-34.patch)
 
 build() {
 	cd fuse-$pkgver
 
-	patch -Np1 -i ../conditionally-define-closefrom.patch
+	patch -Np1 -i ../fuse-2.9.3-kernel-types.patch
+	patch -Np1 -i ../fuse-2.9.9-avoid-calling-umount.patch
+	patch -Np1 -i ../fuse-2.9.9-closefrom-glibc-2-34.patch
 
 	autoreconf -vfi  -I /usr/share/gettext/m4
 

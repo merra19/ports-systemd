@@ -4,12 +4,20 @@
 # depends	: dbus avahi
 
 pkgname=ostree
-pkgver=2025.5
+pkgver=2025.6
 pkgrel=1
-source=(https://github.com/ostreedev/ostree/releases/download/v$pkgver/libostree-$pkgver.tar.xz)
+source=(https://github.com/ostreedev/ostree/releases/download/v$pkgver/libostree-$pkgver.tar.xz
+		ostree-2024.8-Werror.patch)
 
 build() {
     cd libostree-$pkgver
+
+	patch -Np1 -i ../ostree-2024.8-Werror.patch
+
+	libtoolize --force \
+			&& aclocal -I m4 \
+			&& autoconf \
+			&& automake --add-missing
 
     ./configure \
         --prefix=/usr \
@@ -28,8 +36,8 @@ build() {
         --with-libmount \
         --with-crypto=openssl \
         --without-ed25519-libsodium \
-        --without-libsystemd \
 		--without-avahi \
+		--with-systemd \
         --docdir=/usr/share/doc/$pkgname-$pkgver
     make
     make DESTDIR="$pkgdir" install

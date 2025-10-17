@@ -3,9 +3,10 @@
 
 pkgname=rtkit
 pkgver=0.13
-pkgrel=1
+pkgrel=3
 source=(https://github.com/heftig/rtkit/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
-		$pkgname.hooks rtkit-0.13_daemon_verbosity.patch)
+		$pkgname.hooks rtkit-0.13_daemon_verbosity.patch
+		rtkit-0.13_meson_xxd_optional.patch)
 
 build() {
 	cd $pkgname-$pkgver
@@ -14,6 +15,7 @@ build() {
 	# when it doesn't have anything to do. Stop logging the debug messages
 	# by default to avoid flooding the system log.
 	patch -Np1 -i ../rtkit-0.13_daemon_verbosity.patch
+	patch -Np1 -i ../rtkit-0.13_meson_xxd_optional.patch
 
     meson setup \
         --prefix=/usr \
