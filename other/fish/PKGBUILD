@@ -2,7 +2,7 @@
 # depends	: glibc ncurses pcre2 python3 cmake
 
 pkgname=fish
-pkgver=4.0.8
+pkgver=4.1.2
 pkgrel=1
 source=(https://github.com/fish-shell/fish-shell/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
 backup=(etc/fish/config.fish)

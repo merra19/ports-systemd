@@ -2,7 +2,7 @@
 # depends	: ncurses
 
 pkgname=dialog
-pkgver=1.3_20250116
+pkgver=1.3_20250817
 vrsn=$(echo $pkgver | sed 's/_/-/')
 pkgrel=1
 options=(!lto)

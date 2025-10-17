@@ -1,11 +1,10 @@
 # description	: Python Imaging Library (fork)
 # depends	: py3-flit-core py3-gpep517 py3-setuptools freetype
 # depends	: lcms2 libavif libjpeg-turbo libtiff libxcb openjpeg
-# depends	: python py3-packaging zlib libwebp
-
+# depends	: python py3-packaging zlib libwebp py3-pybind11
 
 pkgname=py3-pillow
-pkgver=11.3.0
+pkgver=12.0.0
 pkgrel=1
 source=(https://files.pythonhosted.org/packages/source/p/pillow/pillow-$pkgver.tar.gz)
 
@@ -14,4 +13,7 @@ build() {
 
     gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d "$pkgdir" .dist/*.whl
+
+	local python_version=$(python -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+	install -vDm644 -t "$pkgdir/usr/include/python$python_version" src/libImaging/*.h
 }

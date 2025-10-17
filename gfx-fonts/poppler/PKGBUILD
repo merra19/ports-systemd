@@ -4,7 +4,7 @@
 # depends	: gobject-introspection boost gpgme gpgmepp
 
 pkgname=poppler
-pkgver=25.08.0
+pkgver=25.10.0
 pkgrel=1
 pkgver_data=0.4.12
 source=(https://poppler.freedesktop.org/$pkgname-$pkgver.tar.xz

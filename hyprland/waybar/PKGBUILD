@@ -6,7 +6,7 @@
 # depends	: libdbusmenu libevdev libinput gtk-layer-shell systemd
 
 pkgname=waybar
-pkgver=0.12.0
+pkgver=0.14.0
 pkgrel=1
 source=($pkgname-$pkgver.tar.gz::https://github.com/Alexays/Waybar/archive/$pkgver.tar.gz)
 
@@ -26,6 +26,7 @@ build() {
           -D mpd=disabled \
           -D jack=disabled \
           -D man-pages=disabled \
+		  -D gps=disabled \
           build
     meson compile -C build
     meson install -C build --destdir "$pkgdir"

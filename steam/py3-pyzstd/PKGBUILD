@@ -2,7 +2,7 @@
 # depends	: python py3-gpep517 py3-setuptools py3-wheel zstd
 
 pkgname=py3-pyzstd
-pkgver=0.17.0
+pkgver=0.18.0
 pkgrel=1
 source=(https://files.pythonhosted.org/packages/source/p/pyzstd/pyzstd-$pkgver.tar.gz)
 

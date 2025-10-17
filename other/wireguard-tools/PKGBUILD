@@ -2,8 +2,8 @@
 # depends	: iptables
 
 pkgname=wireguard-tools
-pkgver=1.0.20210914
-pkgrel=1
+pkgver=1.0.20250521
+pkgrel=2
 options=(!lto)
 source=(https://git.zx2c4.com/wireguard-tools/snapshot/$pkgname-$pkgver.tar.xz
         wireguard.conf)

@@ -3,10 +3,9 @@
 # depends	: dbus openssl py3-setuptools-rust py3-semantic-version
 
 pkgname=py3-maturin
-pkgver=1.9.4
+pkgver=1.9.6
 pkgrel=1
-source=($pkgname-$pkgver.tar.gz::https://github.com/PyO3/maturin/archive/v$pkgver.tar.gz
-		local://$pkgname-$pkgver-cargo.tar.xz)
+source=($pkgname-$pkgver.tar.gz::https://github.com/PyO3/maturin/archive/refs/tags/v$pkgver.tar.gz)
 
 _features="--features=full,native-tls,password-storage"
 
@@ -20,9 +19,11 @@ createpack() {
 build() {
 	cd maturin-$pkgver
 
-	#createpack
-
-    mv "$srcdir"/vendor .
+	if [ ! -f /sources/src/$pkgname-$pkgver-cargo.tar.xz ];then
+    	createpack
+	else
+		tar -xf /sources/src/$pkgname-$pkgver-cargo.tar.xz
+	fi
 
     mkdir -p .cargo
     echo '[source.crates-io]' >> .cargo/config.toml
