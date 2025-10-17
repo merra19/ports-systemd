@@ -3,7 +3,7 @@
 
 pkgname=wlogout
 pkgver=1.2.2
-pkgrel=1
+pkgrel=2
 source=($pkgname-$pkgver.tar.gz::https://github.com/ArtsyMacaw/$pkgname/releases/download/$pkgver/$pkgname.tar.gz)
 
 build() {

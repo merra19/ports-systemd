@@ -4,7 +4,7 @@
 
 pkgname=net-snmp
 pkgver=5.9.4
-pkgrel=1
+pkgrel=4
 options=(!emptydirs !makeflags !lto)
 source=(https://downloads.sourceforge.net/$pkgname/$pkgname/$pkgver/$pkgname-$pkgver.tar.gz
 		net-snmp-5.8-pcap.patch 

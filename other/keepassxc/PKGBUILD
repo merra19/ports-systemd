@@ -4,7 +4,7 @@
 
 pkgname=keepassxc
 pkgver=2.7.10
-pkgrel=1
+pkgrel=2
 options=(!lto)
 source=(https://github.com/keepassxreboot/keepassxc/releases/download/$pkgver/$pkgname-$pkgver-src.tar.xz)
 

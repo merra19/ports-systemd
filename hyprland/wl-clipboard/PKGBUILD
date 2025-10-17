@@ -3,7 +3,7 @@
 
 pkgname=wl-clipboard
 pkgver=2.2.1
-pkgrel=1
+pkgrel=2
 source=($pkgname-$pkgver.tar.gz::https://github.com/bugaevc/wl-clipboard/archive/v$pkgver.tar.gz)
 
 build() {

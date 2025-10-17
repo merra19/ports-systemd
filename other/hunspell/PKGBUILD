@@ -3,7 +3,7 @@
 
 pkgname=hunspell
 pkgver=1.7.2
-pkgrel=1
+pkgrel=2
 source=(https://github.com/hunspell/hunspell/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {    

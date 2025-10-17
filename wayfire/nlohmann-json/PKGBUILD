@@ -3,7 +3,7 @@
 
 pkgname=nlohmann-json
 pkgver=3.12.0
-pkgrel=1
+pkgrel=2
 source=($pkgname-$pkgver.tar.gz::https://github.com/nlohmann/json/archive/refs/tags/v$pkgver.tar.gz
         nlohmann_json-3.12.0-fallback-missing-char8_t.patch)
 

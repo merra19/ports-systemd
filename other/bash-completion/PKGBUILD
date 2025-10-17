@@ -3,7 +3,7 @@
 
 pkgname=bash-completion
 pkgver=2.16.0
-pkgrel=1
+pkgrel=4
 options=(!makeflags !lto)
 source=(https://github.com/scop/bash-completion/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
 

@@ -3,7 +3,7 @@
 
 pkgname=libzip
 pkgver=1.11.4
-pkgrel=1
+pkgrel=3
 source=(https://libzip.org/download/$pkgname-$pkgver.tar.xz)
 
 build() {
@@ -13,6 +13,7 @@ build() {
 		-D CMAKE_INSTALL_PREFIX=/usr \
 		-D CMAKE_BUILD_TYPE=None \
         -D CMAKE_INSTALL_LIBDIR=lib \
+		-D BUILD_EXAMPLES=OFF \
         -W no-dev
 	cmake --build build
     DESTDIR="$pkgdir" cmake --install build

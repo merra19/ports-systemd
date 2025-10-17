@@ -3,7 +3,7 @@
 
 pkgname=jsoncpp
 pkgver=1.9.6
-pkgrel=1
+pkgrel=3
 source=(https://github.com/open-source-parsers/$pkgname/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

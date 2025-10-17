@@ -3,7 +3,7 @@
 
 pkgname=xcb-util-errors
 pkgver=1.0.1
-pkgrel=1
+pkgrel=3
 source=(https://xorg.freedesktop.org/archive/individual/lib/$pkgname-$pkgver.tar.xz)
 
 build() {

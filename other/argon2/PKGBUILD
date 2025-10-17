@@ -3,7 +3,7 @@
 
 pkgname=argon2
 pkgver=20190702
-pkgrel=1
+pkgrel=2
 source=(https://github.com/P-H-C/phc-winner-argon2/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

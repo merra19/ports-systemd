@@ -5,7 +5,7 @@
 
 pkgname=hplip
 pkgver=3.25.6
-pkgrel=1
+pkgrel=2
 options=(!lto)
 source=(https://downloads.sourceforge.net/hplip/$pkgname-$pkgver.tar.gz
 		0003-models.dat-Re-add-drivers-missing-from-3.19.1.patch
@@ -21,7 +21,7 @@ source=(https://downloads.sourceforge.net/hplip/$pkgname-$pkgver.tar.gz
 		hplip-pserror-gcc14.patch
 		python3.diff
 		reproducible-gzip.patch)
-		backup=(etc/hp/hplip.conf etc/sane.d/dll.d/hpaio)
+backup=(etc/hp/hplip.conf etc/sane.d/dll.d/hpaio)
 
 build() {
     cd $pkgname-$pkgver
