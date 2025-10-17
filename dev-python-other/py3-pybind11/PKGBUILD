@@ -1,0 +1,37 @@
+# description	: AST-based Python refactoring library
+# depends	: py3-flit-core py3-gpep517 py3-setuptools freetype
+# depends	: boost cmake py3-scikit-build-core
+
+pkgname=py3-pybind11
+pkgver=3.0.1
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/pybind/pybind11/archive/refs/tags/v$pkgver.tar.gz)
+
+build() {
+	cd ${pkgname#*-}-$pkgver
+
+	cmake -B build -G Ninja \
+		-D CMAKE_BUILD_TYPE=None \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D PYBIND11_FINDPYTHON=OFF \
+		-D PYBIND11_TEST=OFF \
+		-D PYBIND11_INSTALL=ON \
+		-D HAS_FLTO=OFF
+	cmake --build build
+	
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+
+	DESTDIR="$pkgdir" cmake --install build
+
+    local _sitepkgs
+    _sitepkgs="$(python -c 'import site; print(site.getsitepackages()[0])')"
+    
+    install -d -m755 "${pkgdir}/usr/share/licenses/${pkgname}"
+    
+    install -d -m755 "${pkgdir}/usr"/{include,lib/{cmake,pkgconfig}}
+    ln -sr "${pkgdir}${_sitepkgs}/pybind11/include/pybind11" "${pkgdir}/usr/include/pybind11"
+    ln -sr "${pkgdir}${_sitepkgs}/pybind11/share/cmake/pybind11" "${pkgdir}/usr/lib/cmake/pybind11"
+    ln -sr "${pkgdir}${_sitepkgs}/pybind11/share/pkgconfig/pybind11.pc" "${pkgdir}/usr/lib/pkgconfig/pybind11.pc"
+
+}
