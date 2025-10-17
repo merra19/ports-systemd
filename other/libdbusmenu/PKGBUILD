@@ -5,15 +5,14 @@
 
 pkgname=libdbusmenu
 pkgver=16.04.0
-pkgrel=1
+pkgrel=4
 options=(!lto)
 source=(https://launchpad.net/libdbusmenu/${pkgver%.*}/$pkgver/+download/libdbusmenu-$pkgver.tar.gz
-        python3.patch libdbusmenu-16.04.0-werror.patch)
+        libdbusmenu-16.04.0-werror.patch)
 
 build() {
 	cd $pkgname-$pkgver
 
-    #patch -Np1 -i ../python3.patch
     patch -Np1 -i ../libdbusmenu-16.04.0-werror.patch
 
     export CFLAGS+=" -Wno-error"
