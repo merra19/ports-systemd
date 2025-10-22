@@ -1,0 +1,4 @@
+#!/bin/sh
+
+getent group unbound > /dev/null || groupadd -g 88 unbound
+getent passwd unbound > /dev/null || useradd -c "Unbound DNS Resolver" -d /var/lib/unbound -u 88 -g unbound -s /bin/false unbound

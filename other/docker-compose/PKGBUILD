@@ -1,0 +1,24 @@
+# description	: Multi-container orchestration for Docker
+# depends	: go docker
+
+pkgname=docker-compose
+pkgver=2.40.1
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/docker/compose/archive/v$pkgver.tar.gz)
+
+build() {
+	cd "compose-$pkgver"
+	
+	export CGO_CPPFLAGS="${CPPFLAGS}"
+	export CGO_CFLAGS="${CFLAGS}"
+	export CGO_CXXFLAGS="${CXXFLAGS}"
+	export CGO_LDFLAGS="${LDFLAGS}"
+	export GOPATH="${srcdir}"
+	export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
+	GO_LDFLAGS="-linkmode=external -compressdwarf=false -X=github.com/docker/compose/v2/internal.Version=${pkgver}"
+	go build -ldflags "${GO_LDFLAGS}" -trimpath -tags "e2e,kube" -o compose ./cmd
+
+	install -Dm755 compose "$pkgdir"/usr/lib/docker/cli-plugins/docker-compose
+	install -d "$pkgdir/usr/bin"
+	ln -sf /usr/lib/docker/cli-plugins/docker-compose "$pkgdir/usr/bin/docker-compose"
+}

@@ -1,0 +1,18 @@
+# description	: Protocol Buffers implementation in C
+# depends	: protobuf
+
+pkgname=protobuf-c
+pkgver=1.5.2
+pkgrel=1
+options=(!lto)
+source=(https://github.com/protobuf-c/protobuf-c/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	./configure \
+		--prefix=/usr \
+		--disable-static
+	make -j1
+    make DESTDIR="$pkgdir" install
+}
