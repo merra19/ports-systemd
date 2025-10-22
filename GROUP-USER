@@ -77,10 +77,12 @@ plugdev 		90
 wheel 		    97
 anonymous 	    98
 pcscd       102 102
+docker          132
 rtkit       133 133
 seat            202
 flatpak     313 313
 gamemode        385
+qbittorrent 534 534
 users           999
 nobody 	    65534 	
 nogroup 		65534 
