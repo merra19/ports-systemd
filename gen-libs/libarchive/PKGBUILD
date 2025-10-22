@@ -4,12 +4,15 @@
 
 pkgname=libarchive
 pkgver=3.8.1
-pkgrel=1
+pkgrel=2
 options=(!lto)
-source=(https://github.com/libarchive/libarchive/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
+source=(https://github.com/libarchive/libarchive/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
+		CVE-2025-25724.patch)
 
 build() {
     cd $pkgname-$pkgver
+
+	patch -Np1 -i ../CVE-2025-25724.patch
 
     ./configure \
         --prefix=/usr \
