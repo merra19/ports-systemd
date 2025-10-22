@@ -1,0 +1,24 @@
+# description	: C++ BitTorrent implementation focusing on efficiency and scalability
+# depends	: glibc openssl python cmake boost
+
+pkgname=libtorrent-rasterbar
+pkgver=2.0.11
+pkgrel=1
+source=(https://github.com/arvidn/libtorrent/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    export CFLAGS+=' -DNDEBUG'
+    export CXXFLAGS+=' -DNDEBUG'
+    cmake -B build \
+        -G 'Unix Makefiles' \
+        -DCMAKE_BUILD_TYPE:STRING='None' \
+        -DCMAKE_INSTALL_PREFIX:PATH='/usr' \
+        -Dboost-python-module-name:STRING='python' \
+        -Dpython-bindings:BOOL='ON' \
+        -Dpython-egg-info:BOOL='ON' \
+        -Wno-dev
+    cmake --build build
+    DESTDIR="$pkgdir" cmake --install build
+}

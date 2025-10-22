@@ -1,0 +1,26 @@
+# description	: BitTorrent client in C++ and Qt
+# depends	: glibc openssl qt6-base libtorrent-rasterbar zlib 
+# depends	: qt6-svg boost qt6-tools hicolor-icon-theme python
+# depends	: cmake
+
+pkgname=qbittorrent
+pkgver=5.1.2 
+pkgrel=1
+source=(https://downloads.sourceforge.net/qbittorrent/$pkgname-$pkgver.tar.gz
+		$pkgname.hooks)
+
+build() {
+	cd $pkgname-$pkgver
+
+	cmake -B build -S $pkgname-$pkgver \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D GUI=ON \
+		-D WEBUI=ON \
+		-D SYSTEMD=OFF
+	cmake --build build
+    DESTDIR="$pkgdir" cmake --install build
+
+	install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -d "$pkgdir"/var/lib/qbittorrent -g qbittorrent -o qbittorrent -m 0770
+}
