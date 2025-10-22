@@ -1,0 +1,15 @@
+# description	: A simple Python script that implements the steps described at wireguard.com/netns
+# depends	: wireguard-tools
+
+pkgname=wg-netns
+pkgver=1
+pkgrel=1
+url='https://github.com/dadevel/wg-netns'
+source=(wg-netns jfree.yaml wg-netns@.service wg-firefox)
+
+build() {
+	install -Dm 755 wg-netns  "$pkgdir"/usr/bin/wg-netns
+	install -Dm 644 jfree.yaml "$pkgdir"/usr/share/wg-netns/jfree.yaml
+	install -Dm 644 wg-netns@.service "$pkgdir"/etc/systemd/system/wg-netns@.service
+	install -Dm 755 wg-firefox  "$pkgdir"/usr/local/bin/wg-firefox
+}

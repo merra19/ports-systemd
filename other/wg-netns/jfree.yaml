@@ -1,0 +1,40 @@
+# name of the network namespace where the interface is moved into, if null the default namespace is used
+name: ns-wg
+# namespace where the interface is initialized, if null the default namespace is used
+base_netns: null
+# if false, the netns itself won't be created or deleted, just the interfaces inside it
+managed: true
+# list of dns servers, if empty dns servers from default netns will be used
+dns-server: [10.2.0.1]
+# shell hooks, e.g. to set firewall rules, two formats are supported
+pre-up: echo pre-up from managed netns
+post-up:
+- host-namespace: true
+  command: echo post-up from host netns
+- host-namespace: false
+  command: echo post-up from managed netns
+pre-down: echo pre-down from managed netns
+post-down: echo post-down from managed netns
+# list of wireguard interfaces inside the netns
+interfaces:
+  # interface name, required
+- name: jp-free-2
+  # list of ip addresses, at least one entry required
+  address:
+  - 10.2.0.2/32
+  # can also be set via "wg set wg-site-a $key"
+  private-key: xxxxxx
+  # list of wireguard peers
+  peers:
+    # public key is required
+  - public-key: xxxxxxxxx
+    endpoint: a.example.com:51821
+    persistent-keepalive: 25
+    # list of ips the peer is allowed to use, at least one entry required
+    allowed-ips:
+    - 0.0.0.0/0
+    - ::/0
+    # by default the networks specified in 'allowed-ips' are routed over the interface, 'routes' can be used to overwrite this behaivor
+    routes:
+    - 0.0.0.0/0
+    - ::/0

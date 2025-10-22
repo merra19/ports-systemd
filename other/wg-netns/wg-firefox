@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sudo ip netns exec ns-wg sudo -u "$USER" "HOME=$HOME" "PULSE_SERVER=/run/user/$(id -u)/pulse/native" "PULSE_COOKIE=$HOME/.config/pulse/cookie" firefox

@@ -1,0 +1,34 @@
+[Unit]
+Description=WireGuard Network Namespace (%i)
+Wants=network-online.target nss-lookup.target
+After=network-online.target nss-lookup.target
+
+[Service]
+Type=oneshot
+Environment=WG_ENDPOINT_RESOLUTION_RETRIES=infinity
+Environment=WG_VERBOSE=1
+ExecStart=wg-netns up %i
+ExecStop=wg-netns down %i
+RemainAfterExit=yes
+
+WorkingDirectory=%E/wireguard
+ConfigurationDirectory=wireguard
+ConfigurationDirectoryMode=0700
+
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_SYS_ADMIN
+LimitNOFILE=4096
+LimitNPROC=512
+LockPersonality=true
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+ProtectClock=true
+ProtectHostname=true
+RemoveIPC=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_NETLINK
+RestrictNamespaces=mnt net
+RestrictRealtime=true
+RestrictSUIDSGID=true
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target
