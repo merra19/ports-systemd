@@ -1,0 +1,4 @@
+#!/bin/sh
+
+getent group named > /dev/null || groupadd -g 20 named 
+getent passwd named > /dev/null || useradd -c "BIND Owner" -g named -s /bin/false -u 20 named 

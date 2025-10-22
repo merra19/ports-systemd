@@ -1,0 +1,41 @@
+# description	: Client side programs  of Bind DNS Server
+# depends	: liburcu libuv json-c nghttp2 pam libcap libxml2 curl
+# depends	: lmdb libidn2
+
+pkgname=bind
+pkgver=9.20.12
+pkgrel=1
+options=(!lto)
+source=(https://ftp.isc.org/isc/bind9/$pkgver/$pkgname-$pkgver.tar.xz
+		named.conf local root.hints)
+backup=(srv/named/etc/named.conf srv/named/etc/named/pz/127.0.0 srv/named/etc/named/root.hints)
+
+build() {
+	cd $pkgname-$pkgver
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--mandir=/usr/share/man \
+		--disable-static
+	make
+    make DESTDIR="$pkgdir" install
+
+	install -d -m770 -o named -g named "$pkgdir"/srv/named
+
+	mkdir -p "$pkgdir"/srv/named &&
+	cd       "$pkgdir"/srv/named &&
+	mkdir -p dev etc/named/{slave,pz} usr/lib/engines var/run/named
+	mknod "$pkgdir"/srv/named/dev/null c 1 3 &&
+	mknod "$pkgdir"/srv/named/dev/urandom c 1 9 &&
+	chmod 666 "$pkgdir"/srv/named/dev/{null,urandom} &&
+	cp /etc/localtime etc
+
+	install -Dm 644 "$srcdir"/named.conf "$pkgdir"/srv/named/etc/named.conf
+	install -Dm 644 "$srcdir"/local "$pkgdir"/srv/named/etc/named/pz/127.0.0
+	install -Dm 644 "$srcdir"/local "$pkgdir"/srv/named/etc/named/pz/127.0.0
+	install -Dm 644 "$srcdir"/root.hints "$pkgdir"/srv/named/etc/named/root.hints
+
+	chown -R named:named "$pkgdir"/srv/named
+}
