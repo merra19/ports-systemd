@@ -13,7 +13,6 @@ Usage:
   $(basename $0) [ <options> <arguments> ]
 
 Options:
-	-umu                     replace Umu instaed Proton-GE 
 	-v=<protonge version>    proton-ge version to modify
 	-I                       install
 	-D                       uninstall 
@@ -51,7 +50,6 @@ while [ "$1" ]; do
 		  -I) INSTALL=yes ;;
 		  -D) UNINSTALL=yes ;;
 		  -L) ls /home/$user/.steam/steam/compatibilitytools.d/ ; exit 0 ;;
-		  -umu) UMU=yes ;;
 		   *) help ; exit 0 ;;
 	esac
 	shift
@@ -69,11 +67,7 @@ if [ "$INSTALL" = "no" ] && [ "$UNINSTALL" = "no" ];then
 	exit 1
 fi
 
-if [ $UMU ] ;then
-	DIR="$steam/UMU-Proton-$GE_VERSION"
-else
-	DIR="$steam/GE-Proton$GE_VERSION"
-fi
+DIR="$steam/GE-Proton$GE_VERSION"
 
 if [ ! -d "$DIR" ];then
 	echo "missing version $GE_VERSION"

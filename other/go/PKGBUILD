@@ -2,7 +2,7 @@
 # depends	: sqlite xz python zlib bzip2 ninja boost
 
 pkgname=go
-pkgver=1.25.1
+pkgver=1.25.3
 pkgrel=1
 noextract=($pkgname-$pkgver.linux-amd64.tar.gz)
 source=($pkgname-$pkgver.src.tar.gz::https://golang.org/dl/go$pkgver.src.tar.gz 
@@ -42,4 +42,5 @@ build() {
 	rm -rf "$srcdir"/go/pkg/obj/go-build/*
 	find "$pkgdir" \( -name "README*" -o -name "AUTHORS" -o -name "TODO" \) -delete
 	rm "$pkgdir"/usr/lib/go/src/*.bat
+	rm -r $(find "$pkgdir"/usr/lib/go -iname testdata -type d -print)
 }

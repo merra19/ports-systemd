@@ -2,11 +2,11 @@
 # depends	: vulkan-loader ninja meson glslang mingw-w64-gc
 
 pkgname=dxvk-git
-pkgver=2.7.1.c46d935
+pkgver=2.7.1.b3da810  
 pkgrel=1
-commit=c46d935c5154b88b72ee0f545ce02e10c7b995cd
+commit=b3da810451d07e5c9e7f2c7a09932755d5eef516
 libdisplay_commit=275e6459c7ab1ddd4b125f28d0440716e4888078
-dxbc_commit=e15dbd69c6174e594f016030703c236dd3c7d58a
+dxbc_commit=2ae0ab1448a9f8a82e8d870dffc0d7dea102d707
 spirvinc_commit=8b246ff75c6615ba4532fe4fde20f1be090c3764
 dxbc_spirv_commit=c8ad050fcb29e42a2f57d9f59e97488f465c436d
 vulkan_commit=234c4b7370a8ea3239a214c9e871e4b17c89f4ab

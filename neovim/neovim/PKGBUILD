@@ -3,7 +3,7 @@
 
 pkgname=neovim
 pkgver=0.11.4
-pkgrel=1
+pkgrel=2
 options=(!lto)
 source=($pkgname-$pkgver.tar.gz::https://github.com/neovim/neovim/archive/refs/tags/v$pkgver.tar.gz)
 
