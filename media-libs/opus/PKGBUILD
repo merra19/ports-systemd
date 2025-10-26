@@ -5,6 +5,7 @@ pkgname=opus
 pkgver=1.5.2
 pkgrel=1
 options=(!lto)
+url='https://opus-codec.org'
 source=( https://downloads.xiph.org/releases/opus/$pkgname-$pkgver.tar.gz)
 
 build() {

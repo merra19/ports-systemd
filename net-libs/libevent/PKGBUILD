@@ -4,6 +4,7 @@
 pkgname=libevent
 pkgver=2.1.12
 pkgrel=1
+url='https://libevent.org'
 source=(https://github.com/libevent/libevent/releases/download/release-$pkgver-stable/$pkgname-$pkgver-stable.tar.gz)
 
 build() {

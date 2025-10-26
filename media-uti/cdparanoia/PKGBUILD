@@ -4,6 +4,7 @@
 pkgname=cdparanoia
 pkgver=10.2
 pkgrel=14
+url='https://www.xiph.org/paranoia'
 source=(https://downloads.xiph.org/releases/cdparanoia/cdparanoia-III-$pkgver.src.tgz
         format-security.patch gcc.patch
 		https://www.linuxfromscratch.org/patches/blfs/12.4/cdparanoia-III-10.2-gcc_fixes-1.patch)

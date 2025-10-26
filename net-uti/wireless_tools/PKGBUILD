@@ -4,6 +4,7 @@
 pkgname=wireless_tools
 pkgver=29
 pkgrel=1
+url='http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html'
 source=(https://hewlettpackard.github.io/wireless-tools/$pkgname.$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.3/$pkgname-$pkgver-fix_iwlist_scanning-1.patch)
 

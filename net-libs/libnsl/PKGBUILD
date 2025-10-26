@@ -5,6 +5,7 @@ pkgname=libnsl
 pkgver=2.0.1
 pkgrel=1
 options=(!lto)
+url='https://github.com/thkukuk/libnsl'
 source=(https://github.com/thkukuk/libnsl/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=fdk-aac
 pkgver=2.0.3
 pkgrel=1
+url='https://sourceforge.net/projects/opencore-amr'
 source=(https://downloads.sourceforge.net/opencore-amr/$pkgname-$pkgver.tar.gz)
 
 build() {

@@ -6,6 +6,7 @@
 pkgname=nfs-utils
 pkgver=2.8.3
 pkgrel=1
+url='http://linux-nfs.org'
 source=(https://www.kernel.org/pub/linux/utils/nfs-utils/$pkgver/$pkgname-$pkgver.tar.xz
         nfs-server 0001-Fix-build-with-glibc-2.42.patch)
 backup=(etc/sysconfig/nfs-server)

@@ -7,6 +7,7 @@
 pkgname=gst-plugins-good
 pkgver=1.26.5
 pkgrel=1
+url='https://gstreamer.freedesktop.org'
 source=(https://gstreamer.freedesktop.org/src/$pkgname/$pkgname-$pkgver.tar.xz)
 
 build() {

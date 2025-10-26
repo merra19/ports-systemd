@@ -4,6 +4,7 @@
 pkgname=faad2
 pkgver=2.11.2
 pkgrel=1
+url='https://www.audiocoding.com/faad2.html'
 source=(https://github.com/knik0/faad2/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

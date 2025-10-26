@@ -5,6 +5,7 @@ pkgname=liba52
 _pkgname=a52dec
 pkgver=0.8.0
 pkgrel=1
+url='https://liba52.sourceforge.net'
 source=(https://distfiles.adelielinux.org/source/a52dec/${_pkgname}-$pkgver.tar.gz)
 
 build() {

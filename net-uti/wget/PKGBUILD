@@ -6,6 +6,7 @@ pkgname=wget
 pkgver=1.25.0
 pkgrel=1
 options=(!lto)
+url='https://www.gnu.org/software/wget'
 source=(https://mirror.lyrahosting.com/gnu/wget/$pkgname-$pkgver.tar.gz)
 backup=(etc/wgetrc)
 

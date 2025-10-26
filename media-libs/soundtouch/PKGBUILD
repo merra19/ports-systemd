@@ -4,6 +4,7 @@
 pkgname=soundtouch
 pkgver=2.4.0
 pkgrel=1
+url='https://www.surina.net/soundtouch'
 source=(https://www.surina.net/soundtouch/$pkgname-$pkgver.tar.gz)
 
 build() {

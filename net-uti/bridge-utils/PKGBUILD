@@ -5,6 +5,7 @@ pkgname=bridge-utils
 pkgver=1.7.1
 pkgrel=1
 options=(!lto)
+url='https://bridge.sourceforge.net'
 source=(https://www.kernel.org/pub/linux/utils/net/bridge-utils/$pkgname-$pkgver.tar.xz)
 
 build() {

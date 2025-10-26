@@ -5,6 +5,7 @@
 pkgname=nmap
 pkgver=7.98
 pkgrel=1
+url='https://nmap.org'
 source=(https://nmap.org/dist/$pkgname-$pkgver.tar.bz2)
 
 build() {

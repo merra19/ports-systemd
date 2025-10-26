@@ -5,6 +5,7 @@ pkgname=net-tools
 pkgver=2.10
 pkgrel=1
 options=(!makeflags !lto)
+url='https://net-tools.sourceforge.io'
 source=(https://downloads.sourceforge.net/project/net-tools/$pkgname-$pkgver.tar.xz)
 
 build() {

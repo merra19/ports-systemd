@@ -5,6 +5,7 @@ pkgname=alsa-lib
 pkgver=1.2.14
 pkgrel=1
 options=(!lto)
+url='https://alsa-project.org/wiki/Main_Page'
 source=(https://www.alsa-project.org/files/pub/lib/$pkgname-$pkgver.tar.bz2)
 
 build() {

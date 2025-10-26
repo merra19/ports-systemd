@@ -4,6 +4,7 @@
 pkgname=sbc
 pkgver=2.1
 pkgrel=1
+url='https://git.kernel.org/?p=bluetooth/sbc.git'
 source=(https://www.kernel.org/pub/linux/bluetooth/$pkgname-$pkgver.tar.xz)
 
 build() {

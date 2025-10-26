@@ -4,6 +4,7 @@
 pkgname=dhcpcd
 pkgver=10.2.4
 pkgrel=1
+url='https://github.com/NetworkConfiguration/dhcpcd'
 source=(https://github.com/NetworkConfiguration/dhcpcd/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
 		$pkgname.hooks)
 

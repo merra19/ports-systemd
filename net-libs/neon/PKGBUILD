@@ -5,6 +5,7 @@
 pkgname=neon
 pkgver=0.35.0
 pkgrel=1
+url='https://notroj.github.io/neon'
 source=(https://notroj.github.io/neon/$pkgname-$pkgver.tar.gz)
 
 build() {

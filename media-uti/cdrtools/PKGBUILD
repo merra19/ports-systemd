@@ -5,9 +5,10 @@ pkgname=cdrtools
 pkgver=3.02a09
 pkgver_short=${pkgver%a*}
 pkgrel=1
-backup=(etc/default/cdrecord etc/default/rscsi)
 options=(!makeflags)
+url='https://sourceforge.net/projects/cdrtools'
 source=(https://downloads.sourceforge.net/cdrtools/$pkgname-$pkgver.tar.bz2)
+backup=(etc/default/cdrecord etc/default/rscsi)
 
 build() {
 	cd $pkgname-$pkgver_short

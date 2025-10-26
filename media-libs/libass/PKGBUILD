@@ -4,6 +4,7 @@
 pkgname=libass
 pkgver=0.17.4
 pkgrel=1
+url='https://github.com/libass/libass'
 source=(https://github.com/$pkgname/$pkgname/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

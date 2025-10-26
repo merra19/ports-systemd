@@ -10,6 +10,7 @@ pkgname=mpv
 pkgver=0.40.0
 pkgrel=3
 options=(!lto)
+url='https://mpv.io'
 source=(https://github.com/mpv-player/mpv/archive/refs/tags/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

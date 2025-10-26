@@ -5,6 +5,7 @@ pkgname=libcdio
 pkgver=2.1.0
 pkgrel=1
 options=(!lto)
+url='https://www.gnu.org/software/libcdio'
 source=(https://mirror.lyrahosting.com/gnu/libcdio/$pkgname-$pkgver.tar.bz2)
 
 build() {

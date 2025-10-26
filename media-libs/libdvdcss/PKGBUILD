@@ -4,6 +4,7 @@
 pkgname=libdvdcss
 pkgver=1.4.3
 pkgrel=1
+url='https://www.videolan.org/developers/libdvdcss.html'
 source=(https://get.videolan.org/libdvdcss/$pkgver/$pkgname-$pkgver.tar.bz2)
 
 build() {

@@ -5,6 +5,7 @@ pkgname=wpa_supplicant
 pkgver=2.11
 pkgrel=1
 options=(!lto)
+url='https://w1.fi/wpa_supplicant'
 source=(https://w1.fi/releases/$pkgname-$pkgver.tar.gz
         config)
 

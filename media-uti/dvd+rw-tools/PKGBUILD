@@ -4,6 +4,7 @@
 pkgname=dvd+rw-tools
 pkgver=7.1
 pkgrel=1
+url='http://fy.chalmers.se/~appro/linux/DVD+RW'
 source=(https://anduin.linuxfromscratch.org/BLFS/dvd+rw-tools/$pkgname-$pkgver.tar.gz
 		https://www.linuxfromscratch.org/patches/blfs/svn/dvd+rw-tools-7.1-consolidated_fixes-2.patch)
 

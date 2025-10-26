@@ -4,6 +4,7 @@
 pkgname=libmnl
 pkgver=1.0.5
 pkgrel=1
+url='https://netfilter.org/projects/libmnl'
 source=(https://netfilter.org/projects/libmnl/files/$pkgname-$pkgver.tar.bz2)
 
 build() {

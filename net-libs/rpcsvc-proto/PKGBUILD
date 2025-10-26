@@ -4,6 +4,7 @@
 pkgname=rpcsvc-proto
 pkgver=1.4.4
 pkgrel=1
+url='https://github.com/thkukuk/rpcsvc-proto'
 source=(https://github.com/thkukuk/rpcsvc-proto/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

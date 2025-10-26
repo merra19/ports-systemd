@@ -4,6 +4,7 @@
 pkgname=glib-networking
 pkgver=2.80.1
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/glib-networking'
 source=(https://ftp.gnome.org/pub/gnome/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

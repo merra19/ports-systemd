@@ -4,6 +4,7 @@
 pkgname=libmpeg2
 pkgver=0.5.1
 pkgrel=1
+url='https://libmpeg2.sourceforge.io'
 source=(https://download.videolan.org/contrib/libmpeg2/$pkgname-$pkgver.tar.gz)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=libao
 pkgver=1.2.0
 pkgrel=1
+url='https://www.xiph.org/ao'
 source=(https://downloads.xiph.org/releases/ao/libao-1.2.0.tar.gz
         libao.conf)
 backup=(etc/libao.conf)

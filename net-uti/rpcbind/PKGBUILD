@@ -4,6 +4,7 @@
 pkgname=rpcbind
 pkgver=1.2.8
 pkgrel=1
+url='https://sourceforge.net/projects/rpcbind'
 source=(https://downloads.sourceforge.net/rpcbind/$pkgname-$pkgver.tar.bz2)
 
 build() {

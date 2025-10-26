@@ -4,6 +4,7 @@
 pkgname=libndp
 pkgver=1.9
 pkgrel=1
+url='http://libndp.org'
 source=(http://libndp.org/files/$pkgname-$pkgver.tar.gz)
 
 build() {

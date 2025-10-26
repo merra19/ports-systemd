@@ -8,6 +8,7 @@
 pkgname=xine-lib
 pkgver=1.2.13
 pkgrel=1
+url='https://xine.sourceforge.net'
 source=(https://downloads.sourceforge.net/xine/$pkgname-$pkgver.tar.xz
 		https://www.linuxfromscratch.org/patches/blfs/12.4/xine-lib-1.2.13-upstream_fixes-1.patch
 		https://www.linuxfromscratch.org/patches/blfs/12.4/xine-lib-1.2.13-gcc15_fixes-1.patch)

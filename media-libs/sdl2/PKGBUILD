@@ -7,6 +7,7 @@ pkgname=sdl2
 _pkgname=SDL2
 pkgver=2.32.8
 pkgrel=1
+url='https://www.libsdl.org'
 source=(https://www.libsdl.org/release/SDL2-$pkgver.tar.gz)
 
 build() {

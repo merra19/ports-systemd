@@ -4,6 +4,7 @@
 pkgname=taglib
 pkgver=2.1.1
 pkgrel=1
+url='https://taglib.org'
 source=(https://taglib.github.io/releases/$pkgname-$pkgver.tar.gz)
 
 build() {
