@@ -5,7 +5,7 @@ pkgname=py3-meson
 _pkgname=meson_python
 pkgver=0.18.0
 pkgrel=1
-v
+url='https://pypi.org/project/meson-python'
 source=(https://files.pythonhosted.org/packages/source/m/meson_python/meson_python-$pkgver.tar.gz)
 
 build() {
