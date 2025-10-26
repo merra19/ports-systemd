@@ -4,6 +4,7 @@
 pkgname=mime-types
 pkgver=2.1.54
 pkgrel=1
+url='https://pagure.io/mailcap'
 source=(mailcap mailcap.5 test.py typediff.py Makefile mime.types
         generate-nginx-mimetypes.sh COPYING NEWS)
 backup=(etc/mailcap etc/mime.types etc/nginx/mime.types)

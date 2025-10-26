@@ -6,6 +6,7 @@ pkgname=net-snmp
 pkgver=5.9.4
 pkgrel=4
 options=(!emptydirs !makeflags !lto)
+url='https://www.net-snmp.org'
 source=(https://downloads.sourceforge.net/$pkgname/$pkgname/$pkgver/$pkgname-$pkgver.tar.gz
 		net-snmp-5.8-pcap.patch 
 		net-snmp-5.8.1-mysqlclient.patch

@@ -4,6 +4,7 @@
 pkgname=autoconf-archive
 pkgver=2024.10.16
 pkgrel=3
+url='https://www.gnu.org/software/autoconf-archive'
 source=(https://ftpmirror.gnu.org/${pkgname}/${pkgname}-${pkgver}.tar.xz
         $pkgname-$pkgver-lua.patch
         https://dev.gentoo.org/~sam/distfiles/dev-build/autoconf-archive/autoconf-archive-2024.10.16-patches.tar.xz)

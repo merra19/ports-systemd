@@ -5,6 +5,7 @@
 pkgname=cogl
 pkgver=1.22.8
 pkgrel=4
+url='https://www.cogl3d.org'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

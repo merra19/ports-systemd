@@ -4,6 +4,7 @@
 pkgname=wf-config
 pkgver=0.10.0
 pkgrel=1
+url='https://github.com/WayfireWM/wf-config'
 source=(https://github.com/WayfireWM/$pkgname/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

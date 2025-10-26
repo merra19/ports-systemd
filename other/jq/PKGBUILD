@@ -5,6 +5,7 @@ pkgname=jq
 pkgver=1.8.1
 pkgrel=1
 options=(!lto)
+url='https://stedolan.github.io/jq'
 source=(https://github.com/stedolan/jq/releases/download/jq-$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

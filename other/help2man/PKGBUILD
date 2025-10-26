@@ -5,6 +5,7 @@ pkgname=help2man
 pkgver=1.49.3
 pkgrel=1
 options=(!lto)
+url='https://www.gnu.org/software/help2man'
 source=(https://mirror.lyrahosting.com/gnu/$pkgname/$pkgname-$pkgver.tar.xz)
 
 build() {

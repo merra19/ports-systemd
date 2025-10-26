@@ -5,6 +5,7 @@
 pkgname=hyprgraphics
 pkgver=0.1.5
 pkgrel=1
+url='https://github.com/hyprwm/hyprgraphics'
 source=($pkgname-$pkgver.tar.gz::https://github.com/hyprwm/$pkgname/archive/refs/tags/v$pkgver.tar.gz)
 
 build() {

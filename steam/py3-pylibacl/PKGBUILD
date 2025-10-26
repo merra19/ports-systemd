@@ -4,6 +4,7 @@
 pkgname=py3-pylibacl
 pkgver=0.7.3
 pkgrel=1
+url='https://pylibacl.k1024.org'
 source=(https://files.pythonhosted.org/packages/source/p/pylibacl/pylibacl-$pkgver.tar.gz)
 
 build() {

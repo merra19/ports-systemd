@@ -4,6 +4,7 @@
 pkgname=libglvnd
 pkgver=1.7.0
 pkgrel=1
+url='https://gitlab.freedesktop.org/glvnd/libglvnd'
 source=(https://gitlab.freedesktop.org/glvnd/libglvnd/-/archive/v$pkgver/libglvnd-v$pkgver.tar.gz
         0001-glx-Add-another-fallback-library-name.patch)
 

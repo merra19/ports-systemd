@@ -5,6 +5,7 @@ pkgname=libxcb-32
 _pkgname=libxcb
 pkgver=1.17.0
 pkgrel=1
+url='https://xcb.freedesktop.org'
 source=(https://xorg.freedesktop.org/archive/individual/lib/${_pkgname}-$pkgver.tar.xz)
 
 build() {

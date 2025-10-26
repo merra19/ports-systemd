@@ -12,6 +12,7 @@ vulkancommit=b39ab380a44b6c8df462c34e976ea9ce2d2c336b
 spirvtoolscommit=e9a8ceeddbf7e3aaadac2ab6f8a6ab6437872e88
 spirvcrosscommit=4b7bcb7e5cf71015b3299088d22004bfe4e13a5e
 dxbcspirvcommit=fa3028393571cef91f7a6a8b665f5a49466be29a
+url='https://github.com/HansKristian-Work/vkd3d-proton'
 source=(https://github.com/HansKristian-Work/vkd3d-proton/archive/$commit.tar.gz
 		spirv-headers-$spirvheadercommit.tar.gz::https://github.com/KhronosGroup/SPIRV-Headers/archive/$spirvheadercommit.tar.gz
 		vulkan-headers-$vulkancommit.tar.gz::https://github.com/KhronosGroup/Vulkan-Headers/archive/$vulkancommit.tar.gz

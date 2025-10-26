@@ -5,6 +5,7 @@ pkgname=containerd
 pkgver=2.1.4
 pkgrel=1
 commit=091922f03c2762540fd057fba91260237ff86acb
+url='https://containerd.io'
 source=($pkgname-$pkgver.tar.gz::https://github.com/containerd/containerd/archive/refs/tags/v$pkgver.tar.gz)
 
 build() {

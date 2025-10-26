@@ -4,6 +4,7 @@
 pkgname=catppuccin-cursors-mocha
 pkgver=2.0.0
 pkgrel=1
+url='https://github.com/catppuccin/cursors'
 source=($pkgname-$pkgver-blue.zip::https://github.com/catppuccin/cursors/releases/download/v$pkgver/catppuccin-mocha-blue-cursors.zip
         $pkgname-$pkgver-dark.zip::https://github.com/catppuccin/cursors/releases/download/v$pkgver/catppuccin-mocha-dark-cursors.zip
         $pkgname-$pkgver-flamingo.zip::https://github.com/catppuccin/cursors/releases/download/v$pkgver/catppuccin-mocha-flamingo-cursors.zip

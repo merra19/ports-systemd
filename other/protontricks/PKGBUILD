@@ -4,6 +4,7 @@
 pkgname=protontricks
 pkgver=1.13.0
 pkgrel=1
+url='https://github.com/Matoking/protontricks'
 source=(https://pypi.org/packages/source/p/protontricks/$pkgname-$pkgver.tar.gz)
 
 build() {

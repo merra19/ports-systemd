@@ -5,6 +5,7 @@
 pkgname=libgdata
 pkgver=0.18.1
 pkgrel=3
+url='https://wiki.gnome.org/Projects/libgdata'
 source=(https://download.gnome.org/sources/libgdata/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

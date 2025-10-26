@@ -8,6 +8,7 @@
 pkgname=eww-wayfire-dots
 pkgver=0.6.0
 pkgrel=1
+url='https://github.com/bluebyt/Wayfire-dots'
 source=(eww.scss eww.yuck Weather.sh cpu disk display.sh eww-start3.sh
 		memory tempe uptime.sh window-title.sh wayfire.ini wf-shell.ini)
 

@@ -4,6 +4,7 @@
 pkgname=konsole
 pkgver=25.08.0
 pkgrel=1
+url='https://apps.kde.org/konsole'
 source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/blfs/12.4/konsole-adjust_scrollbar-1.patch)
 

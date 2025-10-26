@@ -5,6 +5,7 @@
 pkgname=wcm
 pkgver=0.10.0
 pkgrel=1
+url='https://github.com/WayfireWM/wcm'
 source=(https://github.com/WayfireWM/$pkgname/releases/download/v${pkgver}/$pkgname-$pkgver.tar.xz)
 
 build() {

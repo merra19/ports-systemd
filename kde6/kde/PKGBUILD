@@ -8,6 +8,7 @@
 pkgname=kde
 pkgver=6.0.0
 pkgrel=1
+url='https://kde.org'
 source=(kde kde-np kscreensaver)
 
 build() {

@@ -5,6 +5,7 @@
 pkgname=libdecor
 pkgver=0.2.3
 pkgrel=1
+url='https://gitlab.freedesktop.org/libdecor/libdecor'
 source=(https://gitlab.freedesktop.org/libdecor/libdecor/-/archive/$pkgver/$pkgname-$pkgver.tar.bz2)
 
 build() {

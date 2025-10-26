@@ -7,6 +7,7 @@ pkgname=libdbusmenu
 pkgver=16.04.0
 pkgrel=4
 options=(!lto)
+url='https://launchpad.net/libdbusmenu'
 source=(https://launchpad.net/libdbusmenu/${pkgver%.*}/$pkgver/+download/libdbusmenu-$pkgver.tar.gz
         libdbusmenu-16.04.0-werror.patch)
 

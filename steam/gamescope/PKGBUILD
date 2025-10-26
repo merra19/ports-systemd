@@ -9,6 +9,7 @@
 pkgname=gamescope
 pkgver=3.16.14
 pkgrel=1
+url='https://github.com/ValveSoftware/gamescope'
 source=(
   git+https://github.com/ValveSoftware/gamescope.git#commit=${pkgver}
   git+https://gitlab.freedesktop.org/emersion/libdisplay-info.git

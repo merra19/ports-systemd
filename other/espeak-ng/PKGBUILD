@@ -4,6 +4,7 @@
 pkgname=espeak-ng
 pkgver=1.52.0
 pkgrel=1
+url='https://github.com/espeak-ng/espeak-ng'
 source=($pkgname-$pkgver.tar.gz::https://github.com/espeak-ng/espeak-ng/archive/refs/tags/$pkgver.tar.gz)
 
 build() {

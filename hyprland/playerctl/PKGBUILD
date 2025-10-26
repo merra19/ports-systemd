@@ -4,6 +4,7 @@
 pkgname=playerctl
 pkgver=2.4.1
 pkgrel=2
+url='https://github.com/acrisci/playerctl'
 source=($pkgname-$pkgver.tar.gz::https://github.com/altdesktop/playerctl/archive/v$pkgver.tar.gz)
 
 build() {

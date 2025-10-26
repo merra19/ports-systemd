@@ -4,6 +4,7 @@
 pkgname=typescript
 pkgver=5.9.3
 pkgrel=1
+url='https://www.typescriptlang.org'
 source=(https://github.com/microsoft/TypeScript/releases/download/v$pkgver/typescript-$pkgver.tgz)
 
 build() {

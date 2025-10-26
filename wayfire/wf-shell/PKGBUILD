@@ -6,6 +6,7 @@
 pkgname=wf-shell
 pkgver=0.10.0
 pkgrel=2
+url='https://github.com/WayfireWM/wf-shell'
 source=(https://github.com/WayfireWM/$pkgname/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

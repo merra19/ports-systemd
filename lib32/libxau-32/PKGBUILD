@@ -5,6 +5,7 @@ pkgname=libxau-32
 _pkgname=libXau
 pkgver=1.0.12
 pkgrel=1
+url='https://www.x.org/wiki'
 source=(https://www.x.org/pub/individual/lib/libXau-$pkgver.tar.xz)
 
 build() {

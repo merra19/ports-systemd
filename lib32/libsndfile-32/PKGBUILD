@@ -6,6 +6,7 @@ pkgname=libsndfile-32
 _pkgname=libsndfile
 pkgver=1.2.2
 pkgrel=1
+url='https://libsndfile.github.io/libsndfile'
 source=(https://github.com/libsndfile/libsndfile/releases/download/$pkgver/${_pkgname}-$pkgver.tar.xz)
 
 build() {

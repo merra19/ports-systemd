@@ -4,6 +4,7 @@
 pkgname=gtk-engine-murrine
 pkgver=0.98.2
 pkgrel=4
+url='https://tracker.debian.org/pkg/gtk2-engines-murrine'
 source=(https://ftp.gnome.org/pub/GNOME/sources/murrine/${pkgver%.*}/murrine-$pkgver.tar.xz
         fix-crasher.patch)
 

@@ -5,6 +5,7 @@ pkgname=acl-32
 _pkgname=acl
 pkgver=2.3.2
 pkgrel=1
+url='https://savannah.nongnu.org/projects/acl'
 source=(https://download.savannah.gnu.org/releases/acl/${_pkgname}-$pkgver.tar.xz)
 
 build() {

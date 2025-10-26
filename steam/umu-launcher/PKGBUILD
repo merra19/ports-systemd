@@ -10,6 +10,7 @@
 pkgname=umu-launcher
 pkgver=1.2.9
 pkgrel=1
+url='https://github.com/Open-Wine-Components/umu-launcher'
 source=($pkgname-$pkgver.tar.gz::https://github.com/Open-Wine-Components/umu-launcher/archive/refs/tags/$pkgver.tar.gz)
 optsflags=" -O3 -ffat-lto-objects -flto=auto "
 

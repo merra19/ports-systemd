@@ -9,6 +9,7 @@
 pkgname=kde-pre-conf
 pkgver=6.0.0
 pkgrel=1
+url='https://kde.org'
 source=(kf6.sh kde6)
 
 build() {

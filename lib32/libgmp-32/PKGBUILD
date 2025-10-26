@@ -5,6 +5,7 @@ pkgname=libgmp-32
 _pkgname=libgmp
 pkgver=6.3.0
 pkgrel=1
+url='https://gmplib.org'
 source=(https://mirror.lyrahosting.com/gnu/gmp/gmp-$pkgver.tar.xz)
 
 build() {

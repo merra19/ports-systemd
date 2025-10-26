@@ -6,6 +6,7 @@
 pkgname=kio-extras
 pkgver=25.08.0
 pkgrel=1
+url='https://invent.kde.org/network/kio-extras'
 source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz)
 
 build() {

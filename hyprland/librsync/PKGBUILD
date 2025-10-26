@@ -4,6 +4,7 @@
 pkgname=librsync
 pkgver=2.3.4
 pkgrel=1
+url='https://librsync.github.io'
 source=(https://github.com/$pkgname/$pkgname/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

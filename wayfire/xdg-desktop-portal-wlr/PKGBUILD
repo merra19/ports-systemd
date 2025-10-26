@@ -5,6 +5,7 @@
 pkgname=xdg-desktop-portal-wlr
 pkgver=0.7.1
 pkgrel=3
+url='https://github.com/emersion/xdg-desktop-portal-wlr'
 source=($pkgname-$pkgver.tar.gz::https://github.com/emersion/xdg-desktop-portal-wlr/archive/v${pkgver}.tar.gz
         wlr-portals.conf)
 

@@ -4,6 +4,7 @@
 pkgname=mandoc
 pkgver=1.14.6
 pkgrel=1
+url='https://mdocml.bsd.lv'
 source=(https://mandoc.bsd.lv/snapshots/$pkgname-$pkgver.tar.gz)
 
 build() {

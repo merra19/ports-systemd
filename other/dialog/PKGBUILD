@@ -6,6 +6,7 @@ pkgver=1.3_20250817
 vrsn=$(echo $pkgver | sed 's/_/-/')
 pkgrel=1
 options=(!lto)
+url='https://invisible-island.net/dialog'
 source=(https://invisible-mirror.net/archives/$pkgname/$pkgname-$vrsn.tgz)
 
 build() {

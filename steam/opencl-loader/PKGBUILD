@@ -5,6 +5,7 @@ pkgname=opencl-loader
 _pkgname=ocl-icd
 pkgver=2.3.3
 pkgrel=1
+url='https://github.com/KhronosGroup/OpenCL-ICD-Loader'
 source=($_pkgname-$pkgver.tar.gz::https://github.com/OCL-dev/${_pkgname}/archive/v${pkgver}.tar.gz)
 
 build() {

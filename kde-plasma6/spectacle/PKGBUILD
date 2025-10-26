@@ -4,6 +4,7 @@
 pkgname=spectacle
 pkgver=6.4.4
 pkgrel=1
+url='https://apps.kde.org/spectacle'
 source=(https://download.kde.org/stable/plasma/$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

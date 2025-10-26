@@ -6,6 +6,7 @@ _pkgname=brotli
 pkgver=1.1.0
 pkgrel=1
 options=(!lto)
+url='https://github.com/google/brotli'
 source=(https://github.com/google/brotli/archive/v$pkgver/$_pkgname-$pkgver.tar.gz)
 
 build() {

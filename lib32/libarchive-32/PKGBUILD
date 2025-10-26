@@ -6,6 +6,7 @@ pkgname=libarchive-32
 pkgver=3.8.1
 pkgrel=1
 options=(!lto)
+url='https://www.libarchive.org'
 source=(https://github.com/libarchive/libarchive/releases/download/v$pkgver/libarchive-$pkgver.tar.xz)
 
 build() {

@@ -5,6 +5,7 @@
 pkgname=clutter
 pkgver=1.26.4
 pkgrel=3
+url='https://wiki.gnome.org/Projects/Clutter'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

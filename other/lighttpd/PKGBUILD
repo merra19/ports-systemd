@@ -6,6 +6,7 @@ pkgname=lighttpd
 pkgver=1.4.82
 pkgrel=1
 options=(!lto)
+url='https://www.lighttpd.net'
 source=(https://download.lighttpd.net/lighttpd/releases-${pkgver%.*}.x/$pkgname-$pkgver.tar.xz
         lighttpd.conf $pkgname.hooks)
 backup=(etc/lighttpd/lighttpd.conf)

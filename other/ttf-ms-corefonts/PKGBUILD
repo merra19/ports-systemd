@@ -5,6 +5,7 @@
 pkgname=ttf-ms-corefonts
 pkgver=1
 pkgrel=8
+url='https://corefonts.sourceforge.net'
 source=(https://downloads.sourceforge.net/corefonts/andale32.exe
 		https://downloads.sourceforge.net/corefonts/arialb32.exe
 		https://downloads.sourceforge.net/corefonts/comic32.exe

@@ -5,6 +5,7 @@
 pkgname=dolphin
 pkgver=25.08.0
 pkgrel=1
+url='https://apps.kde.org/dolphin'
 source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz)
 
 build() {

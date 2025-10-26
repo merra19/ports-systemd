@@ -4,6 +4,7 @@
 pkgname=kidletime
 pkgver=6.17.0
 pkgrel=1
+url='https://develop.kde.org/products/frameworks'
 source=(https://download.kde.org/stable/frameworks/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

@@ -6,6 +6,7 @@ pkgname=gwenview
 pkgver=25.08.0
 pkgrel=1
 options=(!lto)
+url='https://apps.kde.org/gwenview'
 source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz)
 
 build() {

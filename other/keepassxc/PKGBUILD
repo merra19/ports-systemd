@@ -6,6 +6,7 @@ pkgname=keepassxc
 pkgver=2.7.10
 pkgrel=2
 options=(!lto)
+url='https://keepassxc.org'
 source=(https://github.com/keepassxreboot/keepassxc/releases/download/$pkgver/$pkgname-$pkgver-src.tar.xz)
 
 build() {

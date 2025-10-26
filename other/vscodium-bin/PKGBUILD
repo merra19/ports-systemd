@@ -7,6 +7,7 @@ pkgname=vscodium-bin
 pkgver=1.105.16954
 pkgrel=1
 options=(!strip)
+url='https://vscodium.com'
 source=(https://github.com/VSCodium/vscodium/releases/download/$pkgver/VSCodium-linux-x64-$pkgver.tar.gz
 	$pkgname.desktop $pkgname-url-handler.desktop vscodium-bin.sh vscodium-bin-wayland.desktop)
 IGNORE_MDSUM="yes"

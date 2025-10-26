@@ -7,6 +7,7 @@
 pkgname=wayfire-meta
 pkgver=0.9.0
 pkgrel=1
+url='https://github.com/WayfireWM/wayfire'
 source=(setupwayfire wayfire.ini White-Haired_Anime_Girl_in_Garden.png
         eteindre config.jsonc mediaplayer.py power_menu.xml style.css
         wf-shell.ini xdgportal.sh)

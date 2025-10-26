@@ -4,6 +4,7 @@ pkgname=b3sum
 pkgver=1.5.0
 pkgrel=1
 commit=d995c3d31b42d09a568a0a658bcbcd3814164ca9
+url='https://git.sr.ht/~mcf/b3sum'
 source=($pkgname-$pkgver.tar.gz::https://git.sr.ht/~mcf/b3sum/archive/$commit.tar.gz)
 
 build() {

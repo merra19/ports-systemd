@@ -5,6 +5,7 @@ pkgname=libsonic
 pkgver=0.2.0_p20250419
 pkgrel=1
 commit=fda30fba867c08c82dbbecbcc72120652e40d5cb
+url='https://github.com/waywardgeek/sonic'
 source=($pkgname-$pkgver.tar.gz::https://github.com/waywardgeek/sonic/archive/$commit.tar.gz )
 
 build() {

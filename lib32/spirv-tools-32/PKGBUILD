@@ -5,6 +5,7 @@ pkgname=spirv-tools-32
 pkgver=1.4.321.0
 pkgrel=1
 options=(!lto)
+url='https://github.com/KhronosGroup/SPIRV-Tools'
 source=(https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/vulkan-sdk-$pkgver/SPIRV-Tools-$pkgver.tar.gz)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=pugixml
 pkgver=1.15
 pkgrel=1
+url='https://pugixml.org'
 source=(https://github.com/zeux/pugixml/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

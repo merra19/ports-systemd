@@ -7,6 +7,7 @@
 pkgname=wayfire-xfce
 pkgver=0.9.0
 pkgrel=1
+url='https://github.com/WayfireWM/wayfire'
 source=(setupwayfire wayfire.ini White-Haired_Anime_Girl_in_Garden.png
         wf-shell.ini waybar-colors2.css config)
 

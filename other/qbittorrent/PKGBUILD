@@ -6,6 +6,7 @@
 pkgname=qbittorrent
 pkgver=5.1.2 
 pkgrel=1
+url='https://www.qbittorrent.org'
 source=(https://downloads.sourceforge.net/qbittorrent/$pkgname-$pkgver.tar.gz
 		$pkgname.hooks)
 

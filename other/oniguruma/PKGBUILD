@@ -4,6 +4,7 @@
 pkgname=oniguruma
 pkgver=6.9.10
 pkgrel=1
+url='https://github.com/kkos/oniguruma'
 source=(https://github.com/kkos/oniguruma/releases/download/v$pkgver/onig-$pkgver.tar.gz)
 
 build() {

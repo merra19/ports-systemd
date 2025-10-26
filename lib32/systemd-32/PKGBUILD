@@ -5,6 +5,7 @@ pkgname=systemd-32
 _pkgname=systemd
 pkgver=257.8
 pkgrel=1
+url='https://systemd.io'
 source=(https://github.com/systemd/systemd/archive/v$pkgver/systemd-$pkgver.tar.gz)
 
 build() {

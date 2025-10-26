@@ -5,6 +5,7 @@ pkgname=fontconfig-32
 _pkgname=fontconfig
 pkgver=2.17.1
 pkgrel=1
+url='https://fontconfig.org'
 source=(https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/fontconfig/$pkgver/$_pkgname-$pkgver.tar.xz)
 
 build() {

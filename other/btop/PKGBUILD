@@ -4,6 +4,7 @@
 pkgname=btop
 pkgver=1.4.5
 pkgrel=1
+url='https://github.com/aristocratos/btop'
 source=(https://github.com/aristocratos/btop/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

@@ -5,6 +5,7 @@ pkgname=nettle-32
 _pkgname=nettle
 pkgver=3.10.2
 pkgrel=1
+url='https://www.lysator.liu.se/~nisse/nettle'
 source=(https://mirror.lyrahosting.com/gnu/$_pkgname/$_pkgname-$pkgver.tar.gz)
 
 build() {

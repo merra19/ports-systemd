@@ -6,6 +6,7 @@ _pkgname=attr
 pkgver=2.5.2
 pkgrel=1
 options=(!lto)
+url='https://savannah.nongnu.org/projects/attr'
 source=(https://download.savannah.gnu.org/releases/attr/${_pkgname}-$pkgver.tar.gz)
 
 build() {

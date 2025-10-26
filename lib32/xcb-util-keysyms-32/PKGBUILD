@@ -5,6 +5,7 @@ pkgname=xcb-util-keysyms-32
 _pkgname=xcb-util-keysyms
 pkgver=0.4.1
 pkgrel=1
+url='https://xcb.freedesktop.org'
 source=(https://xcb.freedesktop.org/dist/$_pkgname-$pkgver.tar.xz)
 
 build() {

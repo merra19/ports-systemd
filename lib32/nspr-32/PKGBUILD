@@ -6,6 +6,7 @@ _pkgname=nspr
 pkgver=4.37
 pkgrel=1
 options=(!lto)
+url='https://www.mozilla.org/projects/nspr'
 source=(https://archive.mozilla.org/pub/$pkgname/releases/v$pkgver/src/$_pkgname-$pkgver.tar.gz
         0001-linux-prefer-GCC-provided-atomics-to-asssembly-imple.patch
         0002-configure.in-Remove-assembly-files-from-build.patch)

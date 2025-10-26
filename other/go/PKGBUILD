@@ -4,17 +4,21 @@
 pkgname=go
 pkgver=1.25.3
 pkgrel=1
-noextract=($pkgname-$pkgver.linux-amd64.tar.gz)
+url='https://go.dev'
 source=($pkgname-$pkgver.src.tar.gz::https://golang.org/dl/go$pkgver.src.tar.gz 
 	    $pkgname-$pkgver.linux-amd64.tar.gz::https://golang.org/dl/go$pkgver.linux-amd64.tar.gz)
-unset LC_ALL
+noextract=($pkgname-$pkgver.linux-amd64.tar.gz)
 NO_STRIP=yes
+
+	unset LC_ALL
 
 bsdtar() {
 	tar $@
 }
 
 build() {
+
+
 	install -d $pkgname-$pkgver
 
 	tar -xf $SOURCE_DIR/$pkgname-$pkgver.linux-amd64.tar.gz \

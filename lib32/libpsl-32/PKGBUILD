@@ -6,6 +6,7 @@ _pkgname=libpsl
 pkgver=0.21.5
 pkgrel=1
 options=(!lto)
+url='https://github.com/rockdaboot/libpsl'
 source=(https://github.com/rockdaboot/libpsl/releases/download/$pkgver/libpsl-$pkgver.tar.gz)
 
 build() {

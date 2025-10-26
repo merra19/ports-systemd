@@ -4,6 +4,7 @@
 pkgname=hyprcursor
 pkgver=0.1.13
 pkgrel=1
+url='https://github.com/hyprwm/hyprcursor'
 source=($pkgname-$pkgver.tar.gz::https://github.com/hyprwm/$pkgname/archive/refs/tags/v$pkgver.tar.gz)
 
 build() {

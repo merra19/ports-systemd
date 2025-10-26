@@ -6,6 +6,7 @@ pkgname=okular
 pkgver=25.08.0
 pkgrel=1
 options=(!zipman)
+url='https://okular.kde.org'
 source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz)
 
 build() {

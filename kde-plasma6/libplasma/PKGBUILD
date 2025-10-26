@@ -4,6 +4,7 @@
 pkgname=libplasma
 pkgver=6.4.4
 pkgrel=1
+url='https://kde.org/plasma-desktop'
 source=(https://download.kde.org/stable/plasma/$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=rdfind
 pkgver=1.7.0
 pkgrel=1
+url='https://github.com/pauldreik/rdfind'
 source=(https://rdfind.pauldreik.se/$pkgname-$pkgver.tar.gz)
 
 build() {

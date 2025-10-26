@@ -4,6 +4,7 @@
 pkgname=wofi
 pkgver=1.5.1
 pkgrel=1
+url='https://hg.sr.ht/~scoopta/wofi'
 source=($pkgname-$pkgver.tar.gz::https://hg.sr.ht/~scoopta/wofi/archive/v$pkgver.tar.gz)
 
 build() {

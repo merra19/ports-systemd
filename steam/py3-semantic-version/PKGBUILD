@@ -4,6 +4,7 @@
 pkgname=py3-semantic-version
 pkgver=2.10.0
 pkgrel=1
+url='https://github.com/rbarrois/python-semanticversion'
 source=($pkgname-$pkgver.tar.gz::https://github.com/rbarrois/python-semanticversion/archive/$pkgver.tar.gz)
 
 build() {

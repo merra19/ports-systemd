@@ -4,6 +4,7 @@
 pkgname=check
 pkgver=0.15.2
 pkgrel=3
+url='https://libcheck.github.io/check'
 source=(https://github.com/libcheck/check/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

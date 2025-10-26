@@ -4,6 +4,7 @@
 pkgname=py3-pyzstd
 pkgver=0.18.0
 pkgrel=1
+url='https://github.com/Rogdham/pyzstd'
 source=(https://files.pythonhosted.org/packages/source/p/pyzstd/pyzstd-$pkgver.tar.gz)
 
 build() {

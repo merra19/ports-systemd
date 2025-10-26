@@ -4,6 +4,7 @@
 pkgname=py3-libusb1
 pkgver=3.3.1
 pkgrel=1
+url='https://github.com/vpelletier/python-libusb1'
 source=(https://pypi.python.org/packages/source/l/libusb1/libusb1-$pkgver.tar.gz)
 
 build() {

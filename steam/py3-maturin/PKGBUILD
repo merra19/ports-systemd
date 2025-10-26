@@ -5,6 +5,7 @@
 pkgname=py3-maturin
 pkgver=1.9.6
 pkgrel=1
+url='https://www.maturin.rs'
 source=($pkgname-$pkgver.tar.gz::https://github.com/PyO3/maturin/archive/refs/tags/v$pkgver.tar.gz)
 
 _features="--features=full,native-tls,password-storage"

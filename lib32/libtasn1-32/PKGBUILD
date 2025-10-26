@@ -6,6 +6,7 @@ _pkgname=libtasn1
 pkgver=4.20.0
 pkgrel=1
 options=(!lto)
+url='https://www.gnu.org/software/libtasn1'
 source=(https://mirror.lyrahosting.com/gnu/libtasn1/$_pkgname-$pkgver.tar.gz)
 optsflags=" -fno-lto "
 

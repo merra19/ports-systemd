@@ -5,6 +5,7 @@
 pkgname=speech-dispatcher
 pkgver=0.12.1
 pkgrel=1
+url='https://freebsoft.org/speechd'
 source=(https://github.com/brailcom/speechd/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
 backup=(etc/speech-dispatcher/clients/emacs.conf etc/speech-dispatcher/modules/dtk-generic.conf
         etc/speech-dispatcher/modules/epos-generic.conf

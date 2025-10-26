@@ -4,6 +4,7 @@
 pkgname=wayland-logout
 pkgver=1.4
 pkgrel=1
+url='https://github.com/soreau/wayland-logout'
 source=(https://github.com/soreau/wayland-logout/archive/v$pkgver.tar.gz)
 
 build() {

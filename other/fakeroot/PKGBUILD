@@ -5,6 +5,7 @@ pkgname=fakeroot
 pkgver=1.37.1.2
 pkgrel=1
 options=(!lto)
+url='https://packages.qa.debian.org/f/fakeroot.html'
 source=(https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/fakeroot/$pkgver-1/fakeroot_$pkgver.orig.tar.gz)
 
 build() {

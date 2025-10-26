@@ -4,6 +4,7 @@
 pkgname=pulseaudio-qt
 pkgver=1.7.0
 pkgrel=1
+url='https://invent.kde.org/libraries/pulseaudio-qt'
 source=(https://download.kde.org/stable/pulseaudio-qt/$pkgname-$pkgver.tar.xz)
 
 build() {

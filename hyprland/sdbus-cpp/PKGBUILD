@@ -4,6 +4,7 @@
 pkgname=sdbus-cpp
 pkgver=2.1.0
 pkgrel=1
+url='https://github.com/Kistler-Group/sdbus-cpp'
 source=(https://github.com/Kistler-Group/sdbus-cpp/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

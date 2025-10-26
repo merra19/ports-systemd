@@ -9,6 +9,7 @@
 pkgname=flatpak
 pkgver=1.16.1
 pkgrel=1
+url='https://flatpak.org'
 source=(https://github.com/flatpak/flatpak/releases/download/$pkgver/$pkgname-$pkgver.tar.xz
         $pkgname.hooks)
 

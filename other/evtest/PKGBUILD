@@ -4,6 +4,7 @@
 pkgname=evtest
 pkgver=1.36
 pkgrel=1
+url='https://gitlab.freedesktop.org/libevdev/evtest'
 source=(https://gitlab.freedesktop.org/libevdev/evtest/-/archive/evtest-${pkgver}/evtest-evtest-${pkgver}.tar.gz)
 
 build() {

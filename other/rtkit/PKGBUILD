@@ -4,6 +4,7 @@
 pkgname=rtkit
 pkgver=0.13
 pkgrel=3
+url='https://github.com/heftig/rtkit'
 source=(https://github.com/heftig/rtkit/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
 		$pkgname.hooks rtkit-0.13_daemon_verbosity.patch
 		rtkit-0.13_meson_xxd_optional.patch)

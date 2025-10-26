@@ -4,6 +4,7 @@
 pkgname=docker-compose
 pkgver=2.40.1
 pkgrel=1
+url='https://github.com/docker/compose'
 source=($pkgname-$pkgver.tar.gz::https://github.com/docker/compose/archive/v$pkgver.tar.gz)
 
 build() {

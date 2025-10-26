@@ -4,6 +4,7 @@
 pkgname=mako
 pkgver=1.10.0
 pkgrel=1
+url='https://github.com/emersion/mako'
 source=($pkgname-$pkgver.tar.gz::https://github.com/emersion/mako/releases/download/v$pkgver/mako-$pkgver.tar.gz
         systemd-dbus-activation.patch)
 

@@ -4,6 +4,7 @@
 pkgname=hunspell-en_us
 pkgver=2020.12.07
 pkgrel=2
+url='https://hunspell.github.io'
 source=(https://downloads.sourceforge.net/project/wordlist/speller/$pkgver/hunspell-en_US-large-$pkgver.zip
         hunspell-en-allow-non-typographical.marks.patch)
 

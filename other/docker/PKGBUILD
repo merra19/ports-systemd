@@ -6,6 +6,7 @@ pkgver=28.5.1
 pkgrel=1
 _moby_commit=bea959c7b793b32a893820b97c4eadc7c87fabb0
 _tini_commit=de40ad007797e0dcd8b7126f27bb87401d224240
+url='https://www.docker.com'
 source=(https://github.com/moby/moby/archive/v${pkgver}/moby-${pkgver}.tar.gz \
 	https://github.com/docker/cli/archive/v${pkgver}/cli-${pkgver}.tar.gz \
 	tini-$_tini_commit.tar.gz::https://github.com/krallin/tini/archive/$_tini_commit.tar.gz

@@ -5,6 +5,7 @@ pkgname=liberation-fonts
 pkgver=2.1.5
 pkgrel=1
 options=(!lto)
+url='https://github.com/liberationfonts/liberation-fonts'
 source=(https://github.com/liberationfonts/liberation-fonts/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=snowball-stemmer
 pkgver=2.2.0
 pkgrel=1
+url='https://snowballstem.org'
 source=($pkgname-$pkgver.tar.gz::https://github.com/snowballstem/snowball/archive/refs/tags/v$pkgver.tar.gz
         dynamiclib.diff)
 

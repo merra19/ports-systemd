@@ -6,6 +6,7 @@ pkgname=zlib-32
 _pkgname=zlib
 pkgver=1.3.1
 pkgrel=1
+url='https://zlib.net'
 source=(https://www.zlib.net/fossils/${_pkgname}-$pkgver.tar.gz
         configure.patch lto.patch nomemlevel.patch)
 

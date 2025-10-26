@@ -4,6 +4,7 @@
 pkgname=ksshaskpass
 pkgver=6.4.4
 pkgrel=1
+url='https://invent.kde.org/plasma/ksshaskpass'
 source=(https://download.kde.org/stable/plasma/$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

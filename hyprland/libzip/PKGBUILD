@@ -4,6 +4,7 @@
 pkgname=libzip
 pkgver=1.11.4
 pkgrel=3
+url='https://nih.at/libzip'
 source=(https://libzip.org/download/$pkgname-$pkgver.tar.xz)
 
 build() {

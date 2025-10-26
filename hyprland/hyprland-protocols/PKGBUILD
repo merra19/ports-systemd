@@ -4,6 +4,7 @@
 pkgname=hyprland-protocols
 pkgver=0.6.4
 pkgrel=1
+url='https://github.com/hyprwm/hyprland-protocols'
 source=($pkgname-$pkgver.tar.gz::https://github.com/hyprwm/$pkgname/archive/refs/tags/v$pkgver.tar.gz)
 
 build() {

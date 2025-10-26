@@ -6,6 +6,7 @@
 pkgname=ostree
 pkgver=2025.6
 pkgrel=1
+url='https://ostreedev.github.io/ostree'
 source=(https://github.com/ostreedev/ostree/releases/download/v$pkgver/libostree-$pkgver.tar.xz
 		ostree-2024.8-Werror.patch)
 

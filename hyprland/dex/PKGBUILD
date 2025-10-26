@@ -4,6 +4,7 @@
 pkgname=dex
 pkgver=0.10.1
 pkgrel=1
+url='http://e-jc.de'
 source=($pkgname-$pkgver.tar.gz::https://github.com/jceb/dex/archive/refs/tags/v$pkgver.tar.gz)
 
 build() {

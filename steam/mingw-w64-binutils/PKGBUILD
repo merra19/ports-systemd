@@ -5,6 +5,7 @@ pkgname=mingw-w64-binutils
 pkgver=2.45
 pkgrel=1
 options=(!libtool !emptydirs)
+url='https://sourceware.org/binutils'
 source=(https://mirror.lyrahosting.com/gnu/binutils/binutils-${pkgver}.tar.xz)
 
 build() {

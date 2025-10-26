@@ -6,6 +6,7 @@ pkgver=6.0_p29
 _version=$(echo ${pkgver%_p*}  | sed 's/\.//')
 pkgrel=1
 options=(!lto)
+url='https://infozip.sourceforge.net/UnZip.html'
 source=(https://downloads.sourceforge.net/infozip/unzip$_version.tar.gz
 		http://deb.debian.org/debian/pool/main/u/unzip/${pkgname}_${pkgver/_p/-}.debian.tar.xz
 		unzip-6.0-no-exec-stack.patch unzip-6.0-format-security.patch

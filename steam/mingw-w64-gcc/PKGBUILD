@@ -6,6 +6,7 @@ pkgname=mingw-w64-gcc
 pkgver=15.2.0
 pkgrel=2
 options=(!emptydirs !strip !lto)
+url='https://gcc.gnu.org'
 source=(https://mirror.lyrahosting.com/gnu/gcc/gcc-$pkgver/gcc-$pkgver.tar.xz)
 
 build() {

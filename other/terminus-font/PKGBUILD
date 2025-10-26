@@ -5,6 +5,7 @@
 pkgname=terminus-font
 pkgver=4.49.1
 pkgrel=3
+url='https://terminus-font.sourceforge.net'
 source=(https://downloads.sourceforge.net/project/$pkgname/$pkgname-${pkgver%.1}/terminus-font-$pkgver.tar.gz
 		fix-75-yes-terminus.patch)
 

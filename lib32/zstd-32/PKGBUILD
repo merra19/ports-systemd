@@ -5,6 +5,7 @@ pkgname=zstd-32
 _pkgname=zstd
 pkgver=1.5.7
 pkgrel=1
+url='https://facebook.github.io/zstd'
 source=(https://github.com/facebook/zstd/releases/download/v$pkgver/${_pkgname}-$pkgver.tar.gz)
 
 build() {

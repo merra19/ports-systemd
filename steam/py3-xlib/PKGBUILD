@@ -5,6 +5,7 @@
 pkgname=py3-xlib
 pkgver=0.33
 pkgrel=1
+url='https://github.com/python-xlib/python-xlib'
 source=(https://github.com/python-xlib/python-xlib/releases/download/$pkgver/python-xlib-$pkgver.tar.bz2)
 
 build() {

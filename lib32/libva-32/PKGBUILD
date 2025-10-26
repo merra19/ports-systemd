@@ -5,6 +5,7 @@ pkgname=libva-32
 _pkgname=libva
 pkgver=2.22.0
 pkgrel=1
+url='https://github.com/intel/libva'
 source=(https://github.com/intel/libva/archive/$pkgver/$_pkgname-$pkgver.tar.gz)
 
 build() {

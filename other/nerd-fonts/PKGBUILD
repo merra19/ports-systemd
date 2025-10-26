@@ -5,6 +5,7 @@ pkgname=nerd-fonts
 pkgver=3.4.0
 pkgrel=1
 options=(!strip)
+url='https://www.nerdfonts.com'
 source=(0xproto-$pkgver.tar.xz::https://github.com/ryanoasis/nerd-fonts/releases/download/v$pkgver/0xProto.tar.xz
         3270-$pkgver.tar.xz::https://github.com/ryanoasis/nerd-fonts/releases/download/v$pkgver/3270.tar.xz
         agave-$pkgver.tar.xz::https://github.com/ryanoasis/nerd-fonts/releases/download/v$pkgver/Agave.tar.xz

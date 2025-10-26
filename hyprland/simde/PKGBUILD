@@ -4,6 +4,7 @@
 pkgname=simde
 pkgver=0.8.2
 pkgrel=1
+url='https://simd-everywhere.github.io/blog'
 source=(https://github.com/simd-everywhere/simde/archive/v$pkgver/$pkgname-v$pkgver.tar.gz)
 
 build() {

@@ -12,6 +12,7 @@ dxbc_spirv_commit=c8ad050fcb29e42a2f57d9f59e97488f465c436d
 vulkan_commit=234c4b7370a8ea3239a214c9e871e4b17c89f4ab
 directx_commit=9df86f2341616ef1888ae59919feaa6d4fad693d
 options=(!lto)
+url='https://github.com/doitsujin/dxvk'
 source=($pkgname-$commit.zip::https://github.com/doitsujin/dxvk/archive/$commit.zip
 		libdisplay-info-$spirvcommit.tar.gz::https://github.com/doitsujin/libdisplay-info/archive/$libdisplay_commit.tar.gz
 		dxbc-spirv-$dxbc_commit.tar.gz::https://github.com/doitsujin/dxbc-spirv/archive/$dxbc_commit.tar.gz

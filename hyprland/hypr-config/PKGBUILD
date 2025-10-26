@@ -4,6 +4,7 @@
 pkgname=hypr-config
 pkgver=1
 pkgrel=1
+url='https://github.com/typecraft-dev/dotfiles'
 source=(mocha.conf hyprland.conf current-theme.conf kitty.conf
         setup-hypr config.jsonc mocha.css style.css power_menu.xml
         alacritty.toml catppuccin-mocha.toml hyprpaper.conf

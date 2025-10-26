@@ -5,6 +5,7 @@
 pkgname=eww
 pkgver=0.6.0
 pkgrel=4
+url='https://elkowar.github.io/eww'
 source=($pkgname-$pkgver.tar.gz::https://github.com/elkowar/eww/archive/refs/tags/v$pkgver.tar.gz
 		eww-0.6.0-update-crates.patch)
 

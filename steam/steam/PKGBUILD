@@ -13,6 +13,7 @@
 pkgname=steam
 pkgver=1.0.0.84
 pkgrel=1
+url='https://store.steampowered.com'
 source=(http://repo.steampowered.com/$pkgname/pool/$pkgname/s/$pkgname/${pkgname}_$pkgver.tar.gz)
 
 build() {

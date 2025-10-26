@@ -5,6 +5,7 @@
 pkgname=xsane
 pkgver=0.999
 pkgrel=7
+url='http://www.xsane.org'
 source=(http://http.debian.net/debian/pool/main/x/$pkgname/${pkgname}_$pkgver.orig.tar.gz
 		xsane-0.995-xdg-open.patch
 		0165-xsane-0.999-lcms2.patch

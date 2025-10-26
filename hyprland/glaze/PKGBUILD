@@ -4,6 +4,7 @@
 pkgname=glaze
 pkgver=5.7.0
 pkgrel=1
+url='https://github.com/stephenberry/glaze'
 source=(https://github.com/stephenberry/glaze//archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

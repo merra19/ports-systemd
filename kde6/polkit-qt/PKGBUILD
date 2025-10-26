@@ -4,6 +4,7 @@
 pkgname=polkit-qt
 pkgver=0.200.0
 pkgrel=1
+url='https://api.kde.org/polkit-qt-1/html'
 source=(https://download.kde.org/stable/polkit-qt-1/$pkgname-1-$pkgver.tar.xz)
 
 build() {

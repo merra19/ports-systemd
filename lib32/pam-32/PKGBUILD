@@ -4,6 +4,7 @@
 pkgname=pam-32
 pkgver=1.7.1
 pkgrel=1
+url='https://github.com/linux-pam/linux-pam'
 source=(https://github.com/linux-pam/linux-pam/releases/download/v$pkgver/Linux-PAM-$pkgver.tar.xz)
 
 build() {

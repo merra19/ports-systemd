@@ -4,6 +4,7 @@
 pkgname=tomlplusplus
 pkgver=3.4.0
 pkgrel=1
+url='https://marzer.github.io/tomlplusplus'
 source=($pkgname-$pkgver.tar.gz::https://github.com/marzer/$pkgname/archive/refs/tags/v$pkgver.tar.gz)
 
 build() {

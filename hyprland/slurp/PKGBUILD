@@ -4,6 +4,7 @@
 pkgname=slurp
 pkgver=1.5.0
 pkgrel=1
+url='https://github.com/emersion/slurp'
 source=(https://github.com/emersion/slurp/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

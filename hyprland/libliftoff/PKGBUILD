@@ -4,6 +4,7 @@
 pkgname=libliftoff
 pkgver=0.5.0
 pkgrel=1
+url='https://gitlab.freedesktop.org/emersion/libliftoff'
 source=(https://gitlab.freedesktop.org/emersion/libliftoff/-/releases/v$pkgver/downloads/$pkgname-$pkgver.tar.gz)
 
 build() {

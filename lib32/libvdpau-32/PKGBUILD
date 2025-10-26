@@ -5,6 +5,7 @@ pkgname=libvdpau-32
 _pkgname=libvdpau
 pkgver=1.5
 pkgrel=1
+url='https://www.freedesktop.org/wiki/Software/VDPAU'
 source=(https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/$pkgver/$_pkgname-$pkgver.tar.bz2)
 
 build() {

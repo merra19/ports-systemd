@@ -6,6 +6,7 @@ _pkgname=ncurses
 pkgver=6.5_20250809
 _pkgver=${pkgver/_/-}
 pkgrel=1
+url='https://www.gnu.org/software/ncurses'
 source=(https://invisible-mirror.net/archives/ncurses/current/${_pkgname}-${_pkgver}.tgz)
 
 build() {

@@ -5,6 +5,7 @@ pkgname=dbus-32
 _pkgname=dbus
 pkgver=1.16.2
 pkgrel=1
+url='https://www.freedesktop.org/wiki/Software/dbus'
 source=(https://dbus.freedesktop.org/releases/dbus/${_pkgname}-$pkgver.tar.xz
         malloc_trim.patch memory.patch)
 

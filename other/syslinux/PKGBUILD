@@ -5,6 +5,7 @@ pkgname=syslinux
 pkgver=6.03
 pkgrel=1
 options=(!strip !lto)
+url='https://www.syslinux.org'
 source=(http://www.kernel.org/pub/linux/utils/boot/$pkgname/$pkgname-$pkgver.tar.xz
 		syslinux-6.03-sysmacros.patch fix-build-with-glibc-2.36.patch
 		isolinux.cfg splash.png)

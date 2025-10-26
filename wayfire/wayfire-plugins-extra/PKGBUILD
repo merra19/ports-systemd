@@ -9,6 +9,7 @@ filter_commit=00024b531548817ac6c7fed7436e55c4edc5caab
 focus_commit=b5c5029f1a695bcd79e2fa0de615cd8028f64f62
 pixdecor_commit=8a0b02861221450947f02352d97c81a115ffe05d
 wayfireshadows_commit=453c21713dbe1ebbd209cfa29c14fbb6e9a9d991
+url='https://github.com/WayfireWM/wayfire-plugins-extra'
 source=($pkgname-$pkgver.tar.gz::https://github.com/WayfireWM/wayfire-plugins-extra/archive/refs/tags/v$pkgver.tar.gz
         filters-$filter_commit.zip::https://github.com/soreau/filters/archive/$filter_commit.zip
         focus-request-$focus_commit.zip::https://gitlab.com/wayfireplugins/focus-request/-/archive/$focus_commit/focus-request-$focus_commit.zip

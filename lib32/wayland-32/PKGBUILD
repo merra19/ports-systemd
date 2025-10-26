@@ -5,6 +5,7 @@ pkgname=wayland-32
 _pkgname=wayland
 pkgver=1.24.0
 pkgrel=1
+url='https://wayland.freedesktop.org'
 source=(https://gitlab.freedesktop.org/wayland/wayland/-/releases/$pkgver/downloads/${_pkgname}-$pkgver.tar.xz)
 
 build() {

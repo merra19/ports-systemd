@@ -5,6 +5,7 @@
 pkgname=py3-cbor2
 pkgver=5.7.0
 pkgrel=1
+url='https://github.com/agronholm/cbor2'
 source=($pkgname-$pkgver.tar.gz::https://files.pythonhosted.org/packages/source/c/cbor2/cbor2-$pkgver.tar.gz)
 
 build() {

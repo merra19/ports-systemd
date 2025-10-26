@@ -6,6 +6,7 @@ _pkgname=lm-sensors
 pkgver=3.6.2
 vrsn=$(echo $pkgver | sed 's/\./-/g')
 pkgrel=1
+url='https://hwmon.wiki.kernel.org'
 source=($_pkgname-$pkgver.tar.gz::https://github.com/hramrach/lm-sensors/archive/refs/tags/V$vrsn.tar.gz)
 
 build() {

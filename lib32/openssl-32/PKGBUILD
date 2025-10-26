@@ -6,6 +6,7 @@ _pkgname=openssl
 pkgver=3.5.4
 pkgrel=1
 options=(!lto)
+url='https://openssl-library.org'
 source=(https://www.openssl.org/source/${_pkgname}-$pkgver.tar.gz)
 
 build() {

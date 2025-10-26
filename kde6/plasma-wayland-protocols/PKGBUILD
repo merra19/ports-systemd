@@ -4,6 +4,7 @@
 pkgname=plasma-wayland-protocols
 pkgver=1.18.0
 pkgrel=1
+url='https://invent.kde.org/libraries/plasma-wayland-protocols'
 source=(https://download.kde.org/stable/plasma-wayland-protocols/$pkgname-$pkgver.tar.xz)
 
 build() {
