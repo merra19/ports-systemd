@@ -4,6 +4,7 @@
 pkgname=libepoxy
 pkgver=1.5.10
 pkgrel=1
+url='https://github.com/anholt/libepoxy'
 source=(https://download.gnome.org/sources/libepoxy/1.5/$pkgname-$pkgver.tar.xz)
 
 build() {

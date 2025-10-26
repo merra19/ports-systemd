@@ -4,6 +4,7 @@
 pkgname=keybinder-3.0
 pkgver=0.3.2
 pkgrel=1
+url='https://github.com/kupferlauncher/keybinder'
 source=(https://github.com/kupferlauncher/keybinder/releases/download/keybinder-3.0-v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

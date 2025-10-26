@@ -5,6 +5,7 @@
 pkgname=libgweather
 pkgver=4.4.4
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/libgweather'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/blfs/12.4/libgweather-4.4.4-upstream_fix-1.patch)
 

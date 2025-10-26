@@ -9,6 +9,7 @@
 pkgname=gvfs
 pkgver=1.56.1
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/gvfs'
 source=(https://download.gnome.org/sources/gvfs/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

@@ -5,6 +5,7 @@ pkgname=gnome-themes-extra
 pkgver=3.28
 pkgrel=1
 options=(!lto)
+url='https://gitlab.gnome.org/Archive/gnome-icon-theme-extras'
 source=(https://download.gnome.org/sources/gnome-themes-extra/$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

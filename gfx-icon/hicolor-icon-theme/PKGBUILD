@@ -5,6 +5,7 @@ pkgname=hicolor-icon-theme
 pkgver=0.18
 pkgrel=1
 options=(!lto)
+url='https://freedesktop.org/wiki/Software/icon-theme'
 source=(http://icon-theme.freedesktop.org/releases/$pkgname-$pkgver.tar.xz)
 
 build() {

@@ -6,6 +6,7 @@ pkgname=sddm
 pkgver=0.21.0
 pkgrel=1
 options=(!lto)
+url='https://github.com/sddm/sddm'
 source=(https://github.com/sddm/sddm/archive/v$pkgver/$pkgname-$pkgver.tar.gz
         sddm sddm-autologin sddm-greeter $pkgname.hooks)
 backup=(usr/share/sddm/scripts/Xsetup usr/share/sddm/scripts/Xstop)

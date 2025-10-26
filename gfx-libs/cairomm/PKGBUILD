@@ -4,6 +4,7 @@
 pkgname=cairomm
 pkgver=1.18.0
 pkgrel=1
+url='https://cairographics.org/cairomm'
 source=(https://www.cairographics.org/releases/cairomm-$pkgver.tar.xz)
 
 build() {

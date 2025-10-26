@@ -11,6 +11,7 @@ pkgname=qt5
 pkgver=5.15.17
 pkgrel=1
 #options=(!lto)
+url='https://www.qt.io'
 source=(https://download.qt.io/archive/qt/${pkgver%.*}/$pkgver/single/qt-everywhere-opensource-src-$pkgver.tar.xz
         qt-everywhere-opensource-src-$pkgver-kf5-1.patch
         qtbase-5.15.8-fix-missing-qtsan-include.patch

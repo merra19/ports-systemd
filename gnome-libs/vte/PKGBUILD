@@ -5,6 +5,7 @@
 pkgname=vte
 pkgver=0.80.3
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/vte'
 source=(https://gitlab.gnome.org/GNOME/vte/-/archive/$pkgver/$pkgname-$pkgver.tar.gz
         defaults.patch)
 

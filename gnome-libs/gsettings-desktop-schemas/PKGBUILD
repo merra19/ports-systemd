@@ -4,6 +4,7 @@
 pkgname=gsettings-desktop-schemas
 pkgver=48.0
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas'
 source=(https://download.gnome.org/sources/gsettings-desktop-schemas/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

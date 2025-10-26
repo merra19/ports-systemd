@@ -5,6 +5,7 @@
 pkgname=at-spi2-core
 pkgver=2.56.4
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/at-spi2-core'
 source=(https://download.gnome.org/sources/at-spi2-core/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

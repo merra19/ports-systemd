@@ -4,6 +4,7 @@
 pkgname=geocode-glib
 pkgver=3.26.4
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/geocode-glib'
 source=(https://download.gnome.org/sources/geocode-glib/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

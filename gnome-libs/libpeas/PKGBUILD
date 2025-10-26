@@ -4,6 +4,7 @@
 pkgname=libpeas
 pkgver=1.36.0
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/libpeas'
 source=(https://download.gnome.org/sources/libpeas/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

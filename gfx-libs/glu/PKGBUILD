@@ -4,6 +4,7 @@
 pkgname=glu
 pkgver=9.0.3
 pkgrel=1
+url='https://gitlab.freedesktop.org/mesa/glu'
 source=(https://archive.mesa3d.org/glu/$pkgname-$pkgver.tar.xz)
 
 build() {

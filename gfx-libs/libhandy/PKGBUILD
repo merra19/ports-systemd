@@ -4,6 +4,7 @@
 pkgname=libhandy
 pkgver=1.8.3
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/libhandy'
 source=(https://download.gnome.org/sources/libhandy/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

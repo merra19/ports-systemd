@@ -4,6 +4,7 @@
 pkgname=dconf
 pkgver=0.40.0
 pkgrel=1
+url='https://wiki.gnome.org/Projects/dconf'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

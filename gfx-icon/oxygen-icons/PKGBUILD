@@ -4,6 +4,7 @@
 pkgname=oxygen-icons
 pkgver=6.0.0
 pkgrel=1
+url='https://develop.kde.org/frameworks/oxygen-icons'
 source=(https://download.kde.org/stable/$pkgname/$pkgname-$pkgver.tar.xz)
 
 build() {

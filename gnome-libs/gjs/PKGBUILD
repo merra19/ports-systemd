@@ -5,6 +5,7 @@
 pkgname=gjs
 pkgver=1.84.2
 pkgrel=1
+url='https://gjs.guide'
 source=(https://download.gnome.org/sources/gjs/${pkgver%.*}/$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/blfs/12.4/gjs-1.84.2-spidermonkey_140-1.patch)
 

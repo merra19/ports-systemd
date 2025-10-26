@@ -6,6 +6,7 @@ pkgname=gcr4
 _pkgname=gcr
 pkgver=4.4.0.1
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/gcr'
 source=(https://download.gnome.org/sources/gcr/${pkgver%.*.*}/${_pkgname}-$pkgver.tar.xz)
 
 build() {

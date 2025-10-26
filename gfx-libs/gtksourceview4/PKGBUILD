@@ -4,6 +4,7 @@
 pkgname=gtksourceview4
 pkgver=4.8.4
 pkgrel=1
+url='https://wiki.gnome.org/Projects/GtkSourceView'
 source=(https://download.gnome.org/sources/gtksourceview/${pkgver%.*}/gtksourceview-${pkgver}.tar.xz)
 
 build() {

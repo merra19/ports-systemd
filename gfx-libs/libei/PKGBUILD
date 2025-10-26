@@ -4,6 +4,7 @@
 pkgname=libei
 pkgver=1.4.1
 pkgrel=1
+url='https://gitlab.freedesktop.org/libinput/libei'
 source=(https://gitlab.freedesktop.org/libinput/libei/-/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

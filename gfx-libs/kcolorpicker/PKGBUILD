@@ -5,6 +5,7 @@ pkgname=kcolorpicker
 _pkgname=kColorPicker
 pkgver=0.3.1
 pkgrel=1
+url='https://github.com/ksnip/kColorPicker'
 source=(https://github.com/ksnip/kColorPicker/archive/refs/tags/v$pkgver/kColorPicker-$pkgver.tar.gz)
 
 build() {

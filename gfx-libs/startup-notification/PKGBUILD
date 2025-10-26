@@ -5,6 +5,7 @@ pkgname=startup-notification
 pkgver=0.12
 pkgrel=1
 options=(!lto)
+url='https://www.freedesktop.org/wiki/Software/startup-notification'
 source=(https://www.freedesktop.org/software/startup-notification/releases/$pkgname-$pkgver.tar.gz)
 
 build() {

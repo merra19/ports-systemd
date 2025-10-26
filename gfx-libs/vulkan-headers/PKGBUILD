@@ -4,6 +4,7 @@
 pkgname=vulkan-headers
 pkgver=1.4.321
 pkgrel=1
+url='https://github.com/KhronosGroup/Vulkan-Headers'
 source=(https://github.com/KhronosGroup/Vulkan-Headers/archive/v$pkgver/Vulkan-Headers-$pkgver.tar.gz)
 
 build() {

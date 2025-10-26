@@ -4,6 +4,7 @@
 pkgname=graphene
 pkgver=1.10.8
 pkgrel=1
+url='https://ebassi.github.io/graphene'
 source=(https://download.gnome.org/sources/graphene/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

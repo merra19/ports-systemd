@@ -4,6 +4,7 @@
 pkgname=libadwaita
 pkgver=1.7.6
 pkgrel=1
+url='https://gnome.pages.gitlab.gnome.org/libadwaita'
 source=(https://download.gnome.org/sources/libadwaita/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

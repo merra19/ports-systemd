@@ -4,6 +4,7 @@
 pkgname=atkmm-2.28
 pkgver=2.28.4
 pkgrel=1
+url='https://gtkmm.gnome.org/en/index.html'
 source=(https://download.gnome.org/sources/atkmm/${pkgver%.*}/atkmm-$pkgver.tar.xz)
 
 build() {

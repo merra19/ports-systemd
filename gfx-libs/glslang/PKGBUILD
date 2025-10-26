@@ -5,6 +5,7 @@ pkgname=glslang
 pkgver=15.4.0
 pkgrel=1
 options=(!lto)
+url='https://www.khronos.org/opengles/sdk/tools/Reference-Compiler'
 source=(https://github.com/KhronosGroup/glslang/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {
