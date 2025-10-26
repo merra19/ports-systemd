@@ -9,6 +9,7 @@ pkgname=tumbler
 pkgver=4.20.0
 pkgrel=1
 options=(!lto)
+url='https://docs.xfce.org/xfce/tumbler/start'
 source=(https://archive.xfce.org/src/xfce/tumbler/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 
 build() {

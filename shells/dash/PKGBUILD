@@ -4,6 +4,7 @@
 pkgname=dash
 pkgver=0.5.12
 pkgrel=1
+url='http://gondor.apana.org.au/~herbert/dash'
 source=(http://gondor.apana.org.au/~herbert/dash/files/$pkgname-$pkgver.tar.gz)
 
 build() {

@@ -5,6 +5,7 @@ pkgname=gpgmepp
 pkgver=2.0.0
 pkgrel=1
 options=(!lto)
+url='https://www.gnupg.org/related_software/gpgme'
 source=(https://www.gnupg.org/ftp/gcrypt/gpgmepp/$pkgname-$pkgver.tar.xz)
 
 build() {

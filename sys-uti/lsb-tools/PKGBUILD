@@ -4,6 +4,7 @@
 pkgname=lsb-tools
 pkgver=0.12
 pkgrel=1
+url='https://github.com/lfs-book/LSB-Tools'
 source=(https://github.com/lfs-book/LSB-Tools/releases/download/v$pkgver/LSB-Tools-$pkgver.tar.gz)
 
 build() {

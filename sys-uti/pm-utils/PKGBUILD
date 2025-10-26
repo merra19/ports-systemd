@@ -4,6 +4,7 @@
 pkgname=pm-utils
 pkgver=1.4.1
 pkgrel=1
+url='https://pm-utils.freedesktop.org'
 source=(https://pm-utils.freedesktop.org/releases/$pkgname-$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.4/$pkgname-$pkgver-bugfixes-1.patch)
 

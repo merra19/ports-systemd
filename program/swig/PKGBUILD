@@ -5,6 +5,7 @@ pkgname=swig
 pkgver=4.3.1
 pkgrel=1
 options=(!lto)
+url='http://www.swig.org'
 source=(https://downloads.sourceforge.net/swig/$pkgname-$pkgver.tar.gz)
 
 build() {

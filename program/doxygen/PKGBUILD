@@ -5,6 +5,7 @@
 pkgname=doxygen
 pkgver=1.14.0
 pkgrel=1
+url='https://www.doxygen.nl'
 source=(https://doxygen.nl/files/$pkgname-$pkgver.src.tar.gz)
 
 build() {

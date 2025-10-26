@@ -5,6 +5,7 @@
 pkgname=rofi-dotfiles
 pkgver=3.6.1
 pkgrel=1
+url='https://github.com/owl4ce/dotfiles'
 source=(https://github.com/owl4ce/dotfiles/archive/refs/heads/ng.zip)
 
 build() {   

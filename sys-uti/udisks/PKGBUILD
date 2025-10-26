@@ -8,6 +8,7 @@ pkgname=udisks
 pkgver=2.10.2
 pkgrel=1
 options=(!lto)
+url='https://www.freedesktop.org/wiki/Software/udisks'
 source=(https://github.com/storaged-project/udisks/releases/download/udisks-$pkgver/$pkgname-$pkgver.tar.bz2
         rules)
 backup=(etc/udisks2/udisks2.conf)

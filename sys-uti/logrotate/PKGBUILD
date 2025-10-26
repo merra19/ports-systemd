@@ -4,6 +4,7 @@
 pkgname=logrotate
 pkgver=3.22.0
 pkgrel=1
+url='https://github.com/logrotate/logrotate'
 source=(https://github.com/logrotate/logrotate/releases/download/$pkgver/$pkgname-$pkgver.tar.xz
         logrotate.conf sys.log logrotate.service logrotate.timer)
 

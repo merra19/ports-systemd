@@ -6,6 +6,7 @@ pkgname=cryptsetup
 pkgver=2.8.1
 pkgrel=1
 options=(!lto)
+url='https://gitlab.com/cryptsetup/cryptsetup'
 source=(https://www.kernel.org/pub/linux/utils/cryptsetup/v${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

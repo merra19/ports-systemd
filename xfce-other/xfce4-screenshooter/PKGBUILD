@@ -5,6 +5,7 @@
 pkgname=xfce4-screenshooter
 pkgver=1.11.2
 pkgrel=1
+url='https://docs.xfce.org/apps/xfce4-screenshooter/start'
 source=(https://archive.xfce.org/src/apps/xfce4-screenshooter/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

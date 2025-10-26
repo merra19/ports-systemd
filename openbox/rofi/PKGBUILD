@@ -6,6 +6,7 @@
 pkgname=rofi
 pkgver=2.0.0
 pkgrel=1
+url='https://github.com/davatorium/rofi'
 source=(https://github.com/davatorium/rofi/releases/download/$pkgver/$pkgname-$pkgver.tar.xz
         fix_xfce4-terminal_binary_name.patch)
 

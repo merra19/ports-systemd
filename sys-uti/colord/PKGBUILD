@@ -6,6 +6,7 @@
 pkgname=colord
 pkgver=1.4.8
 pkgrel=1
+url='https://www.freedesktop.org/software/colord'
 source=(https://www.freedesktop.org/software/colord/releases/$pkgname-$pkgver.tar.xz
         $pkgname.hooks)
 

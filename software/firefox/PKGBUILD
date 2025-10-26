@@ -9,6 +9,7 @@ pkgname=firefox
 pkgver=140.4.0
 pkgrel=1
 options=(!lto !emptydirs !makeflags)
+url='https://www.firefox.com'
 source=(https://archive.mozilla.org/pub/firefox/releases/${pkgver}esr/source/firefox-${pkgver}esr.source.tar.xz
         firefox-symbolic.svg firefox.desktop org.mozilla.firefox.metainfo.xml)
 

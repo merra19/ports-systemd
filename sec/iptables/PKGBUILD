@@ -5,6 +5,7 @@ pkgname=iptables
 pkgver=1.8.11
 pkgrel=1
 options=(!lto)
+url='https://www.netfilter.org/projects/iptables'
 source=(https://www.netfilter.org/projects/iptables/files/$pkgname-$pkgver.tar.xz
         rc.iptables)
 

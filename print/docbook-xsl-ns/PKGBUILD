@@ -4,6 +4,7 @@
 pkgname=docbook-xsl-ns
 pkgver=1.79.2
 pkgrel=1
+url='https://github.com/docbook/wiki/wiki'
 source=(https://github.com/docbook/xslt10-stylesheets/releases/download/release/$pkgver/docbook-xsl-$pkgver.tar.bz2
         https://www.linuxfromscratch.org/patches/blfs/12.4/docbook-xsl-$pkgver-stack_fix-1.patch)
 

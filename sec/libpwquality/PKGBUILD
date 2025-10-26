@@ -5,6 +5,7 @@ pkgname=libpwquality
 pkgver=1.4.5
 pkgrel=1
 options=(!lto)
+url='https://github.com/libpwquality/libpwquality'
 source=(https://github.com/libpwquality/libpwquality/releases/download/$pkgname-$pkgver/$pkgname-$pkgver.tar.bz2
         system-password2)
 

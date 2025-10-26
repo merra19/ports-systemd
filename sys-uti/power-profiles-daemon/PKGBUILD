@@ -4,6 +4,7 @@
 pkgname=power-profiles-daemon
 pkgver=0.30
 pkgrel=1
+url='https://gitlab.freedesktop.org/upower/power-profiles-daemon'
 source=(https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

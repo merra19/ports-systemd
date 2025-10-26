@@ -4,6 +4,7 @@
 pkgname=make-ca
 pkgver=1.16.1
 pkgrel=1
+url='https://github.com/lfs-book/make-ca'
 source=(https://github.com/lfs-book/make-ca/archive/v$pkgver/$pkgname-$pkgver.tar.gz
         update-pki.sh pythoncerts.sh)
 

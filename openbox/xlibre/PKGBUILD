@@ -6,6 +6,7 @@
 pkgname=xlibre
 pkgver=1.0
 pkgrel=1
+url='https://x11libre.net'
 source=(setup)
 
 build() {

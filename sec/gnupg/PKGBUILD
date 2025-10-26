@@ -6,6 +6,7 @@
 pkgname=gnupg
 pkgver=2.4.8
 pkgrel=1
+url='https://gnupg.org'
 source=(https://gnupg.org/ftp/gcrypt/$pkgname/$pkgname-$pkgver.tar.bz2)
 
 build() {

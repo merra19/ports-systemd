@@ -4,6 +4,7 @@
 pkgname=lynx
 pkgver=2.9.2
 pkgrel=1
+url='https://lynx.invisible-island.net'
 source=(https://invisible-mirror.net/archives/lynx/tarballs/$pkgname$pkgver.tar.bz2)
 
 build() {

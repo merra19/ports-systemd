@@ -4,6 +4,7 @@
 pkgname=hdparm
 pkgver=9.65
 pkgrel=1
+url='https://sourceforge.net/projects/hdparm'
 source=(https://downloads.sourceforge.net/hdparm/$pkgname-$pkgver.tar.gz
         pass-ldflags.patch)
 

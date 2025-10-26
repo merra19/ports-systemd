@@ -5,6 +5,7 @@
 pkgname=gdb
 pkgver=16.3
 pkgrel=1
+url='https://sourceware.org/gdb'
 source=(https://mirror.lyrahosting.com/gnu/gdb/$pkgname-$pkgver.tar.xz)
 
 build() {

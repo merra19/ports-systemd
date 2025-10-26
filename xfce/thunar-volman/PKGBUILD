@@ -4,6 +4,7 @@
 pkgname=thunar-volman
 pkgver=4.20.0
 pkgrel=1
+url='https://docs.xfce.org/xfce/thunar/thunar-volman'
 source=(https://archive.xfce.org/src/xfce/thunar-volman/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 
 build() {

@@ -5,6 +5,7 @@
 pkgname=xfce4-screensaver
 pkgver=4.20.1
 pkgrel=1
+url='https://docs.xfce.org/apps/screensaver/start'
 source=(https://archive.xfce.org/src/apps/xfce4-screensaver/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

@@ -6,6 +6,7 @@ _pkgname=lua
 pkgver=5.2.4
 pkgrel=1
 options=(!lto)
+url='https://www.lua.org'
 source=(https://www.lua.org/ftp/${_pkgname}-$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.4/lua-$pkgver-shared_library-1.patch
         lua.pc LICENSE)

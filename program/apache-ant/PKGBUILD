@@ -4,6 +4,7 @@
 pkgname=apache-ant
 pkgver=1.10.15
 pkgrel=1
+url='https://ant.apache.org'
 source=(https://dlcdn.apache.org//ant/binaries/$pkgname-$pkgver-bin.tar.gz
         ant.sh)
 

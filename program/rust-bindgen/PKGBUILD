@@ -5,6 +5,7 @@ pkgname=rust-bindgen
 pkgver=0.72.0
 pkgrel=1
 options=(!lto)
+url='https://rust-lang.github.io/rust-bindgen'
 source=(https://github.com/rust-lang/rust-bindgen/archive/refs/tags/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 

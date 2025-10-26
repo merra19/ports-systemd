@@ -4,6 +4,7 @@
 pkgname=cargo-c
 pkgver=0.10.15
 pkgrel=1
+url='https://github.com/lu-zero/cargo-c'
 source=(https://github.com/lu-zero/cargo-c/archive/v$pkgver/$pkgname-$pkgver.tar.gz
         $pkgname-$pkgver.lock::https://github.com/lu-zero/cargo-c/releases/download/v$pkgver/Cargo.lock)
 

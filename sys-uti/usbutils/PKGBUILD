@@ -4,6 +4,7 @@
 pkgname=usbutils
 pkgver=018
 pkgrel=1
+url='https://www.kernel.org/pub/linux/utils/usb/usbutils'
 source=(https://kernel.org/pub/linux/utils/usb/usbutils/$pkgname-$pkgver.tar.xz)
 
 build() {

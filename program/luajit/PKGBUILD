@@ -5,6 +5,7 @@ pkgname=luajit
 pkgver=20250816
 pkgrel=1
 options=(!lto)
+url='https://luajit.org'
 source=(https://anduin.linuxfromscratch.org/BLFS/luajit/$pkgname-$pkgver.tar.xz)
 
 build() {

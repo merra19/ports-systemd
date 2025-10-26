@@ -4,6 +4,7 @@
 pkgname=sgml-common
 pkgver=0.6.3
 pkgrel=1
+url='https://www.iso.org/standard/16387.html'
 source=(https://sourceware.org/ftp/docbook-tools/new-trials/SOURCES/$pkgname-$pkgver.tgz
         sgml-common-0.6.3-manpage-1.patch)
 

@@ -6,6 +6,7 @@
 pkgname=openbox
 pkgver=3.6.1
 pkgrel=1
+url='http://openbox.org/wiki/Main_Page'
 source=(http://openbox.org/dist/openbox/$pkgname-$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.4/openbox-3.6.1-py3-1.patch)
 

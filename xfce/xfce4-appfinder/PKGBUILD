@@ -4,6 +4,7 @@
 pkgname=xfce4-appfinder
 pkgver=4.20.0
 pkgrel=1
+url='https://docs.xfce.org/xfce/xfce4-appfinder/start'
 source=(https://archive.xfce.org/src/xfce/xfce4-appfinder/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 
 build() {

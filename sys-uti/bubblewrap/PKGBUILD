@@ -5,6 +5,7 @@ pkgname=bubblewrap
 pkgver=0.11.0
 pkgrel=1
 options=(!lto)
+url='https://github.com/containers/bubblewrap'
 source=(https://github.com/containers/bubblewrap/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

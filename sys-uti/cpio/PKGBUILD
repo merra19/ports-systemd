@@ -4,6 +4,7 @@
 pkgname=cpio
 pkgver=2.15
 pkgrel=1
+url='https://www.gnu.org/software/cpio/cpio.html'
 source=(https://mirror.lyrahosting.com/gnu/cpio/$pkgname-$pkgver.tar.bz2)
 
 build() {

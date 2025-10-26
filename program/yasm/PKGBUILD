@@ -5,6 +5,7 @@ pkgname=yasm
 pkgver=1.3.0
 pkgrel=1
 options=(!lto)
+url='https://yasm.tortall.net'
 source=(https://www.tortall.net/projects/$pkgname/releases/$pkgname-$pkgver.tar.gz)
 
 build() {

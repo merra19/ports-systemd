@@ -5,6 +5,7 @@ pkgname=raptor
 _pkgname=raptor2
 pkgver=2.0.16
 pkgrel=1
+url='https://librdf.org/raptor'
 source=(https://download.librdf.org/source/raptor2-$pkgver.tar.gz)
 
 build() {

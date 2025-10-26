@@ -6,6 +6,7 @@ pkgver=3.0
 _version=30
 pkgrel=1
 options=(!lto)
+url='https://infozip.sourceforge.net/Zip.html'
 source=(https://downloads.sourceforge.net/infozip/zip${_version}.tar.gz
 		https://src.fedoraproject.org/rpms/zip/raw/rawhide/f/zip-3.0-format-security.patch)
 

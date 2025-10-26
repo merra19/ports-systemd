@@ -4,6 +4,7 @@
 pkgname=libwnck
 pkgver=43.2
 pkgrel=1
+url='https://developer.gnome.org/libwnck/stable'
 source=(https://download.gnome.org/sources/libwnck/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

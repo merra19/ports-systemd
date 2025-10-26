@@ -5,6 +5,7 @@
 pkgname=xfce4-thunar-archive-plugin
 pkgver=0.6.0
 pkgrel=1
+url='https://docs.xfce.org/xfce/thunar/archive'
 source=(https://archive.xfce.org/src/thunar-plugins/thunar-archive-plugin/${pkgver%.*}/thunar-archive-plugin-$pkgver.tar.xz)
 
 build() {

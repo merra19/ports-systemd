@@ -4,6 +4,7 @@
 pkgname=numlockx
 pkgver=1.2
 pkgrel=1
+url='https://github.com/rg3/numlockx'
 source=(https://github.com/rg3/numlockx/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

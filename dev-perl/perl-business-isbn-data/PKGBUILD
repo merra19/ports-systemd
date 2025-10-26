@@ -4,6 +4,7 @@
 pkgname=perl-business-isbn-data
 pkgver=20250815.001
 pkgrel=1
+url='https://metacpan.org/release/Business-ISBN-Data'
 source=(https://cpan.metacpan.org/authors/id/B/BR/BRIANDFOY/Business-ISBN-Data-$pkgver.tar.gz)
 
 build() {

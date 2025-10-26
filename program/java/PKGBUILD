@@ -6,6 +6,7 @@ _pkgname=OpenJDK
 pkgver=24.0.2
 pkgrel=1
 options=(!strip)
+url='https://adoptium.net'
 source=(https://anduin.linuxfromscratch.org/BLFS/OpenJDK/OpenJDK-$pkgver/OpenJDK-$pkgver+12-x86_64-bin.tar.xz
         openjdk.sh java)
 

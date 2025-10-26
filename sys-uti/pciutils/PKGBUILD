@@ -4,6 +4,7 @@
 pkgname=pciutils
 pkgver=3.14.0
 pkgrel=1
+url='https://mj.ucw.cz/sw/pciutils'
 source=(https://mj.ucw.cz/download/linux/pci/$pkgname-$pkgver.tar.gz)
 
 build() {

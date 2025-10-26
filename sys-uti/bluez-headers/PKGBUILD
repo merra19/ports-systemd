@@ -4,6 +4,7 @@
 pkgname=bluez-headers
 pkgver=5.83
 pkgrel=0
+url='https://www.bluez.org'
 source=(https://www.kernel.org/pub/linux/bluetooth/${pkgname%-*}-$pkgver.tar.xz)
 
 build() {

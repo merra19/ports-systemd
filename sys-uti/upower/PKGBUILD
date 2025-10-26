@@ -5,6 +5,7 @@
 pkgname=upower
 pkgver=1.90.9
 pkgrel=1
+url='https://upower.freedesktop.org'
 source=(https://gitlab.freedesktop.org/$pkgname/$pkgname/-/archive/v$pkgver/$pkgname-v$pkgver.tar.bz2
         rules)
 backup=(etc/UPower/UPower.conf)

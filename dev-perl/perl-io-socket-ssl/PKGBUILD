@@ -4,6 +4,7 @@
 pkgname=perl-io-socket-ssl
 pkgver=2.095
 pkgrel=1
+url='https://metacpan.org/release/IO-Socket-SSL'
 source=(https://www.cpan.org/authors/id/S/SU/SULLR/IO-Socket-SSL-$pkgver.tar.gz)
 
 build() {

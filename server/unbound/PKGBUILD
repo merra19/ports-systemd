@@ -5,6 +5,7 @@
 pkgname=unbound
 pkgver=1.23.1
 pkgrel=1
+url='https://unbound.net'
 source=(https://nlnetlabs.nl/downloads/unbound/$pkgname-$pkgver.tar.gz
 		named.root #  https://www.internic.net/domain/named.root
 		unbound.conf

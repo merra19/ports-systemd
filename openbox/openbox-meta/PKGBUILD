@@ -8,6 +8,7 @@
 pkgname=openbox-meta
 pkgver=3.6.1
 pkgrel=1
+url='http://openbox.org/wiki/Main_Page'
 source=(autostart environment menu.xml rc.xml setupopenbox config.ini launch.sh
         polywins.sh thumb-1920-1147144.png eteindre)
 

@@ -5,6 +5,7 @@ pkgname=xmlto
 pkgver=0.0.29
 pkgrel=1
 options=(!lto)
+url='https://pagure.io/xmlto'
 source=(https://pagure.io/xmlto/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

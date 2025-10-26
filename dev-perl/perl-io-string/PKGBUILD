@@ -5,6 +5,7 @@ pkgname=perl-io-string
 _pkgname=IO-String
 pkgver=1.08
 pkgrel=1
+url='https://metacpan.org/release/IO-String'
 source=(https://www.cpan.org/authors/id/G/GA/GAAS/IO-String-$pkgver.tar.gz)
 
 build() {

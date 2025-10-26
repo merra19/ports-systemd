@@ -5,6 +5,7 @@ pkgname=redland
 pkgver=1.0.17
 pkgrel=1
 options=(!lto)
+url='https://librdf.org'
 source=(https://download.librdf.org/source/$pkgname-$pkgver.tar.gz)
 
 build() {

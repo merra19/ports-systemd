@@ -4,6 +4,7 @@
 pkgname=nasm
 pkgver=2.16.03
 pkgrel=1
+url='https://www.nasm.us'
 source=(https://www.nasm.us/pub/nasm/releasebuilds/$pkgver/nasm-$pkgver.tar.xz
         https://www.nasm.us/pub/nasm/releasebuilds/$pkgver/nasm-$pkgver-xdoc.tar.xz)
 noextract=(nasm-$pkgver-xdoc.tar.xz)

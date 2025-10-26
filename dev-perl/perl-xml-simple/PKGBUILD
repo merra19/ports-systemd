@@ -5,6 +5,7 @@ pkgname=perl-xml-simple
 _pkgname=XML-Simple
 pkgver=2.25
 pkgrel=1
+url='https://metacpan.org/release/XML-Simple'
 source=(https://www.cpan.org/authors/id/G/GR/GRANTM/XML-Simple-$pkgver.tar.gz)
 
 build() {

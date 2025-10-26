@@ -4,6 +4,7 @@
 pkgname=notification-daemon
 pkgver=3.20.0
 pkgrel=1
+url='https://gitlab.gnome.org/GNOME/notification-daemon'
 source=(https://download.gnome.org/sources/notification-daemon/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

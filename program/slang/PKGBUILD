@@ -5,6 +5,7 @@ pkgname=slang
 pkgver=2.3.3
 pkgrel=1
 options=(!makeflags)
+url='https://www.jedsoft.org/slang'
 source=(https://www.jedsoft.org/releases/$pkgname/$pkgname-$pkgver.tar.bz2)
 backup=(etc/slsh.rc)
 

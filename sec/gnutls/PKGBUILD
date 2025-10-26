@@ -6,6 +6,7 @@ pkgname=gnutls
 pkgver=3.8.10
 pkgrel=1
 options=(!lto)
+url='https://www.gnutls.org'
 source=(https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/$pkgname-$pkgver.tar.xz)
 
 build() {

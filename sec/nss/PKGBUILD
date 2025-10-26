@@ -6,6 +6,7 @@ pkgver=3.115
 vrsn=$(echo $pkgver | sed 's/\./_/g')
 pkgrel=1
 options=(!lto)
+url='https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS'
 source=(https://archive.mozilla.org/pub/security/nss/releases/NSS_${vrsn}_RTM/src/$pkgname-$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.4/nss-standalone-1.patch)
 

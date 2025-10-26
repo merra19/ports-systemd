@@ -5,6 +5,7 @@ pkgname=docbook-dtd45
 pkgver=45
 _version=4.5
 pkgrel=1
+url='https://docbook.org'
 source=(https://www.docbook.org/sgml/$_version/docbook-$_version.zip)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=sane
 pkgver=1.4.0
 pkgrel=2
+url='http://www.sane-project.org'
 source=(https://anduin.linuxfromscratch.org/BLFS/sane/sane-backends-$pkgver.tar.gz
         $pkgname.hooks)
 

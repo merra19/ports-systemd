@@ -4,6 +4,7 @@
 pkgname=cbindgen
 pkgver=0.29.0
 pkgrel=1
+url='https://github.com/mozilla/cbindgen'
 source=(https://github.com/mozilla/cbindgen/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 createpack() {

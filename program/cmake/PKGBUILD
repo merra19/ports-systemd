@@ -4,6 +4,7 @@
 pkgname=cmake
 pkgver=4.1.0
 pkgrel=1
+url='https://cmake.org'
 source=(https://cmake.org/files/v${pkgver%.*}/$pkgname-$pkgver.tar.gz)
 
 build() {

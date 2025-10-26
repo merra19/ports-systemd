@@ -6,6 +6,7 @@ _pkgname=OpenSP
 pkgver=1.5.2
 pkgrel=1
 options=(!lto)
+url='https://openjade.sourceforge.net'
 source=(https://downloads.sourceforge.net/openjade/OpenSP-$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.4/OpenSP-1.5.2-gcc14-1.patch)
 

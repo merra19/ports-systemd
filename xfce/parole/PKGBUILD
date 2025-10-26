@@ -5,6 +5,7 @@
 pkgname=parole
 pkgver=4.20.0
 pkgrel=1
+url='https://docs.xfce.org/apps/parole/start'
 source=(https://archive.xfce.org/src/apps/parole/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

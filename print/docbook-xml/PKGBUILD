@@ -4,6 +4,7 @@
 pkgname=docbook-xml
 pkgver=4.5
 pkgrel=1
+url='https://docbook.org'
 source=(https://www.docbook.org/xml/$pkgver/$pkgname-$pkgver.zip)
 
 build() {

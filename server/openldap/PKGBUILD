@@ -6,6 +6,7 @@ pkgname=openldap
 pkgver=2.6.10
 pkgrel=1
 options=(!makeflags !lto)
+url='https://www.openldap.org'
 source=(https://www.openldap.org/software/download/OpenLDAP/openldap-release/$pkgname-$pkgver.tgz
         https://www.linuxfromscratch.org/patches/blfs/12.4/openldap-$pkgver-consolidated-1.patch
         $pkgname.hooks)

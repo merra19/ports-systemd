@@ -5,6 +5,7 @@ pkgname=ruby
 pkgver=3.4.7
 pkgrel=1
 options=(!lto)
+url='https://www.ruby-lang.org'
 source=(https://cache.ruby-lang.org/pub/ruby/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

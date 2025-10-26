@@ -3,6 +3,7 @@
 pkgname=liboauth
 pkgver=1.0.3
 pkgrel=1
+url='https://liboauth.sourceforge.io'
 source=(https://downloads.sourceforge.net/liboauth/$pkgname-$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.4/liboauth-1.0.3-openssl-1.1.0-3.patch)
 

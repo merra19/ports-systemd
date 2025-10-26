@@ -4,6 +4,7 @@
 pkgname=dtc
 pkgver=1.7.2
 pkgrel=1
+url='https://devicetree.org'
 source=(https://kernel.org/pub/software/utils/dtc/$pkgname-$pkgver.tar.xz)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=xfce4-mount-plugin
 pkgver=1.2.0
 pkgrel=1
+url='https://docs.xfce.org/panel-plugins/xfce4-mount-plugin/start'
 source=(https://archive.xfce.org/src/panel-plugins/xfce4-mount-plugin/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

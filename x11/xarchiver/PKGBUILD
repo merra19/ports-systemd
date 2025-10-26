@@ -4,6 +4,7 @@
 pkgname=xarchiver
 pkgver=0.5.4.25
 pkgrel=1
+url='https://github.com/ib/xarchiver'
 source=(https://github.com/ib/xarchiver/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

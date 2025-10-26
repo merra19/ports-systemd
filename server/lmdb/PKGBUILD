@@ -4,6 +4,7 @@
 pkgname=lmdb
 pkgver=0.9.33
 pkgrel=1
+url='https://symas.com/lmdb/technical'
 source=($pkgname-$pkgver.tar.bz2::https://git.openldap.org/openldap/openldap/-/archive/LMDB_$pkgver.tar.bz2)
 
 build() {

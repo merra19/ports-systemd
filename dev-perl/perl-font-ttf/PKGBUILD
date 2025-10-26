@@ -5,6 +5,7 @@ pkgname=perl-font-ttf
 _pkgname=Font-TTF
 pkgver=1.06
 pkgrel=1
+url='https://metacpan.org/release/Font-TTF'
 source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/Font-TTF-$pkgver.tar.gz)
 
 build() {

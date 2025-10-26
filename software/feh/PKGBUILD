@@ -4,6 +4,7 @@
 pkgname=feh
 pkgver=3.10.3
 pkgrel=1
+url='https://feh.finalrewind.org'
 source=(https://feh.finalrewind.org/$pkgname-$pkgver.tar.bz2)
 
 build() {

@@ -10,6 +10,7 @@ pkgname=php
 pkgver=8.4.11
 pkgrel=1
 options=(!lto)
+url='https://www.php.net'
 source=(https://www.php.net/distributions/$pkgname-$pkgver.tar.xz
         https://pear.php.net/go-pear.phar)
 backup=(etc/php-fpm.conf.default etc/php-fpm.d/www.conf.default etc/php.ini)

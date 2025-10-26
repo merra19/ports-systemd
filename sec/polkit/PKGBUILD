@@ -4,6 +4,7 @@
 pkgname=polkit
 pkgver=126
 pkgrel=2
+url='https://www.freedesktop.org/wiki/Software/polkit'
 source=(https://github.com/polkit-org/polkit/archive/$pkgver/$pkgname-$pkgver.tar.gz
         $pkgname.hooks)
 

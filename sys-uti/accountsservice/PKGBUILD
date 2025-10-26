@@ -6,6 +6,7 @@ pkgname=accountsservice
 pkgver=23.13.9
 pkgrel=1
 options=(!lto)
+url='https://www.freedesktop.org/wiki/Software/AccountsService'
 source=(https://www.freedesktop.org/software/accountsservice/$pkgname-$pkgver.tar.xz
         40-adm.rules accountsservice-23.13.9-c99-fixes.patch)
 

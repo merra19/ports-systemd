@@ -7,6 +7,7 @@ pkgname=cups
 pkgver=2.4.14
 pkgrel=1
 options=(!lto)
+url='https://www.cups.org'
 source=(https://github.com/OpenPrinting/cups/releases/download/v$pkgver/$pkgname-$pkgver-source.tar.gz
         cups $pkgname.hooks)
 backup=(etc/cups/cupsd.conf etc/cups/snmp.conf etc/cups/cups-files.conf)

@@ -4,6 +4,7 @@
 pkgname=libgedit-amtk
 pkgver=5.9.1
 pkgrel=1
+url='https://gitlab.gnome.org/World/gedit/libgedit-amtk'
 source=(https://gitlab.gnome.org/World/gedit/libgedit-amtk/-/archive/$pkgver/$pkgname-$pkgver.tar.bz2)
 
 build() {

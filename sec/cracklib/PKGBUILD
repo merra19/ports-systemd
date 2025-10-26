@@ -5,6 +5,7 @@ pkgname=cracklib
 pkgver=2.10.3
 pkgrel=1
 options=(!lto)
+url='https://github.com/cracklib/cracklib'
 source=(https://github.com/cracklib/cracklib/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
         https://github.com/cracklib/cracklib/releases/download/v$pkgver/$pkgname-words-$pkgver.xz)
 noextract=($pkgname-words-$pkgver.xz)

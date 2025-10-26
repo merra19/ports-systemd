@@ -4,6 +4,7 @@
 pkgname=exo
 pkgver=4.20.0
 pkgrel=1
+url='https://docs.xfce.org/xfce/exo/start'
 source=(https://archive.xfce.org/src/xfce/exo/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 
 build() {

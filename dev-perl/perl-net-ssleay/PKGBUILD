@@ -4,6 +4,7 @@
 pkgname=perl-net-ssleay
 pkgver=1.94
 pkgrel=1
+url='https://metacpan.org/release/Net-SSLeay'
 source=(https://cpan.metacpan.org/authors/id/C/CH/CHRISN/Net-SSLeay-$pkgver.tar.gz)
 
 build() {

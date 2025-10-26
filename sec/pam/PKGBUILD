@@ -5,6 +5,7 @@
 pkgname=pam
 pkgver=1.7.1
 pkgrel=1
+url='https://github.com/linux-pam/linux-pam'
 source=(https://github.com/linux-pam/linux-pam/releases/download/v$pkgver/Linux-PAM-$pkgver.tar.xz
 	    system-account system-auth system-session system-password other system-password2 systemd-user)
 backup=(etc/security/access.conf etc/security/faillock.conf etc/security/group.conf etc/security/limits.conf etc/security/namespace.conf 

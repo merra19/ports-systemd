@@ -4,6 +4,7 @@
 pkgname=which
 pkgver=2.23
 pkgrel=1
+url='https://carlowood.github.io/which'
 source=(https://mirror.lyrahosting.com/gnu/which/$pkgname-$pkgver.tar.gz)
 
 build() {

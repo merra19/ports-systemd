@@ -5,6 +5,7 @@ pkgname=rasqal
 pkgver=0.9.33
 pkgrel=1
 options=(!lto)
+url='https://librdf.org/rasqal'
 source=(https://download.librdf.org/source/$pkgname-$pkgver.tar.gz)
 
 build() {

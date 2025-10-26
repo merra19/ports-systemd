@@ -5,6 +5,7 @@ pkgname=gpm
 pkgver=1.20.7
 pkgrel=1
 options=(!lto)
+url='https://www.nico.schottelius.org/software/gpm'
 source=(https://anduin.linuxfromscratch.org/BLFS/gpm/$pkgname-$pkgver.tar.bz2
         https://www.linuxfromscratch.org/patches/blfs/12.4/gpm-1.20.7-consolidated-1.patch
         https://www.linuxfromscratch.org/patches/blfs/12.4/gpm-1.20.7-gcc15_fixes-1.patch

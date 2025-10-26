@@ -5,6 +5,7 @@ pkgname=fcron
 pkgver=3.4.0
 pkgrel=1
 options=(!makeflags)
+url='http://fcron.free.fr'
 source=(http://fcron.free.fr/archives/$pkgname-$pkgver.src.tar.gz
         run-parts systab.orig $pkgname.hooks)
 backup=(var/spool/fcron/systab.orig)

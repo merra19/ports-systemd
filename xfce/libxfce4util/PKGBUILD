@@ -4,6 +4,7 @@
 pkgname=libxfce4util
 pkgver=4.20.1
 pkgrel=1
+url='https://docs.xfce.org/xfce/libxfce4util/start'
 source=(https://archive.xfce.org/src/xfce/libxfce4util/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 
 build() {

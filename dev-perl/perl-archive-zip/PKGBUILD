@@ -5,6 +5,7 @@ pkgname=perl-archive-zip
 _pkgname=Archive-Zip
 pkgver=1.68
 pkgrel=1
+url='https://metacpan.org/release/Archive-Zip'
 source=(https://www.cpan.org/authors/id/P/PH/PHRED/Archive-Zip-$pkgver.tar.gz)
 
 build() {

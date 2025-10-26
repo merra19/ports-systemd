@@ -4,6 +4,7 @@
 pkgname=mousepad
 pkgver=0.6.5
 pkgrel=1
+url='https://docs.xfce.org/apps/mousepad/start'
 source=(https://archive.xfce.org/src/apps/mousepad/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

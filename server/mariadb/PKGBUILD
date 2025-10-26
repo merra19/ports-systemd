@@ -9,6 +9,7 @@ pkgname=mariadb
 pkgver=11.8.3
 pkgrel=1
 options=(!lto)
+url='https://mariadb.org'
 source=(https://downloads.mariadb.org/interstitial/mariadb-$pkgver/source/$pkgname-$pkgver.tar.gz
         my.cnf $pkgname.hooks)
 backup=(etc/mariadb/my.cnf)

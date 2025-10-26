@@ -5,6 +5,7 @@ pkgname=perl-uri
 _pkgname=URI
 pkgver=5.32
 pkgrel=1
+url='https://metacpan.org/release/URI'
 source=(https://cpan.metacpan.org/authors/id/O/OA/OALDERS/URI-$pkgver.tar.gz)
 
 build() {

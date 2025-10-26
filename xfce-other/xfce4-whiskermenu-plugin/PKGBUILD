@@ -6,6 +6,7 @@
 pkgname=xfce4-whiskermenu-plugin
 pkgver=2.10.0
 pkgrel=1
+url='https://gottcode.org/xfce4-whiskermenu-plugin'
 source=(https://archive.xfce.org/src/panel-plugins/xfce4-whiskermenu-plugin/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

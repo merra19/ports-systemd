@@ -4,6 +4,7 @@
 pkgname=ristretto
 pkgver=0.13.4
 pkgrel=1
+url='https://docs.xfce.org/apps/ristretto/start'
 source=(https://archive.xfce.org/src/apps/ristretto/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

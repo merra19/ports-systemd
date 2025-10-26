@@ -4,6 +4,7 @@
 pkgname=patchelf
 pkgver=0.18.0
 pkgrel=1
+url='https://github.com/NixOS/patchelf'
 source=(https://github.com/NixOS/patchelf/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

@@ -5,6 +5,7 @@
 pkgname=xfce4-dict
 pkgver=0.8.9
 pkgrel=1
+url='https://docs.xfce.org/apps/xfce4-dict/start'
 source=(https://archive.xfce.org/src/apps/xfce4-dict/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

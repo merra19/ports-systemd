@@ -5,6 +5,7 @@ pkgname=perl-parse-yapp
 _pkgname=Parse-Yapp
 pkgver=1.21
 pkgrel=1
+url='https://metacpan.org/release/Parse-Yapp'
 source=(https://www.cpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-$pkgver.tar.gz)
 
 build() {
