@@ -5,6 +5,7 @@ pkgname=py3-pluggy
 pkgver=1.6.0
 pkgrel=1
 options=(!lto)
+url='https://pluggy.readthedocs.io'
 source=(https://files.pythonhosted.org/packages/source/p/pluggy/pluggy-$pkgver.tar.gz)
 
 build() {

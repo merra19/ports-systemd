@@ -5,6 +5,7 @@ pkgname=py3-asciidoc
 pkgver=10.2.1
 pkgrel=1
 options=(!lto)
+url='https://asciidoc.org'
 source=(https://files.pythonhosted.org/packages/source/a/asciidoc/asciidoc-${pkgver}.tar.gz)
 
 build() {

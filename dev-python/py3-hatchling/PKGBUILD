@@ -6,6 +6,7 @@
 pkgname=py3-hatchling
 pkgver=1.27.0
 pkgrel=1
+url='https://pypi.org/project/hatchling'
 source=(https://files.pythonhosted.org/packages/source/h/hatchling/hatchling-$pkgver.tar.gz)
 
 build() {

@@ -5,6 +5,7 @@ pkgname=py3-certifi
 pkgver=2025.8.3
 pkgrel=1
 options=(!lto)
+url='https://github.com/projg2/certifi-system-store'
 source=(https://files.pythonhosted.org/packages/source/c/certifi/certifi-$pkgver.tar.gz)
 
 build() {

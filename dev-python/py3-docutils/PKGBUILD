@@ -6,6 +6,7 @@ pkgname=py3-docutils
 pkgver=0.21.2
 pkgrel=1
 options=(!lto)
+url='https://docutils.sourceforge.io'
 source=(https://files.pythonhosted.org/packages/source/d/docutils/docutils-$pkgver.tar.gz)
 
 build() {

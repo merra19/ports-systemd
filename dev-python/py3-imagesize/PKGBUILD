@@ -5,6 +5,7 @@ pkgname=py3-imagesize
 pkgver=1.4.1
 pkgrel=1
 options=(!lto)
+url='https://github.com/shibukawa/imagesize_py'
 source=($pkgname-$pkgver.tar.gz::https://pypi.org/packages/source/i/imagesize/imagesize-$pkgver.tar.gz)
 
 build() {

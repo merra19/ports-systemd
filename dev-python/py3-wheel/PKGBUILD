@@ -5,6 +5,7 @@
 pkgname=py3-wheel
 pkgver=0.46.1
 pkgrel=1
+url='https://github.com/pypa/wheel'
 source=(https://pypi.org/packages/source/w/wheel/wheel-$pkgver.tar.gz)
 
 build() {

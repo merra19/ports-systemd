@@ -5,6 +5,7 @@
 pkgname=py3-doxyqml
 pkgver=0.5.3
 pkgrel=1
+url='https://lxml.de'
 source=(https://files.pythonhosted.org/packages/source/d/doxyqml/doxyqml-$pkgver.tar.gz)
 
 build() {

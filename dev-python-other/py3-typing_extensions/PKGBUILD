@@ -5,6 +5,7 @@
 pkgname=py3-typing_extensions
 pkgver=4.15.0
 pkgrel=1
+url='https://pypi.org/project/typing-extensions'
 source=(https://files.pythonhosted.org/packages/source/t/typing_extensions/typing_extensions-$pkgver.tar.gz)
 
 build() {

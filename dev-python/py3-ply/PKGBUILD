@@ -5,6 +5,7 @@ pkgname=py3-ply
 pkgver=3.11
 pkgrel=1
 options=(!lto)
+url='http://www.dabeaz.com/ply'
 source=(https://files.pythonhosted.org/packages/source/p/ply/ply-$pkgver.tar.gz)
 
 build() {

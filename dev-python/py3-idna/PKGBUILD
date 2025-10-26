@@ -6,6 +6,7 @@ pkgname=py3-idna
 pkgver=3.10
 pkgrel=1
 options=(!lto)
+url='https://github.com/kjd/idna'
 source=(https://files.pythonhosted.org/packages/source/i/idna/idna-$pkgver.tar.gz)
 
 build() {

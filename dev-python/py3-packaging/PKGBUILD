@@ -5,6 +5,7 @@ pkgname=py3-packaging
 pkgver=25.0
 pkgrel=1
 options=(!lto)
+url='https://github.com/pypa/packaging'
 source=(https://files.pythonhosted.org/packages/source/p/packaging/packaging-$pkgver.tar.gz)
 
 build() {

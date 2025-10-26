@@ -3,7 +3,8 @@
 
 pkgname=py3-alabaster
 pkgver=1.0.0 
-pkgrel=0
+pkgrel=1
+url='https://github.com/sphinx-doc/alabaster'
 source=(https://pypi.org/packages/source/a/alabaster/alabaster-$pkgver.tar.gz)
 
 build() {

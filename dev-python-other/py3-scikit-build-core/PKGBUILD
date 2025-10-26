@@ -6,6 +6,7 @@
 pkgname=py3-scikit-build-core
 pkgver=0.11.6 
 pkgrel=1
+url='https://github.com/scikit-build/scikit-build-core'
 source=($pkgname-$pkgver.tar.gz::https://github.com/scikit-build/scikit-build-core/archive/refs/tags/v$pkgver.tar.gz)
 
 build() {

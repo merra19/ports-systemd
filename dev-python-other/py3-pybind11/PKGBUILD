@@ -5,6 +5,7 @@
 pkgname=py3-pybind11
 pkgver=3.0.1
 pkgrel=1
+url='https://pybind11.readthedocs.io/en/stable'
 source=($pkgname-$pkgver.tar.gz::https://github.com/pybind/pybind11/archive/refs/tags/v$pkgver.tar.gz)
 
 build() {

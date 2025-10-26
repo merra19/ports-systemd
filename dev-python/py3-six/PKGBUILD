@@ -5,6 +5,7 @@ pkgname=py3-six
 pkgver=1.17.0
 pkgrel=1
 options=(!lto)
+url='https://github.com/benjaminp/six'
 source=(https://files.pythonhosted.org/packages/source/s/six/${pkgname#*-}-$pkgver.tar.gz)
 
 build() {

@@ -6,6 +6,7 @@ pkgname=py3-lxml
 pkgver=6.0.0
 pkgrel=1
 options=(!lto)
+url='https://lxml.de'
 source=(https://files.pythonhosted.org/packages/source/l/lxml/lxml-$pkgver.tar.gz)
 
 build() {

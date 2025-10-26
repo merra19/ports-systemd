@@ -5,6 +5,7 @@
 pkgname=py3-cssselect
 pkgver=1.3.0
 pkgrel=1
+url='https://cssselect.readthedocs.io/en/latest'
 source=(https://files.pythonhosted.org/packages/source/c/cssselect/cssselect-$pkgver.tar.gz)
 
 build() {

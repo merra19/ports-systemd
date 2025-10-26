@@ -5,6 +5,7 @@
 pkgname=py3-typogrify
 pkgver=2.1.0
 pkgrel=1
+url='https://github.com/mintchaos/typogrify'
 source=(https://files.pythonhosted.org/packages/source/t/typogrify/typogrify-$pkgver.tar.gz)
 
 build() {

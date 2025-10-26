@@ -5,6 +5,7 @@
 pkgname=py3-pathspec
 pkgver=0.12.1
 pkgrel=1
+url='https://github.com/cpburnz/python-pathspec'
 source=(https://files.pythonhosted.org/packages/source/p/pathspec/pathspec-$pkgver.tar.gz)
 
 build() {

@@ -5,6 +5,7 @@
 pkgname=py3-sentry_sdk
 pkgver=2.35.0
 pkgrel=1
+url='https://sentry.io'
 source=(https://github.com/getsentry/sentry-python/releases/download/$pkgver/sentry_sdk-$pkgver.tar.gz)
 
 build() {

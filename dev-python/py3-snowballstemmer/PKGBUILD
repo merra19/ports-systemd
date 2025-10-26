@@ -4,6 +4,7 @@
 pkgname=py3-snowballstemmer 
 pkgver=3.0.1
 pkgrel=1
+url='https://snowballstem.org'
 source=(https://files.pythonhosted.org/packages/source/s/snowballstemmer/${pkgname#*-}-$pkgver.tar.gz)
 
 build() {

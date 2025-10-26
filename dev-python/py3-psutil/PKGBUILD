@@ -5,6 +5,7 @@
 pkgname=py3-psutil
 pkgver=7.0.0
 pkgrel=1
+url='https://github.com/giampaolo/psutil'
 source=(https://files.pythonhosted.org/packages/source/p/psutil/psutil-$pkgver.tar.gz)
 
 build() {

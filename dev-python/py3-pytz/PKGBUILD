@@ -5,6 +5,7 @@ pkgname=py3-pytz
 pkgver=2025.2
 pkgrel=0
 options=(!lto)
+url='https://pythonhosted.org/pytz'
 source=(https://files.pythonhosted.org/packages/source/p/pytz/pytz-$pkgver.tar.gz)
 
 build() {

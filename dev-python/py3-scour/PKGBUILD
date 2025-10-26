@@ -4,6 +4,7 @@
 pkgname=py3-scour
 pkgver=0.38.2
 pkgrel=1
+url='https://github.com/scour-project/scour'
 source=(https://github.com/scour-project/scour/archive/v$pkgver/scour-$pkgver.tar.gz)
 
 build() {

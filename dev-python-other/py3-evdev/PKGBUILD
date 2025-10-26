@@ -4,6 +4,7 @@
 pkgname=py3-evdev
 pkgver=1.9.2
 pkgrel=1
+url='https://python-evdev.readthedocs.io'
 source=(https://github.com/gvalkov/python-evdev/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

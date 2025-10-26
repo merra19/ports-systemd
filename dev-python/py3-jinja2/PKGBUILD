@@ -6,6 +6,7 @@ pkgname=py3-jinja2
 pkgver=3.1.6
 pkgrel=1
 options=(!lto)
+url='https://palletsprojects.com/p/jinja'
 source=(https://pypi.org/packages/source/J/Jinja2/jinja2-$pkgver.tar.gz)
 
 build() {

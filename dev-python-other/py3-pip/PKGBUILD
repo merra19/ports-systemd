@@ -4,6 +4,7 @@
 pkgname=py3-pip
 pkgver=25.2
 pkgrel=1
+url='https://pip.pypa.io/en/stable'
 source=(https://pypi.io/packages/source/p/pip/pip-$pkgver.tar.gz)
 
 build() {

@@ -5,6 +5,7 @@
 pkgname=py3-pyserial
 pkgver=3.5
 pkgrel=1
+url='https://github.com/pyserial/pyserial'
 source=(https://files.pythonhosted.org/packages/source/p/pyserial/pyserial-$pkgver.tar.gz)
 
 build() {

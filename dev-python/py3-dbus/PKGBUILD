@@ -5,6 +5,7 @@ pkgname=py3-dbus
 pkgver=1.4.0
 pkgrel=1
 options=(!lto)
+url='https://www.freedesktop.org/wiki/Software/DBusBindings'
 source=(https://dbus.freedesktop.org/releases/dbus-python/dbus-python-$pkgver.tar.xz)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=py3-hatch_fancy_pypi_readme
 pkgver=25.1.0
 pkgrel=1
+url='https://pypi.org/project/hatch-fancy-pypi-readme'
 source=(https://files.pythonhosted.org/packages/source/h/hatch-fancy-pypi-readme/hatch_fancy_pypi_readme-$pkgver.tar.gz)
 
 build() {

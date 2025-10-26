@@ -5,6 +5,7 @@
 pkgname=py3-cachecontrol
 pkgver=0.14.3
 pkgrel=1
+url='https://pypi.org/project/CacheControl'
 source=(https://github.com/psf/cachecontrol/archive/v$pkgver/cachecontrol-$pkgver.tar.gz)
 
 build() {

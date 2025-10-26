@@ -5,6 +5,7 @@
 pkgname=py3-editables
 pkgver=0.5
 pkgrel=1
+url='https://pypi.org/project/editables'
 source=(https://files.pythonhosted.org/packages/source/e/editables/editables-$pkgver.tar.gz)
 
 build() {

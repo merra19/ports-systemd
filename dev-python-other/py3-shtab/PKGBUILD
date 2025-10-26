@@ -4,6 +4,7 @@
 pkgname=py3-shtab
 pkgver=1.7.2
 pkgrel=1
+url='https://github.com/iterative/shtab'
 source=(https://github.com/iterative/shtab/releases/download/v$pkgver/shtab-$pkgver.tar.gz)
 
 build() {

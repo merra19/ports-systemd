@@ -4,6 +4,7 @@
 pkgname=py3-calver
 pkgver=2025.10.20
 pkgrel=1
+url='https://github.com/di/calver'
 source=(https://github.com/di/calver/archive/$pkgver/py3-calver-$pkgver.tar.gz)
 
 build() {

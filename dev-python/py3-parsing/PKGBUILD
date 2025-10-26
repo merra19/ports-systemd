@@ -4,6 +4,7 @@
 pkgname=py3-parsing
 pkgver=3.2.3
 pkgrel=1
+url='https://github.com/pyparsing/pyparsing'
 source=(https://files.pythonhosted.org/packages/source/p/pyparsing/pyparsing-$pkgver.tar.gz)
 
 build() {

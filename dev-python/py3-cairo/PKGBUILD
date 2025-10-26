@@ -4,6 +4,7 @@
 pkgname=py3-cairo
 pkgver=1.28.0
 pkgrel=1
+url='https://www.cairographics.org/pycairo'
 source=(https://github.com/pygobject/pycairo/releases/download/v$pkgver/pycairo-$pkgver.tar.gz)
 
 build() {

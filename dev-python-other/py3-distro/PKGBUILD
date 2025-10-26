@@ -4,6 +4,7 @@
 pkgname=py3-distro
 pkgver=1.9.0
 pkgrel=1
+url='https://distro.readthedocs.io/en/latest'
 source=(https://files.pythonhosted.org/packages/source/d/distro/distro-$pkgver.tar.gz)
 
 build() {

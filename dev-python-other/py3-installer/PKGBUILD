@@ -4,6 +4,7 @@
 pkgname=py3-installer
 pkgver=0.7.0
 pkgrel=1
+url='https://pypi.org/project/installer'
 source=(https://files.pythonhosted.org/packages/py3/i/installer/installer-$pkgver-py3-none-any.whl
 	    default-bytecode-levels.patch)
 noextract=(installer-$pkgver-py3-none-any.whl)

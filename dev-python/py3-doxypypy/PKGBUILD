@@ -5,6 +5,7 @@
 pkgname=py3-doxypypy
 pkgver=0.8.8.7
 pkgrel=1
+url='https://github.com/Feneric/doxypypy'
 source=(https://files.pythonhosted.org/packages/source/d/doxypypy/doxypypy-$pkgver.tar.gz)
 
 build() {

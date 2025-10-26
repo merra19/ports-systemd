@@ -4,6 +4,7 @@
 pkgname=py3-gpep517
 pkgver=19
 pkgrel=1
+url='https://pypi.org/project/gpep517'
 source=(https://github.com/mgorny/gpep517/archive/v$pkgver/gpep517-v$pkgver.tar.gz
         gpep517 default-bytecode-levels.patch)
 

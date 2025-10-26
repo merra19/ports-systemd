@@ -6,6 +6,7 @@ pkgname=py3-pygments
 pkgver=2.19.2
 pkgrel=1
 options=(!lto)
+url='https://pygments.org'
 source=(https://files.pythonhosted.org/packages/source/P/Pygments/pygments-$pkgver.tar.gz)
 
 build() {

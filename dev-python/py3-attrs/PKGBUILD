@@ -6,6 +6,7 @@ pkgname=py3-attrs
 pkgver=25.3.0
 pkgrel=1
 options=(!lto)
+url='https://github.com/python-attrs/attrs'
 source=(https://files.pythonhosted.org/packages/source/a/attrs/attrs-$pkgver.tar.gz)
 
 build() {

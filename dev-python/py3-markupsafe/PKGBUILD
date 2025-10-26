@@ -5,6 +5,7 @@ pkgname=py3-markupsafe
 pkgver=3.0.2
 pkgrel=1
 options=(!lto)
+url='https://palletsprojects.com/p/markupsafe'
 source=(https://files.pythonhosted.org/packages/source/M/MarkupSafe/markupsafe-$pkgver.tar.gz)
 
 build() {
