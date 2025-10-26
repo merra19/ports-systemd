@@ -3,6 +3,7 @@
 pkgname=filesystem
 pkgver=35
 pkgrel=2
+url='https://www.linuxfromscratch.org'
 source=(hosts os-release lsb-release inputrc shells group passwd
         profile dircolors.sh extrapaths.sh readline.sh umask.sh i18n.sh
         bashrc dot_bash_profile dot_profile dot_bashrc dot_bash_logout 

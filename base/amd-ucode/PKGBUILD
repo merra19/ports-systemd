@@ -5,6 +5,7 @@ pkgname=amd-ucode
 pkgver=20250808
 pkgrel=1
 options=(!lto)
+url='https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git'
 source=(https://www.kernel.org/pub/linux/kernel/firmware/linux-firmware-$pkgver.tar.xz)
 
 build() {
