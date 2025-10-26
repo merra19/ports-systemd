@@ -5,6 +5,7 @@ pkgname=attr
 pkgver=2.5.2
 pkgrel=1
 options=(!lto)
+url='https://savannah.nongnu.org/projects/attr'
 source=(https://download.savannah.gnu.org/releases/attr/$pkgname-$pkgver.tar.gz)
 backup=(etc/xattr.conf)
 

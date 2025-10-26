@@ -8,6 +8,7 @@ pkgname=opencv
 pkgver=4.12.0
 pkgrel=3
 options=(!lto)
+url='https://opencv.org'
 source=(https://github.com/opencv/opencv/archive/$pkgver/$pkgname-$pkgver.tar.gz
         https://github.com/opencv/opencv_contrib/archive/$pkgver/opencv_contrib-$pkgver.tar.gz
         https://github.com/opencv/opencv/commit/86df53155411b3ade57d0213bf8dd63006bf248f.patch)

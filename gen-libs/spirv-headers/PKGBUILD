@@ -5,6 +5,7 @@ pkgname=spirv-headers
 pkgver=1.4.321.0
 pkgrel=1
 options=(!lto)
+url='https://registry.khronos.org/SPIR-V'
 source=(https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/vulkan-sdk-$pkgver/SPIRV-Headers-$pkgver.tar.gz)
 
 build() {

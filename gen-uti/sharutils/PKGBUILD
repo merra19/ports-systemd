@@ -4,6 +4,7 @@
 pkgname=sharutils
 pkgver=4.15.2
 pkgrel=1
+url='https://www.gnu.org/software/sharutils'
 source=(https://mirror.lyrahosting.com/gnu/sharutils/$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/blfs/12.4/sharutils-4.15.2-consolidated-1.patch
         sharutils-4.14.2-Pass-compilation-with-Werror-format-security.patch)

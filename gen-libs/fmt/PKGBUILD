@@ -4,6 +4,7 @@
 pkgname=fmt
 pkgver=11.2.0
 pkgrel=1
+url='https://fmt.dev/dev'
 source=(https://github.com/fmtlib/fmt/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

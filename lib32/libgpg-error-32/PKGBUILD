@@ -5,6 +5,7 @@ pkgname=libgpg-error-32
 _pkgname=libgpg-error
 pkgver=1.55
 pkgrel=1
+url='https://www.gnupg.org/related_software/libgpg-error'
 source=(https://www.gnupg.org/ftp/gcrypt/libgpg-error/${_pkgname}-$pkgver.tar.bz2)
 
 build() {

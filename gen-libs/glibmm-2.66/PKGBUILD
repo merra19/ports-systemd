@@ -5,6 +5,7 @@ pkgname=glibmm-2.66
 _pkgname=glibmm
 pkgver=2.66.8
 pkgrel=1
+url='https://gtkmm.gnome.org/en/index.html'
 source=(https://download.gnome.org/sources/glibmm/${pkgver%.*}/$_pkgname-$pkgver.tar.xz)
 
 build() {

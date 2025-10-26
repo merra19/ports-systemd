@@ -4,6 +4,7 @@
 pkgname=aspell
 pkgver=0.60.8.1
 pkgrel=1
+url='http://aspell.net'
 source=(https://mirror.lyrahosting.com/gnu/aspell/$pkgname-$pkgver.tar.gz)
 
 build() {

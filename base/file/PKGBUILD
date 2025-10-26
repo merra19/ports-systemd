@@ -5,6 +5,7 @@ pkgname=file
 pkgver=5.46
 pkgrel=1
 options=(!lto)
+url='https://www.darwinsys.com/file'
 source=(https://astron.com/pub/file/$pkgname-$pkgver.tar.gz)
 
 build() {

@@ -5,6 +5,7 @@ pkgname=neovim
 pkgver=0.11.4
 pkgrel=2
 options=(!lto)
+url='https://neovim.io'
 source=($pkgname-$pkgver.tar.gz::https://github.com/neovim/neovim/archive/refs/tags/v$pkgver.tar.gz)
 
 build() {

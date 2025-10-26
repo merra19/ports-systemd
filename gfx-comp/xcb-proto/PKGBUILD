@@ -4,6 +4,7 @@
 pkgname=xcb-proto
 pkgver=1.17.0
 pkgrel=1
+url='https://xcb.freedesktop.org'
 source=(https://xorg.freedesktop.org/archive/individual/proto/$pkgname-$pkgver.tar.xz)
 
 build() {

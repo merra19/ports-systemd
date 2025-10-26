@@ -4,6 +4,7 @@
 pkgname=glibc
 pkgver=2.42
 pkgrel=1
+url='https://www.gnu.org/software/libc'
 source=(https://mirror.lyrahosting.com/gnu/glibc//$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/lfs/12.4/glibc-$pkgver-fhs-1.patch
         reenable_DT_HASH.patch 

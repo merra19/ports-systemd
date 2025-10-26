@@ -4,6 +4,7 @@
 pkgname=patch
 pkgver=2.8
 pkgrel=1
+url='https://www.gnu.org/software/patch/patch.html'
 source=(https://mirror.lyrahosting.com/gnu/patch/$pkgname-$pkgver.tar.xz)
 
 build() {

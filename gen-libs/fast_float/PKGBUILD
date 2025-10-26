@@ -4,6 +4,7 @@
 pkgname=fast_float
 pkgver=8.0.2
 pkgrel=1
+url='https://github.com/fastfloat/fast_float'
 source=(https://github.com/fastfloat/fast_float/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

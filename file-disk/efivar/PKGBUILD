@@ -5,6 +5,7 @@ pkgname=efivar
 pkgver=39
 pkgrel=1
 options=(!lto)
+url='https://github.com/rhboot/efivar'
 source=(https://github.com/rhboot/efivar/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

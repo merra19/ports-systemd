@@ -4,6 +4,7 @@
 pkgname=xf86-input-libinput
 pkgver=1.5.0
 pkgrel=1
+url='https://www.x.org/wiki'
 source=(https://www.x.org/pub/individual/driver/$pkgname-$pkgver.tar.xz)
 
 build() {

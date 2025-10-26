@@ -5,6 +5,7 @@
 pkgname=qca
 pkgver=2.3.10
 pkgrel=1
+url='https://userbase.kde.org/QCA'
 source=(https://download.kde.org/stable/qca/$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

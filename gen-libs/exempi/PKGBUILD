@@ -4,6 +4,7 @@
 pkgname=exempi
 pkgver=2.6.6
 pkgrel=1
+url='https://libopenraw.freedesktop.org/wiki/Exempi'
 source=(https://libopenraw.freedesktop.org/download/$pkgname-$pkgver.tar.xz)
 
 build() {

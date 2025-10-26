@@ -5,6 +5,7 @@ pkgname=libexif
 pkgver=0.6.25
 pkgrel=1
 options=(!lto)
+url='https://libexif.github.io'
 source=(https://github.com/libexif/libexif/releases/download/v$pkgver/$pkgname-$pkgver.tar.bz2)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=libidn2
 pkgver=2.3.8
 pkgrel=1
+url='https://www.gnu.org/software/libidn/#libidn2'
 source=(https://mirror.lyrahosting.com/gnu/libidn/libidn2-$pkgver.tar.gz)
 
 build() {

@@ -5,6 +5,7 @@
 pkgname=appstream-glib
 pkgver=0.8.3
 pkgrel=1
+url='https://people.freedesktop.org/~hughsient/appstream-glib'
 source=(http://people.freedesktop.org/~hughsient/appstream-glib/releases/$pkgname-$pkgver.tar.xz)
 
 build() {

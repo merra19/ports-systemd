@@ -4,6 +4,7 @@
 pkgname=gdbm
 pkgver=1.26
 pkgrel=1
+url='https://www.gnu.org/software/gdbm'
 source=(https://mirror.lyrahosting.com/gnu/gdbm/$pkgname-$pkgver.tar.gz)
 
 build() {

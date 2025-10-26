@@ -2,15 +2,14 @@
 # depends	: containerd runc systemd
 
 pkgname=docker
-pkgver=28.4.0
+pkgver=28.5.1
 pkgrel=1
-# from https://github.com/moby/moby:	grep libnetwork vendor.conf
-_libnetwork_commit=dcdf8f176d1e13ad719e913e796fb698d846de98
 _moby_commit=bea959c7b793b32a893820b97c4eadc7c87fabb0
+_tini_commit=de40ad007797e0dcd8b7126f27bb87401d224240
 source=(https://github.com/moby/moby/archive/v${pkgver}/moby-${pkgver}.tar.gz \
 	https://github.com/docker/cli/archive/v${pkgver}/cli-${pkgver}.tar.gz \
-	libnetwork-$_libnetwork_commit.tar.gz::https://github.com/docker/libnetwork/archive/$_libnetwork_commit.tar.gz\
-	docker.conf $pkgname.hooks)
+	tini-$_tini_commit.tar.gz::https://github.com/krallin/tini/archive/$_tini_commit.tar.gz
+	$pkgname.hooks)
 
 # create a fake go path directory and pushd into it
 # $1 real directory
@@ -27,6 +26,17 @@ _fake_gopath_popd() {
 }
 
 build() {
+	echo 'Checking commit mismatch'
+	(
+	local _cfile
+	for _cfile in tini; do
+		. "moby-$pkgver/hack/dockerfile/install/$_cfile.installer"
+	done
+	local _commit _pkgbuild _dockerfile
+	err=0
+	return $err
+	)
+
 	### globals
 	export GOPATH="$srcdir"
 	export PATH="$GOPATH/bin:$PATH"
@@ -54,9 +64,21 @@ build() {
 		hack/make.sh dynbinary
 	_fake_gopath_popd
 
+	### docker-init
+	echo 'Building docker-init'
+	_fake_gopath_pushd tini-$_tini_commit github.com/krallin/tini
+	cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .
+	# we must use the static binary because it's started in a foreign os
+	make tini-static
+	_fake_gopath_popd
+
+
+	### init
+	install -Dm755 tini-$_tini_commit/tini-static "$pkgdir/usr/bin/docker-init"
 	### dockerd
 	install -Dm755 moby-$pkgver/bundles/dynbinary-daemon/dockerd "$pkgdir"/usr/bin/dockerd
 	install -Dm755 moby-$pkgver/bundles/dynbinary-daemon/docker-proxy "$pkgdir/usr/bin/docker-proxy"
+	### systemd units
     cd "$srcdir"/moby-$pkgver/contrib
     install -Dm644 'init/systemd/docker.service' "$pkgdir/usr/lib/systemd/system/docker.service"
     install -Dm644 'init/systemd/docker.socket' "$pkgdir/usr/lib/systemd/system/docker.socket"

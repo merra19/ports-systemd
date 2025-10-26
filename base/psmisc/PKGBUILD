@@ -4,6 +4,7 @@
 pkgname=psmisc
 pkgver=23.7
 pkgrel=1
+url='http://psmisc.sourceforge.net'
 source=(https://sourceforge.net/projects/psmisc/files/psmisc/$pkgname-$pkgver.tar.xz)
 
 build() {

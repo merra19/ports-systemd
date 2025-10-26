@@ -4,6 +4,7 @@
 pkgname=fribidi
 pkgver=1.0.16
 pkgrel=1
+url='https://fribidi.org'
 source=(https://github.com/fribidi/fribidi/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

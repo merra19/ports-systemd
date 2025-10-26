@@ -4,6 +4,7 @@
 pkgname=openjpeg
 pkgver=2.5.4
 pkgrel=1
+url='https://www.openjpeg.org'
 source=(https://github.com/uclouvain/openjpeg/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

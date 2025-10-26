@@ -4,6 +4,7 @@
 pkgname=tidy-html5
 pkgver=5.8.0
 pkgrel=1
+url='https://www.html-tidy.org'
 source=(https://github.com/htacg/tidy-html5/archive/$pkgver/$pkgname-$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.4/tidy-html5-5.8.0-cmake4_fixes-1.patch)
 

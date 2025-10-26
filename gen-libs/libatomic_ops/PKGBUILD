@@ -5,6 +5,7 @@ pkgname=libatomic_ops
 pkgver=7.8.2
 pkgrel=1
 options=(!lto)
+url='https://github.com/bdwgc/libatomic_ops'
 source=(https://github.com/ivmai/libatomic_ops/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

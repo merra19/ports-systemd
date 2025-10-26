@@ -5,6 +5,7 @@ pkgname=spidermonkey
 pkgver=140.3.0
 pkgrel=1
 options=(!lto)
+url='https://spidermonkey.dev'
 source=(https://archive.mozilla.org/pub/firefox/releases/${pkgver}esr/source/firefox-${pkgver}esr.source.tar.xz)
 
 build() {

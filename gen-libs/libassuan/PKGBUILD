@@ -5,6 +5,7 @@ pkgname=libassuan
 pkgver=3.0.2
 pkgrel=1
 options=(!lto)
+url='https://www.gnupg.org/related_software/libassuan/index.en.html'
 source=(https://www.gnupg.org/ftp/gcrypt/libassuan/$pkgname-$pkgver.tar.bz2)
 
 build() {

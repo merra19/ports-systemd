@@ -4,6 +4,7 @@
 pkgname=libcloudproviders
 pkgver=0.3.6
 pkgrel=1
+url='https://gitlab.gnome.org/World/libcloudproviders'
 source=(https://download.gnome.org/sources/libcloudproviders/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

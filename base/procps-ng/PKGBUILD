@@ -5,6 +5,7 @@ pkgname=procps-ng
 pkgver=4.0.5
 pkgrel=1
 options=(!lto)
+url='https://gitlab.com/procps-ng/procps'
 source=(https://sourceforge.net/projects/procps-ng/files/Production/$pkgname-$pkgver.tar.xz)
 
 build() {

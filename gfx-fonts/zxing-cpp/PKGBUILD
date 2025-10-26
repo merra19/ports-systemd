@@ -4,6 +4,7 @@
 pkgname=zxing-cpp
 pkgver=2.3.0
 pkgrel=1
+url='https://github.com/zxing-cpp/zxing-cpp'
 source=(https://github.com/zxing-cpp/zxing-cpp/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

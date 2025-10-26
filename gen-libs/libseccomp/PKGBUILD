@@ -5,6 +5,7 @@ pkgname=libseccomp
 pkgver=2.6.0
 pkgrel=1
 options=(!lto)
+url='https://github.com/seccomp/libseccomp'
 source=(https://github.com/seccomp/libseccomp/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

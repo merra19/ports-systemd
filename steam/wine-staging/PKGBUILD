@@ -1,0 +1,59 @@
+# description	: Free implementation of Windows(tm) on Unix, with Wine-Staging patchset
+# depends	: attr desktop-file-utils fontconfig freetype gcc gettext
+# depends	: libpcap xorg-libs wayland alsa-lib pulseaudio mesa
+# depends	: ffmpeg giflib gnutls gtk3 cups libva vulkan-loader
+# depends	: mingw-w64-gcc opencl-headers opencl-loader
+# depends	: perl sdl2 v4l-utils mingw-w64-winpthreads
+# optional  : gstreamer!!gst-plugins-base
+# todo      : libgphoto2
+
+pkgname=wine-staging
+pkgver=10.17
+pkgrel=1
+options=(!lto !strip)
+source=(https://dl.winehq.org/wine/source/10.x/wine-$pkgver.tar.xz
+		$pkgname-$pkgver.tar.gz::https://github.com/wine-staging/wine-staging/archive/refs/tags/v$pkgver.tar.gz 
+		wine-staging-7.17-noexecstack.patch  wine-staging-8.13-rpath.patch
+		ntsync.conf 30-win32-aliases.conf)
+
+build() {
+	patch -Np1 -i "$srcdir"/wine-staging-7.17-noexecstack.patch  -d wine-$pkgver
+	patch -Np1 -i "$srcdir"/wine-staging-8.13-rpath.patch -d wine-$pkgver
+
+	cd wine-$pkgver
+
+	../wine-staging-$pkgver/staging/patchinstall.py --all --backend=patch
+
+    mkdir "$srcdir"/wine-64-build
+    cd "$srcdir/wine-64-build"
+
+    unset CFLAGS CXXFLAGS LDFLAGS
+
+    # Apply flags for cross-compilation
+    export CROSSCFLAGS="-O2 -pipe -g"
+    export CROSSCXXFLAGS="-O2 -pipe -g"
+    export CROSSLDFLAGS="-Wl,-O1"
+
+    ../wine-$pkgver/configure \
+        --prefix=/usr \
+        --libdir=/usr/lib \
+		--disable-tests \
+        --enable-archs=x86_64,i386
+    make
+    make prefix="$pkgdir/usr" \
+        libdir="$pkgdir/usr/lib" \
+        dlldir="$pkgdir/usr/lib/wine" install
+
+    i686-w64-mingw32-strip --strip-unneeded "$pkgdir"/usr/lib/wine/i386-windows/*.dll
+    x86_64-w64-mingw32-strip --strip-unneeded "$pkgdir"/usr/lib/wine/x86_64-windows/*.dll
+
+	# Font aliasing settings for Win32 applications
+	install -d "$pkgdir"/usr/share/fontconfig/conf.{avail,default}
+	install -m644 "$srcdir/30-win32-aliases.conf" "$pkgdir/usr/share/fontconfig/conf.avail"
+
+	# Load ntsync module
+	install -Dm644 "$srcdir/ntsync.conf" "$pkgdir/usr/lib/modules-load.d/10-ntsync.conf"
+
+	install -dm0755 "$pkgdir/etc/revdep.d/"
+	echo '/usr/lib/wine/x86_64-unix/' > "$pkgdir/etc/revdep.d/wine.conf"
+}

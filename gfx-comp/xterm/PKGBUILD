@@ -4,6 +4,7 @@
 pkgname=xterm
 pkgver=401
 pkgrel=1
+url='https://invisible-island.net/xterm'
 source=(http://invisible-mirror.net/archives/$pkgname/$pkgname-$pkgver.tgz)
 
 build() {

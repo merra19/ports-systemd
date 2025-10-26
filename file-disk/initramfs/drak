@@ -6,8 +6,8 @@ Usage:
   $(basename $0) [option] [argument]
   
 Options:
-  -k <version>  custom kernel version (default: $KERNEL)
-  -o <output>   custom output name (default: $INITRAMFS)
+  -k <version>  custom kernel version (default: $KERNEL_VERSION)
+  -o <output>   custom output name
   -h            print this help msg
 	
 EOF
@@ -36,6 +36,13 @@ parse_opt() {
 		shift
 	done
 }
+
+[ "$(id -u)" = 0 ] || {
+	echo "this operation need root access!"
+	exit 1
+}
+
+KERNEL_VERSION="$(uname -r)"
 
 parse_opt "$@"
 

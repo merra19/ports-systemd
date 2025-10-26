@@ -4,6 +4,7 @@
 pkgname=wayland-protocols
 pkgver=1.45
 pkgrel=1
+url='https://wayland.freedesktop.org'
 source=(https://gitlab.freedesktop.org/wayland/wayland-protocols/-/releases/$pkgver/downloads/$pkgname-$pkgver.tar.xz)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=glm
 pkgver=1.0.1
 pkgrel=1
+url='http://glm.g-truc.net'
 source=(https://github.com/g-truc/glm/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

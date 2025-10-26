@@ -5,6 +5,7 @@ pkgname=newt
 pkgver=0.52.25
 pkgrel=1
 options=(!makeflags)
+url='https://pagure.io/newt'
 source=(http://fedorahosted.org/releases/n/e/newt/$pkgname-$pkgver.tar.gz)
 
 build() {

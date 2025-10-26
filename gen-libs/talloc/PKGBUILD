@@ -5,6 +5,7 @@
 pkgname=talloc
 pkgver=2.4.3
 pkgrel=1
+url='https://talloc.samba.org'
 source=(https://www.samba.org/ftp/talloc/$pkgname-$pkgver.tar.gz)
 
 build() {

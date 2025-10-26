@@ -5,6 +5,7 @@ pkgname=keyutils
 pkgver=1.6.3
 pkgrel=1
 options=(!lto)
+url='https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git'
 source=(https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/snapshot/$pkgname-$pkgver.tar.gz)
 backup=(etc/request-key.conf)
 

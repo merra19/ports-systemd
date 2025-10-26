@@ -4,6 +4,7 @@
 pkgname=inetutils
 pkgver=2.6
 pkgrel=1
+url='https://www.gnu.org/software/inetutils'
 source=(https://mirror.lyrahosting.com/gnu/inetutils/$pkgname-$pkgver.tar.xz)
 
 build() {

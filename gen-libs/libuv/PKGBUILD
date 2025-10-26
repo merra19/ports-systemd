@@ -4,6 +4,7 @@
 pkgname=libuv
 pkgver=1.51.0
 pkgrel=1
+url='https://github.com/libuv/libuv'
 source=(https://dist.libuv.org/dist/v$pkgver/$pkgname-v$pkgver.tar.gz)
 
 build() {

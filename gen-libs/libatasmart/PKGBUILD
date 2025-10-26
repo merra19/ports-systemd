@@ -4,6 +4,7 @@
 pkgname=libatasmart
 pkgver=0.19
 pkgrel=1
+url='https://salsa.debian.org/utopia-team/libatasmart'
 source=(http://0pointer.de/public/$pkgname-$pkgver.tar.xz)
 
 build() {

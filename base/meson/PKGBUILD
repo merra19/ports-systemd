@@ -4,6 +4,7 @@
 pkgname=meson
 pkgver=1.8.3
 pkgrel=1
+url='https://mesonbuild.com'
 source=(https://github.com/mesonbuild/meson/releases/download/$pkgver/$pkgname-$pkgver.tar.gz
         cross-lib32 native-clang)
 

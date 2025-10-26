@@ -1,4 +1,4 @@
-# description	: Logout menu for wayland
+# description	: A wayland based logout menu
 # depends	: meson gtk3 gobject-introspection gtk-layer-shell
 
 pkgname=wlogout

@@ -4,6 +4,7 @@
 pkgname=desktop-file-utils
 pkgver=0.28
 pkgrel=1
+url='https://freedesktop.org/wiki/Software/desktop-file-utils'
 source=(https://www.freedesktop.org/software/desktop-file-utils/releases/$pkgname-$pkgver.tar.xz
 		$pkgname.hooks)
 

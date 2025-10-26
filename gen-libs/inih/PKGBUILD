@@ -4,6 +4,7 @@
 pkgname=inih
 pkgver=61
 pkgrel=1
+url='https://github.com/benhoyt/inih'
 source=(https://github.com/benhoyt/inih/archive/r$pkgver/$pkgname-r$pkgver.tar.gz)
 
 build() {

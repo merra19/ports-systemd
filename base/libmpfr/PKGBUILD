@@ -4,6 +4,7 @@
 pkgname=libmpfr
 pkgver=4.2.2
 pkgrel=1
+url='https://www.mpfr.org'
 source=(https://mirror.lyrahosting.com/gnu/mpfr/mpfr-$pkgver.tar.xz)
 
 build() {

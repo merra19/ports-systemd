@@ -4,6 +4,7 @@
 pkgname=ttf-dejavu
 pkgver=2.37
 pkgrel=1
+url='https://dejavu-fonts.github.io'
 source=(https://downloads.sourceforge.net/project/dejavu/dejavu/$pkgver/dejavu-fonts-ttf-$pkgver.tar.bz2
         https://downloads.sourceforge.net/project/dejavu/dejavu/$pkgver/dejavu-lgc-fonts-ttf-$pkgver.tar.bz2
         45-dejavu.conf

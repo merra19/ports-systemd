@@ -5,6 +5,7 @@ pkgname=graphite2
 pkgver=1.3.14
 pkgrel=1
 options=(!lto)
+url='https://scripts.sil.org/cms/scripts/page.php?site_id=projects&item_id=graphite_home'
 source=(https://github.com/silnrsi/graphite/releases/download/$pkgver/$pkgname-$pkgver.tgz)
 
 build() {

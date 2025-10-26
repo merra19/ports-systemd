@@ -4,6 +4,7 @@
 pkgname=utfcpp
 pkgver=4.0.6
 pkgrel=1
+url='https://github.com/nemtrif/utfcpp'
 source=(https://github.com/nemtrif/utfcpp/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

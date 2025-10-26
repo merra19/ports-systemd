@@ -4,6 +4,7 @@
 pkgname=giflib
 pkgver=5.2.2
 pkgrel=1
+url='https://sourceforge.net/projects/giflib'
 source=(https://downloads.sourceforge.net/giflib/$pkgname-$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.4/giflib-5.2.2-upstream_fixes-1.patch
         https://www.linuxfromscratch.org/patches/blfs/12.4/giflib-5.2.2-security_fixes-1.patch)

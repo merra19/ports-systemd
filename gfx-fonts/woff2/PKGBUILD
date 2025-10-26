@@ -4,6 +4,7 @@
 pkgname=woff2
 pkgver=1.0.2
 pkgrel=1
+url='https://github.com/google/woff2'
 source=(https://github.com/google/woff2/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

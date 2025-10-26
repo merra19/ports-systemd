@@ -6,6 +6,7 @@ _pkgname=LibRaw
 pkgver=0.21.4
 pkgrel=1
 options=(!lto)
+url='https://www.libraw.org'
 source=(https://www.libraw.org/data/LibRaw-$pkgver.tar.gz)
 
 build() {

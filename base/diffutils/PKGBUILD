@@ -5,6 +5,7 @@ pkgname=diffutils
 pkgver=3.12
 pkgrel=1
 options=(!lto)
+url='https://www.gnu.org/software/diffutils'
 source=(https://mirror.lyrahosting.com/gnu/diffutils/$pkgname-$pkgver.tar.xz)
 
 build() {

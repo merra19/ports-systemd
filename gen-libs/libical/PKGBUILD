@@ -5,6 +5,7 @@
 pkgname=libical
 pkgver=3.0.20
 pkgrel=1
+url='https://github.com/libical/libical'
 source=(https://github.com/libical/$pkgname/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

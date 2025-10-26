@@ -4,6 +4,7 @@
 pkgname=autoconf
 pkgver=2.72
 pkgrel=1
+url='https://www.gnu.org/software/autoconf/autoconf.html'
 source=(https://mirror.lyrahosting.com/gnu/autoconf/$pkgname-$pkgver.tar.xz)
 
 build() {

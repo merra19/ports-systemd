@@ -6,6 +6,7 @@ pkgname=vim
 pkgver=9.1.1629
 pkgrel=1
 options=(!lto)
+url='https://www.vim.org'
 source=(https://github.com/vim/vim/archive/v$pkgver/$pkgname-$pkgver.tar.gz
         vimrc)
 backup=(etc/vimrc)

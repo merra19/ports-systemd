@@ -5,6 +5,7 @@ pkgname=libtiff
 pkgver=4.7.0
 pkgrel=1
 options=(!lto)
+url='http://libtiff.maptools.org'
 source=(https://download.osgeo.org/$pkgname/tiff-$pkgver.tar.gz)
 
 build() {

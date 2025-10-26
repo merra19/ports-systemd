@@ -4,6 +4,7 @@
 pkgname=potrace
 pkgver=1.16
 pkgrel=1
+url='https://potrace.sourceforge.net'
 source=(https://downloads.sourceforge.net/potrace/$pkgname-$pkgver.tar.gz)
 
 build() {

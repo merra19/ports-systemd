@@ -4,6 +4,7 @@
 pkgname=libspiro
 pkgver=20220722
 pkgrel=1
+url='https://github.com/fontforge/libspiro'
 source=(https://github.com/fontforge/libspiro/releases/download/$pkgver/$pkgname-dist-$pkgver.tar.gz)
 
 build() {

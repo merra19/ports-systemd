@@ -5,6 +5,7 @@ pkgname=protobuf
 pkgver=32.0
 pkgrel=1
 options=(!lto)
+url='https://protobuf.dev'
 source=(https://github.com/protocolbuffers/protobuf/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

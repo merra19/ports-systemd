@@ -5,6 +5,7 @@
 pkgname=librsvg
 pkgver=2.61.0
 pkgrel=1
+url='https://wiki.gnome.org/Projects/LibRsvg'
 source=(https://download.gnome.org/sources/librsvg/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

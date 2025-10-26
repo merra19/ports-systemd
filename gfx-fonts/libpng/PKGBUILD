@@ -4,6 +4,7 @@
 pkgname=libpng
 pkgver=1.6.50
 pkgrel=1
+url='https://www.libpng.org'
 source=(https://downloads.sourceforge.net/libpng/$pkgname-$pkgver.tar.xz
         https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-$pkgver-apng.patch.gz)
 noextract=($pkgname-$pkgver-apng.patch.gz)

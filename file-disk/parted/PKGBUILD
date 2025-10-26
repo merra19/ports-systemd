@@ -5,6 +5,7 @@
 pkgname=parted
 pkgver=3.6
 pkgrel=1
+url='https://www.gnu.org/software/parted'
 source=(https://mirror.lyrahosting.com/gnu/$pkgname/$pkgname-$pkgver.tar.xz)
 
 build() {

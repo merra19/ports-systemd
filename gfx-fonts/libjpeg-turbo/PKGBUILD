@@ -4,6 +4,7 @@
 pkgname=libjpeg-turbo
 pkgver=3.0.1
 pkgrel=1
+url='https://libjpeg-turbo.org'
 source=(https://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.gz)
 
 build() {

@@ -6,6 +6,7 @@ _pkgname=unixODBC
 pkgver=2.3.12
 pkgrel=1
 options=(!lto)
+url='https://www.unixodbc.org'
 source=(https://github.com/lurcher/unixODBC/releases/download/$pkgver/unixODBC-$pkgver.tar.gz)
 backup=(etc/unixODBC/odbc.ini etc/unixODBC/odbcinst.ini)
 

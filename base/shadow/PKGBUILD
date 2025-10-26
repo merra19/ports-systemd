@@ -4,6 +4,7 @@
 pkgname=shadow
 pkgver=4.18.0
 pkgrel=1
+url='https://github.com/shadow-maint/shadow'
 source=(https://github.com/shadow-maint/shadow/releases/download/$pkgver/$pkgname-$pkgver.tar.xz
         login passwd su chpasswd newusers chage)
 

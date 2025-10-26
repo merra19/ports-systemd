@@ -4,6 +4,7 @@
 pkgname=e2fsprogs
 pkgver=1.47.3
 pkgrel=1
+url='http://e2fsprogs.sourceforge.net'
 source=(https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v$pkgver/$pkgname-$pkgver.tar.gz)
 backup=(etc/mke2fs.conf etc/e2scrub.conf)
 

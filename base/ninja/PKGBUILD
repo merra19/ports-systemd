@@ -4,6 +4,7 @@
 pkgname=ninja
 pkgver=1.13.1
 pkgrel=1
+url='https://ninja-build.org'
 source=(https://github.com/ninja-build/ninja/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

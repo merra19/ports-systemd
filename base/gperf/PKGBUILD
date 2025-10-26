@@ -5,6 +5,7 @@ pkgname=gperf
 pkgver=3.3
 pkgrel=1
 options=(!makeflags)
+url='https://www.gnu.org/software/gperf'
 source=(https://mirror.lyrahosting.com/gnu/gperf/$pkgname-$pkgver.tar.gz)
 
 build() {

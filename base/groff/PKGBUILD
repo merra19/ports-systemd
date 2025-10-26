@@ -5,6 +5,7 @@ pkgname=groff
 pkgver=1.23.0
 pkgrel=1
 options=(!makeflags)
+url='https://www.gnu.org/software/groff/groff.html'
 source=(https://mirror.lyrahosting.com/gnu/groff/$pkgname-$pkgver.tar.gz)
 
 build() {

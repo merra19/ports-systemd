@@ -4,6 +4,7 @@
 pkgname=libwacom
 pkgver=2.16.1
 pkgrel=1
+url='https://github.com/linuxwacom/libwacom'
 source=(https://github.com/linuxwacom/libwacom/releases/download/$pkgname-$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

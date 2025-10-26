@@ -5,6 +5,7 @@ pkgname=libsass
 pkgver=3.6.6
 pkgrel=1
 options=(!lto)
+url='https://github.com/sass/libsass'
 source=(https://github.com/sass/libsass/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

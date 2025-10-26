@@ -5,6 +5,7 @@ pkgname=libsigc++-3
 _pkgname=libsigc++
 pkgver=3.6.0
 pkgrel=1
+url='https://libsigcplusplus.github.io/libsigcplusplus'
 source=(https://download.gnome.org/sources/libsigc++/${pkgver%.*}/${_pkgname}-$pkgver.tar.xz)
 
 build() {

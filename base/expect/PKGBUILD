@@ -4,6 +4,7 @@
 pkgname=expect
 pkgver=5.45.4
 pkgrel=1
+url='https://core.tcl-lang.org/expect'
 source=(https://prdownloads.sourceforge.net/expect/$pkgname$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/lfs/12.4/expect-5.45.4-gcc15-1.patch
         expect-5.45-format-security.patch)

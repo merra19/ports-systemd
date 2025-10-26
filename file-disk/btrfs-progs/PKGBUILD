@@ -5,6 +5,7 @@
 pkgname=btrfs-progs
 pkgver=6.16
 pkgrel=1
+url='https://btrfs.readthedocs.io/en/latest'
 source=(https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/$pkgname-v$pkgver.tar.xz)
 
 build() {

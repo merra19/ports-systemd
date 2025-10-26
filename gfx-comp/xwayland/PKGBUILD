@@ -6,6 +6,7 @@
 pkgname=xwayland
 pkgver=24.1.8
 pkgrel=1
+url='https://wayland.freedesktop.org/xserver.html'
 source=(https://www.x.org/pub/individual/xserver/$pkgname-$pkgver.tar.xz)
 
 build() {

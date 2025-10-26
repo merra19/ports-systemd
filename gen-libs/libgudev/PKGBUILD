@@ -4,6 +4,7 @@
 pkgname=libgudev
 pkgver=238
 pkgrel=1
+url='https://wiki.gnome.org/Projects/libgudev'
 source=(https://ftp.gnome.org/pub/gnome/sources/$pkgname/$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

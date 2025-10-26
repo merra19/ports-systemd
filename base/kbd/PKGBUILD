@@ -4,6 +4,7 @@
 pkgname=kbd
 pkgver=2.8.0
 pkgrel=1
+url='https://kbd-project.org'
 source=(https://www.kernel.org/pub/linux/utils/kbd/$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/lfs/12.4/kbd-$pkgver-backspace-1.patch)
 

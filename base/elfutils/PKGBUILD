@@ -5,6 +5,7 @@ pkgname=elfutils
 pkgver=0.193
 pkgrel=1
 options=(!lto)
+url='https://sourceware.org/elfutils'
 source=(https://sourceware.org/ftp/elfutils/$pkgver/$pkgname-$pkgver.tar.bz2)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=liburcu
 pkgver=0.15.3
 pkgrel=1
+url='https://liburcu.org'
 source=(https://lttng.org/files/urcu/userspace-rcu-$pkgver.tar.bz2)
 
 build() {

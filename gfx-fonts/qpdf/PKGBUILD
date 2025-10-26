@@ -5,6 +5,7 @@
 pkgname=qpdf
 pkgver=12.2.0
 pkgrel=1
+url='https://qpdf.sourceforge.io'
 source=(https://github.com/qpdf/qpdf/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=dejagnu
 pkgver=1.6.3
 pkgrel=1
+url='https://www.gnu.org/software/dejagnu'
 source=(https://mirror.lyrahosting.com/gnu/dejagnu/$pkgname-$pkgver.tar.gz)
 
 build() {

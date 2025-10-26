@@ -5,6 +5,7 @@ pkgname=binutils
 pkgver=2.45
 pkgrel=1
 options=(!lto)
+url='https://sourceware.org/binutils'
 source=(https://mirror.lyrahosting.com/gnu/binutils/$pkgname-$pkgver.tar.xz)
 
 build() {

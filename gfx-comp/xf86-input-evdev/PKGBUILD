@@ -6,6 +6,7 @@ pkgname=xf86-input-evdev
 pkgver=2.11.0
 pkgrel=1
 options=(!makeflags)
+url='https://www.x.org/wiki'
 source=(https://www.x.org/pub/individual/driver/$pkgname-$pkgver.tar.xz)
 
 build() {

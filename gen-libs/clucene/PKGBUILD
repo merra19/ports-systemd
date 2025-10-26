@@ -5,6 +5,7 @@ pkgname=clucene
 pkgver=2.3.3.4
 pkgrel=1
 options=(!lto)
+url='https://clucene.sourceforge.net'
 source=(https://downloads.sourceforge.net/clucene/clucene-core-$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.4/clucene-$pkgver-contribs_lib-1.patch)
 

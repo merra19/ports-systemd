@@ -4,6 +4,7 @@
 pkgname=dosfstools
 pkgver=4.2
 pkgrel=1
+url='https://github.com/dosfstools/dosfstools'
 source=(https://github.com/dosfstools/dosfstools/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

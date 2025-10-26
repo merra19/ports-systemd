@@ -4,6 +4,7 @@
 pkgname=dbus-glib
 pkgver=0.114
 pkgrel=1
+url='https://dbus.freedesktop.org'
 source=(http://dbus.freedesktop.org/releases/$pkgname/$pkgname-$pkgver.tar.gz)
 
 build() {

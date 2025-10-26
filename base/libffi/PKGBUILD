@@ -5,6 +5,7 @@ pkgname=libffi
 pkgver=3.5.2
 pkgrel=1
 options=(!lto)
+url='https://sourceware.org/libffi'
 source=(https://github.com/libffi/libffi/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

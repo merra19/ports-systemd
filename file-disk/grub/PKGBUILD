@@ -6,6 +6,7 @@ pkgname=grub
 pkgver=2.12
 pkgrel=2
 options=(!makeflags !lto)
+url='https://www.gnu.org/software/grub'
 source=(https://mirror.lyrahosting.com/gnu/grub/$pkgname-$pkgver.tar.xz
         fstab grub.default update-grub update-efi)
 backup=(etc/default/grub etc/grub.d/40_custom etc/fstab)

@@ -4,6 +4,7 @@ pkgname=linux-api-headers
 _pkgname=linux
 pkgver=6.15.4
 pkgrel=1
+url='https://www.kernel.org'
 source=(https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver%.0}.tar.xz)
 
 build() {

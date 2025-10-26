@@ -4,6 +4,7 @@
 pkgname=exiv2
 pkgver=0.28.7
 pkgrel=1
+url='https://exiv2.org'
 source=(https://github.com/Exiv2/exiv2/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

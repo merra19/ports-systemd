@@ -5,6 +5,7 @@ pkgname=npth
 pkgver=1.8
 pkgrel=1
 options=(!lto)
+url='https://git.gnupg.org/cgi-bin/gitweb.cgi?p=npth.git'
 source=( https://www.gnupg.org/ftp/gcrypt/$pkgname/$pkgname-$pkgver.tar.bz2)
 
 build() {

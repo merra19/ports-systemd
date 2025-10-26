@@ -4,6 +4,7 @@
 pkgname=libdisplay-info
 pkgver=0.3.0
 pkgrel=1
+url='https://gitlab.freedesktop.org/emersion/libdisplay-info'
 source=(https://gitlab.freedesktop.org/emersion/$pkgname/-/releases/$pkgver/downloads/$pkgname-$pkgver.tar.xz)
 
 build() {

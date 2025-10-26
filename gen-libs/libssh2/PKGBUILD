@@ -4,6 +4,7 @@
 pkgname=libssh2
 pkgver=1.11.1
 pkgrel=1
+url='https://libssh2.org'
 source=(https://www.libssh2.org/download/$pkgname-$pkgver.tar.gz)
 
 build() {

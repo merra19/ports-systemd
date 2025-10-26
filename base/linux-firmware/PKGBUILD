@@ -2,14 +2,14 @@
 # depends	: xz zstd rdfind
 
 pkgname=linux-firmware
-pkgver=20250808
+pkgver=20251021
 pkgrel=1
 pkgnameparallel=parallel
 pkgverparallel=20250822
 options=(!strip)
+url='https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git'
 source=(https://gitlab.com/kernel-firmware/linux-firmware/-/archive/$pkgver/$pkgname-$pkgver.tar.gz
         https://mirror.lyrahosting.com/gnu/$pkgnameparallel/$pkgnameparallel-$pkgverparallel.tar.bz2)
-NO_STRIP="yes"
 
 build() {
     mkdir -p kernel/x86/microcode

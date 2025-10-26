@@ -4,6 +4,7 @@
 pkgname=jasper
 pkgver=4.2.8
 pkgrel=1
+url='https://jasper-software.github.io/jasper'
 source=(https://github.com/jasper-software/jasper/archive/version-$pkgver/$pkgname-version-$pkgver.tar.gz)
 
 build() {

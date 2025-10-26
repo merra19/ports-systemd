@@ -10,6 +10,7 @@ pkgname=imagemagick
 pkgver=7.1.2.1
 _version="$(echo $pkgver  | sed 's/\(.*\)\./\1-/')"
 pkgrel=1
+url='https://imagemagick.org/index.php'
 source=(https://www.imagemagick.org/archive/releases/ImageMagick-$_version.tar.xz)
 
 build() {

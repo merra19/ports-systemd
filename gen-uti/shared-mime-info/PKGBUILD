@@ -5,6 +5,7 @@ pkgname=shared-mime-info
 pkgver=2.4
 pkgrel=1
 options=(!makeflags)
+url='https://gitlab.freedesktop.org/xdg/shared-mime-info'
 source=(https://gitlab.freedesktop.org/xdg/shared-mime-info/-/archive/$pkgver/$pkgname-$pkgver.tar.gz
         $pkgname.hooks)
 

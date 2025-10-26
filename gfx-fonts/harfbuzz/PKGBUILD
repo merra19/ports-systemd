@@ -5,6 +5,7 @@
 pkgname=harfbuzz
 pkgver=11.4.1
 pkgrel=1
+url='https://harfbuzz.github.io'
 source=(https://github.com/harfbuzz/harfbuzz/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

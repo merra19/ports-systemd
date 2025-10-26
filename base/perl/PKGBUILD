@@ -4,6 +4,7 @@
 pkgname=perl
 pkgver=5.42.0
 pkgrel=1
+url='https://www.perl.org'
 source=(https://www.cpan.org/src/5.0/$pkgname-$pkgver.tar.xz)
 
 build() {

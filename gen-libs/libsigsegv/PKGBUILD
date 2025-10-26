@@ -5,6 +5,7 @@ pkgname=libsigsegv
 pkgver=2.15
 pkgrel=1
 options=(!lto)
+url='https://www.gnu.org/software/libsigsegv'
 source=(https://mirror.lyrahosting.com/gnu/libsigsegv/$pkgname-$pkgver.tar.gz)
 
 build() {

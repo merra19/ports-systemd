@@ -5,6 +5,7 @@ pkgname=libxau
 _pkgname=libXau
 pkgver=1.0.12
 pkgrel=1
+url='https://xcb.freedesktop.org'
 source=(https://www.x.org/pub/individual/lib/libXau-$pkgver.tar.xz)
 
 build() {

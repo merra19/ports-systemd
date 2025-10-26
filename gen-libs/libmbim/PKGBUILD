@@ -4,6 +4,7 @@
 pkgname=libmbim
 pkgver=1.32.0
 pkgrel=1
+url='https://www.freedesktop.org/wiki/Software/libmbim'
 source=(https://gitlab.freedesktop.org/mobile-broadband/libmbim/-/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

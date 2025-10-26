@@ -4,6 +4,7 @@
 pkgname=libgusb
 pkgver=0.4.9
 pkgrel=1
+url='https://github.com/hughsie/libgusb'
 source=(https://github.com/hughsie/libgusb/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {

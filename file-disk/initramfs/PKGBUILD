@@ -4,6 +4,7 @@
 pkgname=initramfs
 pkgver=2.5
 pkgrel=1
+url='https://linuxfromscratch.org'
 source=(mkinitramfs init.in drak)
 
 build() {

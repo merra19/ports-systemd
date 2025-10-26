@@ -5,6 +5,7 @@ pkgname=kmod
 pkgver=34.2
 pkgrel=1
 options=(strip !lto)
+url='https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git'
 source=(https://www.kernel.org/pub/linux/utils/kernel/kmod/$pkgname-$pkgver.tar.xz)
 
 build() {

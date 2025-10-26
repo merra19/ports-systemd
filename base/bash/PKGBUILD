@@ -5,6 +5,7 @@ pkgname=bash
 pkgver=5.3
 pkgrel=1
 options=(!lto)
+url='https://tiswww.case.edu/php/chet/bash/bashtop.html'
 source=(https://mirror.lyrahosting.com/gnu/bash/$pkgname-$pkgver.tar.gz)
 
 build() {

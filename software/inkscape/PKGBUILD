@@ -7,6 +7,7 @@
 pkgname=inkscape
 pkgver=1.4.2
 pkgrel=1
+url='https://inkscape.org'
 source=(https://inkscape.org/gallery/item/56344/$pkgname-$pkgver.tar.xz
 		fix-build-with-poppler-25.10.0.patch
 		https://www.linuxfromscratch.org/patches/blfs/svn/inkscape-1.4.2-poppler_fixes-4.patch)

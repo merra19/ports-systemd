@@ -5,6 +5,7 @@ pkgname=noto-fonts-cjk
 pkgver=20190416
 pkgrel=1
 commit=be6c059ac1587e556e2412b27f5155c8eb3ddbe6
+url='https://fonts.google.com/noto'
 source=($pkgname-$pkgver.tar.gz::https://github.com/notofonts/noto-cjk/archive/$commit.tar.gz
         70-noto-cjk.conf)
 

@@ -4,6 +4,7 @@
 pkgname=libxcb
 pkgver=1.17.0
 pkgrel=1
+url='https://xcb.freedesktop.org'
 source=(https://xorg.freedesktop.org/archive/individual/lib/$pkgname-$pkgver.tar.xz)
 
 build() {

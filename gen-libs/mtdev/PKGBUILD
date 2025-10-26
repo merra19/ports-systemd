@@ -4,6 +4,7 @@
 pkgname=mtdev
 pkgver=1.1.7
 pkgrel=1
+url='https://bitmath.org/code/mtdev'
 source=(https://bitmath.org/code/mtdev/$pkgname-$pkgver.tar.bz2)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=libwebp
 pkgver=1.6.0
 pkgrel=1
+url='https://developers.google.com/speed/webp/download'
 source=(http://downloads.webmproject.org/releases/webp/$pkgname-$pkgver.tar.gz)
 
 build() {

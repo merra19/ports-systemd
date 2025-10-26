@@ -4,6 +4,7 @@
 pkgname=xcb-util
 pkgver=0.4.1
 pkgrel=1
+url='https://xcb.freedesktop.org'
 source=(https://xcb.freedesktop.org/dist/$pkgname-$pkgver.tar.xz)
 
 build() { 

@@ -4,6 +4,7 @@
 pkgname=libgxps
 pkgver=0.3.2
 pkgrel=1
+url='https://wiki.gnome.org/Projects/libgxps'
 source=(https://download.gnome.org/sources/libgxps/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {

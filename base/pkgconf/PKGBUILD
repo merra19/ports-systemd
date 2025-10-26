@@ -5,6 +5,7 @@ pkgname=pkgconf
 pkgver=2.5.1
 pkgrel=1
 options=(!lto)
+url='https://github.com/pkgconf/pkgconf'
 source=(https://distfiles.ariadne.space/pkgconf/$pkgname-$pkgver.tar.xz
         x86_64-pc-linux-gnu.personality i686-pc-linux-gnu.personality)
 

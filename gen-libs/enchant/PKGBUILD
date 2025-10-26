@@ -4,6 +4,7 @@
 pkgname=enchant
 pkgver=2.8.12
 pkgrel=1
+url='https://rrthomas.github.io/enchant'
 source=(https://github.com/rrthomas/enchant/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

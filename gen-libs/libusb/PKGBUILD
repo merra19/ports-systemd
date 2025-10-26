@@ -4,6 +4,7 @@
 pkgname=libusb
 pkgver=1.0.29
 pkgrel=1
+url='https://libusb.info'
 source=(https://github.com/libusb/libusb/releases/download/v$pkgver/libusb-$pkgver.tar.bz2)
 
 build() {

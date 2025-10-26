@@ -5,6 +5,7 @@
 pkgname=py3-pynvim
 pkgver=0.6.0
 pkgrel=1
+url='https://github.com/neovim/pynvim'
 source=(https://pypi.io/packages/source/p/pynvim/pynvim-$pkgver.tar.gz)
 
 build() {

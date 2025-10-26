@@ -4,6 +4,7 @@
 pkgname=libpaper
 pkgver=2.2.6
 pkgrel=1
+url='https://github.com/rrthomas/libpaper'
 source=(https://github.com/rrthomas/libpaper/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

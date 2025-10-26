@@ -5,6 +5,7 @@ pkgname=libyaml
 pkgver=0.2.5
 pkgrel=1
 options=(!lto)
+url='https://github.com/yaml/libyaml'
 source=(https://github.com/yaml/libyaml/releases/download/0.2.5/yaml-$pkgver.tar.gz)
 
 build() {

@@ -1,4 +1,4 @@
-# description	: Direct3D 12 to Vulkan translation library By WineHQ
+# description	: Fork of VKD3D, development branches for Proton's Direct3D 12 implementation
 # depends	: spirv-tools vulkan-loader perl-json spirv-headers
 # depends	: vulkan-headers xcb-utilities xorg-proto
 

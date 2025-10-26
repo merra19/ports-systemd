@@ -4,6 +4,7 @@
 pkgname=duktape
 pkgver=2.7.0
 pkgrel=1
+url='https://duktape.org'
 source=(https://duktape.org/$pkgname-$pkgver.tar.xz)
 
 build() {

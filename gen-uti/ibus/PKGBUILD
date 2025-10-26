@@ -8,6 +8,7 @@ pkgname=ibus
 pkgver=1.5.32
 ucdver=16.0.0
 pkgrel=1
+url='https://github.com/ibus/ibus/wiki'
 source=(https://github.com/ibus/ibus/archive/$pkgver/$pkgname-$pkgver.tar.gz
         UCD-${ucdver}.zip::https://www.unicode.org/Public/zipped/${ucdver}/UCD.zip)
 noextract=(UCD-${ucdver}.zip)

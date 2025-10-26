@@ -4,6 +4,7 @@
 pkgname=sed
 pkgver=4.9
 pkgrel=1
+url='https://www.gnu.org/software/sed'
 source=(https://mirror.lyrahosting.com/gnu/sed/$pkgname-$pkgver.tar.xz)
 
 build() {

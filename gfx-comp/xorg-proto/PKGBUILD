@@ -5,6 +5,7 @@ pkgname=xorg-proto
 _pkgname=xorgproto
 pkgver=2024.1
 pkgrel=1
+url='https://gitlab.freedesktop.org/xorg/proto/xorgproto'
 source=(https://xorg.freedesktop.org/archive/individual/proto/${_pkgname}-$pkgver.tar.xz)
 
 build() {

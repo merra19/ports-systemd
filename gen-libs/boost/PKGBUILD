@@ -6,6 +6,7 @@ pkgver=1.89.0
 vrsn="$(echo $pkgver | sed 's/\./_/g')"
 pkgrel=1
 options=(!lto)
+url='https://www.boost.org'
 source=(https://github.com/boostorg/boost/releases/download/$pkgname-$pkgver/$pkgname-$pkgver-b2-nodocs.tar.xz)
 
 build() {

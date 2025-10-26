@@ -5,6 +5,7 @@ pkgname=noto-fonts
 pkgver=20250801
 pkgrel=1
 commit=24e93e695ddc0e7a150899aaf2671609459cd52f
+url='https://fonts.google.com/noto'
 source=($pkgname-$pkgver.tar.gz::https://github.com/notofonts/notofonts.github.io/archive/$commit.tar.gz
         66-noto-sans.conf 66-noto-serif.conf 66-noto-mono.conf
         46-noto-sans.conf 46-noto-serif.conf 46-noto-mono.conf)

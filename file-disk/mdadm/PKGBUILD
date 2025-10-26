@@ -4,6 +4,7 @@
 pkgname=mdadm
 pkgver=4.4
 pkgrel=1
+url='https://github.com/md-raid-utilities/mdadm'
 source=(https://www.kernel.org/pub/linux/utils/raid/mdadm/$pkgname-$pkgver.tar.xz
         mdadm.conf)
 backup=(etc/mdadm.conf)

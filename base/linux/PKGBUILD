@@ -8,6 +8,7 @@ pkgrel=1
 options=(!strip)
 _srcvers=$pkgver.arch1
 _srctag=v${_srcvers%.*}-${_srcvers##*.}
+url='https://www.kernel.org'
 source=(https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/linux-${pkgver%.*}.tar.xz
         x86_64-dotconfig)
 

@@ -4,6 +4,7 @@
 pkgname=xorg-fonts
 pkgver=1.0.0
 pkgrel=1
+url='https://www.x.org/wiki'
 source=()
 noextract=(
     font-util-1.4.1.tar.xz

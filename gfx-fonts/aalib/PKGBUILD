@@ -5,6 +5,7 @@ pkgname=aalib
 pkgver=1.4rc5
 _pkgver=${pkgver%*rc5}.0
 pkgrel=1
+url='https://aa-project.sourceforge.net/aalib'
 source=(https://downloads.sourceforge.net/aa-project/$pkgname-$pkgver.tar.gz)
 
 build() {

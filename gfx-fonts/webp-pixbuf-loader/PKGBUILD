@@ -4,6 +4,7 @@
 pkgname=webp-pixbuf-loader
 pkgver=0.2.7
 pkgrel=1
+url='https://github.com/aruiz/webp-pixbuf-loader'
 source=(https://github.com/aruiz/webp-pixbuf-loader/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

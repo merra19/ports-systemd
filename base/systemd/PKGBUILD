@@ -5,6 +5,7 @@ pkgname=systemd
 pkgver=257.8
 pkgrel=1
 options=(!lto)
+url='https://systemd.io'
 source=(https://github.com/systemd/systemd/archive/v$pkgver/$pkgname-$pkgver.tar.gz
         https://anduin.linuxfromscratch.org/LFS/systemd-man-pages-$pkgver.tar.xz
         system-hooks.sh)

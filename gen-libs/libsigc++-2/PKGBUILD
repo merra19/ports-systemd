@@ -4,6 +4,7 @@
 pkgname=libsigc++-2
 pkgver=2.12.1
 pkgrel=1
+url='https://libsigcplusplus.github.io/libsigcplusplus'
 source=(https://download.gnome.org/sources/libsigc++/${pkgver%.*}/libsigc++-$pkgver.tar.xz)
 
 build() {

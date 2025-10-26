@@ -5,6 +5,7 @@ pkgname=pixman
 pkgver=0.46.4
 pkgrel=1
 options=(!lto)
+url='http://www.pixman.org'
 source=(https://www.cairographics.org/releases/$pkgname-$pkgver.tar.gz)
 
 build() {

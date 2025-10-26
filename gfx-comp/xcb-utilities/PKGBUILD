@@ -4,6 +4,7 @@
 pkgname=xcb-utilities
 pkgver=1.0.0
 pkgrel=2
+url='https://xcb.freedesktop.org'
 source=()
 noextract=(
     xcb-util-image-0.4.1.tar.xz

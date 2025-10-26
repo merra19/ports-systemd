@@ -4,6 +4,7 @@
 pkgname=libunwind
 pkgver=1.8.2
 pkgrel=1
+url='https://savannah.nongnu.org/projects/libunwind'
 source=(https://github.com/libunwind/libunwind/releases/download/v$pkgver//$pkgname-$pkgver.tar.gz)
 
 build() {

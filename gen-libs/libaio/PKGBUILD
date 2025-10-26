@@ -5,6 +5,7 @@ pkgname=libaio
 pkgver=0.3.113
 pkgrel=1
 options=(!lto)
+url='https://pagure.io/libaio'
 source=(https://pagure.io/libaio/archive/libaio-$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

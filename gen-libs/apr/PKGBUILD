@@ -4,6 +4,7 @@
 pkgname=apr
 pkgver=1.7.6
 pkgrel=1
+url='https://apr.apache.org'
 source=(https://archive.apache.org/dist/apr/$pkgname-$pkgver.tar.bz2)
 
 build() {

@@ -5,6 +5,7 @@ pkgname=tar
 pkgver=1.35
 pkgrel=1
 options=(!lto)
+url='https://www.gnu.org/software/tar'
 source=(https://mirror.lyrahosting.com/gnu/tar/$pkgname-$pkgver.tar.xz)
 
 build() {

@@ -4,6 +4,7 @@
 pkgname=libqmi
 pkgver=1.36.0
 pkgrel=1
+url='https://www.freedesktop.org/wiki/Software/libqmi'
 source=(https://gitlab.freedesktop.org/mobile-broadband/libqmi/-/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

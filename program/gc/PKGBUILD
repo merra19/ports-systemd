@@ -4,6 +4,7 @@
 pkgname=gc
 pkgver=8.2.8
 pkgrel=1
+url='https://www.hboehm.info/gc'
 source=(https://github.com/ivmai/bdwgc/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {

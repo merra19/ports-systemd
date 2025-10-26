@@ -5,6 +5,7 @@ pkgname=gptfdisk
 pkgver=1.0.10
 pkgrel=1
 options=(!lto)
+url='https://www.rodsbooks.com/gdisk'
 source=(https://downloads.sourceforge.net/gptfdisk/$pkgname-$pkgver.tar.gz
         https://www.linuxfromscratch.org/patches/blfs/12.4/gptfdisk-1.0.10-convenience-1.patch)
 
