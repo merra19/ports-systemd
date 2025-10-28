@@ -1,5 +1,6 @@
 # description	: Select a region in a Wayland compositor and print it to the standard output
 # depends	: cairo libxkbcommon wayland meson wayland-protocols
+# depends	: scdoc
 
 pkgname=slurp
 pkgver=1.5.0

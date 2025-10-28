@@ -4,10 +4,11 @@
 # depends	: spdlog upower wireplumber libxkbcommon wayland gtk3
 # depends	: playerctl cmake wayland-protocols ttf-font-awesome
 # depends	: libdbusmenu libevdev libinput gtk-layer-shell systemd
+# depends	: scdoc
 
 pkgname=waybar
 pkgver=0.14.0
-pkgrel=1
+pkgrel=2
 url='https://github.com/Alexays/Waybar'
 source=($pkgname-$pkgver.tar.gz::https://github.com/Alexays/Waybar/archive/$pkgver.tar.gz)
 
@@ -26,7 +27,7 @@ build() {
           -D systemd=enabled \
           -D mpd=disabled \
           -D jack=disabled \
-          -D man-pages=disabled \
+          -D man-pages=enabled \
 		  -D gps=disabled \
           build
     meson compile -C build

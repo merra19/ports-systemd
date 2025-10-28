@@ -1,5 +1,5 @@
 # description	: Grab images from a Wayland compositor
-# depends	: cairo libjpeg-turbo wayland meson pango
+# depends	: cairo libjpeg-turbo wayland meson pango scdoc
 # depends	: wayland-protocols
 
 pkgname=grim
@@ -14,6 +14,8 @@ build() {
     meson setup \
         --prefix=/usr \
         --buildtype=plain \
+		-D bash-completions=true \
+		-D fish-completions=true \
         build
     ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

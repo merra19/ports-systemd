@@ -1,6 +1,6 @@
 # description	: Command-line tool for structural, content-preserving transformation of PDF files
 # depends	: libjpeg-turbo ghostscript gnutls libtiff cmake perl
-# depends	: openssl diffutils zlib py3-sphinx py3-rtd_theme
+# depends	: openssl diffutils zlib py3-sphinx py3-sphinx_rtd_theme
 
 pkgname=qpdf
 pkgver=12.2.0
