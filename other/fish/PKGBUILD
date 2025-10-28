@@ -1,5 +1,5 @@
 # description	: Friendly Interactive SHell
-# depends	: glibc ncurses pcre2 python3 cmake
+# depends	: glibc ncurses pcre2 python3 cmake py3-sphinx
 
 pkgname=fish
 pkgver=4.1.2
@@ -18,7 +18,7 @@ build() {
         -DCMAKE_INSTALL_PREFIX=/usr
         -DCMAKE_INSTALL_SYSCONFDIR=/etc
         -DCMAKE_BUILD_TYPE=Release
-        -DBUILD_DOCS=false
+        -DBUILD_DOCS=true
         -DFISH_USE_SYSTEM_PCRE2=ON
         -DWITH_GETTEXT=ON
         -Wno-dev
