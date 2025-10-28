@@ -9,7 +9,7 @@
 
 pkgname=ffmpeg
 pkgver=7.1.2
-pkgrel=1
+pkgrel=2
 url='https://ffmpeg.org'
 source=(https://ffmpeg.org/releases/$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/blfs/svn/ffmpeg-$pkgver-chromium_method-1.patch)
@@ -38,7 +38,6 @@ build() {
 		--enable-libx265 \
 		--enable-openssl \
         --enable-vaapi \
-        --disable-doc \
         --enable-lto \
         --enable-libaom \
         --enable-libfdk-aac \

@@ -1,18 +1,21 @@
 # description	: Building blocks for modern GNOME applications
-# depends	: gtk4 appstream vala xorg-proto sassc
+# depends	: gtk4 appstream vala xorg-proto sassc py3-gi-docgen
 
 pkgname=libadwaita
 pkgver=1.7.6
-pkgrel=1
+pkgrel=2
 url='https://gnome.pages.gitlab.gnome.org/libadwaita'
 source=(https://download.gnome.org/sources/libadwaita/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {
     cd $pkgname-$pkgver
 
+	sed "s/apiversion/'$pkgver'/" -i doc/meson.build
+
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
+		-D documentation=true \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

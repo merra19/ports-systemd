@@ -1,9 +1,9 @@
 # description	: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
-# depends	: alsa-lib fltk fftw libsamplerate xmlto
+# depends	: alsa-lib fltk fftw libsamplerate xmlto py3-docutils
 
 pkgname=alsa-utils
 pkgver=1.2.14
-pkgrel=1
+pkgrel=2
 url='https://alsa-project.org/wiki/Main_Page'
 source=(https://www.alsa-project.org/files/pub/utils/$pkgname-$pkgver.tar.bz2)
 backup=(etc/asound.conf)
@@ -13,7 +13,6 @@ build() {
 
     ./configure \
         --disable-alsaconf \
-        --disable-xmlto \
         --with-curses=ncursesw
     make
     make DESTDIR="$pkgdir"  install

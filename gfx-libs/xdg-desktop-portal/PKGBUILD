@@ -1,7 +1,7 @@
 # description	: Desktop integration portal
 # depends	: json-glib wireplumber pipewire fuse gdk-pixbuf systemd
-# depends	: bubblewrap dbus geoclue libportal gstreamer
-# depends	: gst-plugins-base
+# depends	: bubblewrap dbus geoclue libportal gstreamer py3-sphinx
+# depends	: gst-plugins-base py3-docutils
 
 pkgname=xdg-desktop-portal
 pkgver=1.20.3

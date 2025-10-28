@@ -1,9 +1,9 @@
 # description	: Cross-platform asychronous I/O
-# depends	: glibc
+# depends	: glibc py3-sphinx
 
 pkgname=libuv
 pkgver=1.51.0
-pkgrel=1
+pkgrel=2
 url='https://github.com/libuv/libuv'
 source=(https://dist.libuv.org/dist/v$pkgver/$pkgname-v$pkgver.tar.gz)
 
@@ -14,6 +14,9 @@ build() {
     ./configure \
         --prefix=/usr \
         --disable-static
-    make    
+    make
+	make man -C docs
     make DESTDIR="$pkgdir" install
+	install -d "$pkgdir"/usr/share/man/man1
+	install -Dm644 docs/build/man/libuv.1 "$pkgdir"/usr/share/man/man1
 }

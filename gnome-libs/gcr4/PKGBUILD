@@ -1,21 +1,25 @@
 # description	: Libraries for cryptographic UIs and accessing PKCS#11 modules
 # depends	: glib gobject-introspection libgcrypt p11-kit libsecret 
 # depends	: gnupg gnutls gettext pkgconf vala gtk4 libxslt openssh
+# depends	: py3-gi-docgen
 
 pkgname=gcr4
 _pkgname=gcr
 pkgver=4.4.0.1
-pkgrel=1
+pkgrel=2
 url='https://gitlab.gnome.org/GNOME/gcr'
 source=(https://download.gnome.org/sources/gcr/${pkgver%.*.*}/${_pkgname}-$pkgver.tar.xz)
 
 build() {
     cd ${_pkgname}-$pkgver
 
+	sed -e "/install_dir/s@,\$@ / 'gcr-$pkgver'&@" \
+    	-i docs/*/meson.build 
+
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D gtk_doc=false \
+        -D gtk_doc=true \
         -D ssh_agent="$(scratch isinstalled openssh && echo "true" || echo "false")" \
         -D gtk4="$(scratch isinstalled gtk4 && echo "true" || echo "false")" \
         build

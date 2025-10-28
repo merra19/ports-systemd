@@ -1,10 +1,11 @@
 # description	: The GLib library of C routines
 # depends	: docbook-xml docbook-xsl-nons meson libxslt pcre2 libffi
 # depends	: py3-packaging zlib util-linux attr elfutils
+# depends	: py3-gi-docgen py3-docutils
 
 pkgname=glib
 pkgver=2.84.4
-pkgrel=1
+pkgrel=2
 pkgname2=gobject-introspection
 pkgver2=1.84.0
 url='https://www.gtk.org'
@@ -52,6 +53,9 @@ build() {
 
     cd "$srcdir"/$pkgname-$pkgver/build
 
+	sed "/docs_dir =/s|$| / 'glib-' + meson.project_version()|" \
+    	-i ../docs/reference/meson.build  
+
     PATH="$_prefix/bin:$PATH" LD_LIBRARY_PATH="$_prefix/lib:$PATHFAKEROOT" \
     meson setup .. \
         --reconfigure \
@@ -60,13 +64,11 @@ build() {
         --buildtype=plain \
         -D xattr=true \
         -D introspection=enabled \
-        -D man-pages=disabled \
+        -D man-pages=enabled \
+		-D documentation=true \
         -D nls=enabled
     PATH="$_prefix/bin:$PATH" LD_LIBRARY_PATH="$_prefix/lib:$PATHFAKEROOT" ninja
     DESTDIR="$pkgdir" ninja install
-
-    mkdir -p "$pkgdir"/usr/share/doc/$pkgname-$pkgver &&
-    cp -r ../docs/reference/gio ../docs/reference/glib ../docs/reference/gobject "$pkgdir"/usr/share/doc/$pkgname-$pkgver
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
 }

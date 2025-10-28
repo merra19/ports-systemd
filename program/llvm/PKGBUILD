@@ -1,6 +1,6 @@
 # description	: Low Level Virtual Machine
 # depends	: cmake ninja libffi python zlib ncurses zstd perl libxml2 
-# depends	: binutils libunwind
+# depends	: binutils libunwind py3-sphinx
 
 pkgname=llvm
 pkgver=20.1.8

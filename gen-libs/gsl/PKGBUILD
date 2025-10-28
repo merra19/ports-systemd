@@ -1,9 +1,9 @@
 # description	: The GNU Scientific Library
-# depends	: glibc
+# depends	: glibc py3-sphinx py3-sphinx_rtd_theme
 
 pkgname=gsl
 pkgver=2.8
-pkgrel=1
+pkgrel=2
 url='https://www.gnu.org/software/gsl'
 source=(https://ftp.gnu.org/gnu/gsl/$pkgname-$pkgver.tar.gz)
 
@@ -14,5 +14,9 @@ build() {
 		--prefix=/usr \
 		--disable-static
 	make
+	make html
 	make DESTDIR="$pkgdir" install
+
+	mkdir -p "$pkgdir"/usr/share/doc/$pkgname-$pkgver
+	cp -R doc/_build/html/* "$pkgdir"/usr/share/doc/$pkgname-$pkgver
 }

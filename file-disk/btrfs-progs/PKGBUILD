@@ -1,10 +1,10 @@
 # description	: Btrfs filesystem utilities
 # depends	: glibc lzo lvm2 util-linux zlib python systemd zstd acl
-# depends	: linux-api-headers
+# depends	: linux-api-headers py3-sphinx py3-rtd_theme
 
 pkgname=btrfs-progs
 pkgver=6.16
-pkgrel=1
+pkgrel=3
 url='https://btrfs.readthedocs.io/en/latest'
 source=(https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/$pkgname-v$pkgver.tar.xz)
 
@@ -13,14 +13,7 @@ build() {
 
     ./configure \
         --prefix=/usr \
-        --disable-static \
-        --disable-documentation
+        --disable-static
     make
     make DESTDIR="$pkgdir" install
-
-    mkdir -p "$pkgdir"/usr/share/man/man{5,8}
-
-    for i in 5 8; do
-        install Documentation/*.$i "$pkgdir"/usr/share/man/man$i
-    done
 }

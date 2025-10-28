@@ -2,7 +2,7 @@
 # depends	: glib pixman alsa-lib dtc libslirp sdl2 pipewire bluez
 # depends	: curl fuse gnutls gtk3 keyutils libaio libusb libgcrypt
 # depends	: libjpeg-turbo libseccomp libssh2 libpng libtasn1 pam
-# depends	: lzo nettle mesa vte
+# depends	: lzo nettle mesa vte py3-sphinx_rtd_theme
 
 pkgname=qemu
 pkgver=10.0.3

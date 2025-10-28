@@ -1,19 +1,22 @@
 # description	: GObject wrapper for libusb
 # depends	: glib json-glib libusb gobject-introspection hwdata vala
+# depends	: py3-gi-docgen
 
 pkgname=libgusb
 pkgver=0.4.9
-pkgrel=1
+pkgrel=2
 url='https://github.com/hughsie/libgusb'
 source=(https://github.com/hughsie/libgusb/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
 
 build() {
 	cd $pkgname-$pkgver
 
+	sed -E "/output|install_dir/s/('libgusb)'/\1-$pkgver'/" \
+    	-i docs/meson.build 
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D docs=false \
+		-D docs=true \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build

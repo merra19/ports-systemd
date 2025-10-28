@@ -1,6 +1,7 @@
 # description	: Library providing a virtual terminal emulator widget
 # depends	: glib icu pango pcre2 gtk3 zlib lz4 libxml2 gtk4 systemd
-# depends	: gobject-introspection vala gnutls fast_float
+# depends	: gobject-introspection vala gnutls fast_float 
+# depends	: py3-gi-docgen
 
 pkgname=vte
 pkgver=0.80.3
@@ -17,10 +18,14 @@ build() {
     export CFLAGS="${CFLAGS} -fexceptions "
     export CXXFLAGS="${CFLAGS} -fexceptions "
 
+	sed -e "/docdir =/s@\$@/ 'vte-$pkgver'@" \
+    	-i doc/reference/meson.build
+
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
         -D fribidi=false \
+		-D docs=true \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build

@@ -1,9 +1,10 @@
 # description	: Tag Image File Format (TIFF) library
 # depends	: cmake ninja libjpeg-turbo libwebp xz zlib zstd freeglut
+# depends	: py3-sphinx
 
 pkgname=libtiff
 pkgver=4.7.0
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='http://libtiff.maptools.org'
 source=(https://download.osgeo.org/$pkgname/tiff-$pkgver.tar.gz)

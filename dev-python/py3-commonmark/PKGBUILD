@@ -1,0 +1,17 @@
+# description	: Python parser for the CommonMark Markdown spec
+# depends	: python py3-gpep517 py3-setuptools py3-wheel
+
+pkgname=py3-commonmark
+pkgver=0.9.1
+pkgrel=1
+options=(!lto)
+url='https://recommonmark.readthedocs.io'
+source=(https://files.pythonhosted.org/packages/source/c/commonmark/commonmark-$pkgver.tar.gz)
+
+build() {
+	cd ${pkgname#*-}-$pkgver
+
+    python3 setup.py build
+	python3 setup.py install --skip-build --root="$pkgdir"
+	rm -rf "$pkgdir"/usr/lib/python3*/site-packages/commonmark/tests
+}

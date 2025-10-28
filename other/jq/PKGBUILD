@@ -14,8 +14,7 @@ build() {
 	autoreconf -i
 	./configure \
         --prefix=/usr \
-        --disable-static \
-        --disable-docs
+        --disable-static 
 	make
     make DESTDIR="$pkgdir" install
 }

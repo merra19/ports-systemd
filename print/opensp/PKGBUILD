@@ -4,7 +4,7 @@
 pkgname=opensp
 _pkgname=OpenSP
 pkgver=1.5.2
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://openjade.sourceforge.net'
 source=(https://downloads.sourceforge.net/openjade/OpenSP-$pkgver.tar.gz
@@ -26,7 +26,6 @@ build() {
     ./configure \
         --prefix=/usr \
         --disable-static \
-        --disable-doc-build \
         --disable-nls \
         --enable-default-catalog=/etc/sgml/catalog \
         --enable-http \

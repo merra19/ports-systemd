@@ -1,9 +1,10 @@
 # description	: Flatpak portal library
 # depends	: glibc glib gtk3 gtk4 vala qt6 gobject-introspection
+# depends	: py3-gi-docgen
 
 pkgname=libportal
 pkgver=0.9.1
-pkgrel=1
+pkgrel=2
 url='https://github.com/flatpak/libportal'
 source=(https://github.com/flatpak/libportal/releases/download/$pkgver/$pkgname-$pkgver.tar.xz
 		https://www.linuxfromscratch.org/patches/blfs/12.4/libportal-0.9.1-qt6.9_fixes-1.patch)
@@ -16,7 +17,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-		-D docs=false \
+		-D docs=true \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

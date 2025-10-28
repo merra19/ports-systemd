@@ -3,7 +3,7 @@
 # depends	: libepoxy graphene iso-codes gobject-introspection cups
 # depends	: vulkan-loader wayland-protocols linux-api-headers libvpx
 # depends	: shaderc colord xorg-proto py3-gobject libcloudproviders
-# depends	: adwaita-icon-theme
+# depends	: adwaita-icon-theme py3-gi-docgen py3-docutils
 # optional  : gstreamer!!gst-plugins-good gstreamer!!gst-plugins-bad
 # todo      : tinysparql
 
@@ -11,7 +11,7 @@
 pkgname=gtk4
 _pkgname=gtk
 pkgver=4.18.6
-pkgrel=1
+pkgrel=2
 url='https://www.gtk.org'
 source=(https://download.gnome.org/sources/gtk/${pkgver%.*}/gtk-$pkgver.tar.xz
         settings.ini)
@@ -24,6 +24,8 @@ build() {
             -e '940 a memset (&transform, 0, sizeof(GtkCssTransform));' \
             -i gtk/gtkcsstransformvalue.c
 
+	sed "s@'doc'@& / 'gtk-$pkgver'@" -i docs/reference/meson.build 
+
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
@@ -33,6 +35,7 @@ build() {
         -D cloudproviders=enabled \
         -D colord=enabled \
         -D tracker=disabled \
+		-D documentation=true \
         -D media-gstreamer="$(scratch isinstalled gst-plugins-bad && echo enabled || echo disabled)" \
         build
 	ninja -C build

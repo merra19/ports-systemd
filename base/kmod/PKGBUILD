@@ -1,5 +1,5 @@
 # description	: Library and tools for managing linux kernel modules
-# depends	: xz zlib zstd openssl
+# depends	: xz zlib zstd openssl scdoc
 
 pkgname=kmod
 pkgver=34.2
@@ -15,7 +15,7 @@ build() {
         --prefix=/usr \
         --buildtype=release \
         --sbindir=/usr/sbin \
-        -D manpages=false \
+        -D manpages=true \
         build
     ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

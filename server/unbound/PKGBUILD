@@ -1,6 +1,6 @@
 # description	: A validating, recursive and caching DNS resolver
 # depends	: libevent nettle protobuf-c swig openssl nghttp2
-# depends	: systemd expat python 
+# depends	: systemd expat python py3-sphinx
 
 pkgname=unbound
 pkgver=1.23.1
@@ -15,11 +15,13 @@ backup=(etc/unbound/unbound.conf)
  build() {
 	cd $pkgname-$pkgver
   
+	PYTHON_VERSION=3.13 \
 	./configure \
 		--prefix=/usr \
 		--sysconfdir=/etc \
 		--disable-static \
 		--with-libevent \
+		--with-pyunbound \
 		--with-pidfile=/run/unbound.pid
 	make
     make DESTDIR="$pkgdir" install

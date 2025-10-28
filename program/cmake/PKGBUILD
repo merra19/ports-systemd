@@ -1,8 +1,9 @@
 # description	: Cross platform Make
 # depends	: glibc gcc libarchive libuv nghttp2 expat zlib ncurses
+# depends	: py3-sphinx
 
 pkgname=cmake
-pkgver=4.1.0
+pkgver=4.1.2
 pkgrel=1
 url='https://cmake.org'
 source=(https://cmake.org/files/v${pkgver%.*}/$pkgname-$pkgver.tar.gz)

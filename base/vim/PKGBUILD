@@ -4,7 +4,7 @@
 
 pkgname=vim
 pkgver=9.1.1629
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://www.vim.org'
 source=(https://github.com/vim/vim/archive/v$pkgver/$pkgname-$pkgver.tar.gz
@@ -23,6 +23,11 @@ build() {
     make DESTDIR="$pkgdir" install
 
     install -Dm 644 "$srcdir"/vimrc "$pkgdir"/etc/vimrc
+
+	ln -sv vim "$pkgdir"/usr/bin/vi
+	for L in  "$pkgdir"/usr/share/man/{,*/}man1/vim.1; do
+		ln -sv vim.1 $(dirname $L)/vi.1
+	done
 
     _ver="$(echo $pkgver | awk -F '.' '{print $1$2}')"
     mkdir -pv "$pkgdir"/usr/share/doc/$pkgname-$pkgver

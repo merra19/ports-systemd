@@ -1,10 +1,10 @@
 # description	: Library for automatic proxy configuration management
 # depends	: curl glib gobject-introspection meson ninja vala duktape
-# depends	: gsettings-desktop-schemas
+# depends	: gsettings-desktop-schemas py3-gi-docgen
 
 pkgname=libproxy
 pkgver=0.5.10
-pkgrel=1
+pkgrel=2
 url='https://github.com/libproxy/libproxy'
 source=(https://github.com/libproxy/libproxy/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
@@ -15,7 +15,6 @@ build() {
         --prefix=/usr \
         --buildtype=plain \
         -D release=true \
-        -D docs=false \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

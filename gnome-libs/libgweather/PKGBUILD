@@ -1,6 +1,6 @@
 # description	: Location and timezone database and weather-lookup library
 # depends	: glib gobject-introspection libxml2 libsoup3 meson vala
-# depends	: geocode-glib py3-gobject
+# depends	: geocode-glib py3-gobject py3-gi-docgen
 
 pkgname=libgweather
 pkgver=4.4.4
@@ -14,10 +14,13 @@ build() {
 
     patch -Np1 -i ../libgweather-4.4.4-upstream_fix-1.patch
 
+	sed "s/libgweather_full_version/'libgweather-$pkgver'/" \
+    	-i doc/meson.build  
+
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D gtk_doc=false \
+        -D gtk_doc=true \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

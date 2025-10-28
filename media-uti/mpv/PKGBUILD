@@ -4,7 +4,7 @@
 # depends	: wireplumber libva libvdpau vulkan-loader wayland 
 # depends	: wayland-protocols libxkbcommon zlib xorg-proto luajit 
 # depends	: linux-api-headers libcdio-paranoia libdvdnav libdvdcss
-# depends	: libdvdread sdl2
+# depends	: libdvdread sdl2 py3-docutils
 
 pkgname=mpv
 pkgver=0.40.0

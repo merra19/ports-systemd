@@ -1,11 +1,11 @@
 # description	: HTTP client/server library for GNOME
 # depends	: glib nghttp2 sqlite brotli libpsl zlib libxml2 vala
-# depends	: gobject-introspection glib-networking
+# depends	: gobject-introspection glib-networking py3-gi-docgen
 
 pkgname=libsoup3
 _pkgname=libsoup
 pkgver=3.6.5
-pkgrel=1
+pkgrel=2
 url='https://libsoup.gnome.org'
 source=(https://download.gnome.org/sources/libsoup/${pkgver%.*}/libsoup-$pkgver.tar.xz)
 
@@ -22,6 +22,7 @@ build() {
         -D gssapi="$(scratch isinstalled krb5 && echo "enabled" || echo "disabled")" \
         -D sysprof=disabled \
         --wrap-mode=nofallback \
+		-D docs=enabled \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

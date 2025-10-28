@@ -1,9 +1,9 @@
 # description	: Library providing GLib serialization and deserialization for the JSON format
-# depends	: glib gobject-introspection
+# depends	: glib gobject-introspection py3-gi-docgen py3-docutils
 
 pkgname=json-glib
 pkgver=1.10.6
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://wiki.gnome.org/Projects/JsonGlib'
 source=(https://download.gnome.org/sources/json-glib/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
@@ -11,9 +11,13 @@ source=(https://download.gnome.org/sources/json-glib/${pkgver%.*}/$pkgname-$pkgv
 build() {
 	cd $pkgname-$pkgver
 
+	sed "/json_docdir =/s|$| / 'json-glib-$pkgver'|" -i doc/meson.build
+
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
+		-D man=true \
+		-D documentation=enabled \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

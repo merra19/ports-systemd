@@ -1,5 +1,6 @@
 # description	: Library to handle input devices in Wayland
 # depends	: libevdev mtdev meson systemd gtk3 libwacom
+# depends	: py3-recommonmark py3-sphinx_rtd_theme
 
 pkgname=libinput
 pkgver=1.29.0

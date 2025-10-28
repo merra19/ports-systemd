@@ -1,10 +1,10 @@
 # description	: Image loading library for GTK+
 # depends	: glib libpng libtiff libjpeg-turbo shared-mime-info
-# depends	: gobject-introspection
+# depends	: gobject-introspection py3-gi-docgen py3-docutils
 
 pkgname=gdk-pixbuf
 pkgver=2.42.12
-pkgrel=1
+pkgrel=2
 url='https://gitlab.gnome.org/GNOME/gdk-pixbuf'
 source=(https://ftp.gnome.org/pub/gnome/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz
         $pkgname.hooks)
@@ -12,12 +12,14 @@ source=(https://ftp.gnome.org/pub/gnome/sources/$pkgname/${pkgver%.*}/$pkgname-$
 build() {
 	cd $pkgname-$pkgver
 
+	sed "/docs_dir =/s@\$@ / 'gdk-pixbuf-$pkgver'@" -i docs/meson.build
+
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-		-D man=false \
         -D others=enabled \
 		--wrap-mode=nofallback \
+		-D gtk_doc=true  \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

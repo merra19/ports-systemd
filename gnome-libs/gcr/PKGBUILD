@@ -1,10 +1,10 @@
 # description	: Libraries for cryptographic UIs and accessing PKCS#11 modules
 # depends	: glib libgcrypt p11-kit libsecret gobject-introspection 
-# depends	: gnupg gettext pkgconf vala libxslt gtk3
+# depends	: gnupg gettext pkgconf vala libxslt gtk3 py3-gi-docgen
 
 pkgname=gcr
 pkgver=3.41.2
-pkgrel=1
+pkgrel=2
 url='https://gitlab.gnome.org/GNOME/gcr'
 source=(https://download.gnome.org/sources/gcr/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
@@ -13,10 +13,13 @@ build() {
 
     sed -i 's:"/desktop:"/org:' schema/*.xml
 
+	sed -e "/install_dir/s@,\$@ / 'gcr-$pkgver'&@" \
+    	-i docs/*/meson.build
+
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D gtk_doc=false \
+        -D gtk_doc=true \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build
