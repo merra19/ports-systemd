@@ -14,6 +14,8 @@ source=(https://www.freedesktop.org/software/appstream/releases/AppStream-$pkgve
 build() {
 	cd ${_pkgname}-$pkgver
 
+	sed -i "/^as_doc_target_dir =/ s/'appstream'/'appstream-$pkgver'/" -i docs/meson.build
+
     meson setup \
         --prefix=/usr \
         --buildtype=plain \
@@ -23,8 +25,6 @@ build() {
         build
     ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build
-
-	mv -v "$pkgdir"/usr/share/doc/appstream{,-$pkgver}
 
 	install -Dm 644 "$srcdir"/metainfo "$pkgdir"/usr/share/metainfo
 }
