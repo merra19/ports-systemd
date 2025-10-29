@@ -4,7 +4,7 @@
 # depends	: libxcb xorg-libs libxkbcommon pango xdg-utils p11-kit
 
 pkgname=vscodium-bin
-pkgver=1.105.16954
+pkgver=1.105.17075
 pkgrel=1
 options=(!strip)
 url='https://vscodium.com'
