@@ -1,9 +1,10 @@
 # description	: Simple low-level configuration system
 # depends	: glib docbook-xml libxslt gettext pkgconf dbus vala
+# depends	: gtk-doc
 
 pkgname=dconf
 pkgver=0.40.0
-pkgrel=1
+pkgrel=2
 url='https://wiki.gnome.org/Projects/dconf'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
@@ -13,6 +14,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
+		-D gtk_doc=true \
         -D bash_completion=false \
         build
 	ninja -C build

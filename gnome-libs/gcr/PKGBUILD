@@ -1,10 +1,11 @@
 # description	: Libraries for cryptographic UIs and accessing PKCS#11 modules
 # depends	: glib libgcrypt p11-kit libsecret gobject-introspection 
 # depends	: gnupg gettext pkgconf vala libxslt gtk3 py3-gi-docgen
+# depends	: gtk-doc
 
 pkgname=gcr
 pkgver=3.41.2
-pkgrel=2
+pkgrel=3
 url='https://gitlab.gnome.org/GNOME/gcr'
 source=(https://download.gnome.org/sources/gcr/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 

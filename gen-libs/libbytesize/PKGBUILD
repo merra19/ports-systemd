@@ -1,9 +1,9 @@
 # description	: Tiny library providing a C "class" for working with arbitrary big byte sizes
-# depends	: pcre2 py3-pygments py3-six libgmp libmpfr
+# depends	: pcre2 py3-pygments py3-six libgmp libmpfr gtk-doc
 
 pkgname=libbytesize
 pkgver=2.11
-pkgrel=1
+pkgrel=2
 url='https://github.com/storaged-project/libbytesize'
 source=(https://github.com/storaged-project/$pkgname/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
 
@@ -12,7 +12,7 @@ build() {
 
 	./configure \
         --prefix=/usr \
-        --without-gtk-doc
+        --with-gtk-doc
 	make
     make DESTDIR="$pkgdir" install
 }

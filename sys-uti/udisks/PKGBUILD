@@ -2,11 +2,11 @@
 # depends	: libatasmart libblockdev libgudev glib libxslt polkit 
 # depends	: gobject-introspection lvm2 util-linux dbus systemd
 # depends	: linux-api-headers acl btrfs-progs dosfstools gptfdisk 
-# depends	: mdadm
+# depends	: mdadm gtk-doc
 
 pkgname=udisks
 pkgver=2.10.2
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://www.freedesktop.org/wiki/Software/udisks'
 source=(https://github.com/storaged-project/udisks/releases/download/udisks-$pkgver/$pkgname-$pkgver.tar.bz2
@@ -21,6 +21,7 @@ build() {
 		--sysconfdir=/etc \
 		--localstatedir=/var \
 		--disable-static \
+		--enable-gtk-doc \
         --enable-available-modules 
 	make
 	make DESTDIR="$pkgdir" install

@@ -1,9 +1,10 @@
 # description	: Mobile Broadband Interface Model (MBIM) modem protocol helper library
 # depends	: gobject-introspection help2man glib  bash-completion
+# depends	: gtk-doc
 
 pkgname=libmbim
 pkgver=1.32.0
-pkgrel=1
+pkgrel=2
 url='https://www.freedesktop.org/wiki/Software/libmbim'
 source=(https://gitlab.freedesktop.org/mobile-broadband/libmbim/-/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
@@ -13,7 +14,8 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D man=false  \
+        -D man=true \
+		-D gtk_doc=true \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

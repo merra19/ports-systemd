@@ -1,10 +1,10 @@
 # description	: D-Bus interfaces for querying and manipulating user account information
 # depends	: glib libxcrypt polkit docbook-xml gobject-introspection
-# depends	: meson xmlto dbus systemd vala
+# depends	: meson xmlto dbus systemd vala gtk-doc
 
 pkgname=accountsservice
 pkgver=23.13.9
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://www.freedesktop.org/wiki/Software/AccountsService'
 source=(https://www.freedesktop.org/software/accountsservice/$pkgname-$pkgver.tar.xz
@@ -31,7 +31,7 @@ build() {
         --buildtype=plain \
         -D admin_group=adm \
         -D docbook=true \
-        -D gtk_doc=false \
+        -D gtk_doc=true \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build

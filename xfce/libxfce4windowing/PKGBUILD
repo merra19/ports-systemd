@@ -1,10 +1,10 @@
 # description	: Unified widget and session management libs for Xfce
 # depends	: gtk3 libwnck libdisplay-info gettext xfce4-dev-tools
-# depends	: wayland-protocols perl pkgconf
+# depends	: wayland-protocols perl pkgconf gtk-doc
 
 pkgname=libxfce4windowing
 pkgver=4.20.4
-pkgrel=1
+pkgrel=2
 url='https://gitlab.xfce.org/xfce/libxfce4windowing'
 source=(https://archive.xfce.org/src/xfce/libxfce4windowing/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 
@@ -15,7 +15,8 @@ build() {
         --prefix=/usr \
         --sysconfdir=/etc \
         --enable-x11 \
-        --disable-debug
+        --disable-debug \
+		--enable-gtk-doc
     make
     make DESTDIR="$pkgdir" install
 }

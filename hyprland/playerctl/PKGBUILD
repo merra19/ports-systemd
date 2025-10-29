@@ -1,5 +1,5 @@
 # description	: A CLI utility to control media players over MPRIS
-# depends	: meson dbus glib gobject-introspection 
+# depends	: meson dbus glib gobject-introspection gtk-doc
 
 pkgname=playerctl
 pkgver=2.4.1
@@ -13,7 +13,7 @@ build() {
     meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D gtk-doc=false \
+        -D gtk-doc=true \
         build
     ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

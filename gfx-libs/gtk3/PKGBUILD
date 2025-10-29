@@ -4,11 +4,12 @@
 # depends	: gobject-introspection wayland wayland-protocols librsvg
 # depends	: libxkbcommon docbook-xml libxslt libglvnd xorg-proto
 # depends	: xorg-libs docbook-xsl-nons sassc hicolor-icon-theme
+# depends	: gtk-doc
 # todo      : tinysparql
 
 pkgname=gtk3
 pkgver=3.24.50
-pkgrel=3
+pkgrel=4
 url='https://www.gtk.org'
 source=(https://download.gnome.org/sources/gtk/${pkgver%.*}/gtk-$pkgver.tar.xz
         settings.ini $pkgname.hooks)
@@ -20,6 +21,7 @@ build() {
         --prefix=/usr \
         --buildtype=plain \
 		-D man=true \
+		-D gtk_doc=true \
 		-D broadway_backend=true \
         -D cloudproviders=true \
         build

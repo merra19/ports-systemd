@@ -1,10 +1,10 @@
 # description	: An OpenType text shaping engine
 # depends	: meson glib gobject-introspection icu freetype graphite2
-# depends	: cairo 
+# depends	: cairo gtk-doc
 
 pkgname=harfbuzz
 pkgver=11.4.1
-pkgrel=1
+pkgrel=2
 url='https://harfbuzz.github.io'
 source=(https://github.com/harfbuzz/harfbuzz/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
 
@@ -18,7 +18,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D docs=disabled \
+        -D docs=enabled \
         -D cpp_std=c++17 \
         -D graphite2=enabled \
         -D cairo=enabled \

@@ -1,6 +1,6 @@
 # description	: GLib-based library for accessing online service APIs using the GData protocol
 # depends	: glib json-glib libxml2 libsoup2 gcr meson vala
-# depends	: gobject-introspection
+# depends	: gobject-introspection gtk-doc
 
 pkgname=libgdata
 pkgver=0.18.1
@@ -14,7 +14,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D gtk_doc=false \
+        -D gtk_doc=true \
         -D always_build_tests=false \
         -D goa=auto \
         build

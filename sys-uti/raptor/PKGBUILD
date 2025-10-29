@@ -1,10 +1,10 @@
 # description	: The RDF Parser Toolkit
-# depends	: libxslt icu curl zlib bison flex 
+# depends	: libxslt icu curl zlib bison flex gtk-doc
 
 pkgname=raptor
 _pkgname=raptor2
 pkgver=2.0.16
-pkgrel=1
+pkgrel=2
 url='https://librdf.org/raptor'
 source=(https://download.librdf.org/source/raptor2-$pkgver.tar.gz)
 

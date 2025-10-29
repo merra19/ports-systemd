@@ -2,11 +2,12 @@
 # depends	: gobject-introspection libbytesize libnvme parted  
 # depends	: cryptsetup glib kmod util-linux lvm2 systemd keyutils
 # depends	: json-glib smartmontools btrfs-progs mdadm libatasmart
-# todo      : escrow!!nss escrow!!volume_key 
+# depends	: gtk-doc
+# todo      : escrow!!nss escrow!!volume_key
 
 pkgname=libblockdev
 pkgver=3.3.1
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://github.com/storaged-project/libblockdev'
 source=(https://github.com/storaged-project/libblockdev/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
@@ -19,7 +20,7 @@ build() {
 		--sysconfdir=/etc \
 		--with-python3 \
 		--without-escrow \
-		--without-gtk-doc \
+		--with-gtk-doc \
 		--without-nvdimm \
 		--with-tools \
 		--with-smartmontools

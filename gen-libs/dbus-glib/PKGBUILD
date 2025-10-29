@@ -1,9 +1,9 @@
 # description	: D-Bus bindings for glib
-# depends	: dbus glib expat
+# depends	: dbus glib expat gtk-doc
 
 pkgname=dbus-glib
 pkgver=0.114
-pkgrel=1
+pkgrel=2
 url='https://dbus.freedesktop.org'
 source=(http://dbus.freedesktop.org/releases/$pkgname/$pkgname-$pkgver.tar.gz)
 
@@ -13,7 +13,8 @@ build() {
 	./configure \
         --prefix=/usr \
 		--sysconfdir=/etc \
-		--disable-static
+		--disable-static \
+		--enable-gtk-doc
 	make
     make DESTDIR="$pkgdir" install
 }

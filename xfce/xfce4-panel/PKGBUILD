@@ -1,10 +1,10 @@
 # description	: Panel for the Xfce desktop environment
 # depends	: cairo gtk3 libwnck exo garcon libxfce4windowing
-# depends	: libdbusmenu gettext intltool pkgconf perl
+# depends	: libdbusmenu gettext intltool pkgconf perl gtk-doc
 
 pkgname=xfce4-panel
 pkgver=4.20.5
-pkgrel=1
+pkgrel=2
 url='https://docs.xfce.org/xfce/xfce4-panel/start'
 source=(https://archive.xfce.org/src/xfce/xfce4-panel/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 
@@ -13,7 +13,8 @@ build() {
 
     ./configure \
         --prefix=/usr \
-        --sysconfdir=/etc
+        --sysconfdir=/etc \
+		--enable-gtk-doc
     make
     make DESTDIR="$pkgdir" install
 }

@@ -1,9 +1,10 @@
 # description	: Qualcomm MSM (Mobile Station Modem) Interface (QMI) modem protocol library
 # depends	: gobject-introspection glib libgudev libmbim help2man
+# depends	: gtk-doc
 
 pkgname=libqmi
 pkgver=1.36.0
-pkgrel=1
+pkgrel=2
 url='https://www.freedesktop.org/wiki/Software/libqmi'
 source=(https://gitlab.freedesktop.org/mobile-broadband/libqmi/-/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
@@ -13,8 +14,9 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D man=false  \
+        -D man=true  \
         -D qrtr=false \
+		-D gtk_doc=true  \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

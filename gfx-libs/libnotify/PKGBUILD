@@ -1,10 +1,10 @@
 # description	: A library for sending desktop notifications
 # depends	: glib gobject-introspection docbook-xml libxslt xmlto
-# depends	: gtk3 py3-gi-docgen
+# depends	: gtk3 py3-gi-docgen gtk-doc
 
 pkgname=libnotify
 pkgver=0.8.6
-pkgrel=2
+pkgrel=3
 url='https://gitlab.gnome.org/GNOME/libnotify'
 source=(https://download.gnome.org/sources/libnotify/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 

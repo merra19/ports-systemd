@@ -1,11 +1,11 @@
 # description	: Modem and mobile broadband management libraries
 # depends	: libgudev glib systemd gobject-introspection libqmi 
-# depends	: libmbim polkit vala
+# depends	: libmbim polkit vala gtk-doc
 
 pkgname=modemmanager
 _pkgname=ModemManager
 pkgver=1.24.2
-pkgrel=1
+pkgrel=2
 url='https://www.freedesktop.org/wiki/Software/ModemManager'
 source=(https://gitlab.freedesktop.org/mobile-broadband/ModemManager/-/archive/$pkgver/ModemManager-$pkgver.tar.gz)
 
@@ -17,6 +17,7 @@ build() {
         --buildtype=plain \
         -D man=false  \
         -D qrtr=false \
+		-D gtk_doc=true \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

@@ -1,24 +1,20 @@
 # description	: Internationalized Domain Names (IDN) implementation
-# depends	: glibc gettext java
+# depends	: glibc gettext gtk-doc
 
 pkgname=libidn
 pkgver=1.43
-pkgrel=1
+pkgrel=2
 url='https://www.gnu.org/software/libidn'
 source=(https://mirror.lyrahosting.com/gnu/libidn/$pkgname-$pkgver.tar.gz)
 
 build() {
 	cd $pkgname-$pkgver
 
-    if [ -z "$JAVA_HOME" ];then
-        echo "JAVA_HOME not set.  source /etc/profile"
-        abort 1
-    fi
-
 	./configure \
         --prefix=/usr \
         --disable-static \
-        --enable-java
+        --disable-java \
+		--enable-gtk-doc
 	make
     make DESTDIR="$pkgdir" install
 

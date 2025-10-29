@@ -1,9 +1,9 @@
 # description	: GObject bindings for libudev
-# depends	: glib gobject-introspection
+# depends	: glib gobject-introspection gtk-doc
 
 pkgname=libgudev
 pkgver=238
-pkgrel=1
+pkgrel=2
 url='https://wiki.gnome.org/Projects/libgudev'
 source=(https://ftp.gnome.org/pub/gnome/sources/$pkgname/$pkgver/$pkgname-$pkgver.tar.xz)
 
@@ -13,6 +13,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
+		-D gtk_doc=true \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

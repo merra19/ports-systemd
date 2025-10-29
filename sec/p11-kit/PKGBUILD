@@ -1,9 +1,9 @@
 # description	: Provides a standard configuration setup for installing PKCS#11
-# depends	: libtasn1 libffi meson bash-completion
+# depends	: libtasn1 libffi meson bash-completion gtk-doc
 
 pkgname=p11-kit
 pkgver=0.25.5
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://p11-glue.github.io/p11-glue/p11-kit.html'
 source=(https://github.com/p11-glue/p11-kit/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
@@ -26,7 +26,7 @@ EOF
         --buildtype=plain \
 		-D trust_paths=/etc/pki/anchors \
         -D nls=false \
-        -D gtk_doc=false \
+        -D gtk_doc=true \
         p11-build
     ninja -C p11-build
     DESTDIR="$pkgdir" ninja install -C p11-build

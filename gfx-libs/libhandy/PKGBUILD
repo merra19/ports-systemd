@@ -1,5 +1,5 @@
 # description	: Building blocks for modern adaptive GNOME apps
-# depends	: gtk3 vala
+# depends	: gtk3 vala gtk-doc
 
 pkgname=libhandy
 pkgver=1.8.3
@@ -13,6 +13,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
+		-D gtk_doc=true \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

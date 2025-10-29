@@ -1,10 +1,10 @@
 # description	: Library to help create and query binary XML blobs
-# depends	: xz glib util-linux snowball-stemmer zstd 
+# depends	: xz glib util-linux snowball-stemmer zstd gtk-doc
 # depends	: gobject-introspection
 
 pkgname=libxmlb
 pkgver=0.3.23
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://github.com/hughsie/libxmlb'
 source=(https://github.com/hughsie/libxmlb/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
@@ -15,7 +15,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D gtkdoc=false \
+        -D gtkdoc=true \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build

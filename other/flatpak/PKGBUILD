@@ -4,7 +4,7 @@
 # depends	: gsettings-desktop-schemas bubblewrap dbus fuse polkit
 # depends	: xdg-dbus-proxy xauth libxau gdk-pixbuf libseccomp
 # depends	: automake gettext pkgconf bison py3-parsing xmlto
-# depends	: gobject-introspection libxslt
+# depends	: gobject-introspection libxslt gtk-doc
 
 pkgname=flatpak
 pkgver=1.16.1

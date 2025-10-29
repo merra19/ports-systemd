@@ -1,9 +1,9 @@
 # description	: Extensions, widgets and framework library with session support for Xfce
-# depends	: libxfce4ui intltool gtk3 libxfce4util
+# depends	: libxfce4ui intltool gtk3 libxfce4util gtk-doc
 
 pkgname=exo
 pkgver=4.20.0
-pkgrel=1
+pkgrel=2
 url='https://docs.xfce.org/xfce/exo/start'
 source=(https://archive.xfce.org/src/xfce/exo/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 
@@ -12,7 +12,8 @@ build() {
 
     ./configure \
         --prefix=/usr \
-        --sysconfdir=/etc
+        --sysconfdir=/etc \
+		--enable-gtk-do
     make
     make DESTDIR="$pkgdir" install
 }

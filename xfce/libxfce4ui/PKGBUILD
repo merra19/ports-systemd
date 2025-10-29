@@ -1,10 +1,10 @@
 # description	: Unified widget and session management libs for Xfce
 # depends	: gtk3 xfconf startup-notification libgudev libgtop perl
-# depends	: gettext pkgconf xorg-proto
+# depends	: gettext pkgconf xorg-proto gtk-doc
 
 pkgname=libxfce4ui
 pkgver=4.20.2
-pkgrel=1
+pkgrel=2
 url='https://docs.xfce.org/xfce/libxfce4ui/start'
 source=(https://archive.xfce.org/src/xfce/libxfce4ui/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 
@@ -13,7 +13,8 @@ build() {
 
     ./configure \
         --prefix=/usr \
-        --sysconfdir=/etc
+        --sysconfdir=/etc \
+		--enable-gtk-doc
     make
     make DESTDIR="$pkgdir" install
 }

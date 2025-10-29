@@ -1,10 +1,10 @@
 # description	: GtkSourceView-based text editors and IDE helper library
 # depends	: gtk3 libgedit-gtksourceview libgedit-gfls libhandy
-# depends	: gsettings-desktop-schemas 
+# depends	: gsettings-desktop-schemas gtk-doc
 
 pkgname=libgedit-tepl
 pkgver=6.13.0
-pkgrel=1
+pkgrel=2
 url='https://gitlab.gnome.org/World/gedit/libgedit-tepl'
 source=(https://gitlab.gnome.org/World/gedit/libgedit-tepl/-/archive/$pkgver/$pkgname-$pkgver.tar.bz2)
 
@@ -14,7 +14,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D gtk_doc=false \
+        -D gtk_doc=true \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

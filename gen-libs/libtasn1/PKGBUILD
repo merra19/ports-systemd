@@ -1,9 +1,9 @@
 # description	: ASN.1 library
-# depends	: glibc help2man bison
+# depends	: glibc help2man bison gtk-doc
 
 pkgname=libtasn1
 pkgver=4.20.0
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://www.gnu.org/software/libtasn1'
 source=(https://mirror.lyrahosting.com/gnu/libtasn1/$pkgname-$pkgver.tar.gz)
@@ -13,7 +13,8 @@ build() {
 
    ./configure \
         --prefix=/usr \
-        --disable-static
+        --disable-static \
+		--enable-gtk-doc 
     CODE_COVERAGE_LDFLAGS=${LDFLAGS} make
     make DESTDIR="$pkgdir" install
 }

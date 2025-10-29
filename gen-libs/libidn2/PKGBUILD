@@ -1,9 +1,9 @@
 # description	: An implementation of the IDNA2008 specifications (RFCs 5890, 5891, 5892, 5893)
-# depends	: libunistring perl
+# depends	: libunistring perl gtk-doc
 
 pkgname=libidn2
 pkgver=2.3.8
-pkgrel=1
+pkgrel=2
 url='https://www.gnu.org/software/libidn/#libidn2'
 source=(https://mirror.lyrahosting.com/gnu/libidn/libidn2-$pkgver.tar.gz)
 
@@ -12,7 +12,8 @@ build() {
 
 	./configure \
         --prefix=/usr \
-        --disable-static
+        --disable-static \
+		--enable-gtk-doc
 	make
     make DESTDIR="$pkgdir" install
 }

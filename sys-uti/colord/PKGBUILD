@@ -1,17 +1,20 @@
 # description	: System service to accurately color manage input and output devices
 # depends	: glib lcms2 sqlite dbus polkit gobject-introspection 
 # depends	: docbook-xml vala libgusb libgudev libxslt systemd
-# depends	: docbook-xsl-ns
+# depends	: docbook-xsl-ns gtk-doc
 
 pkgname=colord
 pkgver=1.4.8
-pkgrel=1
+pkgrel=2
 url='https://www.freedesktop.org/software/colord'
 source=(https://www.freedesktop.org/software/colord/releases/$pkgname-$pkgver.tar.xz
         $pkgname.hooks)
 
 build() {
     cd $pkgname-$pkgver
+
+	sed -e '/class="manual"/i<refmiscinfo class="source">colord</refmiscinfo>' \
+    	-i man/*.xml
 
 	meson setup \
         --prefix=/usr \
@@ -22,7 +25,7 @@ build() {
         -D libcolordcompat=true \
         -D argyllcms_sensor=false \
         -D bash_completion=false \
-        -D docs=false \
+        -D docs=true \
         -D man=true \
         build
         ninja -C build

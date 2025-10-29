@@ -1,11 +1,11 @@
 # description	: PDF rendering library based on the xpdf-3.0 code base
 # depends	: cmake fontconfig libjpeg-turbo libpng openjpeg ninja
 # depends	: zlib glib curl lcms2 libtiff qt6 nss gdk-pixbuf cairo
-# depends	: gobject-introspection boost gpgme gpgmepp
+# depends	: gobject-introspection boost gpgme gpgmepp gtk-doc
 
 pkgname=poppler
 pkgver=25.10.0
-pkgrel=1
+pkgrel=2
 pkgver_data=0.4.12
 url='https://poppler.freedesktop.org'
 source=(https://poppler.freedesktop.org/$pkgname-$pkgver.tar.xz

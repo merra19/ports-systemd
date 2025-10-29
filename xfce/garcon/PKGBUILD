@@ -1,9 +1,9 @@
 # description	: Xfce's freedesktop.org specification compatible menu implementation library
-# depends	: libxfce4ui gtk3
+# depends	: libxfce4ui gtk3 gtk-doc
 
 pkgname=garcon
 pkgver=4.20.0
-pkgrel=1
+pkgrel=2
 url='https://docs.xfce.org/xfce/garcon/start'
 source=(https://archive.xfce.org/src/xfce/garcon/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 

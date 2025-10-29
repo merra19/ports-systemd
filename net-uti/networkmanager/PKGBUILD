@@ -3,11 +3,11 @@
 # depends	: nss readline newt intltool libxslt polkit iptables
 # depends	: py3-gobject wpa_supplicant systemd libpsl bluez perl
 # depends	: linux-api-headers jansson libnvme modemmanager upower
-# depends	: dhcpcd
+# depends	: dhcpcd gtk-doc
 
 pkgname=networkmanager
 pkgver=1.54.0
-pkgrel=1
+pkgrel=2
 url='https://www.networkmanager.dev'
 source=(https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/releases/$pkgver/downloads/NetworkManager-$pkgver.tar.xz
         NetworkManager.conf polkit.conf no-dns-update.conf rules $pkgname.hooks)
@@ -31,6 +31,7 @@ build() {
         -D session_tracking=systemd \
 		-D modem_manager=false \
 		-D qt=false \
+		-D docs=true \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build

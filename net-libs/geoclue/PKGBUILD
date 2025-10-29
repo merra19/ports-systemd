@@ -1,9 +1,10 @@
 # description	: Location information D-Bus service
 # depends	: json-glib libsoup3 libnotify vala avahi modemmanager
+# depends	: gtk-doc
 
 pkgname=geoclue
 pkgver=2.7.2
-pkgrel=1
+pkgrel=2
 url='https://gitlab.freedesktop.org/geoclue/geoclue/-/wikis/home'
 source=(https://gitlab.freedesktop.org/geoclue/geoclue/-/archive/$pkgver/$pkgname-$pkgver.tar.bz2)
 
@@ -13,7 +14,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
-        -D gtk-doc=false \
+        -D gtk-doc=true \
         -D nmea-source=true \
         -D 3g-source=true \
         -D cdma-source=true \
