@@ -1,8 +1,8 @@
 # description	: An efficient, principled regular expression library
-# depends	: abseil-cpp gcc
+# depends	: abseil-cpp gcc icu
 
 pkgname=re2
-pkgver=2024.07.02
+pkgver=2025.08.12
 _re2ver=${pkgver//./-}
 pkgrel=1
 url='https://github.com/google/re2'
