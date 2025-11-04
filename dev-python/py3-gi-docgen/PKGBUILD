@@ -1,9 +1,9 @@
 # description	: A documentation generator for GObject-based libraries
-# depends	: python py3-wheel py3-gpep517 py3-setuptools 
+# depends	: python py3-wheel py3-gpep517 py3-setuptools
 # depends	: py3-markdown py3-pygments py3-typogrify py3-smartypants
 
 pkgname=py3-gi-docgen
-pkgver=2025.4
+pkgver=2025.5
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/gi-docgen'
 source=(https://files.pythonhosted.org/packages/source/g/gi-docgen/gi_docgen-$pkgver.tar.gz)

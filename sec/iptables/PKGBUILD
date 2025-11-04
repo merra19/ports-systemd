@@ -7,7 +7,7 @@ pkgrel=1
 options=(!lto)
 url='https://www.netfilter.org/projects/iptables'
 source=(https://www.netfilter.org/projects/iptables/files/$pkgname-$pkgver.tar.xz
-        rc.iptables)
+        rc.iptables iptables)
 
 build() {
 	cd $pkgname-$pkgver
@@ -19,5 +19,14 @@ build() {
     make
     make DESTDIR="$pkgdir" install
 
-    install -Dm 700 ../rc.iptables "$pkgdir"/etc/systemd/scripts/iptables
+    install -Dm 700 ../rc.iptables "$pkgdir"/etc/rc.d/rc.iptables
+
+	install -Dm 0754 "$srcdir"/iptables "$pkgdir"/etc/rc.d/init.d/iptables
+
+    for i in 2 3 4 5; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            *) ln -sf ../init.d/iptables "$pkgdir"/etc/rc.d/rc$i.d/S19iptables ;;
+        esac
+    done
 }

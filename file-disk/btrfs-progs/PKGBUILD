@@ -1,5 +1,5 @@
 # description	: Btrfs filesystem utilities
-# depends	: glibc lzo lvm2 util-linux zlib python systemd zstd acl
+# depends	: glibc lzo lvm2 util-linux zlib python zstd acl
 # depends	: linux-api-headers py3-sphinx py3-sphinx_rtd_theme
 
 pkgname=btrfs-progs

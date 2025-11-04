@@ -9,7 +9,7 @@ pkgver=17.6
 pkgrel=1
 url='https://www.postgresql.org'
 source=(https://ftp.postgresql.org/pub/source/v$pkgver/$pkgname-$pkgver.tar.bz2
-        $pkgname.hooks)
+        $pkgname.hooks postgresql)
 
 build() {
 	cd $pkgname-$pkgver
@@ -34,4 +34,14 @@ build() {
     chown -Rv postgres:postgres "$pkgdir"/srv/pgsql "$pkgdir"/run/postgresql
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/postgresql "$pkgdir"/etc/rc.d/init.d/postgresql
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/postgresql "$pkgdir"/etc/rc.d/rc$i.d/K26postgresql ;;
+            *) ln -sf ../init.d/postgresql "$pkgdir"/etc/rc.d/rc$i.d/S34postgresql ;;
+        esac
+    done
 }

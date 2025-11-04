@@ -1,5 +1,5 @@
 # description	: High-level C++ D-Bus library
-# depends	: cmake expat systemd
+# depends	: cmake expat elogind
 
 pkgname=sdbus-cpp
 pkgver=2.1.0
@@ -14,6 +14,7 @@ build() {
 		-D CMAKE_INSTALL_PREFIX=/ \
 		-D CMAKE_BUILD_TYPE=Release \
 		-D SDBUSCPP_BUILD_CODEGEN=ON \
+		-D SDBUSCPP_BUILD_LIBSYSTEMD=no \
 		-D SDBUSCPP_BUILD_DOCS=OFF
 	cmake --build build
     DESTDIR="$pkgdir" cmake --install build

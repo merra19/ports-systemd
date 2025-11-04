@@ -9,7 +9,7 @@ pkgrel=1
 options=(!lto)
 url='https://www.openssh.com'
 source=(https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$pkgname-$pkgver.tar.gz
-        $pkgname.hooks)
+        $pkgname.hooks sshd)
 backup=(etc/ssh/ssh_config etc/ssh/sshd_config)
 
 build() {
@@ -39,4 +39,6 @@ build() {
 	echo "PermitRootLogin no" >> "$pkgdir"/etc/ssh/sshd_config
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/sshd "$pkgdir"/etc/rc.d/init.d/sshd
 }

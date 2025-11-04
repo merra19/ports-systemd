@@ -6,17 +6,11 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-    cd /usr/share/blfs-bootscripts
-    make install-sddm
-}
-
-pkg_preremove() {
-    cd /usr/share/blfs-bootscripts
-    make uninstall-sddm
+    if ! grep -q '^dm:5' /etc/inittab; then \
+		echo dm:5:respawn:/etc/rc.d/init.d/xdm >> /etc/inittab; \
+	fi
 }
 
 case $1 in
     preinst) pkg_preinst ;;
-    postinst) pkg_postinst ;;
-    preremove) pkg_preremove ;;
 esac

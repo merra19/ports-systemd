@@ -6,7 +6,7 @@
 # depends	: libxcb xorg-libs libxkbcommon mesa pango pixman wayland
 # depends	: tomlplusplus util-linux wayland-protocols polkit glaze
 # depends	: xcb-proto xcb-util xcb-util-errors xcb-utilities seatd
-# depends	: xwayland systemd
+# depends	: xwayland
 
 pkgname=hyprland
 pkgver=0.51.1
@@ -26,4 +26,6 @@ build() {
     rm -fv "$pkgdir/usr/include/hyprland/src/version.h.in"
     # Drop this line when hyprland-portals.conf is removed from xdg-desktop-portal-hyprland
     rm -frv "$pkgdir/usr/share/xdg-desktop-portal"
+
+	rm -fr "$pkgdir"/usr/lib/systemd
 }

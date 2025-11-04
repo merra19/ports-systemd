@@ -1,0 +1,24 @@
+# description	: A graph based image processing framework
+# depends	: meson babl json-glib glib gobject-introspection libpng 
+# depends	: pango graphviz py3-pygments py3-gobject py3-asciidoc
+# depends	: cairo gdk-pixbuf gexiv2 jasper lcms2 libraw librsvg
+# depends	: libspiro libtiff libwebp luajit poppler ruby sdl2 vala
+# depends	: v4l-utils gtk-doc ffmpeg
+
+pkgname=gegl
+pkgver=0.4.62
+pkgrel=1
+url='https://gegl.org'
+source=(https://download.gimp.org/pub/gegl/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D docs=true \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

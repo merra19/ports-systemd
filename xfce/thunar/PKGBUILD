@@ -1,6 +1,6 @@
 # description	: File manager for the Xfce desktop environment
 # depends	: exo hicolor-icon-theme libgudev libnotify pcre2 libexif  
-# depends	: tumbler gvfs gtk-doc
+# depends	: tumbler gvfs gtk-doc udev
 
 pkgname=thunar
 pkgver=4.20.4
@@ -10,6 +10,9 @@ source=(https://archive.xfce.org/src/xfce/thunar/${pkgver%.*}/$pkgname-$pkgver.t
 
 build() {
 	cd $pkgname-$pkgver
+
+	# First prevent the installation of an unneeded systemd file
+	sed -i 's/\tinstall-systemd_userDATA/\t/' Makefile.in
 
     ./configure \
         --prefix=/usr \

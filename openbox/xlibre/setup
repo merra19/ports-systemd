@@ -2,7 +2,10 @@
 
 usage() {
 	cat <<-__EOF__
-		usage: setup [plasma|xfce|hyprland|rofi]
+		usage: setup <install> [plasma|xfce|hyprland|rofi]
+
+        optional: install 
+            install [plasma|xfce|hyprland|wayfire|steam]
 
 		write xinitrc file in HOME
         and create ~/.cache folder
@@ -10,7 +13,7 @@ usage() {
         rofi:
          cp dotfiles config to .config.rofi
 
-		options:
+		
 		help  Show this help
 
 	__EOF__
@@ -19,6 +22,26 @@ usage() {
 
 writehome() {
     echo "$1" > ~/.xinitrc 
+}
+
+doinstall() {
+    case $1 in
+        xfce)
+            scratch -I -y -f  xfce xarchiver xfce4-screenshooter rofi mousepad mpv
+            scratch -I -y -f  vscodium-bin unbound
+            scratch -I -y -f  ttf-nerd-fonts-symbols eww eww-xfce-dots
+            ;;
+        wayfire)
+            scratch -I -y -f  wayfire-meta wmctrl wofi
+            ;;
+        steam)
+            scratch -I -y -f  steam umu-launcher protontricks
+            ;;
+        *)
+            usage ; exit 0
+            ;;
+    esac
+    exit
 }
 
 
@@ -37,7 +60,7 @@ case $1 in
         writehome "dbus-launch --exit-with-x11 /usr/bin/startplasma-x11"
         ;;
     rofi)
-        mkdir ~/.config/rofi
+        mkdir -p ~/.config/rofi
         if scratch isinstalled rofi-dotfiles;then
             cp -r /usr/local/share/rofi/* ~/.config/rofi/
         else
@@ -46,6 +69,9 @@ case $1 in
         ;;
     help)
         usage ; exit 0
+        ;;
+    install)
+        doinstall $2; exit 0
         ;;
     *)
         usage ; exit 0

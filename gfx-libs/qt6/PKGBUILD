@@ -4,7 +4,7 @@
 # depends	: xcb-utilities sqlite mesa mtdev libinput libglvnd cups
 # depends	: vulkan-headers libproxy alsa-lib make-ca jasper libmng
 # depends	: libtiff libwebp wayland bluez llvm pciutils pulseaudio 
-# depends	: protobuf systemd
+# depends	: protobuf
 # optional  : krb5 mariadb unixodbc postgresql
 # todo      : gst-plugins-base ibus sdl2 speech-dispatcher
 
@@ -42,7 +42,7 @@ build() {
         -nomake examples \
         -no-rpath \
         -no-sbom \
-        -journald \
+        -syslog \
         -libproxy \
         -skip qt3d \
         -skip qtquick3dphysics \

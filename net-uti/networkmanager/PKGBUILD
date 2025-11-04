@@ -1,7 +1,7 @@
 # description	: A set of co-operative tools that make networking simple and straightforward
 # depends	: gobject-introspection vala glib libndp curl util-linux 
 # depends	: nss readline newt intltool libxslt polkit iptables
-# depends	: py3-gobject wpa_supplicant systemd libpsl bluez perl
+# depends	: py3-gobject wpa_supplicant elogind libpsl bluez perl
 # depends	: linux-api-headers jansson libnvme modemmanager upower
 # depends	: dhcpcd gtk-doc
 
@@ -10,7 +10,7 @@ pkgver=1.54.0
 pkgrel=2
 url='https://www.networkmanager.dev'
 source=(https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/releases/$pkgver/downloads/NetworkManager-$pkgver.tar.xz
-        NetworkManager.conf polkit.conf no-dns-update.conf rules $pkgname.hooks)
+        NetworkManager.conf polkit.conf no-dns-update.conf rules $pkgname.hooks networkmanager)
 backup=(etc/NetworkManager/NetworkManager.conf)
 
 build() {
@@ -28,8 +28,10 @@ build() {
 		-D ovs=true \
 		-D ppp=false \
 		-D selinux=false \
-        -D session_tracking=systemd \
+        -D session_tracking=elogind \
 		-D modem_manager=false \
+		-D systemdsystemunitdir=no  \
+		-D systemd_journal=false \
 		-D qt=false \
 		-D docs=true \
         build
@@ -51,4 +53,14 @@ build() {
     install -Dm 644 "$srcdir"/rules "$pkgdir"/usr/share/polkit-1/rules.d/org.freedesktop.NetworkManager.rules
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/networkmanager "$pkgdir"/etc/rc.d/init.d/networkmanager
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/networkmanager "$pkgdir"/etc/rc.d/rc$i.d/K28networkmanager ;;
+            *) ln -sf ../init.d/networkmanager "$pkgdir"/etc/rc.d/rc$i.d/S33networkmanager ;;
+        esac
+    done
 }

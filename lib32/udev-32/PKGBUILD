@@ -1,0 +1,48 @@
+# description	: Utilities split out from systemd for non systemd users
+# depends	: acl-32 xz-32 libcap-32 libarchive-32 curl-32 udev
+
+pkgname=udev-32
+_pkgname=systemd
+pkgver=257.8
+pkgrel=1
+url='https://systemd.io'
+source=(https://github.com/systemd/systemd/archive/v$pkgver/systemd-$pkgver.tar.gz)
+
+build() {
+    cd ${_pkgname}-$pkgver
+
+    # Remove two unneeded groups, render and sgx, from the default udev rules:
+    sed  -i -e 's/GROUP="render"/GROUP="video"/' \
+            -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
+
+    mkdir build32
+    cd build32
+    
+	export CC="gcc -m32 -mstackrealign"
+	export CXX="g++ -m32 -mstackrealign"
+	export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+	LANG=en_US.UTF-8 \
+    meson setup .. \
+        --prefix=/usr \
+        --buildtype=release \
+		--libdir=lib32 \
+        -D mode=release \
+        -D dev-kvm-mode=0660 \
+        -D link-udev-shared=false \
+        -D logind=false \
+        -D vconsole=false \
+        -D acl=enabled \
+        -D kmod=disabled \
+        -D seccomp=disabled \
+        -D libcryptsetup=disabled \
+        -D libcryptsetup-plugins=disabled
+    ninja \
+      $(grep -o -E "^build (src/libudev|src/udev)[^:]*" \
+        build.ninja | awk '{ print $2 }') \
+      $(realpath libudev.so --relative-to .)
+
+    mkdir -pv "$pkgdir"/usr/lib32/pkgconfig &&
+    cp -av libudev.so{,*[0-9]} "$pkgdir"/usr/lib32/ &&
+    sed -e "s;/usr/lib;&32;g" src/libudev/libudev.pc > "$pkgdir"/usr/lib32/pkgconfig/libudev.pc
+}

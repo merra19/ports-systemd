@@ -7,7 +7,7 @@ pkgrel=1
 options=(!lto)
 url='https://web.mit.edu/kerberos/www'
 source=(https://kerberos.org/dist/krb5/${pkgver:0:4}/$pkgname-$pkgver.tar.gz
-        krb5.conf)
+        krb5.conf krb5)
 
 build() {
 	cd $pkgname-$pkgver
@@ -40,4 +40,14 @@ build() {
     sed '/PROG_RPATH_FLAGS/d' -i "$pkgdir"/usr/bin/krb5-config
 
     install -Dm 644 $srcdir/krb5.conf "$pkgdir"/etc/krb5.conf
+
+	install -Dm 0754 "$srcdir"/krb5 "$pkgdir"/etc/rc.d/init.d/krb5
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/krb5 "$pkgdir"/etc/rc.d/rc$i.d/K42krb5 ;;
+            *) ln -sf ../init.d/krb5 "$pkgdir"/etc/rc.d/rc$i.d/S28krb5 ;;
+        esac
+    done
 }

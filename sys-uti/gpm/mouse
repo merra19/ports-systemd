@@ -1,2 +1,7 @@
-[Service]
-ExecStart=/usr/sbin/gpm -m /dev/input/mice -t imps2
+# Begin /etc/sysconfig/mouse
+
+MDEVICE="/dev/input/mice"
+PROTOCOL="imps2"
+GPMOPTS=""
+
+# End /etc/sysconfig/mouse

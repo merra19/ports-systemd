@@ -2,6 +2,7 @@
 # depends	: ncurses-32 dbus-32 readline-32 openssl-32 alsa-lib-32
 # depends	: opus-32 pulseaudio-32 xorg-libs-32 libxcb-32 libdrm-32
 # depends	: alsa-plugins-32 vulkan-loader-32 libsndfile-32 pipewire
+# depends	: udev-32 elogind-32
 
 pkgname=pipewire-32
 _pkgname=pipewire

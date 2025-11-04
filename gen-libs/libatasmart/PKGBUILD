@@ -1,5 +1,5 @@
 # description	: A small and lightweight parser library for ATA S.M.A.R.T. hard disks
-# depends	: systemd
+# depends	: glibc
 
 pkgname=libatasmart
 pkgver=0.19

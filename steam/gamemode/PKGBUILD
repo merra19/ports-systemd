@@ -1,5 +1,5 @@
 # description	: Optimise Linux system performance on demand
-# depends	: bash gcc glibc dbus inih polkit libcap systemd
+# depends	: bash gcc glibc dbus inih polkit libcap elogind
 
 pkgname=gamemode
 pkgver=1.8.2

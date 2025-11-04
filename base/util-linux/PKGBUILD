@@ -1,5 +1,5 @@
 # description	: Various useful Linux utilities
-# depends	: libxcrypt pcre2 ncurses zlib readline sqlite systemd
+# depends	: libxcrypt pcre2 ncurses zlib readline sqlite udev
 # depends	: bash-completion
 
 pkgname=util-linux
@@ -26,6 +26,8 @@ build() {
         --disable-pylibmount \
         --disable-static \
         --without-python \
+		--without-systemd \
+		--without-systemdsystemunitdir \
         --docdir=/usr/share/doc/$pkgname-$pkgver \
         ADJTIME_PATH=/var/lib/hwclock/adjtime 
     make

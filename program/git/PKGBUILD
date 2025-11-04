@@ -1,6 +1,6 @@
 # description	: Stupid content tracker: distributed VCS designed for speed and efficiency
 # depends	: curl gnupg pcre2 openssl zlib tk fcron perl py3-asciidoc
-# depends	: openssh pam systemd xmlto perl-io-socket-ssl
+# depends	: openssh pam xmlto perl-io-socket-ssl
 
 pkgname=git
 pkgver=2.50.1

@@ -10,18 +10,9 @@ pkg_postinst() {
         mariadb-install-db --basedir=/usr --datadir=/srv/mariadb --user=mariadb
         chown -R mariadb:mariadb /srv/mariadb
     fi
-
-    cd /usr/share/blfs-bootscripts
-    make install-mariadb
-}
-
-pkg_preremove() {
-    cd /usr/share/blfs-bootscripts
-    make uninstall-mariadb
 }
 
 case $1 in
 	preinst) pkg_preinst ;;
     postinst) pkg_postinst ;;
-    preremove) pkg_preremove ;;
 esac

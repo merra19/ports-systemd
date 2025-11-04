@@ -1,5 +1,5 @@
 # description	: Standard informational utilities and process-handling tools
-# depends	: ncurses systemd
+# depends	: ncurses
 
 pkgname=procps-ng
 pkgver=4.0.5
@@ -16,7 +16,6 @@ build() {
         --disable-static \
 		--disable-kill \
         --enable-watch8bit \
-        --with-systemd \
         --docdir=/usr/share/doc/$pkgname-$pkgver
     make
     make DESTDIR="$pkgdir" install

@@ -1,7 +1,7 @@
 # description	: Aquamarine is a very light linux rendering backend library
 # depends	: hyprutils hyprwayland-scanner libglvnd libdisplay-info
 # depends	: libdrm libinput seatd wayland mesa pixman pugixml cmake
-# depends	: wayland-protocols systemd
+# depends	: wayland-protocols udev
 
 pkgname=aquamarine
 pkgver=0.9.4

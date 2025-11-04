@@ -1,5 +1,5 @@
 # description	: A message bus system, a simple way for applications to talk to each other
-# depends	: expat xorg-proto xorg-libs systemd
+# depends	: expat xorg-proto xorg-libs
 
 pkgname=dbus
 pkgver=1.16.2
@@ -7,7 +7,7 @@ pkgrel=1
 options=(!lto)
 url='https://www.freedesktop.org/wiki/Software/dbus'
 source=(https://dbus.freedesktop.org/releases/dbus/$pkgname-$pkgver.tar.xz
-        malloc_trim.patch memory.patch)
+        malloc_trim.patch memory.patch dbus)
 
 build() {
     cd $pkgname-$pkgver
@@ -19,6 +19,7 @@ build() {
         --prefix=/usr \
         --buildtype=plain \
         --wrap-mode=nofallback \
+		-D systemd=disabled \
         p11-build 
     ninja -C p11-build 
     DESTDIR=${pkgdir} ninja install -C p11-build
@@ -27,4 +28,16 @@ build() {
     chmod -v      4750       "$pkgdir"/usr/libexec/dbus-daemon-launch-helper
 
     ln -sfv /etc/machine-id "$pkgdir"/var/lib/dbus
+
+	mv -v  "$pkgdir"/usr/share/doc/dbus{,-$pkgver}
+
+	install -Dm 0754 "$srcdir"/dbus "$pkgdir"/etc/rc.d/init.d/dbus
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/dbus "$pkgdir"/etc/rc.d/rc$i.d/K30dbus ;;
+            *) ln -sf ../init.d/dbus "$pkgdir"/etc/rc.d/rc$i.d/S29dbus ;;
+        esac
+    done
 }

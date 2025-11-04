@@ -1,6 +1,5 @@
 # description	: Generic Linux input driver
 # depends	: libevdev xorg-server mtdev xorg-proto linux-api-headers 
-# depends	: systemd
 
 pkgname=xf86-input-evdev
 pkgver=2.11.0

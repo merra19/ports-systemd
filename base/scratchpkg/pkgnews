@@ -1,0 +1,13 @@
+#!/bin/sh
+
+SCRATCHPKG_DIR="var/lib/scratchpkg"
+PKGDB_DIR="$SCRATCHPKG_DIR/db"
+
+
+if [ -f "$PKGDB_DIR/networkmanager" ];then
+    printf "\e[1;32m %s \e[0m\n" " sudo usermod -a -G netdev <username>"
+fi
+
+if [ -f "$PKGDB_DIR/gamemode" ];then
+    printf "\e[1;32m %s \e[0m\n" " sudo  gpasswd -a <username> gamemode"
+fi

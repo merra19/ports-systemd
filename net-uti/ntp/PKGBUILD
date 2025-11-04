@@ -6,7 +6,7 @@ pkgver=4.2.8p18
 pkgrel=2
 url='https://www.ntp.org'
 source=(https://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-${pkgver%.*}/$pkgname-$pkgver.tar.gz
-        ntp.conf $pkgname.hooks)
+        ntp.conf $pkgname.hooks ntpd)
 backup=(etc/ntp.conf)
 
 build() {
@@ -31,4 +31,14 @@ build() {
     install -Dm 644 "$srcdir"/ntp.conf "$pkgdir"/etc/ntp.conf
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/ntpd "$pkgdir"/etc/rc.d/init.d/ntpd
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/ntpd "$pkgdir"/etc/rc.d/rc$i.d/K46ntpd ;;
+            *) ln -sf ../init.d/ntpd "$pkgdir"/etc/rc.d/rc$i.d/S36ntpd ;;
+        esac
+    done
 }

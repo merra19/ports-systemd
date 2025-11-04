@@ -1,0 +1,29 @@
+#!/bin/sh
+
+RED='\033[31m'
+GREEN='\033[32m'
+CRESET='\033[0m'
+
+msg() {
+	printf "${GREEN}==>${CRESET} %s\n" "$1"
+}
+
+msgerr() {
+	printf "${RED}ERROR:${CRESET} %s\n" "$1" >&2
+}
+
+# check for root access
+[ "$(id -u)" != "0" ] || {
+	msgerr "fake DOES NOT requires root access!"
+	exit 1
+}
+
+umask 022
+
+mkdir -p /sources/FAKEROOT/pkg /sources/FAKEROOT/work
+
+. /etc/scratchpkg.conf
+
+TASKETCMD="taskset -c $CPULIST "
+
+$TASKETCMD fakeroot scratch -B -f $MAINOPTS --pkgdir=/sources/FAKEROOT/pkg --workdir=/sources/FAKEROOT/work "$@"

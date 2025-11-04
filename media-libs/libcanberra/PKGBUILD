@@ -1,5 +1,5 @@
 # description	: Portable sound event library
-# depends	: libvorbis alsa-lib systemd pulseaudio wireplumber gtk3
+# depends	: libvorbis alsa-lib pulseaudio wireplumber gtk3
 # depends	: sound-theme-freedesktop
 # optional  : gstreamer
 

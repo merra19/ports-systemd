@@ -1,0 +1,17 @@
+# description	: Library for making brushstrokes
+# depends	: json-c glib gobject-introspection intltool
+
+pkgname=libmypaint
+pkgver=1.6.1
+pkgrel=1
+url='https://github.com/mypaint/libmypaint'
+source=(https://github.com/mypaint/libmypaint/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+}

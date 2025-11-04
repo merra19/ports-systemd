@@ -1,6 +1,6 @@
 # description	: X.Org X servers
 # depends	: pixman xkeyboard-config libxcvt mesa libepoxy libtirpc
-# depends	: dbus xorg-proto xorg-fonts libunwind libxdmcp systemd
+# depends	: dbus xorg-proto xorg-fonts libunwind libxdmcp elogind
 # depends	: xorg-legacy libxau libglvnd openssl  
 
 pkgname=xorg-server
@@ -21,6 +21,7 @@ build() {
         --buildtype=plain \
         --localstatedir=/var \
         -D glamor=true \
+		-D systemd_logind=true \
         -D xkb_output_dir=/var/lib/xkb \
         build
 	ninja -C build
@@ -28,5 +29,10 @@ build() {
 
     chmod u+s /"$pkgdir"/usr/bin/Xorg   
 
-    mkdir -pv "$pkgdir"/etc/X11/xorg.conf.d 
+    mkdir -pv "$pkgdir"/etc/X11/xorg.conf.d
+	mkdir -pv "$pkgdir"/etc/sysconfig
+	cat >> "$pkgdir"/etc/sysconfig/createfiles << "EOF"
+/tmp/.ICE-unix dir 1777 root root
+/tmp/.X11-unix dir 1777 root root
+EOF
 }

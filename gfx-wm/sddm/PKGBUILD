@@ -8,7 +8,7 @@ pkgrel=1
 options=(!lto)
 url='https://github.com/sddm/sddm'
 source=(https://github.com/sddm/sddm/archive/v$pkgver/$pkgname-$pkgver.tar.gz
-        sddm sddm-autologin sddm-greeter $pkgname.hooks)
+        sddm sddm-autologin sddm-greeter $pkgname.hooks xdmconfig xdm)
 backup=(usr/share/sddm/scripts/Xsetup usr/share/sddm/scripts/Xstop)
 
 build() {
@@ -46,4 +46,8 @@ build() {
     install -Dm 0644 "$srcdir"/sddm-greeter "$pkgdir"/etc/pam.d/sddm-greeter
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/xdm "$pkgdir"/etc/rc.d/init.d/xdm
+    install -Dm 0644 "$srcdir"/xdmconfig "$pkgdir"/etc/sysconfig/xdm
+    sed -i '/sddm/s/^#//' "$pkgdir"/etc/sysconfig/xdm
 }

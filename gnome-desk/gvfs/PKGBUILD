@@ -1,6 +1,6 @@
 # description	: Virtual filesystem implementation for GIO
 # depends	: glib dbus gcr4 libcap libsoup3 udisks openssh libxslt
-# depends	: libarchive libgudev systemd fuse libxml2 avahi bluez
+# depends	: libarchive libgudev elogind fuse libxml2 avahi bluez
 # depends	: libusb libsecret libcdio libcdio-paranoia libgcrypt
 # depends	: libmtp gtk-doc
 # optional  : samba apache
@@ -31,6 +31,8 @@ build() {
         -D google=false \
         -D cdda=false \
         -D http=true \
+		-D tmpfilesdir=no \
+		-D systemduserunitdir=no \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

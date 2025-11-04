@@ -9,7 +9,7 @@ pkgrel=1
 url='https://httpd.apache.org'
 source=(https://archive.apache.org/dist/httpd/httpd-$pkgver.tar.bz2
         https://www.linuxfromscratch.org/patches/blfs/12.4/httpd-blfs_layout-1.patch
-        $pkgname.hooks)
+        $pkgname.hooks httpd)
 backup=(
     etc/httpd/httpd.conf
     etc/httpd/extra/httpd-autoindex.conf etc/httpd/extra/httpd-dav.conf etc/httpd/extra/httpd-default.conf
@@ -61,4 +61,14 @@ build() {
     chown -v -R apache:apache "$pkgdir"/srv/www
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/httpd "$pkgdir"/etc/rc.d/init.d/httpd
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/httpd "$pkgdir"/etc/rc.d/rc$i.d/K28httpd ;;
+            *) ln -sf ../init.d/httpd "$pkgdir"/etc/rc.d/rc$i.d/S32httpd ;;
+        esac
+    done
 }

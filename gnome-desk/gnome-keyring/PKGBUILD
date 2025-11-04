@@ -1,6 +1,5 @@
 # description	: Password and keyring managing daemon
 # depends	: dbus gcr pam libxslt openssh libgcrypt glib meson
-# depends	: systemd
 
 pkgname=gnome-keyring
 pkgver=48.0
@@ -16,6 +15,7 @@ build() {
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
+		-D systemd=disabled \
         -D ssh-agent=true  \
         build
 	ninja -C build

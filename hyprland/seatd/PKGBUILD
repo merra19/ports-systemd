@@ -1,5 +1,5 @@
 # description	: Minimal seat management daemon and universal library
-# depends	: meson ninja systemd scdoc
+# depends	: meson ninja elogind scdoc
 
 pkgname=seatd
 pkgver=0.9.1
@@ -16,7 +16,7 @@ build() {
         --buildtype=plain \
         -D examples=disabled \
         -D server=enabled \
-        -D libseat-logind=systemd \
+        -D libseat-logind=elogind \
         -D man-pages=enabled \
         build
     ninja -C build

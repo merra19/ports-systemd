@@ -1,5 +1,5 @@
 # description	: The core functions you need to create Docker images and run Docker containers
-# depends	: containerd runc systemd
+# depends	: containerd runc
 
 pkgname=docker
 pkgver=28.5.1
@@ -10,7 +10,7 @@ url='https://www.docker.com'
 source=(https://github.com/moby/moby/archive/v${pkgver}/moby-${pkgver}.tar.gz \
 	https://github.com/docker/cli/archive/v${pkgver}/cli-${pkgver}.tar.gz \
 	tini-$_tini_commit.tar.gz::https://github.com/krallin/tini/archive/$_tini_commit.tar.gz
-	$pkgname.hooks)
+	$pkgname.hooks docker.init )
 
 # create a fake go path directory and pushd into it
 # $1 real directory
@@ -79,10 +79,6 @@ build() {
 	### dockerd
 	install -Dm755 moby-$pkgver/bundles/dynbinary-daemon/dockerd "$pkgdir"/usr/bin/dockerd
 	install -Dm755 moby-$pkgver/bundles/dynbinary-daemon/docker-proxy "$pkgdir/usr/bin/docker-proxy"
-	### systemd units
-    cd "$srcdir"/moby-$pkgver/contrib
-    install -Dm644 'init/systemd/docker.service' "$pkgdir/usr/lib/systemd/system/docker.service"
-    install -Dm644 'init/systemd/docker.socket' "$pkgdir/usr/lib/systemd/system/docker.socket"
 	# systemd rules
 	cd "$srcdir"/moby-$pkgver/contrib
 	install -Dm644 'udev/80-docker.rules' "$pkgdir/usr/lib/udev/rules.d/80-docker.rules"
@@ -99,4 +95,14 @@ build() {
 	cp -r man/man* "$pkgdir/usr/share/man"
 
 	install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/docker.init "$pkgdir"/etc/rc.d/init.d/docker
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/docker "$pkgdir"/etc/rc.d/rc$i.d/K30docker ;;
+            *) ln -sf ../init.d/docker "$pkgdir"/etc/rc.d/rc$i.d/S70docker ;;
+        esac
+    done
 }

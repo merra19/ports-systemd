@@ -1,0 +1,24 @@
+# description	: GNU Image Manipulation Program
+# depends	: appstream-glib gegl gexiv2 glib-networking gtk3 harfbuzz
+# depends	: libmypaint librsvg libtiff libxml2 lcms2 poppler aalib
+# depends	: mypaint-brushes graphviz ghostscript iso-codes libgudev
+# depends	: py3-gobject xdg-utils py3-gi-docgen gjs libjxl lua
+# depends	: openjpeg alsa-lib appstream libmng libunwind libwebp
+
+pkgname=gimp
+pkgver=3.0.6
+pkgrel=1
+url='https://www.gimp.org'
+source=(https://download.gimp.org/gimp/v3.0/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D headless-tests=disabled \
+        build
+    ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+}

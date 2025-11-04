@@ -1,5 +1,5 @@
 # description	: Generic Linux input driver
-# depends	: libevdev xlibre-xserver mtdev xorg-proto systemd
+# depends	: libevdev xlibre-xserver mtdev xorg-proto udev
 # depends	: linux-api-headers
 
 pkgname=xlibre-xf86-input-evdev

@@ -9,7 +9,7 @@ url='https://www.nico.schottelius.org/software/gpm'
 source=(https://anduin.linuxfromscratch.org/BLFS/gpm/$pkgname-$pkgver.tar.bz2
         https://www.linuxfromscratch.org/patches/blfs/12.4/gpm-1.20.7-consolidated-1.patch
         https://www.linuxfromscratch.org/patches/blfs/12.4/gpm-1.20.7-gcc15_fixes-1.patch
-        error-format.patch mouse)
+        error-format.patch mouse gpm)
 
 build() {
     cd $pkgname-$pkgver
@@ -39,6 +39,15 @@ build() {
     install -v -m644    doc/{FAQ,HACK_GPM,README*} \
                         "$pkgdir"/usr/share/doc/$pkgname-$pkgver
 
-    install -v -dm755 "$pkgdir"/etc/systemd/system/gpm.service.d
-    install -Dm 0644 "$srcdir"/mouse "$pkgdir"/etc/systemd/system/gpm.service.d/99-user.conf
+    install -Dm 0644 "$srcdir"/mouse "$pkgdir"/etc/sysconfig/mouse
+
+	install -Dm 0754 "$srcdir"/gpm "$pkgdir"/etc/rc.d/init.d/gpm
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/gpm "$pkgdir"/etc/rc.d/rc$i.d/K10gpm ;;
+            *) ln -sf ../init.d/gpm "$pkgdir"/etc/rc.d/rc$i.d/S70gpm ;;
+        esac
+    done
 }

@@ -1,6 +1,6 @@
 # description	: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 # depends	: cups libjpeg-turbo libusb dbus sane python openssl
-# depends	: net-snmp avahi ghostscript py3-gobject polkit
+# depends	: net-snmp avahi ghostscript py3-gobject polkit udev
 # depends	: py3-distro py3-reportlab py3-pillow
 
 pkgname=hplip

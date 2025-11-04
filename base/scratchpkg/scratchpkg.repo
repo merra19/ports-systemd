@@ -1,0 +1,60 @@
+#
+# /etc/scratchpkg.repo : scratchpkg repo file
+#
+# format:
+#    <repo directory> <repo url for sync>
+#
+# example:
+#    /usr/ports/myrepo
+#    /usr/ports/core        https://github.com/venomlinux/ports/tree/venom4/core
+#    /usr/ports/main        https://github.com/venomlinux/ports/tree/repos/main
+#    /usr/ports/multilib    https://github.com/venomlinux/ports/tree/repos/multilib
+#
+
+/sources/ports/base
+/sources/ports/dev-perl
+/sources/ports/dev-python
+/sources/ports/dev-python-other
+
+/sources/ports/file-disk
+/sources/ports/gen-libs
+/sources/ports/gen-uti
+/sources/ports/gfx-comp
+/sources/ports/gfx-fonts
+/sources/ports/gfx-icon
+/sources/ports/gfx-libs
+/sources/ports/gfx-wm
+/sources/ports/media-libs
+/sources/ports/media-uti
+/sources/ports/net-libs
+/sources/ports/net-uti
+/sources/ports/other
+/sources/ports/print
+/sources/ports/program
+/sources/ports/sec
+/sources/ports/server
+/sources/ports/shells
+/sources/ports/software
+/sources/ports/sys-uti
+/sources/ports/txt-edi
+/sources/ports/x11
+/sources/ports/xfce
+
+/sources/ports/lib32
+
+/sources/ports/gnome-desk
+/sources/ports/gnome-libs
+
+/sources/ports/kde6
+/sources/ports/kde-frameworks6
+/sources/ports/kde-plasma6
+
+/sources/ports/wayfire
+/sources/ports/hyprland
+/sources/ports/neovim
+
+/sources/ports/openbox
+/sources/ports/steam
+/sources/ports/xfce-other
+
+/sources/ports/dinit

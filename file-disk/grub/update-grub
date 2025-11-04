@@ -1,3 +1,49 @@
 #!/bin/sh
 set -e
-exec grub-mkconfig -o /boot/grub/grub.cfg "$@"
+
+showhelp() {
+    cat << EOF
+Usage:
+  $(basename $0) [ <options> <arguments> ]
+
+Options:
+  -h --help   show this help message
+  efi    install grub in efi directory /boot/efi
+
+  without options : run grub-mkconfig to create grub.cfg to boot
+
+EOF
+
+    exit
+}
+
+msg() {
+	printf "==> %s\n" "$1"
+}
+
+
+msgerr() {
+	printf "ERROR: %s\n" "$1" >&2
+}
+
+
+doefi() {
+    msg "mount efivars"
+    mountpoint /sys/firmware/efi/efivars || mount -v -t efivarfs efivarfs /sys/firmware/efi/efivars
+    msg "create grub.cfg in grub.cfg"
+    grub-install --efi-directory=/boot/efi
+    exit
+}
+
+[ "$(id -u)" = 0 ] || {
+	msgerr "You must build package as root, or use fakeroot."
+	exit 1
+}
+
+case $1 in
+    help | -h) showhelp ;;
+    efi) doefi ;;
+    *) exec grub-mkconfig -o /boot/grub/grub.cfg "$@" ;;
+esac
+
+

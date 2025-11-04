@@ -1,0 +1,228 @@
+#!/bin/sh
+
+declare -A arrays
+
+arrays[dhclient]=""
+arrays[dhcpcd]=""
+arrays[bridge]=""
+arrays[ipx]=""
+arrays[pppoe]=""
+arrays[wpa]=""
+
+arrays[atd]="0 K29atd 1 K29atd 2 S68atd 3 S68atd 4 S68atd 5 S68atd 6 K29atd"
+arrays[accounts-daemon]="0 K22accounts-daemon 1 K22accounts-daemon 2 S36accounts-daemon 3 S36accounts-daemon 4 S36accounts-daemon 5 S36accounts-daemon 6 K22accounts-daemon"
+arrays[acpid]="0 K32acpid 1 K32acpid 2 S18acpid 3 S18acpid 4 S18acpid 5 S18acpid 6 K32acpid"
+arrays[alsa]="0 K35alsa 1 K35alsa 6 K35alsa S S60alsa"
+arrays[autofs]="0 K27autofs 1 K27autofs 2 S34autofs 3 S34autofs 4 S34autofs 5 S34autofs 6 K27autofs"
+arrays[avahi]="0 K28avahi 1 K28avahi 2 S34avahi 3 S34avahi 4 S34avahi 5 S34avahi 6 K28avahi"
+arrays[httpd]="0 K28httpd 1 K28httpd 2 S32httpd 3 S32httpd 4 S32httpd 5 S32httpd 6 K28httpd"
+arrays[php]="0 K28php-fpm 1 K28php-fpm 2 S32php-fpm 3 S32php-fpm 4 S32php-fpm 5 S32php-fpm 6 K28php-fpm"
+arrays[bind]="0 K49bind 1 K49bind 2 S22bind 3 S22bind 4 S22bind 5 S22bind 6 K49bind"
+arrays[bluetooth]="0 K27bluetooth 1 K27bluetooth 2 S35bluetooth 3 S35bluetooth 4 S35bluetooth 5 S35bluetooth 6 K27bluetooth"
+arrays[cups]="0 K00cups 1 K00cups 2 S35cups 3 S35cups 4 S35cups 5 S35cups 6 K00cups"
+arrays[dbus]="0 K30dbus 1 K30dbus 2 S29dbus 3 S29dbus 4 S29dbus 5 S29dbus 6 K30dbus"
+
+arrays[saslauthd]="0 K49saslauthd 1 K49saslauthd 2 S24saslauthd 3 S24saslauthd 4 S24saslauthd 5 S24saslauthd 6 K49saslauthd"
+arrays[dovecot]="0 K78dovecot 1 K78dovecot 2 S27dovecot 3 S27dovecot 4 S27dovecot 5 S27dovecot 6 K78dovecot"
+arrays[exim]="0 K25exim 1 K25exim 2 S35exim 3 S35exim 4 S35exim 5 S35exim 6 K25exim"
+
+arrays[fcron]="0 K08fcron 1 K08fcron 2 S40fcron 3 S40fcron 4 S40fcron 5 S40fcron 6 K08fcron"
+arrays[firewalld]="0 K81firewalld 1 K81firewalld 2 S19firewalld 3 S19firewalld 4 S19firewalld 5 S19firewalld 6 K81firewalld"
+arrays[gdm]=""
+arrays[gpm]="0 K10gpm 1 K10gpm 2 S70gpm 3 S70gpm 4 S70gpm 5 S70gpm 6 K10gpm"
+arrays[git-daemon]="0 K27git-daemon 1 K27git-daemon 2 S33git-daemon 3 S33git-daemon 4 S33git-daemon 5 S33git-daemon 6 K27git-daemon"
+arrays[heimdal]="0 K42heimdal 1 K42heimdal 2 K42heimdal 3 S28heimdal 4 S28heimdal 5 S28heimdal 6 K42heimdal"
+arrays[iptables]="2 S19iptables 3 S19iptables 4 S19iptables 5 S19iptables"
+arrays[kea-dhcpd]="0 K30kea-dhcpd 1 K30kea-dhcpd 2 S30kea-dhcpd 3 S30kea-dhcpd 4 S30kea-dhcpd 5 S30kea-dhcpd 6 K30kea-dhcpd"
+arrays[krb5]="0 K42krb5 1 K42krb5 2 S28krb5 3 S28krb5 4 S28krb5 5 S28krb5 6 K42krb5"
+arrays[lxdm]=""
+arrays[mariadb]="0 K26mariadb 1 K26mariadb 2 S34mariadb 3 S34mariadb 4 S34mariadb 5 S34mariadb 6 K26mariadb"
+arrays[netfs]="0 K47netfs 1 K47netfs 2 S28netfs 3 S28netfs 4 S28netfs 5 S28netfs 6 K47netfs"
+arrays[networkmanager]="0 K28networkmanager 1 K28networkmanager 2 S33networkmanager 3 S33networkmanager 4 S33networkmanager 5 S33networkmanager 6 K28networkmanager"
+arrays[nfs-client]="0 K48nfs-client 1 K48nfs-client 2 S24nfs-client 3 S24nfs-client 4 S24nfs-client 5 S24nfs-client 6 K48nfs-client"
+arrays[nfs-server]="0 K48nfs-server 1 K48nfs-server 2 S24nfs-server 3 S24nfs-server 4 S24nfs-server 5 S24nfs-server 6 K48nfs-server"
+
+arrays[ntpd]="0 K46ntpd 1 K46ntpd 2 S36ntpd 3 S36ntpd 4 S36ntpd 5 S36ntpd 6 K46ntpd"
+arrays[rpcbind]="0 K49rpcbind 1 K49rpcbind 2 S22rpcbind 3 S22rpcbind 4 S22rpcbind 5 S22rpcbind 6 K49rpcbind"
+arrays[slapd]="0 K46slapd 1 K46slapd 2 S25slapd 3 S25slapd 4 S25slapd 5 S25slapd 6 K46slapd"
+arrays[postfix]="0 K25postfix 1 K25postfix 2 S35postfix 3 S35postfix 4 S35postfix 5 S35postfix 6 K25postfix"
+arrays[postgresql]="0 K26postgresql 1 K26postgresql 2 S34postgresql 3 S34postgresql 4 S34postgresql 5 S34postgresql 6 K26postgresql"
+arrays[power-profiles-daemon]="0 K10power-profiles-daemon 1 K10power-profiles-daemon 2 S30power-profiles-daemon 3 S30power-profiles-daemon 4 S30power-profiles-daemon 5 S30power-profiles-daemon 6 K27power-profiles-daemon"
+arrays[proftpd]="0 K28proftpd 1 K28proftpd 2 S32proftpd 3 S32proftpd 4 S32proftpd 5 S32proftpd 6 K28proftpd"
+arrays[random]="0 K45random 1 S25random 2 S25random 3 S25random 4 S25random 5 S25random 6 K45random"
+arrays[rsync]="0 K30rsyncd 1 K30rsyncd 2 S30rsyncd 3 S30rsyncd 4 S30rsyncd 5 S30rsyncd 6 K30rsyncd"
+
+arrays[samba]="0 K49samba 1 K49samba 2 S45samba 3 S45samba 4 S45samba 5 S45samba 6 K49samba"
+arrays[sddm]=""
+arrays[sendmail]="0 K25sendmail 1 K25sendmail 2 S35sendmail 3 S35sendmail 4 S35sendmail 5 S35sendmail 6 K25sendmail"
+arrays[smartd]="0 K70smartd 1 S21smartd 2 S21smartd 3 S21smartd 4 S21smartd 5 S21smartd 6 K70smartd"
+arrays[sshd]="0 K30sshd 1 K30sshd 2 S30sshd 3 S30sshd 4 S30sshd 5 S30sshd 6 K30sshd"
+arrays[stunnel]="0 K47stunnel 1 K47stunnel 2 S55stunnel 3 S55stunnel 4 S55stunnel 5 S55stunnel 6 K47stunnel"
+
+arrays[svn]="0 K27svn 1 K27svn 2 S33svn 3 S33svn 4 S33svn 5 S33svn 6 K27svn"
+arrays[sysmond]="0 K08sysmond 1 K08sysmond 2 S80sysmond 3 S80sysmond 4 S80sysmond 5 S80sysmond 6 K08sysmond"
+arrays[sysstat]="S S85sysstat"
+arrays[vsftpd]="0 K28vsftpd 1 K28vsftpd 2 S32vsftpd 3 S32vsftpd 4 S32vsftpd 5 S32vsftpd 6 K28vsftpd"
+arrays[unbound]="0 K79unbound 1 K79unbound 2 S21unbound 3 S21unbound 4 S21unbound 5 S21unbound 6 K79unbound"
+arrays[winbindd]="0 K48winbindd 1 K48winbindd 2 S50winbindd 3 S50winbindd 4 S50winbindd 5 S50winbindd 6 K48winbindd"
+
+arrays[seatd]="0 K30seatd 1 K30seatd 2 S70seatd 3 S70seatd 4 S70seatd 5 S70seatd 6 K30seatd"
+arrays[docker]="0 K30docker 1 K30docker 2 S70docker 3 S70docker 4 S70docker 5 S70docker 6 K30docker"
+arrays[lighttpd]="0 K30lighttpd 1 K30lighttpd 2 S70lighttpd 3 S70lighttpd 4 S70lighttpd 5 S70lighttpd 6 K30lighttpd"
+arrays[pcsclite]="0 K30pcsclite 1 K30pcsclite 2 S70pcsclite 3 S70pcsclite 4 S70pcsclite 5 S70pcsclite 6 K30pcsclite"
+
+#arrays[]="0K00 1K00 2S01 3S01 4S01 5S01 6K00"
+
+
+# Loop through the array two elements at a time
+for ((i=0; i<${#array[@]}; i+=2)); do
+    key=${array[i]}
+    value=${array[i+1]}
+    echo "Key: $key, Value: $value"
+done
+
+exit
+
+
+usage() {
+    cat<< EOF
+Usage:
+    $(basename "$0") <options> [<arg>]
+Options:
+
+    status <service>   or -V <service>
+    start <service>    or -X <service>
+    stop <service>     or -S <service>
+    restart <service>  or -R <service>
+    enable <service>   or -E <service>
+    disable <service>  or -D <service>
+
+Services:
+
+apache (httpd)  smartmontools (smartd)
+
+init:
+atd accounts-daemon acpid alsa autofs avahi bind bluetooth bridge-utils
+cups dbus dhcpd dovecot exim fcron firewalld git-daemon gpm heimdal
+httpd iptables kea-dhcpd krb5 mariadb netfs networkmanager nfs-client
+nfs-server nftables ntpd php postfix postgresql power-profiles-daemon
+proftpd random rpcbind rsync samba saslauthd sendmail slapd smartd
+sshd stunnel svn sysmond sysstat unbound vsftpd winbindd xdm
+
+init not in LFS/BLS:
+docker seatd lighttpd pcsclite
+
+service:
+bridge dhclient  dhcpcd  wpa
+
+EOF
+}
+
+msgwarn() {
+    printf  "%s" "$1"
+}
+
+
+checkservice() {
+    if  [ ! -f /etc/init.d/"$service" ]; then 
+        msgwarn "service ${RED} $service ${NC} not found"
+        exit 1
+    fi
+}
+
+[ "$(id -u)" = 0 ] || {
+    msgwarn " ${RED} this operation need root access! ${NC}"
+    echo -e
+	exit 1
+}
+
+list="status start stop restart enable disable help"
+service="$2"
+command="$1"
+
+case $command in
+    -X) command="start" ;;
+    -S) command="stop" ;;
+    -V) command="status" ;;
+    -R) command="restart" ;;
+    -E) command="enable" ;;
+    -D) command="disable" ;;
+esac
+
+if echo "$list" | (! grep -qw "$command"); then
+    msgwarn "command ${RED}$command ${NC}not found"
+    usage
+    exit 1
+fi
+
+if [ "$command" = "help" ]; then
+    usage
+    exit 0
+fi
+
+case $command in
+    status) checkservice ; /etc/init.d/"$service" status ; exit 0 ;;
+    start) checkservice ;  /etc/init.d/"$service" start ; exit 0 ;;
+    stop) checkservice ; /etc/init.d/"$service" stop ; exit 0 ;;
+    restart) checkservice ; /etc/init.d/"$service" restart ; exit 0 ;;
+esac
+
+if [ "$service" = "samba" ]; then
+    echo "With samba service, Don't forget the winbindd service"
+fi
+
+cmdservice() {
+    if [ "$command" = "enable" ];then
+		install -m644 /usr/share/blfs-bootscripts/blfs/services/$service /usr/lib/services
+    else
+		rm -f /usr/lib/services/$service
+    fi
+	exit 0
+}
+
+cmdsddm() {
+	if [ "$command" = "enable" ];then
+		install -m 754 /usr/share/blfs-bootscripts/blfs/init.d/xdm        /etc/rc.d/init.d/
+		install -m 644 /usr/share/blfs-bootscripts/blfs/sysconfig/xdm /etc/sysconfig/xdm
+		sed -i '/sddm/s/^#//' /etc/sysconfig/xdm
+		if ! grep -q '^dm:5' /etc/inittab; then \
+			echo dm:5:respawn:/etc/rc.d/init.d/xdm >> /etc/inittab; \
+		fi
+	else
+		rm -f /etc/rc.d/init.d/xdm
+		rm -f /etc/sysconfig/xdm
+		sed -i '/^dm/d' /etc/inittab
+	fi 
+	exit
+}
+
+case $service in
+	dhclient|dhcpcd|bridge|ipx|pppoe|pppoe|wpa) cmdservice $service ;;
+	sddm) cmdsddm ;;
+esac
+
+servicename=$service
+
+# Check if the key exists
+if [[ -z "${arrays[$service]}" ]]; then
+    echo "No data found for key: $service"
+    exit 1
+fi
+
+
+# Convert string to array
+read -ra items <<< "${arrays[$service]}"
+    
+# Loop through items two at a time
+for ((i=0; i<${#items[@]}; i+=2)); do
+    rc="${items[i]}"
+    value="${items[i+1]}"
+
+    if [ "$command" = "enable" ];then
+        ln -sf  ../init.d/$service /etc/rc.d/rc$rc.d/$value
+    else
+        rm -f /etc/rc.d/rc$rc.d/$value
+    fi 
+
+done
+

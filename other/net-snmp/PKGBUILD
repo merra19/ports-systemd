@@ -19,8 +19,7 @@ source=(https://downloads.sourceforge.net/$pkgname/$pkgname/$pkgver/$pkgname-$pk
 		d3e95c87b32397815f6d5bcfc844259f2552697a.patch
 		346b6f8959513320e5b674fd670c49ba2cd43af5.patch
 		e5aadf1e78c624a8e4147d4b70a7795497a50e73.patch
-		7fc7edf676c527a0cfb661f9000a3d22738cf8e6.patch
-		snmpd.service snmptrapd.service)
+		7fc7edf676c527a0cfb661f9000a3d22738cf8e6.patch)
 
 build() {
 	cd $pkgname-$pkgver
@@ -58,6 +57,4 @@ build() {
 
 	sed -i -e "s:install --basedir=\$\$dir:install --basedir=\$\$dir --root=${pkgdir}:" Makefile
 	make DESTDIR="$pkgdir" INSTALL_PREFIX="$pkgdir" INSTALLDIRS=vendor install
-	install -D -m644 "$srcdir/snmpd.service" "$pkgdir/usr/lib/systemd/system/snmpd.service"
-	install -D -m644 "$srcdir/snmptrapd.service" "$pkgdir/usr/lib/systemd/system/snmptrapd.service"
 }

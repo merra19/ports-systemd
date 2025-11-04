@@ -1,0 +1,219 @@
+#!/bin/sh
+
+declare -A arrays
+
+arrays[dhclient]=""
+arrays[dhcpcd]=""
+arrays[bridge]=""
+arrays[ipx]=""
+arrays[pppoe]=""
+arrays[wpa]=""
+
+# 0K00 1K00 2S01 3S01 4S01 5S01 6K00
+
+arrays[atd]="0K29 1K29 2S68 3S68 4S68 5S68 6K29"
+arrays[accounts-daemon]="0K22 1K22 2S36 3S64 4S36 5S36 6K22 "
+arrays[acpid]="0K32 1K32 2S18 3S18 4S18 5S18 6K32"
+arrays[alsa]="0K35 1K35 6K35 SS60"
+arrays[avahi]="0K28 1K28 2S34 3S34 4S34 5S34 6K28"
+arrays[httpd]="0K28 1K28 2S32 3S32 4S32 5S32 6K28"
+arrays[php]="0K28 1K28 2S32 3S32 4S32 5S32 6K28"
+arrays[bind]="0K49 1K49 2S22 3S22 4S22 5S22 6K49"
+arrays[bluetooth]="0K27 1K27 2S35 3S35 4S35 5S35 6K27"
+arrays[cups]="0K00 1K00 2S35 3S35 4S35 5S35 6K00"
+
+arrays[saslauthd]="0K49 1K49 2S24 3S24 4S24 5S24 6K49"
+arrays[dovecot]="0K78 1K78 2S27 3S27 4S27 5S27 6K78"
+arrays[exim]="0K25 1K25 2S35 3S35 4S35 5S35 6K25"
+
+arrays[fcron]="0K08 1K08 2S40 3S40 4S40 5S40 6K08"
+arrays[firewalld]=""
+arrays[gdm]=""
+arrays[gpm]="0K10 1K10 2S70 3S70 4S70 5S70 6K10"
+arrays[heimdal]=""
+arrays[iptables]="2S19 3S19 4S19 5S19"
+arrays[kea-dhcpd]="0K30 1K30 2S30 3S30 4S30 5S30 6K30"
+arrays[krb5]="0K42 1K42 2S28 3328 4S28 5S28 6K42"
+arrays[lxdm]=""
+arrays[mariadb]="0K26 1K26 2S34 3334 4S34 5S34 6K26"
+arrays[netfs]="0K47 1K47 2S28 3S28 4S28 5S28 6K47"
+arrays[networkmanager]="0K28 1K28 2S33 3333 4S33 5S33 6K28"
+arrays[nfs-client]="0K48 1K48 2S24 3S24 4S24 5S24 6K48"
+arrays[nfs-server]="0K48 1K48 2S24 3S24 4S24 5S24 6K48"
+
+arrays[ntpd]="0K46 1K46 2S36 3S36 4S36 5S36 6K46"
+arrays[slapd]=""
+arrays[postfix]=""
+arrays[postgresql]="0K26 1K26 2S34 3S34 4S34 5S34 6K26"
+arrays[power-profiles-daemon]="0K10 1K10 2S30 3S30 4S30 5S30 6K27"
+arrays[proftpd]="0K28 1K28 2S32 3S32 4S32 5S32 6K28"
+arrays[random]="0K45 1K45 2S25 3S25 4S25 5S25 6K45"
+arrays[rsync]="0K30 1K30 2S30 3S30 4S30 5S30 6K30"
+
+arrays[samba]="0K49 1K49 2S45 3S45 4S45 5S45 6K49"
+arrays[sddm]=""
+arrays[sendmail]=""
+arrays[smartd]="0K70 1K70 2S21 3S21 4S21 5S21 6K70"
+arrays[sshd]="0K30 1K30 2S30 3S30 4S30 5S30 6K30"
+arrays[stunnel]="0K47 1K47 2S55 3S55 4S55 5S55 6K47"
+
+arrays[svn]="0K27 1K27 2S33 3S33 4S33 5S33 6K27"
+arrays[sysstat]="SS85"
+arrays[vsftpd]="0K28 1K28 2S32 3S32 4S32 5S32 6K28"
+arrays[unbound]="0K79 1K79 2S21 3S21 4S21 5S21 6K79"
+arrays[winbindd]="0K48 1K48 2S50 3S50 4S50 5S50 6K48"
+
+arrays[seatd]="0K30 1K30 2S70 3S70 4S70 5S70 6K30"
+arrays[docker]="0K30 1K30 2S70 3S70 4S70 5S70 6K30"
+arrays[lighttpd]="0K30 1K30 2S70 3S70 4S70 5S70 6K30"
+arrays[pcsclite]="0K30 1K30 2S70 3S70 4S70 5S70 6K30"
+
+#arrays[]="0K00 1K00 2S01 3S01 4S01 5S01 6K00"
+
+
+# Loop through the array two elements at a time
+for ((i=0; i<${#array[@]}; i+=2)); do
+    key=${array[i]}
+    value=${array[i+1]}
+    echo "Key: $key, Value: $value"
+done
+
+exit
+
+
+usage() {
+    cat<< EOF
+Usage:
+    $(basename "$0") <options> [<arg>]
+Options:
+
+    status <service>   or -V <service>
+    start <service>    or -X <service>
+    stop <service>     or -S <service>
+    restart <service>  or -R <service>
+    enable <service>   or -E <service>
+    disable <service>  or -D <service>
+
+Services:
+
+apache (httpd)  smartmontools (smartd)
+
+init:
+acpid avahi bind bluetooth bridge-utils cups dbus dhcpd fcron 
+git-daemon gpm httpd iptables krb5 mariadb netfs networkmanager 
+nfs-client nfs-server nftables ntpd php postgresql 
+power-profiles-daemon random rpcbind samba saslauthd slapd smartd
+sshd winbindd xdm
+
+init not in LFS/BLS:
+docker seatd lighttpd pcsclite
+
+service:
+bridge dhclient  dhcpcd  wpa
+
+EOF
+}
+
+msgwarn() {
+    printf  "%s" "$1"
+}
+
+
+checkservice() {
+    if  [ ! -f /etc/init.d/"$service" ]; then 
+        msgwarn "service ${RED} $service ${NC} not found"
+        exit 1
+    fi
+}
+
+[ "$(id -u)" = 0 ] || {
+    msgwarn " ${RED} this operation need root access! ${NC}"
+	exit 1
+}
+
+list="status start stop restart enable disable help"
+service="$2"
+command="$1"
+
+case $command in
+    -X) command="start" ;;
+    -S) command="stop" ;;
+    -V) command="status" ;;
+    -R) command="restart" ;;
+    -E) command="enable" ;;
+    -D) command="disable" ;;
+esac
+
+if echo "$list" | (! grep -qw "$command"); then
+    msgwarn "command ${RED}$command ${NC}not found"
+    usage
+    exit 1
+fi
+
+if [ "$command" = "help" ]; then
+    usage
+    exit 0
+fi
+
+case $command in
+    status) checkservice ; /etc/init.d/"$service" status ; exit 0 ;;
+    start) checkservice ;  /etc/init.d/"$service" start ; exit 0 ;;
+    stop) checkservice ; /etc/init.d/"$service" stop ; exit 0 ;;
+    restart) checkservice ; /etc/init.d/"$service" restart ; exit 0 ;;
+esac
+
+if [ "$service" = "samba" ]; then
+    echo "With samba service, Don't forget the winbindd service"
+fi
+
+cmdservice() {
+    if [ "$command" = "enable" ];then
+		install -m644 /usr/share/blfs-bootscripts/blfs/services/$service /usr/lib/services
+    else
+		rm -f /usr/lib/services/$service
+    fi
+	exit 0
+}
+
+cmdsddm() {
+	if [ "$command" = "enable" ];then
+		install -m 754 /usr/share/blfs-bootscripts/blfs/init.d/xdm        /etc/rc.d/init.d/
+		install -m 644 /usr/share/blfs-bootscripts/blfs/sysconfig/xdm /etc/sysconfig/xdm
+		sed -i '/sddm/s/^#//' /etc/sysconfig/xdm
+		if ! grep -q '^dm:5' /etc/inittab; then \
+			echo dm:5:respawn:/etc/rc.d/init.d/xdm >> /etc/inittab; \
+		fi
+	else
+		rm -f /etc/rc.d/init.d/xdm
+		rm -f /etc/sysconfig/xdm
+		sed -i '/^dm/d' /etc/inittab
+	fi 
+	exit
+}
+
+case $service in
+	dhclient|dhcpcd|bridge|ipx|pppoe|pppoe|wpa) cmdservice $service ;;
+	sddm) cmdsddm ;;
+esac
+
+servicename=$service
+
+	if [ "$command" = "enable" ];then
+		install -m ${MODE} /usr/share/blfs-bootscripts/blfs/init.d/$service /etc/rc.d/init.d/
+	fi 
+
+for element in ${arrays[$service]}; do
+	rc="${element:0:1}"
+	num="${str:1}"
+
+	if [ "$command" = "enable" ];then
+		ln -sf  ../init.d/$service /etc/rc.d/rc$rc.d/$num$service
+	else
+		rm -f /etc/rc.d/rc$rc.d/$num$servicename
+	fi 
+done
+
+
+
+
+

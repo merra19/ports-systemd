@@ -1,5 +1,5 @@
 # description	: Library for Emulated Input, primarily aimed at the Wayland stack
-# depends	: py3-attrs systemd libevdev libxkbcommon libxml2
+# depends	: py3-attrs elogind libevdev libxkbcommon libxml2
 
 pkgname=libei
 pkgver=1.4.1

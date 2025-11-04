@@ -3,8 +3,8 @@
 # depends	: gtkmm-3.24 libnl pipewire pulseaudio libsigc++-2 meson
 # depends	: spdlog upower wireplumber libxkbcommon wayland gtk3
 # depends	: playerctl cmake wayland-protocols ttf-font-awesome
-# depends	: libdbusmenu libevdev libinput gtk-layer-shell systemd
-# depends	: scdoc
+# depends	: libdbusmenu libevdev libinput gtk-layer-shell elogind
+# depends	: scdoc udev
 
 pkgname=waybar
 pkgver=0.14.0
@@ -24,11 +24,12 @@ build() {
           -D cava=disabled \
           -D tests=disabled \
           -D sndio=disabled \
-          -D systemd=enabled \
+          -D systemd=disabled \
           -D mpd=disabled \
           -D jack=disabled \
           -D man-pages=enabled \
 		  -D gps=disabled \
+		  -D logind=enabled \
           build
     meson compile -C build
     meson install -C build --destdir "$pkgdir"

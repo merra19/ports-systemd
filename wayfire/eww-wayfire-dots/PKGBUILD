@@ -1,5 +1,5 @@
 # description	: Wayfire dots file with Xfce
-# depends	: ewww wayfire pavucontrol wofi thunar nerd-fonts xfce
+# depends	: eww wayfire pavucontrol wofi thunar nerd-fonts xfce
 # depends	: xdg-desktop-portal wireplumber ttf-font-awesome
 # depends	: xfce4-terminal polkit-gnome xfce4-notifyd wf-shell
 # depends	: xdg-desktop-portal-wlr wayfire-plugins-extra

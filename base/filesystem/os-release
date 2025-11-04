@@ -1,7 +1,7 @@
 NAME="Linux From Scratch"
-VERSION="r12.4-systemd"
+VERSION="r12.4"
 ID=lfs
-PRETTY_NAME="Linux From Scratch r12.4-systemd"
-VERSION_CODENAME="r12.4-systemd"
+PRETTY_NAME="Linux From Scratch r12.4"
+VERSION_CODENAME="r12.4"
 HOME_URL="https://www.linuxfromscratch.org/lfs/"
 RELEASE_TYPE="stable"

@@ -1,7 +1,7 @@
 # description	: networked sound server
-# depends	: alsa-lib dbus systemd glib libsndfile libxcb speexdsp
+# depends	: alsa-lib dbus elogind glib libsndfile libxcb speexdsp
 # depends	: libcap avahi libsamplerate gtk3 bluez sbc xorg-libs
-# depends	: alsa-utils rtkit
+# depends	: alsa-utils rtkit udev
 
 pkgname=pulseaudio
 pkgver=17.0

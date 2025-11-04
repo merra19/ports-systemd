@@ -1,0 +1,32 @@
+# description	: A command scheduler with extended capabilities over cron and anacron
+# depends	: pam dbus docbook-xml docbook-xsl-nons libxslt py3-lxml
+# depends	: py3-jinja2 udev
+
+pkgname=elogind
+pkgver=255.17
+pkgrel=1
+url='https://github.com/elogind/elogind'
+source=(https://github.com/elogind/elogind/archive/v$pkgver/$pkgname-$pkgver.tar.gz
+		elogind-user)
+
+build() {
+    cd $pkgname-$pkgver
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+		-D man=auto \
+		-D html=auto \
+		-D docdir=/usr/share/doc/elogind-$pkgver \
+		-D cgroup-controller=elogind \
+		-D dev-kvm-mode=0660 \
+		-D dbuspolicydir=/etc/dbus-1/system.d \
+        build
+    ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+
+	ln -sfv  libelogind.pc "$pkgdir"/usr/lib/pkgconfig/libsystemd.pc
+	ln -sfvn elogind "$pkgdir"/usr/include/systemd
+
+	install -Dm644 ../elogind-user "$pkgdir"/etc/pam.d/elogind-user
+}

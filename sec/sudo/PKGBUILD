@@ -27,4 +27,6 @@ build() {
     install -Dm 644 ../00-sudo "$pkgdir"/etc/sudoers.d/00-sudo
     install -Dm 644 ../sudo "$pkgdir"/etc/pam.d/sudo
     install -dm 755 "$pkgdir"/etc/sudoers.d/
+
+    rm -fr "$pkgdir"/run
 }

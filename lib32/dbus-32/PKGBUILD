@@ -26,6 +26,7 @@ build() {
         --libexecdir=/usr/lib32/dbus \
         --wrap-mode=nofallback \
         --cross-file lib32 \
+		-D systemd=disabled \
         p11-build 
     ninja -C p11-build 
     DESTDIR="$PWD"/DESTDIR ninja install -C p11-build

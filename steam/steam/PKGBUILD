@@ -5,7 +5,7 @@
 # depends	: libxau-32 libdrm-32 bzip2-32 xorg-libs-32 libxcrypt-32 
 # depends	: icu-32 fontconfig-32 mesa-32 libglvnd-32 zenity freetype
 # depends	: coreutils curl dbus desktop-file-utils diffutils nss
-# depends	: hicolor-icon-theme libxcrypt libxkbcommon systemd-32
+# depends	: hicolor-icon-theme libxcrypt libxkbcommon udev-32
 # depends	: usbutils polkit xdg-desktop-portal-gtk noto-fonts
 # depends	: libva-32 vulkan-loader cairo-32 libgpg-error-32 nss-32
 # depends	: alsa-plugins-32 pipewire-32 xorg-applications

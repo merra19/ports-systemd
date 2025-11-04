@@ -1,0 +1,89 @@
+# description	: System and service manager for Linux
+# depends	: meson acl xz py3-jinja2 gperf libcap libarchive kmod
+
+pkgname=udev
+pkgver=257.8
+pkgrel=1
+options=(!lto)
+url='https://systemd.io'
+source=(https://github.com/systemd/systemd/archive/v$pkgver/systemd-$pkgver.tar.gz
+        https://anduin.linuxfromscratch.org/LFS/systemd-man-pages-$pkgver.tar.xz
+		https://anduin.linuxfromscratch.org/LFS/udev-lfs-20230818.tar.xz
+        system-hooks.sh)
+noextract=(systemd-man-pages-$pkgver.tar.xz)
+
+build() {
+    cd systemd-$pkgver
+
+    # Remove two unneeded groups, render and sgx, from the default udev rules:
+    sed  -i -e 's/GROUP="render"/GROUP="video"/' \
+            -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
+	# Remove one udev rule requiring a full Systemd installation
+	sed -i '/systemd-sysctl/s/^/#/' rules.d/99-systemd.rules.in
+	# Adjust the hardcoded paths to network configuration files for the standalone udev installation
+	sed -e '/NETWORK_DIRS/s/systemd/udev/' \
+    	-i src/libsystemd/sd-network/network-util.h
+
+    mkdir -p build
+    cd       build
+
+    meson setup .. \
+        --prefix=/usr \
+        --buildtype=release \
+        -D dev-kvm-mode=0660 \
+		-D link-udev-shared=false \
+		-D logind=false \
+		-D vconsole=false
+	export udev_helpers=$(grep "'name' :" ../src/udev/meson.build | \
+                      awk '{print $3}' | tr -d ",'" | grep -v 'udevadm')
+	ninja udevadm systemd-hwdb \
+		$(ninja -n | grep -Eo '(src/(lib)?udev|rules.d|hwdb.d)/[^ ]*') \
+		$(realpath libudev.so --relative-to .) \
+		$udev_helpers
+
+	install -vm755 -d "$pkgdir"/usr/{{,s}bin,include}
+	install -vm755 -d "$pkgdir"{/usr/lib,/etc}/udev/{hwdb.d,rules.d,network}
+	install -vm755 -d "$pkgdir"/usr/{lib,share}/pkgconfig
+	install -vm755 udevadm                             "$pkgdir"/usr/bin/
+	install -vm755 systemd-hwdb                        "$pkgdir"/usr/bin/udev-hwdb
+	ln      -svfn  ../bin/udevadm                      "$pkgdir"/usr/sbin/udevd
+	cp      -av    libudev.so{,*[0-9]}                 "$pkgdir"/usr/lib/
+	install -vm644 ../src/libudev/libudev.h            "$pkgdir"/usr/include/
+	install -vm644 src/libudev/*.pc                    "$pkgdir"/usr/lib/pkgconfig/
+	install -vm644 src/udev/*.pc                       "$pkgdir"/usr/share/pkgconfig/
+	install -vm644 ../src/udev/udev.conf               "$pkgdir"/etc/udev/
+	install -vm644 rules.d/* ../rules.d/README         "$pkgdir"/usr/lib/udev/rules.d/
+	install -vm644 $(find ../rules.d/*.rules \
+						-not -name '*power-switch*') "$pkgdir"/usr/lib/udev/rules.d/
+	install -vm644 hwdb.d/*  ../hwdb.d/{*.hwdb,README} "$pkgdir"/usr/lib/udev/hwdb.d/
+	install -vm755 $udev_helpers                       "$pkgdir"/usr/lib/udev
+	install -vm644 ../network/99-default.link          "$pkgdir"/usr/lib/udev/network
+
+	cd "$srcdir"
+	make DESTDIR="$pkgdir" -f udev-lfs-20230818/Makefile.lfs install
+
+    install -d "$pkgdir"/usr/share/man
+    tar -xf "$srcdir"/systemd-man-pages-$pkgver.tar.xz \
+        --no-same-owner --strip-components=1 \
+        -C "$pkgdir"/usr/share/man \
+		--wildcards '*/udev*' '*/libudev*' \
+		'*/systemd.link.5' \
+		'*/systemd-'{hwdb,udevd.service}.8
+
+	sed 's|systemd/network|udev/network|' \
+		"$pkgdir"/usr/share/man/man5/systemd.link.5 \
+	> "$pkgdir"/usr/share/man/man5/udev.link.5
+
+	sed 's/systemd\(\\\?-\)/udev\1/' "$pkgdir"/usr/share/man/man8/systemd-hwdb.8   \
+								> "$pkgdir"/usr/share/man/man8/udev-hwdb.8
+
+	sed 's|lib.*udevd|sbin/udevd|' \
+		"$pkgdir"/usr/share/man/man8/systemd-udevd.service.8 \
+	> "$pkgdir"/usr/share/man/man8/udevd.8
+
+	rm "$pkgdir"/usr/share/man/man*/systemd*
+
+	unset udev_helpers
+
+    install -D -m0755 "$srcdir"/system-hooks.sh "$pkgdir"/usr/share/blfs-bootscripts/system-hooks.sh
+}

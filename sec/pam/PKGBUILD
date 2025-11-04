@@ -25,6 +25,8 @@ build() {
 
     DESTDIR="$pkgdir" ninja install -C build
 
+	rm -rf "$pkgdir"/usr/lib/systemd
+
 	# install our pam.d files
     cd "$srcdir"
     

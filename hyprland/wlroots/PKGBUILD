@@ -1,11 +1,11 @@
 # description	: Pluggable, composable, unopinionated modules for building a Wayland compositor
 # depends	: wayland libglvnd mesa libdrm libxkbcommon pixman lcms2
-# depends	: libdisplay-info hwdata libliftoff libinput glslang 
-# depends	: vulkan-headers vulkan-loader libxcb xcb-utilities
-# depends	: xwayland wayland-protocols seatd xcb-util-errors systemd
+# depends	: libdisplay-info hwdata libliftoff libinput glslang udev
+# depends	: vulkan-headers vulkan-loader libxcb xcb-utilities seatd
+# depends	: xwayland wayland-protocols xcb-util-errors elogind
 
 pkgname=wlroots
-pkgver=0.19.1
+pkgver=0.19.2
 pkgrel=1
 url='https://gitlab.freedesktop.org/wlroots/wlroots'
 source=(https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/$pkgver/downloads/$pkgname-$pkgver.tar.gz

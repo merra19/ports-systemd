@@ -8,7 +8,7 @@ pkgrel=1
 options=(!lto)
 url='https://www.lighttpd.net'
 source=(https://download.lighttpd.net/lighttpd/releases-${pkgver%.*}.x/$pkgname-$pkgver.tar.xz
-        lighttpd.conf $pkgname.hooks)
+        lighttpd.conf $pkgname.hooks lighttpd.init )
 backup=(etc/lighttpd/lighttpd.conf)
 
 build() {
@@ -40,8 +40,7 @@ build() {
 
     install --directory --mode=0755 --owner=lighttpd --group=lighttpd "$pkgdir"/var/cache/lighttpd
 
-	install -D -m644 -t "${pkgdir}"/usr/lib/systemd/system/ doc/systemd/lighttpd.service
-	install -D -m644 -t "${pkgdir}"/usr/lib/systemd/system/ doc/systemd/lighttpd-{http,https}-{ipv4,ipv6}.socket
+	install -Dm 0754 "$srcdir"/lighttpd.init  "$pkgdir"/etc/rc.d/init.d/lighttpd
 
 	pushd doc/config >/dev/null
 	find . -type f ! -name 'Makefile*' -exec install -D -m644 {} "$pkgdir"/usr/share/doc/lighttpd/config/{} \;

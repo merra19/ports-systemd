@@ -1,7 +1,7 @@
 # description	: Library with common API for various GNOME modules
 # depends	: glib gobject-introspection gtk3 libxkbcommon gtk4
 # depends	: gsettings-desktop-schemas xkeyboard-config iso-codes 
-# depends	: systemd libseccomp bubblewrap itstool gtk-doc
+# depends	: libseccomp bubblewrap itstool gtk-doc
 
 pkgname=gnome-desktop
 pkgver=44.3

@@ -1,5 +1,5 @@
 # description	: Realtime Policy and Watchdog Daemon
-# depends	: dbus polkit systemd meson
+# depends	: dbus polkit meson
 
 pkgname=rtkit
 pkgver=0.13
@@ -22,11 +22,14 @@ build() {
         --prefix=/usr \
         --buildtype=plain \
 		-D installed_tests=false \
+		-D libsystemd=disabled \
         build
     ninja -C build
     DESTDIR="$pkgdir" ninja install -C build
 
 	mv "$pkgdir"/usr/bin "$pkgdir"/usr/sbin
+
+	rm -rf "$pkgdir"/usr/lib/systemd
 
 	install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
 }

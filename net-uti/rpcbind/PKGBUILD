@@ -1,11 +1,12 @@
 # description	: portmap replacement which supports RPC over various protocols
-# depends	: libtirpc systemd
+# depends	: libtirpc
 
 pkgname=rpcbind
 pkgver=1.2.8
 pkgrel=1
 url='https://sourceforge.net/projects/rpcbind'
-source=(https://downloads.sourceforge.net/rpcbind/$pkgname-$pkgver.tar.bz2)
+source=(https://downloads.sourceforge.net/rpcbind/$pkgname-$pkgver.tar.bz2
+        rpcbind)
 
 build() {
     cd $pkgname-$pkgver
@@ -17,7 +18,18 @@ build() {
         --prefix=/usr \
         --bindir=/usr/sbin \
         --with-rpcuser=root \
-        --enable-warmstarts 
+        --enable-warmstarts \
+		--without-systemdsystemunitdir 
     make
     make DESTDIR="$pkgdir" install
+
+	install -Dm 0754 "$srcdir"/rpcbind "$pkgdir"/etc/rc.d/init.d/rpcbind
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/rpcbind "$pkgdir"/etc/rc.d/rc$i.d/K49rpcbind ;;
+            *) ln -sf ../init.d/rpcbind "$pkgdir"/etc/rc.d/rc$i.d/S22rpcbind ;;
+        esac
+    done
 }

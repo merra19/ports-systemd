@@ -1,6 +1,6 @@
 # description	: A validating, recursive and caching DNS resolver
 # depends	: libevent nettle protobuf-c swig openssl nghttp2
-# depends	: systemd expat python py3-sphinx
+# depends	: expat python py3-sphinx
 
 pkgname=unbound
 pkgver=1.23.1
@@ -9,7 +9,7 @@ url='https://unbound.net'
 source=(https://nlnetlabs.nl/downloads/unbound/$pkgname-$pkgver.tar.gz
 		named.root #  https://www.internic.net/domain/named.root
 		unbound.conf
-        $pkgname.hooks)
+        $pkgname.hooks unbound)
 backup=(etc/unbound/unbound.conf)
 
  build() {
@@ -36,4 +36,14 @@ backup=(etc/unbound/unbound.conf)
 	install -Dm644 "$srcdir"/unbound.conf "$pkgdir"/etc/unbound/unbound.conf
 
 	chown -R unbound "$pkgdir"/etc/unbound
+
+	install -Dm 0754 "$srcdir"/unbound "$pkgdir"/etc/rc.d/init.d/unbound
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/unbound "$pkgdir"/etc/rc.d/rc$i.d/K79unbound ;;
+            *) ln -sf ../init.d/unbound "$pkgdir"/etc/rc.d/rc$i.d/S21unbound ;;
+        esac
+    done
 }

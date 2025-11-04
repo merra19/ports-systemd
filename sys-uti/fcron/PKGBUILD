@@ -7,7 +7,7 @@ pkgrel=1
 options=(!makeflags)
 url='http://fcron.free.fr'
 source=(http://fcron.free.fr/archives/$pkgname-$pkgver.src.tar.gz
-        run-parts systab.orig $pkgname.hooks)
+        run-parts systab.orig $pkgname.hooks fcron)
 backup=(var/spool/fcron/systab.orig)
 
 build() {
@@ -23,7 +23,8 @@ build() {
         --without-sendmail \
         --with-piddir=/run \
         --with-boot-install=no \
-        --with-editor=/usr/bin/vim
+        --with-editor=/usr/bin/vim \
+		--with-systemdsystemunitdir=no 
     make
 
     install -vdm755 "$pkgdir"/etc/pam.d
@@ -35,4 +36,14 @@ build() {
     install -Dm644  ../systab.orig "$pkgdir"/var/spool/fcron/systab.orig
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/fcron "$pkgdir"/etc/rc.d/init.d/fcron
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/fcron "$pkgdir"/etc/rc.d/rc$i.d/K08fcron ;;
+            *) ln -sf ../init.d/fcron "$pkgdir"/etc/rc.d/rc$i.d/S40fcron ;;
+        esac
+    done
 }

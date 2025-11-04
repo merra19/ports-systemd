@@ -1,0 +1,39 @@
+# description	: Shared file system for virtual machines
+# depends	: glibc libcap-ng libseccomp rustc
+
+pkgname=virtiofsd
+pkgver=1.13.2
+pkgrel=1
+url='https://virtio-fs.gitlab.io'
+source=(https://gitlab.com/virtio-fs/virtiofsd/-/archive/v$pkgver/$pkgname-v$pkgver.tar.gz)
+
+createpack() {
+    mkdir -p vendor
+    cargo vendor vendor
+    tar -cJpf $pkgname-$pkgver-cargo.tar.xz vendor/
+    cp $pkgname-$pkgver-cargo.tar.xz /sources/src/
+}
+
+build() {
+	cd $pkgname-$pkgver
+
+	if [ ! -f /sources/src/$pkgname-$pkgver-cargo.tar.xz ];then
+    	createpack
+	else
+		tar -xf /sources/src/$pkgname-$pkgver-cargo.tar.xz
+	fi
+
+    mkdir -p .cargo
+    echo '[source.crates-io]' >> .cargo/config.toml
+    echo 'replace-with = "vendored-sources"' >> .cargo/config.toml
+    echo '[source.vendored-sources]' >> .cargo/config.toml
+    echo 'directory = "vendor"' >> .cargo/config.toml
+
+	export RUSTUP_TOOLCHAIN=stable
+	export CARGO_TARGET_DIR=target
+	cargo build --frozen --release
+
+	install -vDm 755 target/release/$pkgname -t "$pkgdir/usr/lib/"
+	install -vDm 644 50-$pkgname.json -t "$pkgdir/usr/share/qemu/vhost-user/"
+	install -vDm 644 README.md doc/*.md -t "$pkgdir/usr/share/doc/$pkgname/"
+}

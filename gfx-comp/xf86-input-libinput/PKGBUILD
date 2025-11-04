@@ -1,5 +1,5 @@
 # description	: X.org input driver based on libinput
-# depends	: libinput xorg-proto xorg-server systemd
+# depends	: libinput xorg-proto xorg-server
 
 pkgname=xf86-input-libinput
 pkgver=1.5.0

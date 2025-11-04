@@ -7,7 +7,7 @@ pkgrel=2
 options=(!lto)
 url='https://www.wireguard.com'
 source=(https://git.zx2c4.com/wireguard-tools/snapshot/$pkgname-$pkgver.tar.xz
-        wireguard.conf)
+        wireguard.conf wireguard.init)
 
 build() {
     cd $pkgname-$pkgver
@@ -16,9 +16,9 @@ build() {
 	make -C src/ \
 		DESTDIR="$pkgdir" \
 		WITH_BASHCOMPLETION=yes \
-                WITH_WGQUICK=yes \
-                WITH_SYSTEMDUNITS=yes \
-                install
+        WITH_WGQUICK=yes \
+        WITH_SYSTEMDUNITS=no \
+        install
 
     install -d "$pkgdir"/usr/share/$pkgname/examples
 	cp -r contrib/ "$pkgdir"/usr/share/$pkgname/examples/
@@ -26,4 +26,14 @@ build() {
     install -Dm 0744 "$srcdir"/wireguard.conf "$pkgdir"/etc/wireguard.conf
     install -d "$pkgdir"/etc/modules-load.d
     echo "wireguard" > "$pkgdir"/etc/modules-load.d/wireguard.conf
+
+	install -Dm 0754 "$srcdir"/wireguard.init "$pkgdir"/etc/rc.d/init.d/wireguard
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/wireguard "$pkgdir"/etc/rc.d/rc$i.d/K30wireguard ;;
+            *) ln -sf ../init.d/wireguard "$pkgdir"/etc/rc.d/rc$i.d/S70wireguard ;;
+        esac
+    done
 }

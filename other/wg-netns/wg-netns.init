@@ -1,0 +1,69 @@
+#!/bin/sh
+########################################################################
+# Begin wg-netns
+#
+# Description : wg-netns init script
+#
+# Author      : Name - name@linuxfromscratch.org
+#
+# Version     : BLFS 7.0
+#
+########################################################################
+
+### BEGIN INIT INFO
+# Provides:            wgnetns
+# Required-Start:      $network $syslog wireguard
+# Required-Stop:       $network $syslog wireguard
+# Default-Start:       2 3 4 5
+# Default-Stop:        0 1 6
+# Short-Description:   Starts docker.
+# Description:         Starts docker daemon.
+# X-LFS-Provided-By:   BLFS
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+case "$1" in
+   start)
+      log_info_msg "Starting wg-netns..."
+	   for i in /etc/wireguard/* ;do
+		  wg-netns up /etc/wireguard/$i
+	   done
+      evaluate_retval
+      ;;
+
+   stop)
+      log_info_msg "Stopping wg-netns..."
+	   for i in /etc/wireguard/* ;do
+		  wg-netns down /etc/wireguard/$i
+	   done
+      evaluate_retval
+      ;;
+
+   restart)
+      $0 stop
+      sleep 1
+      $0 start
+      ;;
+
+   status)
+      for name in /etc/wireguard/*;do
+        while read line;do
+          case $line in
+            name:*) nameplace="$(echo $line| awk '{print $2}')"
+            break
+            ;;
+          esac
+        done < $name
+	     ip netns exec $nameplace wg show
+      done
+       evaluate_retval
+      ;;
+
+   *)
+      echo "Usage: $0 {start|stop|restart|status}"
+      exit 1
+      ;;
+esac
+
+# End /etc/init.d/seatd

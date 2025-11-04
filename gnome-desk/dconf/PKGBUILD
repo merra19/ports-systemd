@@ -11,6 +11,9 @@ source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgve
 build() {
     cd $pkgname-$pkgver
 
+	# Prevent unnecessary systemd units from being installed
+	sed -i 's/install_dir: systemd_userunitdir,//' service/meson.build
+
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \

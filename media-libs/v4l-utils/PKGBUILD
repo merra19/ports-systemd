@@ -1,5 +1,5 @@
 # description	: v4l-utils libraries and optional utilities
-# depends	: glibc qt6 alsa-lib mesa json-c perl elfutils glu systemd
+# depends	: glibc qt6 alsa-lib mesa json-c perl elfutils glu
 # depends	: libjpeg-turbo
 
 pkgname=v4l-utils

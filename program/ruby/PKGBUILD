@@ -1,5 +1,6 @@
 # description	: An object-oriented scripting language
 # depends	: gdbm rustc openssl tcl tk libyaml libffi zlib libxcrypt
+# depends	: graphviz
 
 pkgname=ruby
 pkgver=3.4.7

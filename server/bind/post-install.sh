@@ -17,18 +17,9 @@ search <yourdomain.com>
 nameserver 127.0.0.1
 EOF
 	fi
-
-    cd /usr/share/blfs-bootscripts
-    make install-named
-}
-
-pkg_preremove() {
-    cd /usr/share/blfs-bootscripts
-    make uninstall-named
 }
 
 case $1 in
 	preinst) pkg_preinst ;;
     postinst) pkg_postinst ;;
-    preremove) pkg_preremove ;;
 esac

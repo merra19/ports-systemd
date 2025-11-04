@@ -1,5 +1,5 @@
 # description	: Modular screen saver and locker for the X Window System
-# depends	: systemd gdk-pixbuf gtk3 libjpeg-turbo glu mesa libxml2
+# depends	: gdk-pixbuf gtk3 libjpeg-turbo glu mesa libxml2
 # depends	: pam libpng  libgcrypt xorg-applications
 
 pkgname=xscreensaver
@@ -18,7 +18,7 @@ build() {
 
     ./configure \
         --prefix=/usr \
-        --with-systemd 
+        --with-elogind 
     make
     
     mkdir -p "$pkgdir"/etc/pam.d

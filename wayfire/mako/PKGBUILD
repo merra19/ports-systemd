@@ -1,5 +1,5 @@
 # description	: A lightweight notification daemon for Wayland. Works on Sway
-# depends	: meson scdoc systemd wayland-protocols jq
+# depends	: meson scdoc elogind wayland-protocols jq
 
 pkgname=mako
 pkgver=1.10.0
@@ -19,10 +19,8 @@ build() {
 		-D bash-completions=true \
 		-D fish-completions=true \
 		-D zsh-completions=true \
-		-D sd-bus-provider=libsystemd \
+		-D sd-bus-provider=libelogind \
 		build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build
-
-    install -vDm644 -t "$pkgdir"/usr/lib/systemd/user/ contrib/systemd/mako.service
 }

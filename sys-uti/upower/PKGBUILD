@@ -1,6 +1,6 @@
 # description	: D-Bus abstraction for enumerating power devices, querying history and statistics
 # depends	: libgudev libusb gobject-introspection glib libxslt
-# depends	: py3-gobject docbook-xsl-nons systemd gtk-doc
+# depends	: py3-gobject docbook-xsl-nons gtk-doc udev
 
 pkgname=upower
 pkgver=1.90.9
@@ -18,6 +18,8 @@ build() {
         --buildtype=plain \
         -D gtk-doc=true \
         -D man=true \
+		-D systemdsystemunitdir=no \
+		-D udevrulesdir=/usr/lib/udev/rules.d \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build

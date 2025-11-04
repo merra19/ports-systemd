@@ -1,4 +1,4 @@
-# description	: System and service manager for Linux
+# description	: Utilities split out from systemd for non systemd users
 # depends	: meson acl xz py3-jinja2 gperf libcap libarchive kmod
 
 pkgname=systemd

@@ -1,0 +1,20 @@
+# description	: Package manager from Venom Linux,archlinux modified  
+
+pkgname=scratchpkg
+pkgver=1.0
+pkgrel=1
+url='https://codeberg.org/venomlinux'
+source=(fake revdep revdep.conf pkgadd pkgbuild pkgdel pkgdepends
+        portsync scratch
+        scratchpkg.alias scratchpkg.conf scratchpkg.mask scratchpkg.repo)
+
+build() {
+    install -Dm 755 fake "$pkgdir"/usr/local/bin/fake
+
+    install -d "$pkgdir"/etc
+    install -m 644 scratchpkg.* "$pkgdir"/etc/
+    install -m 644 revdep.conf "$pkgdir"/etc/
+    install -Dm 755 revdep "$pkgdir"/usr/bin/revdep
+
+    install -m 755 pkgadd pkgbuild pkgdel pkgdepends portsync scratch "$pkgdir"/usr/bin/
+}

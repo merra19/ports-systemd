@@ -1,5 +1,5 @@
-# description	xdg-desktop-portal backend for wlroots
-# depends	: glibc libdrm  inih mesa pipewire meson wofi systemd
+# description	: xdg-desktop-portal backend for wlroots
+# depends	: glibc libdrm  inih mesa pipewire meson wofi elogind
 # depends	: wayland-protocols wayland xdg-desktop-portal 
 
 pkgname=xdg-desktop-portal-wlr
@@ -15,7 +15,7 @@ build() {
     meson setup \
         --prefix=/usr \
         --buildtype=release \
-        -Dsd-bus-provider=libsystemd \
+        -Dsd-bus-provider=libelogind \
         build
     ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

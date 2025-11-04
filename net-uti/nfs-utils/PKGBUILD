@@ -8,7 +8,7 @@ pkgver=2.8.3
 pkgrel=1
 url='http://linux-nfs.org'
 source=(https://www.kernel.org/pub/linux/utils/nfs-utils/$pkgver/$pkgname-$pkgver.tar.xz
-        nfs-server 0001-Fix-build-with-glibc-2.42.patch)
+        nfs-server.conf  0001-Fix-build-with-glibc-2.42.patch nfs-client nfs-server)
 backup=(etc/sysconfig/nfs-server)
 
 build() {
@@ -32,5 +32,15 @@ build() {
     chmod u+w,go+r "$pkgdir"/usr/sbin/mount.nfs
     chown nobody:nogroup "$pkgdir"/var/lib/nfs
 
-    install -Dm 0644 ../nfs-server "$pkgdir"/etc/sysconfig/nfs-server
+    install -Dm 0644 ../nfs-server.conf "$pkgdir"/etc/sysconfig/nfs-server
+
+	install -Dm 0754 "$srcdir"/nfs-client "$pkgdir"/etc/rc.d/init.d/nfs-client
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/nfs-client "$pkgdir"/etc/rc.d/rc$i.d/K48nfs-client ;;
+            *) ln -sf ../init.d/nfs-client "$pkgdir"/etc/rc.d/rc$i.d/S24nfs-client ;;
+        esac
+    done
 }

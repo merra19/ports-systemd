@@ -1,11 +1,12 @@
 # description	: Tools to monitor storage systems to provide advanced warning of disk degradation
-# depends	: libcap gnupg curl lynx systemd
+# depends	: libcap gnupg curl lynx
 
 pkgname=smartmontools
 pkgver=7.5
 pkgrel=1
 url='https://www.smartmontools.org'
-source=(https://downloads.sourceforge.net/smartmontools/$pkgname-$pkgver.tar.gz)
+source=(https://downloads.sourceforge.net/smartmontools/$pkgname-$pkgver.tar.gz
+        smartd)
 backup=(etc/smartd.conf)
 
 build() {
@@ -14,7 +15,19 @@ build() {
     ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \
+		--with-initscriptdir=no \
+		--with-libsystemd=no \
         --docdir=/usr/share/doc/$pkgname-$pkgver
     make
     make DESTDIR="$pkgdir" install
+
+	install -Dm 0754 "$srcdir"/smartd "$pkgdir"/etc/rc.d/init.d/smartd
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|6) ln -sf ../init.d/smartd "$pkgdir"/etc/rc.d/rc$i.d/K70smartd ;;
+            *) ln -sf ../init.d/smartd "$pkgdir"/etc/rc.d/rc$i.d/S21smartd ;;
+        esac
+    done
 }

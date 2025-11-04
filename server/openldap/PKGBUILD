@@ -9,7 +9,7 @@ options=(!makeflags !lto)
 url='https://www.openldap.org'
 source=(https://www.openldap.org/software/download/OpenLDAP/openldap-release/$pkgname-$pkgver.tgz
         https://www.linuxfromscratch.org/patches/blfs/12.4/openldap-$pkgver-consolidated-1.patch
-        $pkgname.hooks)
+        $pkgname.hooks slapd slapdconfig) 
 backup=(etc/openldap/ldap.conf etc/openldap/slapd.conf etc/openldap/slapd.ldif)
 
  build() {
@@ -55,4 +55,16 @@ backup=(etc/openldap/ldap.conf etc/openldap/slapd.conf etc/openldap/slapd.ldif)
                     "$pkgdir"/usr/share/doc/$pkgname-$pkgver
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/slapd "$pkgdir"/etc/rc.d/init.d/slapd
+
+    install -Dm 0644 "$srcdir"/slapdconfig "$pkgdir"/etc/sysconfig/slapd
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/slapd "$pkgdir"/etc/rc.d/rc$i.d/K46slapd ;;
+            *) ln -sf ../init.d/slapd "$pkgdir"/etc/rc.d/rc$i.d/S25slapd ;;
+        esac
+    done
 }

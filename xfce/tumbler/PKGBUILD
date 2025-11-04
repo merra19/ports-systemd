@@ -20,4 +20,6 @@ build() {
         --sysconfdir=/etc
     make
 	make DESTDIR="$pkgdir" install
+
+	rm -rvf "$pkgdir"/usr/lib/systemd
 }

@@ -1,5 +1,5 @@
 # description	: A fake root environment by means of LD_PRELOAD and SysV IPC (or TCP) trickery
-# depends	: glibc libcap acl sed bash util-linux systemd
+# depends	: glibc libcap acl sed bash util-linux
 
 pkgname=fakeroot
 pkgver=1.37.1.2

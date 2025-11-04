@@ -17,4 +17,6 @@ build() {
         build
     ninja -C build
     DESTDIR="$pkgdir" ninja install -C build
+
+	rm -rvf "$pkgdir"/usr/lib/systemd
 }

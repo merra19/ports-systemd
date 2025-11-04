@@ -1,5 +1,5 @@
 # description	: D-Bus accessibility specifications and registration daemon
-# depends	: dbus glib gobject-introspection xorg-libs systemd
+# depends	: dbus glib gobject-introspection xorg-libs
 # depends	: gsettings-desktop-schemas py3-sphinx
 
 pkgname=at-spi2-core
@@ -16,7 +16,10 @@ build() {
         --buildtype=plain \
         -D gtk2_atk_adaptor=false \
 		-D docs=true \
+		-D systemd_user_dir=/tmp \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build
+
+	rm -rf "$pkgdir"/tmp
 }

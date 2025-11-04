@@ -1,5 +1,6 @@
 # description	: Daemon that enforces volume-related policies
 # depends	: libgudev exo libnotify gettext pkgconf intltool gvfs
+# depends	: udev
 
 pkgname=thunar-volman
 pkgver=4.20.0

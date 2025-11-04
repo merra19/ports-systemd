@@ -6,6 +6,7 @@ pkgver=4.20.0
 pkgrel=2
 url='https://docs.xfce.org/xfce/xfconf/start'
 source=(https://archive.xfce.org/src/xfce/xfconf/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
+SYSTEMDDIR=yes
 
 build() {
 	cd $pkgname-$pkgver

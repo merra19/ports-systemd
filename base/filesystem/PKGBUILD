@@ -8,7 +8,8 @@ source=(hosts os-release lsb-release inputrc shells group passwd
         profile dircolors.sh extrapaths.sh readline.sh umask.sh i18n.sh
         bashrc dot_bash_profile dot_profile dot_bashrc dot_bash_logout 
         resolv.conf sysctl.conf nsswitch.conf locale.conf adjtime hostname
-        bash_completion.sh vconsole.conf noclear.conf maxuse.conf)
+        bash_completion.sh vconsole.conf
+		clock console inittab rc.site)
 backup=(etc/shells etc/inputrc etc/resolv.conf etc/locale.conf etc/hosts 
         etc/bashrc etc/sysctl.conf etc/hostname etc/group etc/passwd)
 
@@ -19,11 +20,14 @@ build() {
     install --directory --mode=0755 --owner=root --group=root "$pkgdir"/etc/profile.d
 
     install -dm 0750 "$pkgdir"/root 
-    install -d "$pkgdir"/etc
+    install -d "$pkgdir"/etc/sysconfig/
+
+	install -m 0644 inittab "$pkgdir"/etc/inittab
 
     install -m 0644 profile "$pkgdir"/etc/profile
     install -m 0644 nsswitch.conf locale.conf resolv.conf hosts shells "$pkgdir"/etc/
     install -m 0644 inputrc bashrc adjtime vconsole.conf hostname "$pkgdir"/etc/
+	install -m 0644 console clock rc.site "$pkgdir"/etc/sysconfig/
 	install -m 0644 group passwd "$pkgdir"/etc/
 
     # os-release lsb-release
@@ -55,12 +59,7 @@ build() {
     mkdir -pv  "$pkgdir"/var/{cache,local,log,mail,opt,spool}
     mkdir -pv  "$pkgdir"/var/lib/{color,misc,locate}
 
-    echo r12.4-systemd > "$pkgdir"/etc/lfs-release
-
-    install -d -m 755 "$pkgdir"/etc/systemd/system/getty@tty1.service.d
-    install -m 0644 noclear.conf "$pkgdir"/etc/systemd/system/getty@tty1.service.d/noclear.conf
-    install -d -m 755 "$pkgdir"/etc/systemd/coredump.conf.d
-    install -m 0644 maxuse.conf "$pkgdir"/etc/systemd/coredump.conf.d/maxuse.conf
+    echo r12.4-sysv > "$pkgdir"/etc/lfs-release
 
     mkdir -p "$pkgdir"/boot/efi 
 

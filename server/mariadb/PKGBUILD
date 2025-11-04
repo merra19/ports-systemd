@@ -11,7 +11,7 @@ pkgrel=1
 options=(!lto)
 url='https://mariadb.org'
 source=(https://downloads.mariadb.org/interstitial/mariadb-$pkgver/source/$pkgname-$pkgver.tar.gz
-        my.cnf $pkgname.hooks)
+        my.cnf $pkgname.hooks mariadb)
 backup=(etc/mariadb/my.cnf)
  
 build() {
@@ -51,4 +51,14 @@ build() {
     install -Dm644 "$srcdir"/my.cnf "$pkgdir"/etc/mariadb/my.cnf
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/mariadb "$pkgdir"/etc/rc.d/init.d/mariadb
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/mariadb "$pkgdir"/etc/rc.d/rc$i.d/K26mariadb ;;
+            *) ln -sf ../init.d/mariadb "$pkgdir"/etc/rc.d/rc$i.d/S34mariadb ;;
+        esac
+    done
 }

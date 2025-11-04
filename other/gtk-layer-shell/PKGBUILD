@@ -3,7 +3,7 @@
 # depends	: gobject-introspection
 
 pkgname=gtk-layer-shell
-pkgver=0.9.2
+pkgver=0.10.0
 pkgrel=1
 url='https://github.com/wmww/gtk-layer-shell'
 source=($pkgname-$pkgver.tar.gz::https://github.com/wmww/$pkgname/archive/refs/tags/v$pkgver.tar.gz)

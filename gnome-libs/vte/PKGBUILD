@@ -1,5 +1,5 @@
 # description	: Library providing a virtual terminal emulator widget
-# depends	: glib icu pango pcre2 gtk3 zlib lz4 libxml2 gtk4 systemd
+# depends	: glib icu pango pcre2 gtk3 zlib lz4 libxml2 gtk4
 # depends	: gobject-introspection vala gnutls fast_float 
 # depends	: py3-gi-docgen
 
@@ -26,6 +26,7 @@ build() {
         --buildtype=plain \
         -D fribidi=false \
 		-D docs=true \
+		-D _systemd=false \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build

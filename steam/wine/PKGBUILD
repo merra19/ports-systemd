@@ -8,7 +8,7 @@
 # todo      : libgphoto2
 
 pkgname=wine
-pkgver=10.17
+pkgver=10.18
 pkgrel=1
 options=(!lto !strip)
 url='https://www.winehq.org'

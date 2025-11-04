@@ -1,5 +1,5 @@
 # description	: Userspace access to USB devices
-# depends	: systemd
+# depends	: glibc
 
 pkgname=libusb
 pkgver=1.0.29

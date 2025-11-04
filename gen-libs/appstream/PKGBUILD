@@ -1,6 +1,6 @@
 # description	: Cross-distro effort for providing metadata for software in the Linux ecosystem
 # depends	: zstd libxml2 libxmlb libyaml snowball-stemmer curl 
-# depends	: qt6 libxslt itstool py3-gi-docgen
+# depends	: qt6 libxslt itstool py3-gi-docgen elogind
 
 pkgname=appstream
 _pkgname=AppStream

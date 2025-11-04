@@ -1,0 +1,29 @@
+# description	: LFS bootscript
+
+pkgname=blfs-sysv-units
+pkgver=20250827
+pkgverblfs=20250225
+pkgrel=1
+url='https://www.linuxfromscratch.org'
+source=(https://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/blfs-bootscripts-$pkgverblfs.tar.xz
+		https://www.linuxfromscratch.org/lfs/downloads/12.4/lfs-bootscripts-$pkgver.tar.xz
+        c89 c99 Makefile blfs-service)
+        
+build() {
+    cd blfs-bootscripts-$pkgverblfs
+            
+    mkdir -p "$pkgdir"/usr/share/blfs-bootscripts
+    cp -r Makefile blfs "$pkgdir"/usr/share/blfs-bootscripts
+
+    cd "$srcdir"/lfs-bootscripts-$pkgver
+    make DESTDIR="$pkgdir" install
+
+    rm -rf "$pkgdir"/etc/sysconfig/rc.site
+    rm -f "$pkgdir"/etc/sysconfig/createfiles
+
+    install -Dm755 "$srcdir"/c89 "$pkgdir"/usr/bin/c89
+	install -Dm755 "$srcdir"/c99 "$pkgdir"/usr/bin/c99
+
+    install -Dm755 "$srcdir"/Makefile "$pkgdir"/usr/share/blfs-bootscripts/other/Makefile
+    install -Dm755 "$srcdir"/blfs-service "$pkgdir"/usr/bin/blfs-service
+}

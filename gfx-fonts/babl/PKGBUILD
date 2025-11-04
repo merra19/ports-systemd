@@ -1,0 +1,23 @@
+# description	: A dynamic, any to any, pixel format conversion library
+# depends	: meson glib gobject-introspection  librsvg lcms2 vala
+
+pkgname=babl
+pkgver=0.1.114
+pkgrel=1
+url='https://gegl.org/babl'
+source=(https://download.gimp.org/pub/babl/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+    install -v -m755 -d                         "$pkgdir"/usr/share/gtk-doc/html/babl/graphics &&
+    install -v -m644 docs/*.{css,html}          "$pkgdir"/usr/share/gtk-doc/html/babl          &&
+    install -v -m644 docs/graphics/*.{html,svg} "$pkgdir"/usr/share/gtk-doc/html/babl/graphics
+}

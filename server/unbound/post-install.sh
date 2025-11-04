@@ -6,8 +6,6 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	systemctl disable systemd-resolved --now
-
 	unbound-anchor
 	chown unbound /etc/unbound/root.key
 
@@ -20,19 +18,9 @@ options edns0 trust-ad
 EOF
 	fi
 
-    cd /usr/share/blfs-bootscripts
-    make install-unbound
-}
-
-pkg_preremove() {
-	systemctl disable unbound
-
-    cd /usr/share/blfs-bootscripts
-    make uninstall-unbound
 }
 
 case $1 in
 	preinst) pkg_preinst ;;
     postinst) pkg_postinst ;;
-    preremove) pkg_preremove ;;
 esac

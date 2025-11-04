@@ -1,11 +1,12 @@
 # description	: Makes power profiles handling available over D-Bus
-# depends	: py3-gobject polkit upower meson systemd gtk-doc
+# depends	: py3-gobject polkit upower meson gtk-doc
 
 pkgname=power-profiles-daemon
 pkgver=0.30
 pkgrel=2
 url='https://gitlab.freedesktop.org/upower/power-profiles-daemon'
-source=(https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/archive/$pkgver/$pkgname-$pkgver.tar.gz)
+source=(https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/archive/$pkgver/$pkgname-$pkgver.tar.gz
+        power-profiles-daemon)
 
 build() {
 	cd $pkgname-$pkgver
@@ -15,7 +16,21 @@ build() {
         --buildtype=plain \
         -D gtk_doc=true \
         -D tests=false \
+		-D systemdsystemunitdir=/tmp \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build
+
+	rm -rfv "$pkgdir"/tmp
+
+	install -Dm 0754 "$srcdir"/power-profiles-daemon "$pkgdir"/etc/rc.d/init.d/power-profiles-daemon
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1) ln -sf ../init.d/power-profiles-daemon "$pkgdir"/etc/rc.d/rc$i.d/K10power-profiles-daemon ;;
+            6) ln -sf ../init.d/power-profiles-daemon "$pkgdir"/etc/rc.d/rc$i.d/K27power-profiles-daemon ;;
+            *) ln -sf ../init.d/power-profiles-daemon "$pkgdir"/etc/rc.d/rc$i.d/S30power-profiles-daemon ;;
+        esac
+    done
 }

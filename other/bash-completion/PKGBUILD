@@ -2,8 +2,8 @@
 # depends	: bash
 
 pkgname=bash-completion
-pkgver=2.16.0
-pkgrel=4
+pkgver=2.17.0
+pkgrel=1
 options=(!makeflags !lto)
 url='https://github.com/scop/bash-completion'
 source=(https://github.com/scop/bash-completion/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
