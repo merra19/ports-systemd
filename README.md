@@ -1,5 +1,5 @@
 # ports-systemd
-ports based lfs systemd
+ports based lfs sysv
 
 bash-completion with sudo
 complete -cf sudo
