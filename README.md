@@ -7,6 +7,8 @@ complete -cf sudo
 
 sensors-detect
 
+Docker
+	sudo usermod -aG docker <username>
 
 Gamemode
 	sudo  gpasswd -a <username> gamemode
