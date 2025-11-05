@@ -2,7 +2,7 @@
 # depends	: python py3-wheel ninja cmake
 
 pkgname=brotli
-pkgver=1.1.0
+pkgver=1.2.0
 pkgrel=1
 options=(!lto)
 url='https://github.com/google/brotli'
