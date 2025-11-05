@@ -14,5 +14,4 @@ build() {
     make DESTDIR="$pkgdir" install
 
     rm "$pkgdir"/usr/sbin/lsbinstall
-    rm "$pkgdir"/usr/sbin/{install,remove}_initd
 }
