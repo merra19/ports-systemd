@@ -1,0 +1,20 @@
+# description	: A calculator application for GNOME
+# depends	: libmpc libmpfr gtksourceview5 itstool libadwaita libgee
+# depends	: libsoup3 vala
+
+pkgname=gnome-calculator
+pkgver=48.1
+pkgrel=1
+url='https://apps.gnome.org/Calculator'
+source=(https://download.gnome.org/sources/gnome-calculator/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

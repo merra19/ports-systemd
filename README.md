@@ -2,6 +2,8 @@
 ports based lfs systemd
 
 
+Docker
+	sudo usermod -aG docker <username>
 
 Gamemode
 	sudo  gpasswd -a <username> gamemode

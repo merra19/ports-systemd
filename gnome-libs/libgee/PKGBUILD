@@ -1,0 +1,18 @@
+# description	: GObject-based interfaces and classes for commonly used data structures
+# depends	: glib gobject-introspection vala
+
+pkgname=libgee
+pkgver=0.20.8 
+pkgrel=1
+url='https://wiki.gnome.org/Projects/Libgee'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --enable-vala
+    make
+    make DESTDIR="$pkgdir" install
+}
