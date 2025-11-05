@@ -27,7 +27,7 @@ case "$1" in
    start)
       log_info_msg "Starting wg-netns..."
 	   for i in /etc/wireguard/* ;do
-		  wg-netns up /etc/wireguard/$i
+		  wg-netns up $i
 	   done
       evaluate_retval
       ;;
@@ -35,7 +35,7 @@ case "$1" in
    stop)
       log_info_msg "Stopping wg-netns..."
 	   for i in /etc/wireguard/* ;do
-		  wg-netns down /etc/wireguard/$i
+		  wg-netns down $i
 	   done
       evaluate_retval
       ;;

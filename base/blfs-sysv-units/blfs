@@ -70,19 +70,7 @@ arrays[seatd]="0 K30seatd 1 K30seatd 2 S70seatd 3 S70seatd 4 S70seatd 5 S70seatd
 arrays[docker]="0 K30docker 1 K30docker 2 S70docker 3 S70docker 4 S70docker 5 S70docker 6 K30docker"
 arrays[lighttpd]="0 K30lighttpd 1 K30lighttpd 2 S70lighttpd 3 S70lighttpd 4 S70lighttpd 5 S70lighttpd 6 K30lighttpd"
 arrays[pcsclite]="0 K30pcsclite 1 K30pcsclite 2 S70pcsclite 3 S70pcsclite 4 S70pcsclite 5 S70pcsclite 6 K30pcsclite"
-
-#arrays[]="0K00 1K00 2S01 3S01 4S01 5S01 6K00"
-
-
-# Loop through the array two elements at a time
-for ((i=0; i<${#array[@]}; i+=2)); do
-    key=${array[i]}
-    value=${array[i+1]}
-    echo "Key: $key, Value: $value"
-done
-
-exit
-
+arrays[wireguard]="0 K30wireguard 1 K30wireguard 2 S70wireguard 3 S70wireguard 4 S70wireguard 5 S70wireguard 6 K30wireguard"
 
 usage() {
     cat<< EOF
@@ -110,7 +98,7 @@ proftpd random rpcbind rsync samba saslauthd sendmail slapd smartd
 sshd stunnel svn sysmond sysstat unbound vsftpd winbindd xdm
 
 init not in LFS/BLS:
-docker seatd lighttpd pcsclite
+docker seatd lighttpd pcsclite wireguard
 
 service:
 bridge dhclient  dhcpcd  wpa
@@ -128,6 +116,31 @@ checkservice() {
         msgwarn "service ${RED} $service ${NC} not found"
         exit 1
     fi
+}
+
+cmdservice() {
+    if [ "$command" = "enable" ];then
+		install -m644 /usr/share/blfs-bootscripts/blfs/services/$service /usr/lib/services
+    else
+		rm -f /usr/lib/services/$service
+    fi
+	exit 0
+}
+
+cmdsddm() {
+	if [ "$command" = "enable" ];then
+		install -m 754 /usr/share/blfs-bootscripts/blfs/init.d/xdm        /etc/rc.d/init.d/
+		install -m 644 /usr/share/blfs-bootscripts/blfs/sysconfig/xdm /etc/sysconfig/xdm
+		sed -i '/sddm/s/^#//' /etc/sysconfig/xdm
+		if ! grep -q '^dm:5' /etc/inittab; then \
+			echo dm:5:respawn:/etc/rc.d/init.d/xdm >> /etc/inittab; \
+		fi
+	else
+		rm -f /etc/rc.d/init.d/xdm
+		rm -f /etc/sysconfig/xdm
+		sed -i '/^dm/d' /etc/inittab
+	fi 
+	exit
 }
 
 [ "$(id -u)" = 0 ] || {
@@ -171,44 +184,16 @@ if [ "$service" = "samba" ]; then
     echo "With samba service, Don't forget the winbindd service"
 fi
 
-cmdservice() {
-    if [ "$command" = "enable" ];then
-		install -m644 /usr/share/blfs-bootscripts/blfs/services/$service /usr/lib/services
-    else
-		rm -f /usr/lib/services/$service
-    fi
-	exit 0
-}
-
-cmdsddm() {
-	if [ "$command" = "enable" ];then
-		install -m 754 /usr/share/blfs-bootscripts/blfs/init.d/xdm        /etc/rc.d/init.d/
-		install -m 644 /usr/share/blfs-bootscripts/blfs/sysconfig/xdm /etc/sysconfig/xdm
-		sed -i '/sddm/s/^#//' /etc/sysconfig/xdm
-		if ! grep -q '^dm:5' /etc/inittab; then \
-			echo dm:5:respawn:/etc/rc.d/init.d/xdm >> /etc/inittab; \
-		fi
-	else
-		rm -f /etc/rc.d/init.d/xdm
-		rm -f /etc/sysconfig/xdm
-		sed -i '/^dm/d' /etc/inittab
-	fi 
-	exit
-}
-
 case $service in
 	dhclient|dhcpcd|bridge|ipx|pppoe|pppoe|wpa) cmdservice $service ;;
 	sddm) cmdsddm ;;
 esac
-
-servicename=$service
 
 # Check if the key exists
 if [[ -z "${arrays[$service]}" ]]; then
     echo "No data found for key: $service"
     exit 1
 fi
-
 
 # Convert string to array
 read -ra items <<< "${arrays[$service]}"
@@ -223,6 +208,5 @@ for ((i=0; i<${#items[@]}; i+=2)); do
     else
         rm -f /etc/rc.d/rc$rc.d/$value
     fi 
-
 done
 

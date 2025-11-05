@@ -27,7 +27,7 @@ build() {
     chown -v root:messagebus "$pkgdir"/usr/libexec/dbus-daemon-launch-helper &&
     chmod -v      4750       "$pkgdir"/usr/libexec/dbus-daemon-launch-helper
 
-    ln -sfv /etc/machine-id "$pkgdir"/var/lib/dbus
+    ln -sfv /var/lib/dbus/machine-id  "$pkgdir"/etc/
 
 	mv -v  "$pkgdir"/usr/share/doc/dbus{,-$pkgver}
 

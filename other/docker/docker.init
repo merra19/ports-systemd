@@ -32,7 +32,7 @@ if [ -f $CONF ]; then
     . $CONF
 else
     if [ -z $OPTS ]; then
-	OPTS="-p $PID -g docker"
+	OPTS="-p $PID -G docker"
     fi
 fi
 
