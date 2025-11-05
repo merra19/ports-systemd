@@ -2,7 +2,7 @@
 # depends       : avahi cups desktop-file-utils nss
 
 pkgname=libreoffice-bin
-pkgver=25.2.5
+pkgver=25.8.2
 pkgrel=1
 options=(!strip)
 url='https://www.libreoffice.org'
