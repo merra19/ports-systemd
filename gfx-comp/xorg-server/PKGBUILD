@@ -4,12 +4,12 @@
 # depends	: xorg-legacy libxau libglvnd openssl  
 
 pkgname=xorg-server
-pkgver=21.1.18
+pkgver=21.1.20
 pkgrel=1
 options=(!lto)
 url='https://www.x.org/wiki'
 source=(https://www.x.org/pub/individual/xserver/$pkgname-$pkgver.tar.xz
-        https://www.linuxfromscratch.org/patches/blfs/12.4/$pkgname-$pkgver-tearfree_backport-1.patch)
+        https://www.linuxfromscratch.org/patches/blfs/svn/$pkgname-$pkgver-tearfree_backport-1.patch)
 
 build() {
 	cd $pkgname-$pkgver

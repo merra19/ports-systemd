@@ -3,7 +3,7 @@
 
 pkgname=brotli-32
 _pkgname=brotli
-pkgver=1.1.0
+pkgver=1.2.0
 pkgrel=1
 options=(!lto)
 url='https://github.com/google/brotli'
@@ -25,4 +25,5 @@ build() {
 
 	rm -rf "$pkgdir"/usr/bin
 	rm -rf "$pkgdir"/usr/include
+	rm -rf "$pkgdir"/usr/share/man
 }

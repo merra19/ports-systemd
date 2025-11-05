@@ -3,7 +3,7 @@
 # depends	: lmdb libidn2 py3-sphinx
 
 pkgname=bind
-pkgver=9.20.12
+pkgver=9.20.15
 pkgrel=2
 options=(!lto)
 url='https://www.isc.org/bind'
