@@ -26,9 +26,6 @@ build() {
 	install -D -m644 "$srcdir"/vscodium-bin-wayland.desktop "$pkgdir"/usr/share/applications/codium-wayland.desktop
 	install -D -m644 "$srcdir"/vscodium-bin-url-handler.desktop "$pkgdir"/usr/share/applications/codium-url-handler.desktop
 
-	sed -i  's/bin\/codium/bin\/codium --password-store="gnome-libsecret"/g' "$pkgdir"/usr/share/applications/codium.desktop
-	sed -i  's/bin\/codium/bin\/codium --password-store="gnome-libsecret"/g' "$pkgdir"/usr/share/applications/codium-wayland.desktop
-
     find "$pkgdir" -name code.png
 
     install -D -m644 "$pkgdir"/opt/"$pkgname"/resources/app/resources/linux/code.png \
