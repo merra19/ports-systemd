@@ -1,4 +1,4 @@
-# description	: Firefox Web Browser
+# description	: Thunderbird Mail Client
 # depends	: pulseaudio alsa-lib bash gtk3 lld llvm nasm libarchive
 # depends	: startup-notification libevent libvpx libwebp pciutils
 # depends	: wget nss cbindgen nodejs libproxy wireless_tools dav1d
@@ -9,7 +9,7 @@ pkgname=thunderbird
 pkgver=140.4.0
 pkgrel=1
 options=(!lto !emptydirs !makeflags)
-url='https://www.firefox.com'
+url='https://www.thunderbird.net'
 source=(https://archive.mozilla.org/pub/thunderbird/releases/${pkgver}esr/source/thunderbird-${pkgver}esr.source.tar.xz)
 
 build() {
