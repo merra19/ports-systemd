@@ -1,0 +1,32 @@
+# description	: Betterbird is a fine-tuned version of Mozilla Thunderbird.
+# depends	: dbus-glib hunspell at-spi2-core glib alsa-lib fontconfig
+# depends	: freetype dbus cairo gdk-pixbuf gtk3 xorg-libs libxcb
+# depends	: pango adwaita-icon-theme
+
+pkgname=betterbird-bin
+pkgver=140.4.0
+betterver=bb13
+pkgrel=1
+options=(!strip)
+url='https://www.betterbird.eu'
+source=(https://www.betterbird.eu/downloads/LinuxArchive/betterbird-${pkgver}esr-${betterver}.en-US.linux-x86_64.tar.xz
+        eu.betterbird.Betterbird.desktop vendor-prefs.js)
+
+build() {
+    install -d "$pkgdir"/opt
+    install -d "$pkgdir"/usr/bin
+    install -d "$pkgdir"/usr/share/applications
+
+    cp -r "$srcdir"/betterbird/ "$pkgdir"/opt/betterbird
+    install -m644 "$srcdir"/eu.betterbird.Betterbird.desktop "$pkgdir"/usr/share/applications/eu.betterbird.Betterbird.desktop
+    install -m644 "$srcdir"/vendor-prefs.js -t "$pkgdir"/opt/betterbird/defaults/pref
+    ln -s /opt/betterbird/betterbird "$pkgdir"/usr/bin/betterbird
+    ln -s /usr/share/hunspell "$pkgdir"/opt/betterbird/dictionaries
+
+    #icons
+    for i in 16 22 24 32 48 64 128 256; do
+        install -d "$pkgdir"/usr/share/icons/hicolor/${i}x${i}/apps/
+        ln -s /opt/betterbird/chrome/icons/default/default$i.png \
+            "$pkgdir"/usr/share/icons/hicolor/${i}x${i}/apps/betterbird.png
+    done
+}
