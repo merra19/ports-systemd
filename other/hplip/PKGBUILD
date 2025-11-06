@@ -80,8 +80,8 @@ build() {
 	echo hpaio > "${pkgdir}"/etc/sane.d/dll.d/hpaio
 	
 	# remove HAL .fdi file because HAL is no longer used
-	rm -vrf "$pkgdir"/usr/share/hal
-	
-	# remove rc script
-	rm -vrf "$pkgdir"/etc/init.d
+	rm -vrf "$pkgdir"/usr/share/hal	
+
+	# remove systemd service
+	rm -rf "$pkgdir"/usr/lib/systemd
 }
