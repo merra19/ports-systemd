@@ -3,7 +3,7 @@
 
 pkgname=dbus
 pkgver=1.16.2
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://www.freedesktop.org/wiki/Software/dbus'
 source=(https://dbus.freedesktop.org/releases/dbus/$pkgname-$pkgver.tar.xz
@@ -27,4 +27,6 @@ build() {
     chmod -v      4750       "$pkgdir"/usr/libexec/dbus-daemon-launch-helper
 
     ln -sfv /etc/machine-id "$pkgdir"/var/lib/dbus
+
+	mv -v  "$pkgdir"/usr/share/doc/dbus{,-$pkgver}
 }
