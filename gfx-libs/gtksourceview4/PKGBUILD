@@ -18,4 +18,7 @@ build() {
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build
+
+	# add *.ebuild to shell highlightning
+	sed -i 's/.bash_profile/.bash_profile;*.ebuild/' "$pkgdir"/usr/share/gtksourceview-4/language-specs/sh.lang
 }
