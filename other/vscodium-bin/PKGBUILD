@@ -2,6 +2,7 @@
 # depends	: at-spi2-core libsecret expat glib nspr nss alsa-lib 
 # depends	: libglvnd mesa curl dbus zlib lsof cairo gtk3 libdrm 
 # depends	: libxcb xorg-libs libxkbcommon pango xdg-utils p11-kit
+# depends	: gnome-keyring
 
 pkgname=vscodium-bin
 pkgver=1.105.17075
