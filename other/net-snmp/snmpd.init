@@ -1,0 +1,68 @@
+#!/bin/sh
+########################################################################
+# Begin net-snmp SNMP daemon
+#
+# Description : net-snmp SNMP daemon init script
+#
+# Author      : Name - name@linuxfromscratch.org
+#
+# Version     : BLFS 7.0
+#
+########################################################################
+
+### BEGIN INIT INFO
+# Provides:            snmpd
+# Required-Start:      $network $syslog
+# Required-Stop:       $network $syslog
+# Default-Start:       2 3 4 5
+# Default-Stop:        0 1 6
+# Short-Description:   Starts snmpd.
+# Description:         Starts snmpd daemon.
+# X-LFS-Provided-By:   BLFS
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+CONF=/etc/snmpd.conf
+PID=/run/snmpd.pid
+PROG=/usr/sbin/snmpd
+LOG=/var/log/snmpd.log
+
+if [ -f $CONF ]; then
+    . $CONF
+else
+    log_failure_msg "requires an /etc/snmp/snmpd.conf configuration file"
+    exit 1
+fi
+
+case "$1" in
+   start)
+      log_info_msg "Enabling snmpd..."
+      start_daemon -p $PID $PROG -p ${PID} ${SNMPD_FLAGS} >> $LOG 2>&1 &
+      evaluate_retval
+      ;;
+
+   stop)
+      log_info_msg "Removing snmpd..."
+      killproc -p $PID $PROG
+      evaluate_retval
+      ;;
+
+   restart)
+      $0 stop
+      sleep 1
+      $0 start
+      ;;
+
+   status)
+       statusproc $PROG
+       evaluate_retval
+      ;;
+
+   *)
+      echo "Usage: $0 {start|stop|restart|status}"
+      exit 1
+      ;;
+esac
+
+# End /etc/init.d/seatd
