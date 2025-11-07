@@ -3,7 +3,7 @@
 
 pkgname=wireplumber
 pkgver=0.5.10
-pkgrel=1
+pkgrel=2
 url='https://gitlab.freedesktop.org/pipewire/wireplumber'
 source=(https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/$pkgver/$pkgname-$pkgver.tar.bz2
 		pipewire-launcher.sh pipewire.desktop)
