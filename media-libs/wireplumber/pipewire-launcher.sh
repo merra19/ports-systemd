@@ -16,9 +16,12 @@ exec /usr/bin/pipewire &
 # Next, we need to wait until pipewire is up before starting wireplumber.
 # This prevents a possible race condition where pipewire takes too long
 # to start, as some users have run into.
-while [ $(pgrep -f /usr/bin/pipewire) = "" ]; do
+while [ "$(pgrep -f /usr/bin/pipewire)" = "" ]; do
    sleep 1
 done
+
+exec /usr/bin/pipewire -c pipewire-pulse.conf &
+sleep 1
 
 # Start Wireplumber now that Pipewire has been started.
 exec /usr/bin/wireplumber &
