@@ -29,14 +29,12 @@ PROG=/usr/bin/dockerd
 LOG=/var/log/docker.log
 
 if [ -f $CONF ]; then
-    . $CONF
+   . $CONF
 else
-    if [ -z $OPTS ]; then
-	OPTS="-p $PID -G docker"
-    fi
+   if [ -z $OPTS ]; then
+	   OPTS="-p $PID -G docker"
+   fi
 fi
-
-
 
 case "$1" in
    start)
