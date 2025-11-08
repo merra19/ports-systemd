@@ -1,0 +1,41 @@
+# yahoo mail
+
+#add lines in /etc/mail/cf/sendmail.mc
+define(`SMART_HOST', `smtp.mail.yahoo.com')dnl
+define(`RELAY_MAILER_ARGS', `TCP $h 587')dnl
+define(`ESMTP_MAILER_ARGS', `TCP $h 587')dnl
+FEATURE(`authinfo',`hash -o /etc/mail/authinfo.db')dnl
+
+#create /etc/mail/authinfo
+AuthInfo:smtp.mail.yahoo.com "U:root" "I:nom@yahoo.com" "P:mot_de_passe_application" "M:PLAIN"
+
+#Generate authentification file
+makemap hash /etc/mail/authinfo < /etc/mail/authinfo
+
+#configuration Sendmail
+m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
+
+
+#!/bin/bash
+
+# Destination Email (Yahoo)
+TO="votre-adresse@yahoo.com"
+
+# Subject email
+SUBJECT="Test d'envoi via Sendmail vers Yahoo"
+
+# Message body
+BODY="Bonjour,\n\nCeci est un test d'envoi d'email via Sendmail configuré avec Yahoo SMTP.\n\nCordialement,\nVotre Serveur"
+
+# From address (must match the configured Yahoo address)
+FROM="votre-adresse@yahoo.com"
+
+# Construction of the message
+(
+echo "To: $TO"
+echo "Subject: $SUBJECT"
+echo "From: $FROM"
+echo -e "$BODY"
+) | /usr/sbin/sendmail -t
+
+echo "✅ Email envoyé (si aucune erreur n'est affichée)"

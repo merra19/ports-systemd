@@ -1,0 +1,92 @@
+# description	: sendmail RDBMS
+# depends	: openldap ghostscript
+
+pkgname=sendmail
+pkgver=8.18.1
+pkgrel=1
+url='https://www.sendmail.org'
+source=(https://ftp.sendmail.org/$pkgname.$pkgver.tar.gz
+        https://www.linuxfromscratch.org/patches/blfs/12.4/sendmail-8.18.1-gcc15_fixes-1.patch
+        $pkgname.hooks sendmail)
+backup=(etc/mail/sendmail.cf)
+
+build() {
+	cd $pkgname-$pkgver
+
+    patch -Np1 -i ../sendmail-8.18.1-gcc15_fixes-1.patch
+
+    cat >> devtools/Site/site.config.m4 << "EOF"
+APPENDDEF(`confENVDEF',`-D STARTTLS -D LDAPMAP -D HASFLOCK')
+APPENDDEF(`confLIBS', `-lssl -lcrypto -lldap -llber')
+define(`confMANGRP',`root')
+define(`confMANOWN',`root')
+define(`confSBINGRP',`root')
+define(`confUBINGRP',`root')
+define(`confUBINOWN',`root')
+EOF
+
+    sed -i 's|/usr/man/man|/usr/share/man/man|' devtools/OS/Linux 
+
+    cd sendmail
+    sh Build
+    cd ../cf/cf
+    cp generic-linux.mc sendmail.mc
+    sh Build sendmail.cf
+
+    install -v -m755 -d "$pkgdir"/usr/share/man/man{1,5,8}
+    install -v -m755 -d "$pkgdir"/usr/{,s}bin
+
+    install -v -d -m755 "$pkgdir"/etc/mail
+    sh Build DESTDIR="$pkgdir" install-cf 
+
+    cd ../..           
+    sh Build DESTDIR="$pkgdir" install 
+
+    install -v -m644 cf/cf/{submit,sendmail}.mc "$pkgdir"/etc/mail
+    cp -v -R cf/* "$pkgdir"/etc/mail        
+
+                  
+
+    install -v -m755 -d "$pkgdir"/usr/share/doc/$pkgname-$pkgver/{cf,sendmail}
+
+    install -v -m644 CACerts FAQ KNOWNBUGS LICENSE PGPKEYS README RELEASE_NOTES \
+            "$pkgdir"/usr/share/doc/$pkgname-$pkgver
+
+    install -v -m644 sendmail/{README,SECURITY,TRACEFLAGS,TUNING} \
+            "$pkgdir"/usr/share/doc/$pkgname-$pkgver/sendmail
+
+    install -v -m644 cf/README "$pkgdir"/usr/share/doc/$pkgname-$pkgver/cf
+
+    for manpage in sendmail editmap mailstats makemap praliases smrsh
+    do
+        install -v -m644 $manpage/$manpage.8 "$pkgdir"/usr/share/man/man8
+    done
+
+    install -v -m644 sendmail/aliases.5    "$pkgdir"/usr/share/man/man5
+    install -v -m644 sendmail/mailq.1      "$pkgdir"/usr/share/man/man1
+    install -v -m644 sendmail/newaliases.1 "$pkgdir"/usr/share/man/man1
+    install -v -m644 vacation/vacation.1   "$pkgdir"/usr/share/man/man1
+
+    install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+    echo $(hostname) > "$pkgdir"/etc/mail/local-host-names
+    cat > "$pkgdir"/etc/mail/aliases << "EOF"
+postmaster: root
+MAILER-DAEMON: root
+
+EOF
+
+    cd "$pkgdir"/etc/mail
+    m4 m4/cf.m4 sendmail.mc > sendmail.cf
+
+	install -Dm 0754 "$srcdir"/sendmail "$pkgdir"/etc/rc.d/init.d/sendmail
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/sendmail "$pkgdir"/etc/rc.d/rc$i.d/K25sendmail ;;
+            *) ln -sf ../init.d/sendmail "$pkgdir"/etc/rc.d/rc$i.d/S35sendmail ;;
+        esac
+    done
+
+}

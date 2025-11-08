@@ -1,0 +1,47 @@
+# description	: Open Source File Integrity Checker and IDS
+# depends	: sendmail
+
+pkgname=tripwire
+pkgver=2.4.3.7
+pkgrel=1
+url='http://www.tripwire.org'
+source=(https://github.com/Tripwire/tripwire-open-source/releases/download/$pkgver/tripwire-open-source-$pkgver.tar.gz
+        twcfg.txt)
+backup=(etc/tripwire/twpol.txt etc/tripwire/twcfg.txt)
+
+build() {
+    cd $pkgname-open-source-$pkgver
+
+    sed -e '/^CLOBBER/s/false/true/' \
+        -e 's|TWDB="${prefix}|TWDB="/var|' \
+        -e '/TWMAN/ s|${prefix}|/usr/share|' \
+        -e "/TWDOCS/s|${prefix}/doc/tripwire|${prefix}/share/doc/tripwire-$pkgver|" \
+        -i installer/install.cfg 
+
+    find . -name Makefile.am | xargs \
+        sed -i 's/^[[:alpha:]_]*_HEADERS.*=/noinst_HEADERS =/'
+
+    sed '/dist/d' -i man/man?/Makefile.am
+
+    autoreconf -fi
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc/tripwire
+    make CPPFLAGS=-std=c++11
+
+    install -d "$pkgdir"/usr/bin "$pkgdir"/usr/share/man/man{4,5,8}
+    install -m 755  bin/{siggen,tripwire,twadmin,twprint} "$pkgdir"/usr/bin
+    install -m 644  man/man4/*.4 "$pkgdir"/usr/share/man/man4
+    install -m 644  man/man5/*.5 "$pkgdir"/usr/share/man/man5
+    install -m 644  man/man8/*.8 "$pkgdir"/usr/share/man/man8
+
+    install -d "$pkgdir"/etc/tripwire "$pkgdir"/var/lib/tripwire{,/report}
+                 
+    install -d "$pkgdir"/usr/share/doc/$pkgname-$pkgver
+    install -m 644 ChangeLog policy/*.txt TRADEMARK "$pkgdir"/usr/share/doc/$pkgname-$pkgver
+
+
+    install -m 644 "$srcdir"/twcfg.txt "$pkgdir"/etc/tripwire/twcfg.txt
+    install -m 644 policy/twpol-Linux.txt "$pkgdir"/etc/tripwire/twpol.txt
+}
