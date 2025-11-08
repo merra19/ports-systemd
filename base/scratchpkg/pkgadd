@@ -93,7 +93,7 @@ parse_opts $(extract_opts "$@")
 
 SCRATCHPKG_DIR="var/lib/scratchpkg"
 PKGDB_DIR="$SCRATCHPKG_DIR/db"
-PKGDBPERMS_DIR="$PKGDB_DIR.perms"
+#PKGDBPERMS_DIR="$PKGDB_DIR.perms"
 LOCK_FILE="$SCRATCHPKG_DIR/spkg.lock"
 
 ROOT_DIR="${ROOT_DIR%/}" # remove trailing slash
@@ -192,51 +192,19 @@ if [ ! "$IGNORE_CONFLICT" ]; then
 			line=${line%.*}
 		fi
 
-		case "$line" in
-			*x2dcryptsetup.slice|*x2dveritysetup.slice) 
-				line2=${line/systemd\\\\x2d/systemd\\x2d}
-				line3=${line/systemd\\\\x2d/systemd\\\\\\\\x2d}
-				;;
-			*) line2="$line" ;;
-		esac
-
-		if [ -e "$ROOT_DIR/$line2" ] || [ -L "$ROOT_DIR/$line2" ]; then
+		if [ -e "$ROOT_DIR/$ " ] || [ -L "$ROOT_DIR/$line" ]; then
 			if [ "$UPGRADE_PKG" ] || [ "$REINSTALL_PKG" ]; then
-
-				case $line in 
-					*x2dcryptsetup.slice|*x2dveritysetup.slice)
-						if ! grep -Fqx "$line3" "$ROOT_DIR/$PKGDB_DIR/$name"; then
-						_f=$(grep -x ^"$line3"$ $ROOT_DIR/$PKGDB_DIR/* | cut -d : -f1 | awk -F / '{print $(NF)}' | head -n1 | grep -vx $name)
-						_f=${_f:-(none)}
-						echo "$_f $line"
-						touch "$TMP_CONFLICT"
-						fi
-					;;
-
-					*)
-					if ! grep -Fqx "$line" "$ROOT_DIR/$PKGDB_DIR/$name"; then
-						_f=$(grep -x ^"$line"$ $ROOT_DIR/$PKGDB_DIR/* | cut -d : -f1 | awk -F / '{print $(NF)}' | head -n1 | grep -vx $name)
-						_f=${_f:-(none)}
-						echo "$_f $line"
-						touch "$TMP_CONFLICT"
-					fi
-					;;
-				esac
+				if ! grep -Fqx "$line" "$ROOT_DIR/$PKGDB_DIR/$name"; then
+					_f=$(grep -x ^"$line"$ $ROOT_DIR/$PKGDB_DIR/* | cut -d : -f1 | awk -F / '{print $(NF)}' | head -n1 | grep -vx $name)
+					_f=${_f:-(none)}
+					echo "$_f $line"
+					touch "$TMP_CONFLICT"
+				fi
 			else
-				case $line in 
-					*x2dcryptsetup.slice|*x2dveritysetup.slice)
-						_f=$(grep -x ^"$line3"$ $ROOT_DIR/$PKGDB_DIR/* | cut -d : -f1 | awk -F / '{print $(NF)}' | head -n1)
-						_f=${_f:-(none)}
-						echo "$_f $line"
-						touch "$TMP_CONFLICT"
-					;;
-					*)
-						_f=$(grep -x ^"$line"$ $ROOT_DIR/$PKGDB_DIR/* | cut -d : -f1 | awk -F / '{print $(NF)}' | head -n1)
-						_f=${_f:-(none)}
-						echo "$_f $line"
-						touch "$TMP_CONFLICT"
-						;;
-				esac
+				_f=$(grep -x ^"$line"$ $ROOT_DIR/$PKGDB_DIR/* | cut -d : -f1 | awk -F / '{print $(NF)}' | head -n1)
+				_f=${_f:-(none)}
+				echo "$_f $line"
+				touch "$TMP_CONFLICT"
 			fi
 		fi
 	done
@@ -276,8 +244,6 @@ if [ "$UPGRADE_PKG" ] || [ "$REINSTALL_PKG" ]; then
 	tail -n+2 "$ROOT_DIR/$PKGDB_DIR/$name" | tac | while read -r line; do
 		case $line in
 			*"[") ;;
-		*x2dcryptsetup.slice) grep -q  "^usr/lib/systemd/system/system-systemd\\\\x2dcryptsetup.slice" "$TMP_PKGINSTALL" ||  rm $([ "$VERBOSE_INSTALL" ] && echo -v) "$ROOT_DIR/$line";; 
-		*x2dveritysetup.slice) grep -q  "^usr/lib/systemd/system/system-systemd\\\\x2dveritysetup.slice" "$TMP_PKGINSTALL" || rm $([ "$VERBOSE_INSTALL" ] && echo -v) "$ROOT_DIR/$line";;
 			*/) grep "^$line$" $ROOT_DIR/$PKGDB_DIR/* "$TMP_PKGINSTALL" 2>/dev/null | grep -qv "$ROOT_DIR/$PKGDB_DIR/$name" || rmdir $([ "$VERBOSE_INSTALL" ] && echo -v) "$ROOT_DIR/$line";;
 			 *) grep -q "^$line$" "$TMP_PKGINSTALL" || rm $([ "$VERBOSE_INSTALL" ] && echo -v) "$ROOT_DIR/$line";;
 		esac
@@ -287,14 +253,14 @@ fi
 # register package into database
 echo "$version $release" > "$ROOT_DIR/$PKGDB_DIR/$name"
 cat "$TMP_PKGINSTALL" >> "$ROOT_DIR/$PKGDB_DIR/$name"
-mkdir -p "$ROOT_DIR/$PKGDBPERMS_DIR"
-rm -f "$ROOT_DIR/$PKGDBPERMS_DIR/$name"
-grep '/$' $TMP_PKGADD | while read -r perms own junk1 junk2 junk3 dir junk4; do
-	if [ "$perms" != drwxr-xr-x ] || [ "$own" != root/root ]; then
-		echo "$perms $own $dir" >> "$ROOT_DIR/$PKGDBPERMS_DIR/$name"
-		[ -s "$ROOT_DIR/$PKGDBPERMS_DIR/$name" ] || rm "$ROOT_DIR/$PKGDBPERMS_DIR/$name"
-	fi
-done
+#mkdir -p "$ROOT_DIR/$PKGDBPERMS_DIR"
+#rm -f "$ROOT_DIR/$PKGDBPERMS_DIR/$name"
+#grep '/$' $TMP_PKGADD | while read -r perms own junk1 junk2 junk3 dir junk4; do
+#	if [ "$perms" != drwxr-xr-x ] || [ "$own" != root/root ]; then
+#		echo "$perms $own $dir" >> "$ROOT_DIR/$PKGDBPERMS_DIR/$name"
+#		[ -s "$ROOT_DIR/$PKGDBPERMS_DIR/$name" ] || rm "$ROOT_DIR/$PKGDBPERMS_DIR/$name"
+#	fi
+#done
 
 # running ldconfig
 if [ -x "$ROOT_DIR"/sbin/ldconfig ]; then
