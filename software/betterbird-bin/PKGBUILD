@@ -1,7 +1,7 @@
 # description	: Betterbird is a fine-tuned version of Mozilla Thunderbird.
 # depends	: dbus-glib hunspell at-spi2-core glib alsa-lib fontconfig
 # depends	: freetype dbus cairo gdk-pixbuf gtk3 xorg-libs libxcb
-# depends	: pango adwaita-icon-theme
+# depends	: pango adwaita-icon-theme hunspell
 
 pkgname=betterbird-bin
 pkgver=140.4.0
@@ -20,6 +20,8 @@ build() {
     cp -r "$srcdir"/betterbird/ "$pkgdir"/opt/betterbird
     install -m644 "$srcdir"/eu.betterbird.Betterbird.desktop "$pkgdir"/usr/share/applications/eu.betterbird.Betterbird.desktop
     install -m644 "$srcdir"/vendor-prefs.js -t "$pkgdir"/opt/betterbird/defaults/pref
+
+    install -d "$pkgdir"/usr/share/hunspell
     ln -s /opt/betterbird/betterbird "$pkgdir"/usr/bin/betterbird
     ln -s /usr/share/hunspell "$pkgdir"/opt/betterbird/dictionaries
 
