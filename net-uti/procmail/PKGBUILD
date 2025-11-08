@@ -1,0 +1,20 @@
+# description	: Mail delivery agent/filter
+# depends	: glibc sendmail libnsl
+
+pkgname=procmail
+pkgver=3.24
+pkgrel=1
+url='https://www.procmail.org'
+source=(https://github.com/BuGlessRB/procmail/archive/v$pkgver/$pkgname-$pkgver.tar.gz
+        https://www.linuxfromscratch.org/patches/blfs/12.4/$pkgname-$pkgver-consolidated_fixes-1.patch)
+
+build() {
+    cd $pkgname-$pkgver
+
+    patch -Np1 -i ../procmail-3.24-consolidated_fixes-1.patch
+
+    yes n | make CC="gcc -std=gnu17" CFLAGS0="$CFLAGS $LDFLAGS" LOCKINGTEST=/tmp BASENAME="${pkgdir}"/usr MANDIR="${pkgdir}"/usr/share/man install
+
+    sed '/var\/spool\/mail/d' -i suid.sh
+    make BASENAME="$pkgdir"/usr MANDIR="$pkgdir"/usr/share/man install-suid
+}
