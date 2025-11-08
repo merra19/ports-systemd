@@ -2,7 +2,7 @@
 # depends	: zlib lzo xz lz4 zstd help2man
 
 pkgname=squashfs-tools
-pkgver=4.7.2
+pkgver=4.7.3
 pkgrel=1
 url='https://github.com/plougher/squashfs-tools'
 source=(https://downloads.sourceforge.net/squashfs/squashfs$pkgver.tar.gz)
