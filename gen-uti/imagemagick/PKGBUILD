@@ -8,13 +8,14 @@
 
 pkgname=imagemagick
 pkgver=7.1.2.1
-_version="$(echo $pkgver  | sed 's/\(.*\)\./\1-/')"
+_pkgver="$(echo $pkgver  | sed 's/\(.*\)\./\1-/')"
 pkgrel=1
 url='https://imagemagick.org/index.php'
-source=(https://www.imagemagick.org/archive/releases/ImageMagick-$_version.tar.xz)
+source=(https://www.imagemagick.org/archive/releases/ImageMagick-$_pkgver.tar.xz)
+KEEP_LIBTOOL="yes"
 
 build() {
-	cd ImageMagick-$_version
+	cd ImageMagick-$_pkgver
 
 	./configure \
         --prefix=/usr  \
@@ -22,7 +23,8 @@ build() {
         --enable-hdri \
         --with-modules \
         --with-perl \
-        --disable-static
+        --disable-static \
+        --with-fftw
 	make
     make DESTDIR="$pkgdir" DOCUMENTATION_PATH=/usr/share/doc/$pkgname-$pkgver install
 }
