@@ -4,7 +4,7 @@
 
 pkgname=xfce4-taskmanager
 pkgver=1.6.0
-pkgrel=1
+pkgrel=2
 url='https://docs.xfce.org/apps/xfce4-taskmanager/start'
 source=(https://archive.xfce.org/src/apps/xfce4-taskmanager/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 

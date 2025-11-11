@@ -1,9 +1,9 @@
 # description	: Maybe a GNOME shell like dashboard for the Xfce desktop environment
 # depends	: glib gtk3 clutter libwnck garcon xorg-libs libxfce4ui
-# depends	: libxfce4util xfconf intltool
+# depends	: libxfce4util xfconf intltool cogl
 
 pkgname=xfdashboard
-pkgver=1.0.0
+pkgver=1.1.0
 pkgrel=1
 url='https://goodies.xfce.org/projects/applications/xfdashboard/start'
 source=(https://archive.xfce.org/src/apps/xfdashboard/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
@@ -11,10 +11,14 @@ source=(https://archive.xfce.org/src/apps/xfdashboard/${pkgver%.*}/$pkgname-$pkg
 build() {
 	cd $pkgname-$pkgver
 
-    ./configure \
+	meson setup \
         --prefix=/usr \
-        --sysconfdir=/etc \
-        --enable-maintainer-mode
-    make
-    make DESTDIR="$pkgdir" install
+        --buildtype=plain \
+        -D clutter-gdk=enabled \
+        -D xcomposite=enabled \
+        -D xdamage=enabled \
+        -D xinerama=enabled \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
 }
