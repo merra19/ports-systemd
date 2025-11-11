@@ -1,0 +1,17 @@
+# description	: Python scripts to manipulate trash cans via the command line
+# depends	: python py3-gpep517 py3-setuptools py3-wheel py3-psutil
+# depends	: py3-six py3-shtab
+
+pkgname=trash-cli 
+pkgver=0.24.5.26
+pkgrel=1
+options=(!lto)
+url='https://github.com/andreafrancia/trash-cli'
+source=($pkgname-$pkgver.tar.gz::https://github.com/andreafrancia/trash-cli/archive/refs/tags/$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}
