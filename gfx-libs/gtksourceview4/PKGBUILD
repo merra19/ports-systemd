@@ -4,7 +4,7 @@
 
 pkgname=gtksourceview4
 pkgver=4.8.4
-pkgrel=2
+pkgrel=3
 url='https://wiki.gnome.org/Projects/GtkSourceView'
 source=(https://download.gnome.org/sources/gtksourceview/${pkgver%.*}/gtksourceview-${pkgver}.tar.xz)
 
@@ -20,5 +20,5 @@ build() {
     DESTDIR="$pkgdir" ninja install -C build
 
 	# add *.ebuild to shell highlightning
-	sed -i 's/.bash_profile/.bash_profile;*.ebuild/' "$pkgdir"/usr/share/gtksourceview-4/language-specs/sh.lang
+	sed -i 's/.bash_profile/.bash_profile;*.ebuild;PKGBUILD/' "$pkgdir"/usr/share/gtksourceview-4/language-specs/sh.lang
 }
