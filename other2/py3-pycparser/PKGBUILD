@@ -1,0 +1,15 @@
+# description	: C parser and AST generator written in Python
+# depends	: py3-flit-core py3-gpep517 py3-setuptools
+
+pkgname=py3-pycparser
+pkgver=2.23
+pkgrel=1
+url='https://github.com/eliben/pycparser'
+source=(https://files.pythonhosted.org/packages/source/p/pycparser/pycparser-$pkgver.tar.gz)
+
+build() {
+	cd ${pkgname#*-}-$pkgver
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}
