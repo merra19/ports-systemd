@@ -1,6 +1,6 @@
 # description	: File transfer program to keep remote files into sync
 # depends	: glibc popt xxhash acl perl lz4 openssl zlib zstd python
-# depends	: py3-commonmark xxhash
+# depends	: py3-commonmark
 
 pkgname=rsync
 pkgver=3.4.1
