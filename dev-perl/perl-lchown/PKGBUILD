@@ -1,0 +1,17 @@
+# description	: Use the lchown(2) system call from Perl
+# depends	: perl perl-module-build
+
+pkgname=perl-lchown
+_pkgname=Lchown
+pkgver=1.01
+pkgrel=1
+url='https://metacpan.org/release/Lchown'
+source=(https://search.cpan.org/CPAN/authors/id/N/NC/NCLEATON/Lchown-${pkgver}.tar.gz)
+
+build() {
+	cd ${_pkgname}-$pkgver
+
+	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
+	make
+    make DESTDIR="$pkgdir" install
+}
