@@ -1,5 +1,5 @@
 # description	: Wayfire dots file with Xfce
-# depends	: ewww xfce pavucontrol rofi thunar nerd-fonts jq
+# depends	: eww xfce pavucontrol rofi thunar nerd-fonts jq
 # depends	: xdg-desktop-portal wireplumber ttf-font-awesome
 # depends	: xfce4-terminal polkit-gnome xfce4-notifyd
 # url       : https://github.com/bluebyt/Wayfire-dots/tree/main

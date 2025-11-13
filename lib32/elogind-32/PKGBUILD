@@ -1,6 +1,6 @@
 # description	: A command scheduler with extended capabilities over cron and anacron
 # depends	: pam dbus docbook-xml docbook-xsl-nons libxslt py3-lxml
-# depends	: py3-jinja udev udev-32
+# depends	: py3-jinja2 udev udev-32
 
 pkgname=elogind-32
 _pkgname=elogind
