@@ -1,0 +1,27 @@
+# description	: A filesystem backup utility based on rsync
+# depends	:  openssh perl perl-lchown rsync util-linux coreutils
+
+pkgname=rsnapshot
+pkgver=1.4.5
+pkgrel=2
+url='https://rsnapshot.org'
+source=(https://rsnapshot.org/downloads/$pkgname-$pkgver.tar.gz
+        rsnapshot.conf)
+backup=(etc/rsnapshot.conf)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make
+    make install DESTDIR="$pkgdir"
+
+    install -d "$pkgdir"/usr/share/doc/$pkgname-$pkgver/utils/rsnapshotdb
+    install -m 644 README.md AUTHORS ChangeLog docs/Upgrading_from_1.1 "$pkgdir"/usr/share/doc/$pkgname-$pkgver
+    install -m 644  utils/{README,rsnaptar,*.sh,*.pl} "$pkgdir"/usr/share/doc/$pkgname-$pkgver/utils
+    install -m 644  utils/rsnapshotdb/* "$pkgdir"/usr/share/doc/$pkgname-$pkgver/utils/rsnapshotdb
+
+    install -m 644 "$srcdir"/rsnapshot.conf "$pkgdir"/etc/rsnapshot.conf
+}
