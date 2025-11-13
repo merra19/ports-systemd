@@ -11,7 +11,8 @@ source=(hosts os-release lsb-release inputrc shells group passwd
         bash_completion.sh vconsole.conf
 		clock console inittab rc.site)
 backup=(etc/shells etc/inputrc etc/resolv.conf etc/locale.conf etc/hosts 
-        etc/bashrc etc/sysctl.conf etc/hostname etc/group etc/passwd)
+        etc/bashrc etc/sysctl.conf etc/hostname etc/group etc/passwd
+        etc/inittab)
 
 build() {
     install --directory --mode=0755 --owner=root --group=root "$pkgdir"/etc/profile.d
