@@ -6,7 +6,7 @@
 
 pkgname=mesa-32
 _pkgname=mesa
-pkgver=25.2.2
+pkgver=25.2.7
 pkgrel=1
 options=(!lto)
 syn=2.0.87
