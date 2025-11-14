@@ -1,6 +1,7 @@
 # description	: youtube-dl fork with additional features and fixe
 # depends	: py3-gpep517 py3-hatchling attr ffmpeg brotli py3-certifi
 # depends	: py3-requests py3-urllib3 py3-installer py3-brotlicffi
+# depends	: py3-pycryptodome 
 
 pkgname=yt-dlp
 pkgver=2025.11.12
