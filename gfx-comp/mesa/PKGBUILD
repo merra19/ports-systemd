@@ -6,8 +6,8 @@
 # depends	: libunwind nettle make-ca libclc
 
 pkgname=mesa
-pkgver=25.2.2
-pkgrel=2
+pkgver=25.2.7
+pkgrel=1
 options=(!lto)
 syn=2.0.87
 unicodeident=1.0.12
