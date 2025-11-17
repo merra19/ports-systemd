@@ -3,7 +3,8 @@
 # depends	: e2fsprogs libcap ncurses readline zlib libxcrypt gnutls
 # depends	: acl cups jansson pam libtirpc dbus rpcsvc-proto fuse
 # depends	: gpgme lmdb libaio libnsl py3-markdown avahi talloc
-# depends	: libxslt gnupg libgcrypt libunwind nss vala
+# depends	: libxslt gnupg libgcrypt libunwind nss vala py3-pyasn1
+# depends	: py3-cryptography py3-iso8601
 # optional	: krb5 openldap 
 
 pkgname=samba
@@ -15,8 +16,8 @@ source=(https://download.samba.org/pub/samba/stable/$pkgname-$pkgver.tar.gz)
 build() {
     cd $pkgname-$pkgver
 
-    python3 -m venv pyvenv &&
-    ./pyvenv/bin/pip3 install cryptography pyasn1 iso8601
+    #python3 -m venv pyvenv &&
+    #./pyvenv/bin/pip3 install cryptography pyasn1 iso8601
 
     PYTHON=$PWD/pyvenv/bin/python3 \
     PATH=$PWD/pyvenv/bin:$PATH \
