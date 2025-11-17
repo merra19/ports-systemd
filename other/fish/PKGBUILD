@@ -2,7 +2,7 @@
 # depends	: glibc ncurses pcre2 python3 cmake py3-sphinx
 
 pkgname=fish
-pkgver=4.2.0
+pkgver=4.2.1
 pkgrel=1
 url='https://fishshell.com'
 source=(https://github.com/fish-shell/fish-shell/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)

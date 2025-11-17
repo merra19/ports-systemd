@@ -5,7 +5,7 @@ pkgver=1.0
 pkgrel=1
 url='https://codeberg.org/venomlinux'
 source=(fake revdep revdep.conf pkgadd pkgbuild pkgdel pkgdepends
-        portsync scratch
+        portsync scratch sc
         scratchpkg.alias scratchpkg.conf scratchpkg.mask scratchpkg.repo)
 
 build() {
@@ -17,4 +17,5 @@ build() {
     install -Dm 755 revdep "$pkgdir"/usr/bin/revdep
 
     install -m 755 pkgadd pkgbuild pkgdel pkgdepends portsync scratch "$pkgdir"/usr/bin/
+    install -m 755 sc "$pkgdir"/usr/bin/
 }

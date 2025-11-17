@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ "$1" = "revdep"  ];then
+    sudo revdep
+else
+    sudo scratch "$@"
+fi
