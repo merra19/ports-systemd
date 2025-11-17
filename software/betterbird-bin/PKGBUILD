@@ -4,8 +4,8 @@
 # depends	: pango adwaita-icon-theme
 
 pkgname=betterbird-bin
-pkgver=140.4.0
-betterver=bb13
+pkgver=140.5.0
+betterver=bb14
 pkgrel=1
 options=(!strip)
 url='https://www.betterbird.eu'

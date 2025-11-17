@@ -8,7 +8,7 @@
 
 pkgname=wayfire
 pkgver=0.10.0
-pkgrel=1
+pkgrel=2
 url='https://github.com/WayfireWM/wayfire'
 source=(https://github.com/WayfireWM/$pkgname/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
         wayfire-session.desktop wayfire-session wayfire.env)

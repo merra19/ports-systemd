@@ -2,7 +2,7 @@
 # depends	: xz zstd rdfind
 
 pkgname=linux-firmware
-pkgver=20251021
+pkgver=20251111
 pkgrel=1
 pkgnameparallel=parallel
 pkgverparallel=20250822

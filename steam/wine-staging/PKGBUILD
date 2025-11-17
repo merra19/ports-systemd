@@ -8,13 +8,13 @@
 # todo      : libgphoto2
 
 pkgname=wine-staging
-pkgver=10.17
+pkgver=10.19
 pkgrel=1
 options=(!lto !strip)
 url='https://wiki.winehq.org/Wine-Staging'
 source=(https://dl.winehq.org/wine/source/10.x/wine-$pkgver.tar.xz
 		$pkgname-$pkgver.tar.gz::https://github.com/wine-staging/wine-staging/archive/refs/tags/v$pkgver.tar.gz 
-		wine-staging-7.17-noexecstack.patch  wine-staging-8.13-rpath.patch
+		wine-staging-7.17-noexecstack.patch wine-staging-8.13-rpath.patch
 		ntsync.conf 30-win32-aliases.conf)
 
 build() {

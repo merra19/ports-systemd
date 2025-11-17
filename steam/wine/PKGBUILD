@@ -8,12 +8,12 @@
 # todo      : libgphoto2
 
 pkgname=wine
-pkgver=10.17
+pkgver=10.19
 pkgrel=1
 options=(!lto !strip)
 url='https://www.winehq.org'
 source=(https://dl.winehq.org/wine/source/10.x/$pkgname-$pkgver.tar.xz
-		wine-staging-7.17-noexecstack.patch  wine-staging-8.13-rpath.patch)
+		wine-staging-7.17-noexecstack.patch wine-staging-8.13-rpath.patch)
 
 build() {
 	patch -Np1 -i "$srcdir"/wine-staging-7.17-noexecstack.patch  -d $pkgname-$pkgver
