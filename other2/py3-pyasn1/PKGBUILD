@@ -1,0 +1,16 @@
+# description	: ASN.1 library for Python
+# depends	: py3-flit-core py3-gpep517 py3-setuptools
+
+pkgname=py3-pyasn1
+pkgver=0.6.1
+pkgrel=1
+options=(!lto)
+url='https://pypi.org/project/pyasn1'
+source=(https://files.pythonhosted.org/packages/source/p/pyasn1/pyasn1-$pkgver.tar.gz)
+
+build() {
+	cd ${pkgname#*-}-$pkgver
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}

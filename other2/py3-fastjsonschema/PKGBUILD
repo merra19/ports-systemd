@@ -1,0 +1,14 @@
+# description	: Fast JSON schema validator for Python
+# depends	: py3-flit-core py3-gpep517 py3-setuptools
+
+pkgname=py3-fastjsonschema
+pkgver=2.21.2
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/horejsek/python-fastjsonschema/archive/refs/tags/v$pkgver.tar.gz)
+
+build() {
+	cd python-${pkgname#*-}-$pkgver
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}

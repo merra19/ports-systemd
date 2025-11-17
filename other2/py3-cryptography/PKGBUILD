@@ -1,0 +1,17 @@
+# description	: Library providing cryptographic recipes and primitives
+# depends	: py3-flit-core py3-gpep517 py3-setuptools openssl rustc
+# depends	: py3-cffi py3-maturin 
+
+pkgname=py3-cryptography
+pkgver=46.0.3
+pkgrel=1
+options=(!lto)
+url='https://github.com/pyca/cryptography'
+source=(https://files.pythonhosted.org/packages/source/c/cryptography/cryptography-$pkgver.tar.gz)
+
+build() {
+	cd ${pkgname#*-}-$pkgver
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}

@@ -1,0 +1,15 @@
+# description	: Poetry PEP 517 Build Backend
+# depends	: py3-flit-core py3-gpep517 py3-setuptools py3-lark-parser
+# depends	: py3-fastjsonschema
+
+pkgname=py3-poetry-core
+pkgver=2.2.1
+pkgrel=1
+source=($pkgname-$pkgver.tar.gz::https://github.com/python-poetry/poetry-core/archive/refs/tags/$pkgver.tar.gz)
+
+build() {
+	cd ${pkgname#*-}-$pkgver
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
+}
