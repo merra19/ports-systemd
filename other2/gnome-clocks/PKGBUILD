@@ -1,0 +1,22 @@
+# description	: Clocks application for GNOME
+# depends	: glib gtk4 libgweather gnome-desktop geocode-glib geoclue
+# depends	: libadwaita libxml2 itstool gettext vala
+
+pkgname=gnome-clocks
+pkgver=48.0
+pkgrel=1
+url='https://apps.gnome.org/Clocks/'
+source=(https://download.gnome.org/sources/gnome-clocks/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D profile=default \
+		-D docs=false \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}
