@@ -4,7 +4,7 @@
 # depends	: nettle libgcrypt xcb-utilities xmlto mesa udev
 
 pkgname=xlibre-xserver
-pkgver=25.0.0.14
+pkgver=25.0.0.15
 pkgrel=1
 url='https://x11libre.net'
 source=(https://github.com/X11Libre/xserver/archive/refs/tags/$pkgname-$pkgver.tar.gz
