@@ -1,0 +1,21 @@
+# description	: An alternative protocol to UPnP IGD specification
+# depends	: glibc
+
+pkgname=libnatpmp
+pkgver=20230423
+pkgrel=2
+url='http://miniupnp.free.fr/libnatpmp.html'
+source=(https://miniupnp.tuxfamily.org/files/libnatpmp-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    sed -e 's/CFLAGS = /CFLAGS += /' -i Makefile
+
+    make
+    make INSTALLPREFIX="$pkgdir"/usr INSTALLDIRINC="$pkgdir"/usr/include install
+
+    # Install missing header
+    install -Dm644 natpmp_declspec.h -t "$pkgdir"/usr/include
+    install -Dm644 natpmpc.1 "$pkgdir"/usr/share/man/man1/natpmpc.1
+}

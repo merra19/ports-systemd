@@ -1,0 +1,55 @@
+# description	: Deduplicating backup program with compression and authenticated encryption
+# depends	: lz4 zstd openssl xxhash acl py3-msgpack py3-packaging
+# depends	: py3-cython py3-setuptools-scm
+
+pkgname=borgbackup
+pkgver=1.4.2
+pkgrel=2
+url='https://borgbackup.readthedocs.io'
+source=(https://github.com/borgbackup/borg/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    export BORG_LIBLZ4_PREFIX="/usr/include"
+    export BORG_LIBXXHASH_PREFIX="/usr/include"
+    export BORG_LIBZSTD_PREFIX="/usr/include"
+    export BORG_OPENSSL_PREFIX="/usr/include/openssl"
+    export BORG_LIBACL_PREFIX="/usr/include"
+
+	# Remove bundled libs to ensure these don't end up in our binaries.
+	cd src/borg/algorithms/
+	rm -rf lz4 xxh64 zstd
+    cd -
+
+	# CYTHON_FORCE_REGEN - don't use precompiled Cython code, always regenerate.
+	CYTHON_FORCE_REGEN=1 \
+	gpep517 build-wheel \
+		--wheel-dir .dist \
+		--output-fd 3 3>&1 >&2
+
+	python3 -m installer -d "$pkgdir" \
+		.dist/*.whl
+
+	install -Dm644 -t "$pkgdir"/usr/share/man/man1 docs/man/*.1
+
+	install -Dm644 scripts/shell_completions/bash/borg \
+		"$pkgdir"/usr/share/bash-completion/completions/borg
+
+	install -Dm644 scripts/shell_completions/fish/borg.fish \
+		"$pkgdir"/usr/share/fish/vendor_completions.d/borg.fish
+
+	install -Dm644 scripts/shell_completions/zsh/_borg \
+		"$pkgdir"/usr/share/zsh/site-functions/_borg
+
+    # clean some useless files
+	cd "$pkgdir"/usr/lib/python*/site-packages/borg
+    find . -name '*.h' -delete -o -name '*.c' -print -o -name '*.pyx' -delete
+
+	find testsuite/ -type f ! \( \
+		-name '__init__.*' -or \
+		-name 'crypto.*' -or \
+		-name 'chunker.*' -or \
+		-name 'hashindex.*' \) -delete
+	rm -f testsuite/__pycache__/*-pytest-*.pyc
+}
