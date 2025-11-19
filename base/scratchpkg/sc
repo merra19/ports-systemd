@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$1" = "revdep"  ];then
+if [ "$1" = "revdep"  ] || [ "$1" = "rev"  ] ;then
     sudo revdep
 else
     sudo scratch "$@"
