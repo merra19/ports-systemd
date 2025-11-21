@@ -2,7 +2,7 @@
 # depends	: py3-flit-core py3-gpep517 py3-setuptools freetype
 
 pkgname=py3-reportlab
-pkgver=4.4.4
+pkgver=4.4.5
 pkgrel=1
 url='https://www.reportlab.com'
 source=(https://files.pythonhosted.org/packages/source/r/reportlab/reportlab-$pkgver.tar.gz)

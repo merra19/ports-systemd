@@ -3,11 +3,11 @@
 # depends	: vulkan-loader wayland-protocols lm-sensors libgcrypt
 # depends	: glslang expat zlib zstd xorg-proto xorg-libs libxcb
 # depends	: py3-ply rust-bindgen cbindgen libva libvdpau py3-yaml
-# depends	: libunwind nettle make-ca libclc
+# depends	: libunwind nettle make-ca libclc opencl-headers
 
 pkgname=mesa
-pkgver=25.2.7
-pkgrel=1
+pkgver=25.3.0
+pkgrel=2
 options=(!lto)
 syn=2.0.87
 unicodeident=1.0.12
@@ -41,6 +41,7 @@ build() {
         -D video-codecs=all \
         -D valgrind=disabled \
         -D libunwind=disabled \
+        -D gallium-rusticl=true \
         build
     ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

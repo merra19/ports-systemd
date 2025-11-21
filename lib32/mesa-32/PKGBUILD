@@ -3,11 +3,12 @@
 # depends	: vulkan-loader-32 libgcrypt-32 expat-32 zlib-32 zstd-32
 # depends	: xorg-libs-32 libxcb-32 libva-32 libvdpau-32 nettle-32
 # depends	: spirv-tools-32 spirv-llvm-translator-32 mesa
+# depends	: opencl-headers
 
 pkgname=mesa-32
 _pkgname=mesa
-pkgver=25.2.7
-pkgrel=1
+pkgver=25.3.0
+pkgrel=2
 options=(!lto)
 syn=2.0.87
 unicodeident=1.0.12
@@ -47,6 +48,7 @@ build() {
         -D video-codecs=all \
         -D valgrind=disabled \
         -D libunwind=disabled \
+        -D gallium-rusticl=true \
         build32
     ninja -C build32
     DESTDIR=$PWD/DESTDIR ninja install -C build32

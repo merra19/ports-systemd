@@ -2,7 +2,7 @@
 # depends	: python py3-gpep517 py3-setuptools py3-wheel
 
 pkgname=py3-shtab
-pkgver=1.7.2
+pkgver=1.8.0
 pkgrel=1
 url='https://github.com/iterative/shtab'
 source=(https://github.com/iterative/shtab/releases/download/v$pkgver/shtab-$pkgver.tar.gz)
