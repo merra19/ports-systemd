@@ -2,8 +2,8 @@
 # depends	: glibc
 
 pkgname=stb
-# May 26, 2025
-pkgver=r2210.f58f558
+# May 26, 2025 f58f558
+pkgver=20250526
 pkgrel=1
 CHECKSUM=f58f558c120e9b32c217290b80bad1a0729fbb2c
 url='https://github.com/nothings/stb'
