@@ -2,19 +2,18 @@
 # depends	: glibc ruby mesa xmlto py3-asciidoc opencl-headers
 
 pkgname=opencl-loader
-_pkgname=ocl-icd
-pkgver=2.3.3
+_pkgname=OpenCL-ICD-Loader
+pkgver=2024.10.24
 pkgrel=1
 url='https://github.com/KhronosGroup/OpenCL-ICD-Loader'
-source=($_pkgname-$pkgver.tar.gz::https://github.com/OCL-dev/${_pkgname}/archive/v${pkgver}.tar.gz)
+source=($_pkgname-$pkgver.tar.gz::https://github.com/KhronosGroup/OpenCL-ICD-Loader/archive/v${pkgver}.tar.gz)
 
 build() {
-    cd "$srcdir/$_pkgname-$pkgver"
-    
-    autoreconf -fiv
+    cd "$_pkgname-$pkgver"
 
-    CFLAGS+=' -fcommon' # https://wiki.gentoo.org/wiki/Gcc_10_porting_notes/fno_common
-    ./configure --prefix=/usr
-    make
-    make DESTDIR="$pkgdir/" install
+	cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_BUILD_TYPE=Release
+	make -C build
+    make DESTDIR="$pkgdir" install -C build
 }
