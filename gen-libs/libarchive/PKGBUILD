@@ -3,8 +3,8 @@
 # depends	: nettle 
 
 pkgname=libarchive
-pkgver=3.8.2
-pkgrel=2
+pkgver=3.8.3
+pkgrel=1
 options=(!lto)
 url='https://www.libarchive.org'
 source=(https://github.com/libarchive/libarchive/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)

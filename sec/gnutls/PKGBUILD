@@ -3,8 +3,8 @@
 # depends	: zlib zstd libseccomp make-ca brotli gtk-doc
 
 pkgname=gnutls
-pkgver=3.8.10
-pkgrel=2
+pkgver=3.8.11
+pkgrel=1
 options=(!lto)
 url='https://www.gnutls.org'
 source=(https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/$pkgname-$pkgver.tar.xz)

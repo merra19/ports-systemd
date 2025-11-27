@@ -2,7 +2,7 @@
 # depends	: py3-flit-core py3-gpep517 py3-setuptools brotli py3-cffi
 
 pkgname=py3-brotlicffi
-pkgver=1.1.0.0
+pkgver=1.2.0.0
 pkgrel=1
 url='https://github.com/python-hyper/brotlicffi'
 source=($pkgname-$pkgver.tar.gz::https://github.com/python-hyper/brotlicffi/archive/refs/tags/v$pkgver.tar.gz)

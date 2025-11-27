@@ -2,7 +2,7 @@
 # depends	: py3-pillow py3-vdf winetricks zenity
 
 pkgname=protontricks
-pkgver=1.13.0
+pkgver=1.13.1
 pkgrel=1
 url='https://github.com/Matoking/protontricks'
 source=(https://pypi.org/packages/source/p/protontricks/$pkgname-$pkgver.tar.gz)

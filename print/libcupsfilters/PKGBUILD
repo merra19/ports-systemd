@@ -4,12 +4,16 @@
 
 pkgname=libcupsfilters
 pkgver=2.1.1
-pkgrel=1
+pkgrel=2
 url='https://github.com/OpenPrinting/libcupsfilters'
-source=(https://github.com/OpenPrinting/libcupsfilters/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
+source=(https://github.com/OpenPrinting/libcupsfilters/releases/download/$pkgver/$pkgname-$pkgver.tar.xz
+        https://www.linuxfromscratch.org/patches/blfs/svn/libcupsfilters-2.1.1-security_fixes-1.patch)
 
 build() {
     cd $pkgname-$pkgver
+
+    # Fix 2 security vulnerabilities
+    patch -Np1 -i ../libcupsfilters-2.1.1-security_fixes-1.patch
 
     ./configure \
         --prefix=/usr \
