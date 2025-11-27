@@ -13,5 +13,5 @@ build() {
     patch -Np1 -i ../sysvinit-$pkgver-consolidated-1.patch
 
     make
-    make DESTDIR="$pkgdir" install
+    make DESTDIR="$pkgdir" base_bindir=/usr/bin base_sbindir=/usr/sbin install
 }

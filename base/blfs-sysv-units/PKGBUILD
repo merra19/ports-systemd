@@ -28,4 +28,7 @@ build() {
     install -Dm755 "$srcdir"/blfs "$pkgdir"/usr/bin/blfs
 
     install -Dm 754 "$srcdir"/modules "$pkgdir"/etc/rc.d/init.d/modules
+
+    mv "$pkgdir"/sbin "$pkgdir"/usr
+    mv "$pkgdir"/lib "$pkgdir"/usr
 }

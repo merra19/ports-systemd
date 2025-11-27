@@ -22,6 +22,7 @@ build() {
 		-D doxygen=false \
 		-D bluez5=disabled \
         -D tests="$(scratch isinstalled check && echo "true" || echo "false")" \
+        -D udevrulesdir=/usr/lib/udev/rules.d \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build
