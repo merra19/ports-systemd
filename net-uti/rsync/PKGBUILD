@@ -4,15 +4,19 @@
 
 pkgname=rsync
 pkgver=3.4.1
-pkgrel=1
+pkgrel=2
 url='https://rsync.samba.org'
 options=(!lto)
 source=(https://www.samba.org/ftp/rsync/src/$pkgname-$pkgver.tar.gz
+		https://www.linuxfromscratch.org/patches/blfs/svn/rsync-3.4.1-security_fix-1.patch
 		rsyncd.conf)
 backup=(etc/rsyncd.conf)
 
 build() {
     cd $pkgname-$pkgver
+
+	# fix a security vulnerability
+	patch -Np1 -i ../rsync-3.4.1-security_fix-1.patch
 
 	./configure \
 		--prefix=/usr \

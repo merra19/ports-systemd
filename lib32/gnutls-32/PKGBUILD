@@ -4,7 +4,7 @@
 
 pkgname=gnutls-32
 _pkgname=gnutls
-pkgver=3.8.10
+pkgver=3.8.11
 pkgrel=1
 options=(!lto)
 url='https://www.gnutls.org'

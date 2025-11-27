@@ -2,7 +2,7 @@
 # depends	: glibc polkit python meson udev
 
 pkgname=pcsclite
-pkgver=2.3.3
+pkgver=2.4.0
 pkgrel=1
 url='https://pcsclite.apdu.fr'
 source=($pkgname-$pkgver.tar.gz::https://github.com/LudovicRousseau/PCSC/archive/refs/tags/$pkgver.tar.gz
