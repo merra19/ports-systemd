@@ -9,7 +9,7 @@
 # depends	: power-profiles-daemon py3-psutil py3-pygdbmi glu ibus
 # depends	: py3-sentry_sdk py3-urllib3 kio-extras accountsservice
 # depends	: smartmontools xwayland appstream xf86-input-wacom opencv
-# depends   : xf86-input-libinput
+# depends	: xf86-input-libinput
 
 pkgname=kde-pre-plasma
 pkgver=6.4.4

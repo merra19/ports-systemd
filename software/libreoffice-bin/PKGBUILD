@@ -1,5 +1,5 @@
 # description	: A full office productivity suite. Binary package
-# depends       : avahi cups desktop-file-utils nss
+# depends	: avahi cups desktop-file-utils nss
 
 pkgname=libreoffice-bin
 pkgver=25.8.2
