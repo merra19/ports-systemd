@@ -5,7 +5,7 @@
 # depends	: gnome-keyring
 
 pkgname=vscodium-bin
-pkgver=1.106.27818
+pkgver=1.106.37943
 pkgrel=1
 options=(!strip)
 url='https://vscodium.com'

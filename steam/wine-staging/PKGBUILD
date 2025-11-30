@@ -8,7 +8,7 @@
 # todo      : libgphoto2
 
 pkgname=wine-staging
-pkgver=10.19
+pkgver=10.20
 pkgrel=1
 options=(!lto !strip)
 url='https://wiki.winehq.org/Wine-Staging'
