@@ -1,0 +1,21 @@
+# description	: Official Vulkan Tools and Utilities for Windows, Linux, Android, and MacOS
+# depends	: glslang wayland libxcb vulkan-headers xorg-libs
+
+pkgname=vulkan-tools
+pkgver=1.4.328.1
+pkgrel=1
+url='https://github.com/KhronosGroup/Vulkan-Tools'
+source=(https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/vulkan-sdk-$pkgver.tar.gz)
+
+build() {
+    cd Vulkan-Tools-vulkan-sdk-$pkgver
+
+	cmake -B build -G Ninja \
+		-D CMAKE_BUILD_TYPE=Release \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D BUILD_ICD=OFF \
+		-D CMAKE_INSTALL_SYSCONFDIR=/etc \
+		-D CMAKE_SKIP_INSTALL_RPATH=ON
+	cmake --build build
+	DESTDIR="$pkgdir" cmake --install build
+}
