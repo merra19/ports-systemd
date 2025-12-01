@@ -2,7 +2,7 @@
 # depends	: rustc
 
 pkgname=cbindgen
-pkgver=0.29.0
+pkgver=0.29.2
 pkgrel=1
 url='https://github.com/mozilla/cbindgen'
 source=(https://github.com/mozilla/cbindgen/archive/v$pkgver/$pkgname-$pkgver.tar.gz)

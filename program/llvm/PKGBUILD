@@ -3,8 +3,8 @@
 # depends	: libxml2 binutils libunwind py3-sphinx
 
 pkgname=llvm
-pkgver=20.1.8
-_version=20.1.8
+pkgver=21.1.2
+_version=21.1.2
 pkgrel=1
 options=(!lto)
 url='https://llvm.org'

@@ -16,6 +16,7 @@ link-shared = true
 download-ci-llvm = false
 
 [build]
+description = "for BLFS r12.4"
 target = [
   "x86_64-unknown-linux-gnu",
   "i686-unknown-linux-gnu",
@@ -43,10 +44,7 @@ prefix = "/usr"
 docdir = "share/doc/rustc-XXXX"
 
 [rust]
-# so disabled codegen tests.  The assembly tests rely on FileCheck
-
 channel = "stable"
-description = "for BLFS r12.2"
 
 # BLFS used to not install the FileCheck executable from llvm,
 # so disabled codegen tests.  The assembly tests rely on FileCheck

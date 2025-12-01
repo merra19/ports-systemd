@@ -2,13 +2,13 @@
 # depends	: cmake
 
 pkgname=vulkan-headers
-pkgver=1.4.321
+pkgver=1.4.328.1
 pkgrel=1
 url='https://github.com/KhronosGroup/Vulkan-Headers'
-source=(https://github.com/KhronosGroup/Vulkan-Headers/archive/v$pkgver/Vulkan-Headers-$pkgver.tar.gz)
+source=(https://github.com/KhronosGroup/Vulkan-Headers/archive/vulkan-sdk-$pkgver/Vulkan-Headers-vulkan-sdk-$pkgver.tar.gz)
 
 build() {
-    cd Vulkan-Headers-$pkgver
+    cd Vulkan-Headers-vulkan-sdk-$pkgver
 
     cmake -B build \
         -D CMAKE_INSTALL_PREFIX=/usr \
