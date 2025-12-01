@@ -1,0 +1,35 @@
+# description	: Linux GPU Control Application
+# depends	: libdrm glib gobject-introspection gtk4 fontconfig hwdata
+# depends	: freetype graphene cairo pango vulkan-tools opencl-loader
+# depends	: rustc
+
+pkgname=lact
+pkgver=0.8.3
+pkgrel=1
+url='https://github.com/ilya-zlobintsev/LACT'
+source=($pkgname-$pkgver.tar.gz::https://github.com/ilya-zlobintsev/LACT/archive/refs/tags/v$pkgver.tar.gz
+		lact.init)
+
+build() {
+    cd LACT-$pkgver
+
+	export RUSTUP_TOOLCHAIN=stable
+	export CARGO_TARGET_DIR=target
+
+	cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+	cargo build --frozen --release
+
+	make PREFIX=/usr DESTDIR="$pkgdir/" install
+
+	rm -rf "$pkgdir"/usr/lib/systemd
+
+	install -Dm 0754 "$srcdir"/lact.init "$pkgdir"/etc/rc.d/init.d/lact
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/lact "$pkgdir"/etc/rc.d/rc$i.d/K30lact ;;
+            *) ln -sf ../init.d/lact "$pkgdir"/etc/rc.d/rc$i.d/S70lact ;;
+        esac
+    done
+}
