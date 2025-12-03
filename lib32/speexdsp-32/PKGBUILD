@@ -7,7 +7,6 @@ pkgver=1.2.1
 pkgrel=1
 url='https://www.speex.org'
 source=(https://downloads.xiph.org/releases/speex/$_pkgname-$pkgver.tar.gz)
-optsflags=" -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition "
 
 build() {
 	cd $_pkgname-$pkgver

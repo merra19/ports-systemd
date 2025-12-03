@@ -9,7 +9,6 @@ pkgrel=1
 options=(!lto)
 url='https://alsa-project.org/wiki/Main_Page'
 source=(https://www.alsa-project.org/files/pub/plugins/$_pkgname-$pkgver.tar.bz2)
-optsflags=" -O3 -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition "
 
 build() {
 	cd $_pkgname-$pkgver
