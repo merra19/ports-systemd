@@ -3,8 +3,8 @@
 # depends	: py3-cython py3-setuptools-scm
 
 pkgname=borgbackup
-pkgver=1.4.2
-pkgrel=2
+pkgver=1.4.3
+pkgrel=1
 url='https://borgbackup.readthedocs.io'
 source=(https://github.com/borgbackup/borg/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
 
