@@ -2,7 +2,7 @@
 # depends	: python py3-wheel py3-setuptools
 
 pkgname=py3-greenlet
-pkgver=3.2.4
+pkgver=3.3.0
 pkgrel=1
 url='https://greenlet.readthedocs.io/en/latest'
 source=(https://pypi.io/packages/source/g/greenlet/greenlet-$pkgver.tar.gz)
