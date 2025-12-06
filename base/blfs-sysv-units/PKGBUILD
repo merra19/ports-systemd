@@ -7,7 +7,7 @@ pkgrel=2
 url='https://www.linuxfromscratch.org'
 source=(https://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/blfs-bootscripts-$pkgverblfs.tar.xz
 		https://www.linuxfromscratch.org/lfs/downloads/12.4/lfs-bootscripts-$pkgver.tar.xz
-        c89 c99 Makefile blfs modules)
+        c89 c99 Makefile blfs modules servicenew)
         
 build() {
     cd blfs-bootscripts-$pkgverblfs
@@ -31,4 +31,6 @@ build() {
 
     mv "$pkgdir"/sbin "$pkgdir"/usr
     mv "$pkgdir"/lib "$pkgdir"/usr
+
+    install -Dm 0755  "$srcdir"/servicenew "$pkgdir"/usr/bin/blfs_service
 }

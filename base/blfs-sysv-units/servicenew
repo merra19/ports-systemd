@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 declare -A arrays
 
@@ -67,19 +67,9 @@ arrays[seatd]="0K30 1K30 2S70 3S70 4S70 5S70 6K30"
 arrays[docker]="0K30 1K30 2S70 3S70 4S70 5S70 6K30"
 arrays[lighttpd]="0K30 1K30 2S70 3S70 4S70 5S70 6K30"
 arrays[pcsclite]="0K30 1K30 2S70 3S70 4S70 5S70 6K30"
+arrays[xboxdrv]="0K30 1K30 2S70 3S70 4S70 5S70 6K30"
 
 #arrays[]="0K00 1K00 2S01 3S01 4S01 5S01 6K00"
-
-
-# Loop through the array two elements at a time
-for ((i=0; i<${#array[@]}; i+=2)); do
-    key=${array[i]}
-    value=${array[i+1]}
-    echo "Key: $key, Value: $value"
-done
-
-exit
-
 
 usage() {
     cat<< EOF
@@ -93,7 +83,13 @@ Options:
     restart <service>  or -R <service>
     enable <service>   or -E <service>
     disable <service>  or -D <service>
+    help  to show help
+    init to show service lists
+EOF
+}
 
+usageinit() {
+    cat<< EOF
 Services:
 
 apache (httpd)  smartmontools (smartd)
@@ -106,7 +102,7 @@ power-profiles-daemon random rpcbind samba saslauthd slapd smartd
 sshd winbindd xdm
 
 init not in LFS/BLS:
-docker seatd lighttpd pcsclite
+docker seatd lighttpd pcsclite xboxdrv
 
 service:
 bridge dhclient  dhcpcd  wpa
@@ -115,7 +111,7 @@ EOF
 }
 
 msgwarn() {
-    printf  "%s" "$1"
+    printf  "%s\n" "$1"
 }
 
 
@@ -126,14 +122,19 @@ checkservice() {
     fi
 }
 
-[ "$(id -u)" = 0 ] || {
-    msgwarn " ${RED} this operation need root access! ${NC}"
-	exit 1
-}
-
 list="status start stop restart enable disable help"
 service="$2"
 command="$1"
+
+if [ "$command" = "help" ]; then
+    usage
+    exit 0
+fi
+
+if [ "$command" = "init" ]; then
+    usageinit
+    exit 0
+fi
 
 case $command in
     -X) command="start" ;;
@@ -150,10 +151,11 @@ if echo "$list" | (! grep -qw "$command"); then
     exit 1
 fi
 
-if [ "$command" = "help" ]; then
-    usage
-    exit 0
-fi
+[ "$(id -u)" = 0 ] || {
+    msgwarn " ${RED} this operation need root access! ${NC}"
+	exit 1
+}
+
 
 case $command in
     status) checkservice ; /etc/init.d/"$service" status ; exit 0 ;;
@@ -204,16 +206,11 @@ servicename=$service
 
 for element in ${arrays[$service]}; do
 	rc="${element:0:1}"
-	num="${str:1}"
+	num="${element:1}"
 
 	if [ "$command" = "enable" ];then
-		ln -sf  ../init.d/$service /etc/rc.d/rc$rc.d/$num$service
+		ln -svf  ../init.d/$service /etc/rc.d/rc$rc.d/$num$service
 	else
-		rm -f /etc/rc.d/rc$rc.d/$num$servicename
+		rm -fv /etc/rc.d/rc$rc.d/$num$servicename
 	fi 
 done
-
-
-
-
-
