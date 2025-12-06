@@ -3,7 +3,7 @@
 # depends	: py3-cython
 
 pkgname=py3-lxml
-pkgver=6.0.0
+pkgver=6.0.2
 pkgrel=1
 options=(!lto)
 url='https://lxml.de'
