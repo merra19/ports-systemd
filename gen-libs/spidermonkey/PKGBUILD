@@ -2,19 +2,23 @@
 # depends	: readline zlib icu which cbindgen
 
 pkgname=spidermonkey
-pkgver=140.3.0
+pkgver=140.5.0
 pkgrel=1
 options=(!lto)
 url='https://spidermonkey.dev'
-source=(https://archive.mozilla.org/pub/firefox/releases/${pkgver}esr/source/firefox-${pkgver}esr.source.tar.xz)
+source=(https://archive.mozilla.org/pub/firefox/releases/${pkgver}esr/source/firefox-${pkgver}esr.source.tar.xz
+        https://www.linuxfromscratch.org/patches/blfs/svn/spidermonkey-140.5.0-python_3.14_fixes-1.patch)
 
 build() {
     cd firefox-$pkgver
 
-    export CFLAGS="-Os -falign-functions=4 -fno-semantic-interposition -fno-signed-zeros -march=$MMARCH -fno-delete-null-pointer-checks -fno-strict-aliasing "
-    export CXXFLAGS="-Os -falign-functions=4 -fno-semantic-interposition -fno-signed-zeros -march=$MMARCH  -fno-delete-null-pointer-checks -fno-strict-aliasing "
+    export CFLAGS="-Os -falign-functions=4 -fno-semantic-interposition -fno-signed-zeros -march=$MMARCH -fno-delete-null-pointer-checks -fno-strict-aliasing -fno-tree-vrp "
+    export CXXFLAGS="-Os -falign-functions=4 -fno-semantic-interposition -fno-signed-zeros -march=$MMARCH  -fno-delete-null-pointer-checks -fno-strict-aliasing -fno-tree-vrp "
 
     mountpoint -q /dev/shm || mount -t tmpfs devshm /dev/shm
+
+    # Apply a patch to fix compatibility with Python 3.14
+    patch -Np1 -i ../spidermonkey-140.5.0-python_3.14_fixes-1.patch
 
     mkdir obj
     cd    obj
@@ -23,6 +27,7 @@ build() {
 
     ../js/src/configure \
             --prefix=/usr \
+            --disable-strip \
             --disable-debug-symbols \
             --disable-jemalloc \
             --enable-readline \

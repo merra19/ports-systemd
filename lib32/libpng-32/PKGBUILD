@@ -3,17 +3,18 @@
 
 pkgname=libpng-32
 _pkgname=libpng
-pkgver=1.6.50
+pkgver=1.6.52
+verpatch=1.6.51
 pkgrel=1
 url='https://www.libpng.org'
 source=(https://downloads.sourceforge.net/libpng/${_pkgname}-$pkgver.tar.xz
-        https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-$pkgver-apng.patch.gz)
-noextract=(${_pkgname}-$pkgver-apng.patch.gz)
+        https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-$verpatch-apng.patch.gz)
+noextract=(${_pkgname}-$verpatch-apng.patch.gz)
 
 build() {
     cd ${_pkgname}-$pkgver
     
-    gzip -cd ../libpng-$pkgver-apng.patch.gz | patch -p1
+    gzip -cd ../libpng-$verpatch-apng.patch.gz | patch -p1
 
 	export CC="gcc -m32 -mstackrealign"
 	export CXX="g++ -m32 -mstackrealign"
