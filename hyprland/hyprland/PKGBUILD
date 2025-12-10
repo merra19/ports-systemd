@@ -12,7 +12,8 @@ pkgname=hyprland
 pkgver=0.51.1
 pkgrel=1
 url='https://github.com/hyprwm/Hyprland'
-source=($pkgname-$pkgver.tar.gz::https://github.com/hyprwm/Hyprland/releases/download/v$pkgver/source-v$pkgver.tar.gz)
+source=($pkgname-$pkgver.tar.gz::https://github.com/hyprwm/Hyprland/releases/download/v$pkgver/source-v$pkgver.tar.gz
+        hyprland.conf)
 
 build() {
 	cd $pkgname-source
@@ -28,4 +29,6 @@ build() {
     rm -frv "$pkgdir/usr/share/xdg-desktop-portal"
 
 	rm -fr "$pkgdir"/usr/lib/systemd
+
+    install -Dm 0644 "$srcdir"/hyprland.conf "$pkgdir"/usr/share/$pkgname-$pkgver/hyprland.conf
 }
