@@ -17,7 +17,7 @@ build() {
     cmake -B build -G "Unix Makefiles" \
         -D CMAKE_BUILD_TYPE=Release \
         -D CMAKE_INSTALL_PREFIX=/usr \
-        -D build_doc=ON \
+        -D build_doc=OFF \
         -D DOC_INSTALL_DIR=share/doc/$pkgname-$pkgver \
         -Wno-dev
     make -C build
