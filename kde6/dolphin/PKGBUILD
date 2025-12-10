@@ -3,7 +3,7 @@
 # optional	: semantic-desktop!!baloo-widgets 
 
 pkgname=dolphin
-pkgver=25.08.0
+pkgver=25.08.3
 pkgrel=1
 url='https://apps.kde.org/dolphin'
 source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz)
@@ -19,4 +19,6 @@ build() {
         -Wno-dev
     make -C build
     make DESTDIR="$pkgdir" install -C build
+
+    rm -rf "$pkgdir"/usr/lib/systemd
 }

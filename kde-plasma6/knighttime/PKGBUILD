@@ -1,7 +1,7 @@
 # description	: KDE Plasma
-# depends	: plasma-systemmonitor
+# depends	: aurorae
 
-pkgname=qqc2-breeze-style
+pkgname=knighttime
 pkgver=6.5.2
 pkgrel=1
 url='https://kde.org/plasma-desktop'
@@ -20,4 +20,5 @@ build() {
     make -C build
     make DESTDIR="$pkgdir" install -C build
 
+    rm -rf "$pkgdir"/usr/lib/systemd
 }

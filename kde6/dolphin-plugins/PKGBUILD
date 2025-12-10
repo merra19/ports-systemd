@@ -2,7 +2,7 @@
 # depends	: dolphin gcc glibc cmake
 
 pkgname=dolphin-plugins
-pkgver=25.08.0
+pkgver=25.08.3
 pkgrel=1
 url='https://apps.kde.org'
 source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgname-$pkgver.tar.xz)

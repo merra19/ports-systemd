@@ -2,7 +2,7 @@
 # depends	: kinfocenter
 
 pkgname=kglobalacceld
-pkgver=6.4.4
+pkgver=6.5.2
 pkgrel=1
 url='https://kde.org/plasma-desktop'
 source=(https://download.kde.org/stable/plasma/$pkgver/$pkgname-$pkgver.tar.xz)
@@ -20,4 +20,5 @@ build() {
     make -C build
     make DESTDIR="$pkgdir" install -C build
 
+    rm -rf "$pkgdir"/usr/lib/systemd
 }
