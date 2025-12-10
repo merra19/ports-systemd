@@ -10,7 +10,8 @@ pkgname=waybar
 pkgver=0.14.0
 pkgrel=1
 url='https://github.com/Alexays/Waybar'
-source=($pkgname-$pkgver.tar.gz::https://github.com/Alexays/Waybar/archive/$pkgver.tar.gz)
+source=($pkgname-$pkgver.tar.gz::https://github.com/Alexays/Waybar/archive/$pkgver.tar.gz
+        waybar)
 
 build() {
 	cd Waybar-$pkgver
@@ -33,4 +34,6 @@ build() {
           build
     meson compile -C build
     meson install -C build --destdir "$pkgdir"
+
+    install -Dm 0644 "$srcdir"/waybar "$pkgdir"/usr/share/$pkgname-$pkgver/waybar
 }
