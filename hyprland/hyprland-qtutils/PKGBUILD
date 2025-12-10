@@ -5,10 +5,13 @@ pkgname=hyprland-qtutils
 pkgver=0.1.4
 pkgrel=1
 url='https://github.com/hyprwm/hyprland-qtutils'
-source=($pkgname-$pkgver.tar.gz::https://github.com/hyprwm/$pkgname/archive/refs/tags/v$pkgver.tar.gz)
+source=($pkgname-$pkgver.tar.gz::https://github.com/hyprwm/$pkgname/archive/refs/tags/v$pkgver.tar.gz
+		private.patch)
 
 build() {
 	cd $pkgname-$pkgver
+
+	patch -Np1 -i ../private.patch
 
 	cmake -B build \
 		-D CMAKE_INSTALL_PREFIX=/usr \
