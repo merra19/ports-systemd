@@ -7,36 +7,55 @@
 # depends	: wayland-protocols 
 
 pkgname=gamescope
-pkgver=3.16.14
+pkgver=3.16.18
 pkgrel=1
+RESHADE_COMMIT="696b14cd6006ae9ca174e6164450619ace043283"
+reshadeshort=${reshade_commit:0:7}
+VKROOTS_COMMIT="5106d8a0df95de66cc58dc1ea37e69c99afc9540"
+WLROOTS_COMMIT="54e844748029d4874e14d0c086d50092c04c8899"
+LIBLIFTOFF_COMMIT="0.5.0"
 url='https://github.com/ValveSoftware/gamescope'
-source=(
-  git+https://github.com/ValveSoftware/gamescope.git#commit=${pkgver}
-  git+https://gitlab.freedesktop.org/emersion/libdisplay-info.git
-  git+https://gitlab.freedesktop.org/emersion/libliftoff.git
-  git+https://github.com/ValveSoftware/openvr.git
-  git+https://github.com/Joshua-Ashton/reshade.git
-  git+https://github.com/KhronosGroup/SPIRV-Headers.git
-  git+https://github.com/Joshua-Ashton/vkroots.git
-  git+https://github.com/Joshua-Ashton/wlroots.git
+source=(https://github.com/ValveSoftware/gamescope/archive/${pkgver}/${pkgname}-${pkgver}.tar.gz
+        reshade-${RESHADE_COMMIT}.tar.gz::https://github.com/Joshua-Ashton/reshade/archive/${RESHADE_COMMIT}.tar.gz
+        vkroots-${VKROOTS_COMMIT}.tar.gz::https://github.com/Joshua-Ashton/vkroots/archive/${VKROOTS_COMMIT}.tar.gz
+        wlroots-${WLROOTS_COMMIT}.tar.gz::https://github.com/Joshua-Ashton/wlroots/archive/${WLROOTS_COMMIT}.tar.gz
+        https://gitlab.freedesktop.org/emersion/libliftoff/-/releases/v${LIBLIFTOFF_COMMIT}/downloads/libliftoff-${LIBLIFTOFF_COMMIT}.tar.gz
+        gamescope-libdisplay-info-0.3.0.patch gamescope-subprojects.patch gamescope-deprecated-stb.patch
 )
 
 build() {
-    cd gamescope
+    cd $pkgname-$pkgver
 
-    meson subprojects download
+    #patch -Np1 -i ../gamescope-libdisplay-info-0.3.0.patch
+    patch -Np1 -i ../gamescope-subprojects.patch
+    patch -Np1 -i ../gamescope-deprecated-stb.patch
 
-    for submodule in src/reshade subprojects/{libdisplay-info,libliftoff,openvr,vkroots,wlroots} thirdparty/SPIRV-Headers; do
-      git submodule init ${submodule}
-      git config submodule.${submodule}.url ../${submodule##*/}
-    done
-    git -c protocol.file.allow=always submodule update
+    rm -rfv subprojects/vkroots subprojects/wlroots src/reshade subprojects/libliftoff
+    ln -snfT "$srcdir/vkroots-${VKROOTS_COMMIT}" subprojects/vkroots
+    ln -snfT "$srcdir/wlroots-${WLROOTS_COMMIT}" subprojects/wlroots
+    ln -snfT "$srcdir/libliftoff-${LIBLIFTOFF_COMMIT}" subprojects/libliftoff
+    ln -snfT "$srcdir/reshade-${RESHADE_COMMIT}" src/reshade
+
+    mkdir -p thirdparty/SPIRV-Headers/include
+    ln -snf /usr/include/spirv thirdparty/SPIRV-Headers/include/
 
     meson setup \
-      -D force_fallback_for=glm,stb,libdisplay-info,libliftoff,vkroots,wlroots \
-      -D pipewire=enabled \
-      -D benchmark=disabled \
+        -D drm_backend=enabled \
+        -D sdl2_backend=enabled \
+        -D avif_screenshots=enabled \
+        -D input_emulation=enabled \
+        -D enable_gamescope_wsi_layer=true \
+        -D pipewire=enabled \
+        -D benchmark=disabled \
+        -D enable_openvr_support=false \
+		-D wlroots:xcb-errors=disabled \
+		-D wlroots:examples=false \
+		-D wlroots:renderers=gles2,vulkan \
+		-D wlroots:xwayland=enabled \
+		-D wlroots:backends=libinput \
+		-D wlroots:session=enabled \
       build
     meson compile -C build
     DESTDIR="$pkgdir" meson install -C build --skip-subprojects
 }
+	
