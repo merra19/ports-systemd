@@ -1,16 +1,27 @@
 # description	: OpenGL Mathematics
-# depends	: glibc
+# depends	: glibc cmake meson
 
 pkgname=glm
 pkgver=1.0.1
-pkgrel=1
+pkgrel=2
+options=(!lto)
 url='http://glm.g-truc.net'
 source=(https://github.com/g-truc/glm/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {
     cd $pkgname-$pkgver
 
-    mkdir -p "$pkgdir"/usr/include/  "$pkgdir"/usr/share/doc/$pkgname-$pkgver
-    cp -r glm "$pkgdir"/usr/include/ 
+    export CFLAGS="${CFLAGS/-Wall/}"
+    export CXXFLAGS="${CXXFLAGS/-Wall/}"
+
+    cmake -B build -G Ninja \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_INSTALL_DATAROOTDIR=/usr/lib/cmake \
+        -W no-dev
+    cmake --build build --verbose
+    DESTDIR="$pkgdir" cmake --install build
+
+    mkdir -p "$pkgdir"/usr/share/doc/$pkgname-$pkgver
     cp -r doc "$pkgdir"/usr/share/doc/$pkgname-$pkgver
 }
