@@ -2,10 +2,10 @@
 # depends	: glibc
 
 pkgname=stb
-# May 26, 2025 f58f558
-pkgver=20250526
-pkgrel=1
-CHECKSUM=f58f558c120e9b32c217290b80bad1a0729fbb2c
+# Feb 1, 2024 f4a71b1
+pkgver=20240201
+pkgrel=2
+CHECKSUM=f4a71b13373436a2866c5d68f8f80ac6f0bc1ffe
 url='https://github.com/nothings/stb'
 source=(https://github.com/nothings/stb/archive/${CHECKSUM}.tar.gz
         stb.pc)
@@ -14,6 +14,8 @@ build() {
     cd $pkgname-$CHECKSUM
 
     install -Dm 644 *.{c,h} -t "$pkgdir"/usr/include/stb/
+    install -Dm 644 deprecated/*.{c,h}  -t "$pkgdir"/usr/include/stb/deprecated/
+
     install -Dm 644 "$srcdir"/stb.pc  -t "$pkgdir"/usr/lib/pkgconfig
     sed -i "s|@PKGVER@|$pkgver|" "$pkgdir"/usr/lib/pkgconfig/stb.pc
 }
