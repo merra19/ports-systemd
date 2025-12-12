@@ -15,8 +15,9 @@ build() {
         --prefix=/usr \
         --buildtype=plain \
         -D xnvctrl=disabled \
-        -D hddtemp=enabled \
+        -D hddtemp=disabled \
         -D netcat=enabled \
+        -D netcat-path=/usr/bin/ncat \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build
