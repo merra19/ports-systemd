@@ -26,6 +26,8 @@ case $1 in
     clean |-C) rm -f /sources/FAKEROOT/pkg/* ; exit ;;
 esac
 
+CPULIST=0
+
 . /etc/scratchpkg.conf
 
 TASKETCMD="taskset -c $CPULIST "

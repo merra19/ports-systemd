@@ -1,11 +1,15 @@
 #!/bin/sh
+#
+# pkgdel - Package removal utility
+# POSIX-compliant shell script for removing installed packages
+#
 
 trap "interrupted" 1 2 3 15
 
 export LC_ALL=C
 
 interrupted() {
-	echo
+	printf '\n'
 	ret 1
 }
 
@@ -18,9 +22,9 @@ msgerr() {
 }
 
 help() {	
-	cat << EOF	
+	cat << 'EOF'
 Usage:
-  $(basename $0) [ <options> <package name> ]
+  pkgdel [ <options> <package name> ]
 
 Options:
   -h, --help            show this help message
@@ -31,32 +35,38 @@ EOF
 }
 
 extract_opts() {
-	while [ "$1" ]; do
-		case $1 in
-			--*) opts="$opts $1";;
-			-*) char=${#1}; count=1
-			    while [ "$count" != "$char" ]; do
-					count=$((count+1))
-					opts="$opts -$(echo $1 | cut -c $count)"
-				done;;
-			*) opts="$opts $1"
+	while [ $# -gt 0 ]; do
+		arg=$1
+
+		case "$arg" in
+			--*) opts="$opts $arg";;
+			-?*) rest=${arg#-}
+				while [ -n "$rest" ]; do
+					chr="${rest%"${rest#?}"}"
+					opts="$opts -$chr"
+					rest=${rest#?}
+				done
+				;;
+			*) opts="$opts $arg";;
 		esac
+
 		shift
 	done
-	echo $opts
+
+	printf '%s\n' "${opts# }"
 }
 
 parse_opts() {
 	if [ -z "$1" ]; then
 		SHOWHELP=yes
 	else
-		while [ "$1" ]; do
+		while [ -n "$1" ]; do
 			case $1 in
-			-h |              --help) SHOWHELP=yes ;;
-			-v |           --verbose) VERBOSE_REMOVE="-v" ;;
-			                --root=*) ROOT_DIR="${1#*=}" ;;
-			                      -*) msg "Invalid option: ($1)"; exit 1 ;;
-			                       *) RMNAME=$1 ;;
+				-h | --help) SHOWHELP="yes" ;;
+				-v | --verbose) VERBOSE_REMOVE="yes" ;;
+				--root=*) ROOT_DIR="${1#*=}" ;;
+				-*) msg "Invalid option: ($1)"; exit 1 ;;
+				*) RMNAME=$1 ;;
 			esac
 			shift
 		done
@@ -66,7 +76,7 @@ parse_opts() {
 ret() {
 	# remove lock file on exit
 	rm -f "$ROOT_DIR/$LOCK_FILE"
-	exit $1
+	exit "$1"
 }
 
 isinstalled() {
@@ -86,18 +96,19 @@ parse_opts $(extract_opts "$@")
 
 PKGDB_DIR="$(pkgadd --print-dbdir)"
 PKGDB_DIR="${PKGDB_DIR##/}"              # remove leading /
-PKGDBPERMS_DIR="$PKGDB_DIR.perms"
+
 LOCK_FILE="var/lib/scratchpkg/spkg.lock"
 
 # show help page
-[ "$SHOWHELP" ] || [ -z "$RMNAME" ] && {
+[ -n "$SHOWHELP" ] || [ -z "$RMNAME" ] && {
 	help
 	exit 0
 }
 
 # check for root access
 [ "$(id -u)" = "0" ] || {
-	echo "Removing package need root access!"
+	printf "Removing package need root access!\n"
+	help
 	exit 1
 }
 
@@ -119,30 +130,46 @@ if ! isinstalled "$RMNAME"; then
 fi
 
 name=$RMNAME
-version=$(awk 'NR==1 {print $1}' $ROOT_DIR/$PKGDB_DIR/$name)
-release=$(awk 'NR==1 {print $2}' $ROOT_DIR/$PKGDB_DIR/$name)
+version=$(awk 'NR==1 {print $1}' "$ROOT_DIR/$PKGDB_DIR/$name")
+release=$(awk 'NR==1 {print $2}' "$ROOT_DIR/$PKGDB_DIR/$name")
 
 if [ -z "$version" ] && [ -z "$release" ]; then
 	msgerr "Package '$RMNAME' is not installed but exists in database."
 	ret 1
 fi
 
-tail -n+2 "$ROOT_DIR/$PKGDB_DIR"/$name | tac | while read -r line; do
-	case $line in
-		*/) grep "^$line$" "$ROOT_DIR/$PKGDB_DIR"/* 2>/dev/null | grep -qv "$ROOT_DIR/$PKGDB_DIR"/$name: || rmdir $([ "$VERBOSE_REMOVE" ] && echo -v) "$ROOT_DIR/$line";;
-		usr/lib/systemd/system/system-systemd*x2dcryptsetup.slice)  rm $VERBOSE_REMOVE "$ROOT_DIR/usr/lib/systemd/system/system-systemd\x2dcryptsetup.slice" ;;
-		usr/lib/systemd/system/system-systemd*x2dveritysetup.slice) rm $VERBOSE_REMOVE "$ROOT_DIR/usr/lib/systemd/system/system-systemd\x2dveritysetup.slice" ;;
-		 *) rm $([ "$VERBOSE_REMOVE" ] && echo -v) "$ROOT_DIR/$line";;
-	esac
+# Create a temporary file to store the merged package database,
+# excluding the one corresponding to the package we are deleting.
+# Checks without repeatedly reconstructing the entire DB in memory.
+tmpdb="/tmp/pkgdel.$$" 
+find "$ROOT_DIR/$PKGDB_DIR" -type f ! -name "$name" -exec cat {} + 2>/dev/null >"$tmpdb" || {
+    msgerr "Failed to build temporary DB file."
+    rm -f "$tmpdb"
+    ret 1
+}
+
+# Iterate over the package's file list in reverse order.
+# Reverse order is required because directories must be removed 
+# after their contents have been deleted.
+awk '
+    NR>1 { lines[n++] = $0 }           # Skip first line, store lines in array  
+    END { while (n--) print lines[n] } # Print lines in reverse order
+    ' "$ROOT_DIR/$PKGDB_DIR/$name" | while IFS= read -r line; do
+    case $line in
+        */) # Directory: remove only if it does not appear in any other package
+            grep -F -x -q -e "$line" "$tmpdb" || rmdir ${VERBOSE_REMOVE:+-v} "$ROOT_DIR/$line";;
+        *)  # File: always remove
+            rm ${VERBOSE_REMOVE:+-v} "$ROOT_DIR/$line";;
+    esac
 done
+
+# remove the temporary database file.
+rm -f "$tmpdb"
 
 # remove from database
 rm -f "$ROOT_DIR/$PKGDB_DIR/$name"
-rm -f "$ROOT_DIR/$PKGDBPERMS_DIR/$name"
 
 # running ldconfig
-if [ -x "$ROOT_DIR"/sbin/ldconfig ]; then
-	"$ROOT_DIR"/sbin/ldconfig -r "$ROOT_DIR"/
-fi
+[ -x "$ROOT_DIR/sbin/ldconfig" ] && "$ROOT_DIR/sbin/ldconfig" -r "$ROOT_DIR/"
 
 ret 0

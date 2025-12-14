@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# pkgbuild - Package build utility
+#
 
 is_array() {
 	local v=$1
@@ -11,14 +14,6 @@ is_array() {
 	return $ret
 }
 
-check_cpuflags()
-{
-    if (echo $CPU_FLAGS | grep -qw "cpu_flags_$1"); then
-        return 0
-    fi
-    return 1
-}
-
 msg() {
 	printf "==> %s\n" "$1"
 }
@@ -27,33 +22,19 @@ msgerr() {
 	printf "ERROR: %s\n" "$1" >&2
 }
 
-get_filepath_git() {
-    local netfile filename
-
-	netfile="$1"
-	filename=${netfile%%#*}
-	filename=${filename%%\?*}
-	filename=${filename%/}
-	filename=${filename##*/}
-	filename=${filename%%.git*}
-
-	echo $filename
-}
-
 get_filepath() {
 	for i in ${source[@]}; do
 		case $i in
-			git+*) echo "SKIP" ;;
-			*::*) echo $SOURCE_DIR/${i%::*};;
-			*://*) echo $SOURCE_DIR/${i##*/};;
-			*) echo $PWD/$i;;
+			 *::*) printf '%s\n' "$SOURCE_DIR/${i%::*}";;
+			*://*) printf '%s\n' "$SOURCE_DIR/${i##*/}";;
+			    *) printf '%s\n' "$PWD/$i";;
 		esac
 	done
 }
 
 pkg_genchecksums() {
+	err=0
 	for i in $(get_filepath); do
-		if [ "$i" = "SKIP" ] ;then continue ; fi
 		[ -f "$i" ] || {
 			msgerr "File missing: $i"
 			err=1
@@ -66,16 +47,16 @@ pkg_genchecksums() {
 
 generatechecksum() {
 	for s in $(get_filepath); do
-		[ -f $s ] || continue
-		sha512sum $s | sed -e 's|  .*/|  |'
+		[ -f "$s" ] || continue
+		sha512sum "$s" | sed -e 's|  .*/|  |'
 	done | sort -k 2
 
 }
 
 pkg_checksum() {
-	TMPCHECKSUM=$WORK_DIR/checksumstmp.$$
-	DIFCHECKSUM=$WORK_DIR/checksumsdiff.$$
-	
+	TMPCHECKSUM="$WORK_DIR/checksumstmp.$"
+	DIFCHECKSUM="$WORK_DIR/checksumsdiff.$"
+
 	if [ ! -f .checksums ]; then
 		pkg_genchecksums
 	else
@@ -100,222 +81,98 @@ pkg_checksum() {
 	fi
 }
 
-# git+https://git.savannah.gnu.org/git/patch.git#tag=v2.8?signed
-# git+https://git.savannah.gnu.org/git/gnulib.git
-# git+https://github.com/vim/vim.git?signed#tag=v9.1.1623
-# git+https://sourceware.org/git/binutils-gdb.git#commit=123456789
-
-pkg_fetchgit() {
-    scratch isinstalled git || {
-        msgerr "git is not installed"
-        abort 1
-    }
-
-    local netfile="$1"
-	filename=$(get_filepath_git $netfile)
-	dir=$SOURCE_DIR/$filename
-	repo=$filename
-
-	local url="$netfile"
-	url=${url#git+}
-	url=${url%%#*}
-	url=${url%%\?*}
-
-	if [[ ! -d "$dir" ]] || [ ! "$(find $dir/* -maxdepth 1 -type d 2>/dev/null)" ] ; then
-		if ! git clone --origin=origin --mirror "$url" "$dir"; then
-            msgerr "git clone $url  failed!"
-            abort 1
-		fi
-	else
-		cd "$dir"
-		
-		local remote_url="$(git -c safe.bareRepository=all config --get remote.origin.url)"
-		if [[ "${url%%.git}" != "${remote_url%%.git}" ]] ; then
-            msgerr "$dir is not a clone of  $url  !"
-            abort 1
-		fi
-		cd - > /dev/null
-	fi
-}
-
 pkg_fetch() {
 	for i in ${source[@]}; do
+		COPT="" 
+		
 		case $i in
-            local://*) continue;;
-            git+*) pkg_fetchgit $i ; continue ;;
-			*::*)  filepath="$SOURCE_DIR/${i%::*}"; url=${i#*::};;
-			*://*) filepath="$SOURCE_DIR/${i##*/}"; url=$i;;
+			*::*)  filepath="$SOURCE_DIR/${i%::*}"; url="${i#*::}";;
+			*://*) filepath="$SOURCE_DIR/${i##*/}"; url="$i";;
 			*) continue;;
 		esac
+		
 		[ -f "$filepath" ] && {
 			msg "Source found: $filepath"
 			continue
 		}
-		[ -f "$filepath.partial" ] && COPT="-C -"
+		
+		# check partial file
+		if [ -f "$filepath.partial" ]; then
+			if [ -s "$filepath.partial" ] && [ -r "$filepath.partial" ]; then
+				COPT="-C -"
+				msg "Continuing download: $i"
+			else
+				msg "Removing corrupted partial file"
+				rm -f "$filepath.partial"
+			fi
+		fi
+		
 		msg "Fetching: $i"
-		curl $COPT -L --fail --ftp-pasv --retry 3 --retry-delay 3 -o $filepath.partial $CURL_OPTS $url || {
+		curl $COPT -L --fail --retry 3 --retry-delay 3 -o "$filepath.partial" $CURL_OPTS "$url" || {
 			msgerr "Fetching failed: $i"
-            echo "$url" > /sources/url
+			rm -f "$filepath.partial"
 			abort 1
 		}
-		mv $filepath.partial $filepath
+		mv "$filepath.partial" "$filepath"
 	done
 }
 
-# extract the VCS revision/branch specifier from a source entry
-get_uri_fragment() {
-	local netfile=$1
-
-	local fragment=${netfile#*#}
-	if [[ $fragment = "$netfile" ]]; then
-		unset fragment
-	fi
-	fragment=${fragment%\?*}
-
-	printf "%s\n" "$fragment"
-}
-
-pkg_unpack_git() {
-    scratch isinstalled git || {
-        msgerr "git is not installed"
-        abort 1
-    }
-
-    local netfile="$1"
-	local fragment=$(get_uri_fragment "$netfile")
-	filename=$(get_filepath_git $netfile)
-	dir=$SOURCE_DIR/$filename
-	repo=$filename
-
-	local url="$netfile"
-	url=${url#git+}
-	url=${url%%#*}
-	url=${url%%\?*}
-
-	pushd $srcdir
-	if [[ -d "${dir##*/}" ]]; then
-		updating=1
-		cd "${dir##*/}"
-		if ! git fetch; then
-			msgerr "Failure while updating working copy of $repo git repo"
-			abort 1
-		fi
-		cd "$srcdir"
-	elif ! git clone --origin=origin -s "$dir" "${dir##*/}"; then
-		msgerr "Failure while creating working copy of $repo git repo"
-		abort 1
-	fi	
-
-	cd "${dir##*/}"
-
-	local ref=origin/HEAD
-	if [[ -n $fragment ]]; then
-		case ${fragment%%=*} in
-			commit|tag)
-				ref=${fragment##*=}
-				;;
-			branch)
-				ref=origin/${fragment##*=}
-				;;
-			*)
-				error "$(gettext "Unrecognized reference: %s")" "${fragment}"
-				plainerr "$(gettext "Aborting...")"
-				exit 1
-		esac
-	fi
-
-	if [[ ${fragment%%=*} = tag ]]; then
-		tagname="$(git tag -l --format='%(tag)' "$ref")"
-		if [[ -n $tagname && $tagname != "$ref" ]]; then
-			error "$(gettext "Failure while checking out version %s, the git tag has been forged")" "$ref"
-			plainerr "$(gettext "Aborting...")"
-			exit 1
-		fi
-	fi
-
-	if [[ $ref != "origin/HEAD" ]] || (( updating )) ; then
-		if ! git checkout --force --no-track -B makepkg "$ref" --; then
-			error "$(gettext "Failure while creating working copy of %s %s repo")" "${repo}" "git"
-			plainerr "$(gettext "Aborting...")"
-			exit 1
-		fi
-	fi
-	popd
-
-}
-
 pkg_unpack() {
-	srcdir=$WORK_DIR/$pkgname/src
-	pkgdir=$WORK_DIR/$pkgname/pkg
-	dbgdir=$WORK_DIR/$pkgname/dbg
+	srcdir="$WORK_DIR/$pkgname/src"
+	pkgdir="$WORK_DIR/$pkgname/pkg"
+	dbgdir="$WORK_DIR/$pkgname/dbg"
 	
 	umask 022
 	
-	rm -fr $WORK_DIR/$pkgname
+	rm -fr "$WORK_DIR/$pkgname"
 	
-	mkdir -p $srcdir $pkgdir $dbgdir
-	
-	TAR=tar
-	[ $(command -v bsdtar) ] && TAR=bsdtar
-    #TAR=tar
-
+	mkdir -p "$srcdir" "$pkgdir" "$dbgdir"
 	
 	for i in $(get_filepath); do
 
-		if [ "$i" = "SKIP" ] ;then continue ; fi
-
 		if [ ! -f "$i" ]; then
-			msgerr "pkg_unpack Source missing: $i"
+			msgerr "Source missing: $i"
 			abort 1
 		fi
 		for n in ${noextract[@]}; do
-			if [ ${i##*/} = $n ]; then
+			if [ "${i##*/}" = "$n" ]; then
 				msg "Preparing: $i"
-				cp --reflink=auto $i $srcdir || {
+				cp --reflink=auto "$i" "$srcdir" || {
 					msgerr "Preparing failed: $i"
 					abort 1
 				}
 				continue 2
 			fi
 		done
-		case $i in
-			*.tar|*.tar.gz|*.tar.Z|*.tgz|*.tar.bz2|*.tar.lz|*.tbz2|*.txz|*.tar.lzma|*.zip|*.rpm|*.7z)
+		case "$i" in
+			*.tar|*.tar.*|*.tgz|*.tbz2|*.txz|*.zst|*.zip|*.rpm|*.7z)
 				msg "Unpacking: $i"
-				$TAR -p -o -C $srcdir -xf $i;;
-			*.tar.xz)
-				msg "Unpacking: $i"
-				tar --preserve-permissions --no-same-owner -C $srcdir -xf $i;;				
+				bsdtar -xpo -C "$srcdir" -f "$i";;
 			*)
 				msg "Preparing: $i"
-				cp --reflink=auto $i $srcdir;;
+				cp --reflink=auto "$i" "$srcdir";;
 		esac
 		[ $? = 0 ] || {
 			msgerr "Unpacking/Preparing failed: $i"
 			abort 1
 		}
-	done
-
-	for i in ${source[@]};do
-		case $i in
-			 git+*) pkg_unpack_git $i ;;
-			 *) ;;
-		esac
-	done
+	done	
 }
 
 pkg_build() {	
 	[ "$(id -u)" = 0 ] || {
 		msgerr "You must build package as root, or use fakeroot."
+	        help
 		abort 1
 	}
 
     case $pkgname in
         *-32)
             echo "replace -m64 with -m32"
-            CFLAGS=${CFLAGS/-m64/}
-            CXXFLAGS=${CXXFLAGS/-m64/}
-            FCFLAGS=${FCFLAGS/-m64/}
-            FFLAGS=${FFLAGS/-m64/}
+            CFLAGS="${CFLAGS/-m64/}"
+            CXXFLAGS="${CXXFLAGS/-m64/}"
+            FCFLAGS="${FCFLAGS/-m64/}"
+            FFLAGS="${FFLAGS/-m64/}"
             export CFLAGS CXXFLAGS FCFLAGS FFLAGS
         ;;
     esac
@@ -345,7 +202,7 @@ pkg_build() {
 
 	msg "Build start: $pkgname-$pkgver-$pkgrel"
 
-	cd $srcdir >/dev/null
+	cd "$srcdir" >/dev/null || abort 1
 
 	if [ "$QUIET" ]; then
 		(set -e -x; build) 2> /dev/null
@@ -360,20 +217,21 @@ pkg_build() {
 		msg "Build success: $pkgname-$pkgver-$pkgrel"
 	fi
 	
-	cd - >/dev/null
+	cd - >/dev/null || return 1
 }
+
 pkglint() {
 	linterror=0
 	
-	# cant package empty pkgdir
-	if [ ! "$(find $pkgdir/* -maxdepth 1 -type d 2>/dev/null)" ]; then
+	# check empty pkgdir
+	if ! find "$pkgdir" -mindepth 1 -maxdepth 1 2>/dev/null | grep -q .; then
 		msgerr "pkgdir is empty"
 		abort 1
 	fi
 	
 	# check for backup file
 	for f in ${backup[@]}; do
-		if [ ! -f $pkgdir/$f ]; then
+		if [ ! -f "$pkgdir/$f" ]; then
 			msgerr "Backup file '$f' does not exist in pkgdir!"
 			linterror=1
 		fi
@@ -425,13 +283,13 @@ compressinfomanpages() {
 	done
 	find . -type l -path "*/share/man/*" | while read -r file; do
 		FILE="${file%%.gz}.gz"
-		TARGET="$(readlink $file)"
+		TARGET="$(readlink "$file")"
 		TARGET="${TARGET##*/}"
 		TARGET="${TARGET%%.gz}.gz"
-		DIR=$(dirname "$FILE")
-		rm -f $file
+		DIR="$(dirname "$FILE")"
+		rm -f "$file"
 		if [ -e "$DIR/$TARGET" ]; then
-			ln -sf $TARGET $FILE
+			ln -sf "$TARGET" "$FILE"
 		fi
 	done
 	find . -type f -path "*/share/info/*" | while read -r file; do
@@ -466,11 +324,11 @@ collect_debug_symbols() {
 
     if [ "$DO_DEBUG" = "no" ];then return 0 ;fi
 
-	local ino dst=$dbgdir/usr/lib/debug/${src#"$pkgdir"/*/}.debug
+	local ino dst="$dbgdir/usr/lib/debug/${src#"$pkgdir"/*/}.debug"
 	mkdir -p "${dst%/*}"
-	ino=$(stat -c %i "$src")
+	ino="$(stat -c %i "$src")"
 	if ! [ -e "$pkgdir/dbg-tmp/$ino" ]; then
-		local tmp=$pkgdir/dbg-tmp/${src##*/}
+		local tmp="$pkgdir/dbg-tmp/${src##*/}"
 		objcopy --only-keep-debug "$src" "$dst"
 		objcopy --add-gnu-debuglink="$dst" --strip-unneeded -R .comment "$src" "$tmp"
 		# preserve attributes, links
@@ -545,17 +403,29 @@ pkg_package() {
 	# lint $pkgdir before packaging
 	pkglint
 
-	cd $pkgdir >/dev/null
+	cd $pkgdir >/dev/null || abort 1
 
-    if [ "$DO_PURGE" = "yes" ] ; then
-        # remove possible conflict junks
-        rm -f usr/share/info/dir usr/info/dir
-        rm -f usr/lib/charset.alias # on musl system
-        find . \( -name perllocal.pod -o -name .packlist \) -delete
-    fi
+        if [ "$DO_PURGE" = "yes" ] ; then
+                # remove possible conflict junks
+                rm -f usr/share/info/dir usr/info/dir
+                rm -f usr/lib/charset.alias # on musl system
+                find . \( -name perllocal.pod -o -name .packlist \) -delete
+        fi
 
 	if [ -d usr/lib/systemd ] && [ "$SYSTEMDDIR" = "no" ] ;then
 		msgerr "usr/lib/systemd failed: $pkgname"
+		abort 1
+	fi
+
+	error=0
+	for i in bin lib lib32 sbin;do
+		if [ -d "$i" ]&& [ ! -L "$i" ];then 
+			msgerr "directory: $i failed: $pkgname"
+			error=1	
+		fi
+	done
+
+	if [ "$error" = "1" ];then
 		abort 1
 	fi
 
@@ -576,48 +446,47 @@ pkg_package() {
 	fi
 
 	if [ "$NO_STRIP" = 0 ] || [ "$NO_STRIP" = "no" ]; then
-		#strip_files
-        tidy_strip
-    fi
+                tidy_strip
+        fi
 	
 	# ensure all elements of the package have the same mtime
 	find . -exec touch -h -d @$SOURCE_DATE_EPOCH {} +
 
-    if [ "$NO_ZIPMAN" = 0 ] || [ "$NO_ZIPMAN" = "no" ]; then
+        if [ "$NO_ZIPMAN" = 0 ] || [ "$NO_ZIPMAN" = "no" ]; then
 	    compressinfomanpages
-    fi
+        fi
 	
 	if [ "$backup" ]; then
 		for FILE in ${backup[@]}; do
-			mv $FILE $FILE.spkgnew
+			mv "$FILE" "$FILE.spkgnew"
 		done
 	fi
 	
 	[ "$FORCE_REBUILD" ] && rm -f "$PACKAGE_DIR/$PKGNAME"
 	
-	case $COMPRESSION_MODE in
+	case "$COMPRESSION_MODE" in
 		xz) COMPRESS="xz -T0" ;;
 		gz) COMPRESS="gzip -9" ;;
 		bz2) COMPRESS="bz2" ;;
 		lz4) COMPRESS="lz4" ;;
-		zst) COMPRESS="zstd -19 -T0" ;;
+		zstd) COMPRESS="zstd -19 -T0" ;;
 	esac
 	
-	tar -c -I "$COMPRESS" -f $PACKAGE_DIR/$PKGNAME * $addtotar || {
-		rm -f $PACKAGE_DIR/$PKGNAME
+	tar -c -I "$COMPRESS" -f "$PACKAGE_DIR/$PKGNAME" * $addtotar || {
+		rm -f "$PACKAGE_DIR/$PKGNAME"
 		msgerr "Packaging failed: $PKGNAME"
 		abort 1
 	}
 	
-	tar -tvf $PACKAGE_DIR/$PKGNAME | sort -k 6
+	tar -tvf "$PACKAGE_DIR/$PKGNAME" | sort -k 6
 	
-	msg "Packaging success: $PKGNAME ($(ls -lh $PACKAGE_DIR/$PKGNAME | awk '{print $5}'))"
+	msg "Packaging success: $PKGNAME ($(ls -lh "$PACKAGE_DIR/$PKGNAME" | awk '{print $5}'))"
 		
-	cd - >/dev/null
+	cd - >/dev/null || return 1
 	
-	#if [ ! -f .pkgfiles ] || [ "$(head -n1 .pkgfiles)" != "$pkgname-$pkgver-$pkgrel" ]; then
-	#	pkg_genpkgfiles
-	#fi
+	if [ ! -f .pkgfiles ] || [ "$(head -n1 .pkgfiles)" != "$pkgname-$pkgver-$pkgrel" ]; then
+		pkg_genpkgfiles
+	fi
 }
 
 pkg_genpkgfiles() {
@@ -626,11 +495,7 @@ pkg_genpkgfiles() {
 		exit 1
 	}
 
-	#if [ -n "$FAKEROOTKEY" ]; then
-	#	return 0
-	#fi
-	
-	echo "$pkgname-$pkgver-$pkgrel" > .pkgfiles
+	printf '%s\n' "$pkgname-$pkgver-$pkgrel" > .pkgfiles
 	
 	tar -tvf "$PACKAGE_DIR/$PKGNAME" \
 	| awk '{$3=$4=$5=""; print $0}' \
@@ -645,7 +510,7 @@ pkg_clean() {
 	}
 	for i in $(get_filepath); do
 		case $i in
-			$PWD/*) continue;;
+			"$PWD"/*) continue;;
 		esac
 		[ -e "$i" ] && {
 			rm -f "$i"
@@ -661,53 +526,45 @@ pkg_clean() {
 check_buildscript() {	
 	# check the required field in buildscript
 	[ "$pkgname" ] || { msgerr "'pkgname' is empty!"; exit 1;	}
-	case $pkgname in
+	case "$pkgname" in
 		*[A-Z]*) msgerr "Capital letters for port pkgname are not allowed!"; exit 1;;
 	esac
 
-    [ $pkgbase ] && { msgerr "'pkgbase' exists in $pkgbase!"; exit 1; }
-    [ "$(basename $(pwd))" = "$pkgname" ] || { msgerr "Port $pkgname and Directory name :$(basename $(pwd)) is different!"; exit 1; }
-     
+	[ "$(basename $(pwd))" = "$pkgname" ] || { msgerr "Port $pkgname and Directory name :"$(basename "$(pwd)")" is different!"; exit 1; }
 	[ "$pkgver" ] || { msgerr "'pkgver' is empty!"; exit 1; }
 	[ "$pkgrel" ] || { msgerr "'pkgrel' is empty!"; exit 1; }
-	case $pkgrel in
-		*[A-Z]*|*[a-z]*|*-*|*_*) msgerr "only numberic allowed in 'pkgrel'"; exit 1;;
+	case "$pkgrel" in
+		*[A-Z]*|*[a-z]*|*-*|*\.*|*_*) msgerr "only numeric allowed in 'release'"; exit 1;;
 	esac
-	#[ "$(command -v build)" ] || { msgerr "'build' function not exist!"; exit 1; }
-
-    [ "$pkgdesc" ] && { msgerr "'description' exists in $pkgname!"; exit 1; }
-    [ "$depends" ] && { msgerr "'depends' exists! in $pkgname"; exit 1; }
-    
-	echo "$pkgver" | grep -q '-' && { msgerr "'pkgver' should not contain '-'."; exit 1; }
+        [ "$(command -v build)" ] || { msgerr "'build' function not exist!"; exit 1; }
+        printf '%s\n' "$pkgver" | grep -q '-' && { msgerr "'pkgver' should not contain '-'."; exit 1; }
 	if [ "$pkgrel" -gt 99 ] || [ "$pkgrel" -lt 0 ]; then
 		msgerr "'pkgrel' should numberic between 0 to 99"; exit 1
 	fi
+
 	if [ "$backup" ]; then
-	is_array backup || { msgerr "'backup' is not array! $pkgname"; exit 1; }
+	        is_array backup || { msgerr "'backup' is not array! $pkgname"; exit 1; }
 	fi
 	if [ "$noextract" ]; then
-	is_array noextract || { msgerr "'noextract' is not array! $pkgname"; exit 1; }
+	        is_array noextract || { msgerr "'noextract' is not array! $pkgname"; exit 1; }
 	fi
 	if [ "$source" ]; then
-	is_array source || { msgerr "'source' is not array! $pkgname"; exit 1; }
+	        is_array source || { msgerr "'source' is not array! $pkgname"; exit 1; }
 	fi
 	if [ "$options" ]; then
-	is_array options  || { msgerr "'source' is not array! $pkgname"; exit 1; }
+	        is_array options  || { msgerr "'source' is not array! $pkgname"; exit 1; }
 	fi
-
-	[ "$(command -v prepare)" ] && { msgerr "'have function prepare' ! $pkgname"; exit 1; }
-	[ "$(command -v package)" ] && { msgerr "'have function package' ! $pkgname"; exit 1; }
 }
 
 checkdir() {
 	for DIR in "$@"; do
-		if [ ! -d $DIR ]; then
+		if [ ! -d "$DIR" ]; then
 			msgerr "Directory '$DIR' does not exist."
 			exit 1
-		elif [ ! -w $DIR ]; then
+		elif [ ! -w "$DIR" ]; then
 			msgerr "Directory '$DIR' not writable."
 			exit 1
-		elif [ ! -x $DIR ] || [ ! -r $1 ]; then
+		elif [ ! -x "$DIR" ] || [ ! -r "$DIR" ]; then
 			msgerr "Directory '$DIR' not readable."
 			exit 1
 		fi
@@ -723,19 +580,19 @@ pkg_cleanup() {
 }
 
 interrupted() {
-	echo
+	printf '\n'
 	abort 100
 }
 
 abort() {
 	rm -f "$LOCK_FILE"
 	pkg_cleanup
-	exit $1
+	exit "$1"
 }
 
 parse_opts() {	
 	while [ "$1" ]; do
-		case $1 in
+		case "$1" in
 		-q |	         --quiet) QUIET=yes ;;
 		-i |           --install) INSTALL_PKG=yes ;;
 		-u |           --upgrade) UPGRADE_PKG=yes; OPTS="$OPTS $1" ;;
@@ -753,21 +610,20 @@ parse_opts() {
 		-C |              --clean) CLEANUP=yes ;;
 		             --no-backup) OPTS="$OPTS $1" ;;
 		                --root=*) OPTS="$OPTS $1" ;;
-                        --polkit) POLKIT_PKG=yes ;;
 		              --config=*) PKGBUILD_CONF="${1#*=}" ;;
 		              --srcdir=*) CUSTOM_SOURCE_DIR="${1#*=}" ;;
 		              --pkgdir=*) CUSTOM_PACKAGE_DIR="${1#*=}" ;;
 		             --workdir=*) CUSTOM_WORK_DIR="${1#*=}" ;;
-		                       *) msg "Invalid $(basename $0) option! ($1)"; exit 1 ;;
+		                       *) msg "Invalid $(basename "$0") option! ($1)"; exit 1 ;;
 		esac
 		shift
 	done	
 }
 
 help() {	
-	cat << EOF
+	cat << 'EOF'
 Usage:
-  $(basename $0) [ <options> <arguments> ]
+  pkgbuild [ <options> <arguments> ]
 
 Options:
   -q  --quiet               show only status messages and errors
@@ -777,8 +633,8 @@ Options:
   -c, --ignore-conflict     ignore conflict when installing package
   -v, --verbose             verbose install process
   -f, --force-rebuild       rebuild package
-  -m, --skip-checksum          skip checksum checking
-  -g, --genchecksum            generate checksum
+  -m, --skip-checksum       skip checksum checking
+  -g, --genchecksum         generate checksum
   -o, --download            download only source file
   -x, --extract             extract only source file
   -p, --pkgfiles            generate list files in package
@@ -792,22 +648,6 @@ Options:
       --no-backup           skip backup configuration file when upgrading package
       
 EOF
-}
-
-extract_opts() {
-	while [ "$1" ]; do
-		case $1 in
-			--*) opts="$opts $1";;
-			-*) char=${#1}; count=1
-			    while [ "$count" != "$char" ]; do
-					count=$((count+1))
-					opts="$opts -$(echo $1 | cut -c $count)"
-				done;;
-			*) opts="$opts $1"
-		esac
-		shift
-	done
-	echo $opts
 }
 
 set_options() {	
@@ -836,13 +676,31 @@ set_options() {
 	done
 }
 
+extract_opts() {
+    while [ $# -gt 0 ]; do
+        arg="$1"
+
+	case "$arg" in
+            --*) opts="$opts $arg";;
+            -?*) rest="${arg#-}"
+                 while [ -n "$rest" ]; do
+                    chr="${rest%"${rest#?}"}"
+                    opts="$opts -$chr"
+                    rest="${rest#?}"
+                 done
+                ;;
+            *) opts="$opts $arg";;
+        esac
+
+	shift
+    done
+
+    printf '%s\n' "${opts# }"
+}
+
 main() {
 	parse_opts $(extract_opts "$@")
 
-    if [ -n "$FAKEROOTKEY" ]; then
-        msg "using Fakeroot"
-    fi
-	
 	if [ -f "$PKGBUILD_CONF" ]; then
 		. "$PKGBUILD_CONF"
 	else
@@ -863,30 +721,20 @@ main() {
 	}
 	
 	if [ -f "$PKGBUILD_BSCRIPT" ]; then
-		description=$(grep "^# description[[:blank:]]*:" $PKGBUILD_BSCRIPT | sed 's/^# description[[:blank:]]*:[[:blank:]]*//')
-		. ./$PKGBUILD_BSCRIPT
+		description="$(grep "^# description[[:blank:]]*:" "$PKGBUILD_BSCRIPT" | sed 's/^# description[[:blank:]]*:[[:blank:]]*//')"
+		. ./"$PKGBUILD_BSCRIPT"
 	else
 		msgerr "'$PKGBUILD_BSCRIPT' file not found."
 		exit 1
 	fi
 
-    SOURCE_DATE_EPOCH=$(stat -c "%Y" "$PKGBUILD_BSCRIPT")
-
-    case $pkgname in
-        glibc*|gcc*|llvm32|*-32|rustc|lib32-*) ;;
-        *)
-            if ( grep -q '\-m32' ./$PKGBUILD_BSCRIPT ) ;then
-                msgerr "$pkgname content m32"
-                abort 1
-            fi
-        ;;
-    esac
-  
+        SOURCE_DATE_EPOCH=$(stat -c "%Y" "$PKGBUILD_BSCRIPT")
+ 
 	check_buildscript
-    set_options
+        set_options
 
-	case $COMPRESSION_MODE in
-		gz|bz2|xz|lz4|zst) PKGNAME="$pkgname-$pkgver-$pkgrel.spkg.tar.$COMPRESSION_MODE" ;;
+	case "$COMPRESSION_MODE" in
+		gz|bz2|xz|lz4|zstd) PKGNAME="$pkgname-$pkgver-$pkgrel.spkg.tar.$COMPRESSION_MODE" ;;
 		        *) msgerr "Invalid compression mode: $COMPRESSION_MODE"; exit 1 ;;
 	esac
 
@@ -957,18 +805,13 @@ main() {
 			pkg_unpack
 			pkg_build 
 			pkg_package
-            pkg_genpkgfiles
 			pkg_cleanup
 		fi
 	fi
-	case $COMPRESSION_MODE in
-		gz|bz2|xz|lz4|zst) PKGNAME="$pkgname-$pkgver-$pkgrel.spkg.tar.$COMPRESSION_MODE" ;;
-		        *) msgerr "Invalid compression mode: $COMPRESSION_MODE"; exit 1 ;;
-	esac
 
 	# install package
 	if [ "$INSTALL_PKG" ] || [ "$REINSTALL_PKG" ] || [ "$UPGRADE_PKG" ]; then
-		pkgadd $PACKAGE_DIR/$PKGNAME $INST_OPT $OPTS || abort 1
+		pkgadd "$PACKAGE_DIR/$PKGNAME" $INST_OPT $OPTS || abort 1
 	fi
 	abort 0	
 }
