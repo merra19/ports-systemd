@@ -2,7 +2,7 @@
 # depends	: python py3-gpep517 py3-setuptools py3-wheel py3-cython
 
 pkgname=py3-fonttools
-pkgver=4.61.0
+pkgver=4.61.1
 pkgrel=1
 url='https://github.com/fonttools/fonttools'
 source=($pkgname-$pkgver.tar.gz::https://github.com/fonttools/fonttools/archive/refs/tags/$pkgver.tar.gz)
