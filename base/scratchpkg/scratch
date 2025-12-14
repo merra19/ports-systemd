@@ -247,65 +247,165 @@ scratch_build() {
 }
 
 scratch_cache() {
-	needroot "Clear old caches"
-	
-	allcachepkg=/tmp/.allcachepkg.$$
-	allcachesrc=/tmp/.allcachesrc.$$
-	keepcachepkg=/tmp/.keepcachepkg.$$
-	keepcachesrc=/tmp/.keepcachesrc.$$
-	diffcachepkg=/tmp/.diffcachepkg.$$
-	diffcachesrc=/tmp/.diffcachesrc.$$
+    needroot "Clear old caches"
 
-	touch $allcachepkg $allcachesrc $keepcachepkg $keepcachesrc $diffcachepkg $diffcachesrc
+    clean_pkg=1
+    clean_src=1
 
-	find "$PACKAGE_DIR" -type f -exec basename {} \; > "$allcachepkg"
-    find "$SOURCE_DIR" -type f -exec basename {} \; > "$allcachesrc"
+    case "${1:-}" in
+        "") : ;;  # default: clean both
+        -p|--pkg) clean_src=0 ;;
+        -s|--src) clean_pkg=0 ;;
+        -h|--help)
+            cat <<EOF
+Usage: scratch cache [pkg|src]
 
-	find "$PKGDB_DIR" -type f -exec basename {} \; | while read -r port; do
-		build_script="$(getportpath "$port")/$BUILD_SCRIPT"
-        if [ -f "$build_script" ]; then
-			. "$build_script"
-			echo "$pkgname-$pkgver-$pkgrel.spkg.tar.$COMPRESSION_MODE" >> "$keepcachepkg"
-			if [ "$source" ]; then
-				for src in ${source[@]}; do
-					case $src in
-					git+*) sourcename=$(echo "${src#git+}" | xargs basename | cut -d. -f1) ;;
-						*::*) sourcename="${src%%::*}";;
-						*) sourcename="${src##*/}";;
-					esac
-					echo "$sourcename" >> "$keepcachesrc"
-				done
-			fi
-		else
-			msgerr "$port archived, remove it."
-			exit 1
-		fi
-	done
-	
-	grep -Fxv -f "$keepcachepkg" "$allcachepkg" > "$diffcachepkg"
-	grep -Fxv -f "$keepcachesrc" "$allcachesrc" > "$diffcachesrc"
+  (no args)   clean packages AND sources cache
+  -p, --pkg   clean packages cache only
+  -s, --src   clean sources cache only
+EOF
+            return 0
+            ;;
+        *)
+            msgerr "Invalid argument: $1"
+            return 1
+            ;;
+    esac
+    
+     # Converts bytes to a human-readable size with one decimal
+     human_size() {
+        b=$1
+        awk -v b="$b" 'BEGIN {
+            suf="B K M G T P";
+            split(suf,u);
+            i=1;
+            val=b;
+            while(val>=1024 && i<6){ val/=1024; i++ }
+            printf "%.1f%s", val, u[i]
+        }'
+     }  
 
-	cat $diffcachepkg $diffcachesrc
-	
-	cd "$PACKAGE_DIR"
-	sizepkg=$( [ -s "$diffcachepkg" ] && du -ch $(cat "$diffcachepkg") | grep total | awk '{print $1}' || echo "0M")
+    # Internal lists (compact with | separator)
+    allpkg=""
+    allsrc=""
+    keeppkg=""
+    keepsrc=""
 
-	cd "$SOURCE_DIR"
-	sizesrc=$( [ -s "$diffcachesrc" ] && du -ch $(cat "$diffcachesrc") | grep total | awk '{print $1}' || echo "0M")
-	
-	echo "Total package cache size: $sizepkg"
-	echo "Total sources cache size : $sizesrc"
-	
-	if [ -s "$diffcachepkg" ] || [ -s "$diffcachesrc" ]; then
-		echo
-		confirm "Remove old caches?" "Old caches is kept." && {
-			for i in $(cat $diffcachepkg); do rm -f "$PACKAGE_DIR/$i"; done
-			for i in $(cat $diffcachesrc); do rm -f "$SOURCE_DIR/$i"; done
-			msg "Old caches removed!"
-		}
-	fi
-	
-	rm -f "$allcachepkg" "$allcachesrc" "$keepcachepkg" "$keepcachesrc" "$diffcachepkg" "$diffcachesrc"
+    # Scan package cache
+    if [ "$clean_pkg" -eq 1 ]; then
+        for f in $(find "$PACKAGE_DIR" -type f 2>/dev/null); do
+            file=${f##*/}
+            allpkg="${allpkg}${allpkg:+|}$file"
+        done
+    fi
+
+    # Scan source cache
+    if [ "$clean_src" -eq 1 ]; then
+        for f in $(find "$SOURCE_DIR" -type f 2>/dev/null); do
+            file=${f##*/}
+            allsrc="${allsrc}${allsrc:+|}$file"
+        done
+    fi
+
+    # Scan PKGDB to determine what to keep
+    for port in $(find "$PKGDB_DIR" -type f 2>/dev/null); do
+        portname=${port##*/}
+        build_script="$(getportpath "$portname")/$BUILD_SCRIPT"
+
+        if [ ! -f "$build_script" ]; then
+            msgerr "$portname archived, remove it."
+            continue
+        fi
+
+        . "$build_script"
+
+        # Keep packages
+        if [ "$clean_pkg" -eq 1 ]; then
+            p="${name}-${version}-${release}.spkg.tar.${COMPRESSION_MODE}"
+            keeppkg="${keeppkg}${keeppkg:+|}$p"
+        fi
+
+        # Keep sources
+        if [ "$clean_src" -eq 1 ] && [ "$source" ]; then
+            for s in $source; do
+                case $s in
+                    *::*) f="${s%%::*}" ;;
+                    */*)  f="${s##*/}" ;;
+                    *)    f="$s" ;;
+                esac
+                keepsrc="${keepsrc}${keepsrc:+|}$f"
+            done
+        fi
+    done
+
+    # Diff lists (all - keep)
+    diff_lists() {
+        all="$1"
+        keep="$2"
+        out=""
+        oldIFS=$IFS
+        IFS='|'
+        set -- $all
+        IFS=$oldIFS
+        for f; do
+            case "|$keep|" in
+                *"|$f|"*) ;;  # keep
+                *) out="${out}${out:+|}$f" ;;
+            esac
+        done
+        printf '%s' "$out"
+    }
+
+    to_remove_pkg=""
+    to_remove_src=""
+    [ "$clean_pkg" -eq 1 ] && to_remove_pkg=$(diff_lists "$allpkg" "$keeppkg")
+    [ "$clean_src" -eq 1 ] && to_remove_src=$(diff_lists "$allsrc" "$keepsrc")
+
+    # Show files and sizes
+    show_list() {
+        list="$1"
+        dir="$2"
+        [ -z "$list" ] && return 0
+        
+	# Print list, one file per line
+        oldIFS=$IFS
+        IFS='|'
+        set -- $list
+        IFS=$oldIFS
+
+        for f; do printf '%s\n' "$f"; done
+
+        # Calculate total size
+        total=0
+        for f; do
+            [ -f "$dir/$f" ] || continue
+            sz=$(wc -c <"$dir/$f" 2>/dev/null || printf "0\n")
+            total=$((total + sz))
+        done
+
+        printf "Total size %s: %s\n\n" "${dir##*/}" "$(human_size "$total")"
+    }
+
+    show_list "$to_remove_pkg" "$PACKAGE_DIR"
+    show_list "$to_remove_src" "$SOURCE_DIR"
+
+    # Nothing to remove?
+    if [ -z "$to_remove_pkg" ] && [ -z "$to_remove_src" ]; then
+        msg "Cache is already clean."
+        return 0
+    fi
+
+    # Confirm deletion
+    if confirm "Remove old caches?" "Old caches are kept."; then
+        # delete in parallel
+        [ -n "$to_remove_pkg" ] && \
+        printf '%s' "$to_remove_pkg" | tr '|' '\n' | xargs -P 4 -I{} rm -f "$PACKAGE_DIR/{}"
+
+        [ -n "$to_remove_src" ] && \
+        printf '%s' "$to_remove_src" | tr '|' '\n' | xargs -P 4 -I{} rm -f "$SOURCE_DIR/{}"
+  
+	msg "Old caches removed!"
+    fi
 }
 
 scratch_cat() {	
