@@ -1,0 +1,19 @@
+# description	: Display information about supported Wayland protocols and current compositor
+# depends	:  glibc libdrm wayland meson wayland-protocols
+
+pkgname=wayland-utils
+pkgver=1.3.0
+pkgrel=1
+url='https://gitlab.freedesktop.org/wayland/wayland-utils'
+source=(https://gitlab.freedesktop.org/wayland/wayland-utils/-/archive/$pkgver/wayland-utils-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+    ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+}

@@ -1,0 +1,20 @@
+# description	: A simple wayfire plugin and program to get information from wayfire
+# depends	: wayfire cmake glm meson wayland-protocols
+
+pkgname=wf-info
+pkgver=1.0
+pkgrel=1
+commit=2d0127a484f332ffaf1c64a7be199f755d4f68a8
+url='https://github.com/soreau/wf-info'
+source=($pkgname-$commit.tar.gz::https://github.com/soreau/wf-info/archive/$commit.tar.gz)
+
+build() {
+	cd $pkgname-$commit
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+    ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+}
