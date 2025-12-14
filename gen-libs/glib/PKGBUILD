@@ -4,10 +4,10 @@
 # depends	: py3-gi-docgen py3-docutils
 
 pkgname=glib
-pkgver=2.84.4
-pkgrel=2
+pkgver=2.86.3
+pkgrel=1
 pkgname2=gobject-introspection
-pkgver2=1.84.0
+pkgver2=1.86.0
 url='https://www.gtk.org'
 source=(https://download.gnome.org/sources/glib/${pkgver%.*}/$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/blfs/12.4/glib-skip_warnings-1.patch
