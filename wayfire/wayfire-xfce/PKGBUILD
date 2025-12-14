@@ -19,7 +19,7 @@ build() {
     install -Dm 0644 wayfire.ini "$pkgdir"/usr/local/share/wayfire/wayfire.ini
     install -Dm 0644 wf-shell.ini "$pkgdir"/usr/local/share/wayfire/wf-shell.ini
 
-	install -Dm 0644 wf-shell.ini "$pkgdir"/usr/local/share/wofi/wf-shell.ini
-	install -Dm 0644 waybar-colors2.css "$pkgdir"/usr/local/share/wofi/wf-shell.ini
-	install -Dm 0644 config "$pkgdir"/usr/local/share/wofi/wf-shell.ini
+    install -Dm 0644 style.css "$pkgdir"/usr/local/share/wofi/style.css
+    install -Dm 0644 waybar-colors2.css "$pkgdir"/usr/local/share/wofi/waybar-colors2.css
+    install -Dm 0644 config "$pkgdir"/usr/local/share/wofi/config
 }
