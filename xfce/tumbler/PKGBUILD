@@ -6,8 +6,8 @@
 # optional  : gstreamer!gst-plugins-ugly
 
 pkgname=tumbler
-pkgver=4.20.0
-pkgrel=2
+pkgver=4.20.1
+pkgrel=1
 options=(!lto)
 url='https://docs.xfce.org/xfce/tumbler/start'
 source=(https://archive.xfce.org/src/xfce/tumbler/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)

@@ -3,8 +3,8 @@
 # depends	: gtk-doc
 
 pkgname=libwnck
-pkgver=43.2
-pkgrel=2
+pkgver=43.3
+pkgrel=1
 url='https://developer.gnome.org/libwnck/stable'
 source=(https://download.gnome.org/sources/libwnck/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
