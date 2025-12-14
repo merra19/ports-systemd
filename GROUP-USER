@@ -81,6 +81,7 @@ docker          132
 rtkit       133 133
 seat            202
 flatpak     313 313
+lxc         358 358
 gamemode        385
 qbittorrent 534 534
 users           999
