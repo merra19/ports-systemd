@@ -3,10 +3,10 @@
 # depends	: vulkan-headers xcb-utilities xorg-proto
 
 pkgname=vkd3d-proton-git
-pkgver=2.14.1.105417a
+pkgver=3.0b
 pkgrel=1
-commit=2d9f1e4238c0a612f6173b97bc28f66403f96a92
-dxilspirvcommit=b638587297114eecad6df11b9164889d33ff034c
+commit=734bcaaa0527efb9b2d6a1a62dc01d4186e5a6b8
+dxilspirvcommit=4e36bab794afdb7d78f56b866971009ca894fe9c
 spirvheadercommit=3b9447dc98371e96b59a6225bd062a9867e1d203
 vulkancommit=b39ab380a44b6c8df462c34e976ea9ce2d2c336b
 spirvtoolscommit=e9a8ceeddbf7e3aaadac2ab6f8a6ab6437872e88
@@ -29,9 +29,9 @@ source=(https://github.com/HansKristian-Work/vkd3d-proton/archive/$commit.tar.gz
 # vkd3d-proton / khronos / Vulkan-Headers
 # vkd3d-proton / subprojects / dxil-spirv / dxbc-spirv
 # vkd3d-proton / subprojects / dxil-spirv / dxbc-spirv / submodules / SPIRV-Headers   
-# vkd3d-proton / subprojects / dxil-spirv / dxbc-spirv / third_party / SPIRV-Cross
-# vkd3d-proton / subprojects / dxil-spirv / dxbc-spirv / third_party / SPIRV-Tools
-# vkd3d-proton / subprojects / dxil-spirv / dxbc-spirv / third_party / spirv-headers
+# vkd3d-proton / subprojects / dxil-spirv / third_party / SPIRV-Cross
+# vkd3d-proton / subprojects / dxil-spirv / third_party / SPIRV-Tools
+# vkd3d-proton / subprojects / dxil-spirv / third_party / spirv-headers
 
 build() {
 	cp -r SPIRV-Headers-$spirvheadercommit/* vkd3d-proton-$commit/khronos/SPIRV-Headers/
