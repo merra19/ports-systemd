@@ -15,6 +15,7 @@ build() {
         --prefix=/usr \
         --buildtype=release \
         -D with-privileged-group=gamemode \
+        -D with-sd-bus-provider=elogind \
         -D with-examples=false \
         -D with-util=true \
         build
