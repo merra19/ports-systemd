@@ -22,4 +22,6 @@ build() {
     make DESTDIR="$pkgdir" install
 
 	install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+	install -Dm 0754 "$srcdir"/dhcpcd "$pkgdir"/usr/lib/services/dhcpcd
 }

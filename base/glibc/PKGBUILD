@@ -97,6 +97,10 @@ build() {
     unset LDFLAGS
     unset CFLAGS
 
+    mkdir -p "$pkgdir"/usr/lib
+    ln -sv usr/lib "$pkgdir"/lib
+
+
     make install DESTDIR="$pkgdir" install_root="$pkgdir"
 
     make -s -O localedata/install-locales install DESTDIR="$pkgdir" install_root="$pkgdir"
