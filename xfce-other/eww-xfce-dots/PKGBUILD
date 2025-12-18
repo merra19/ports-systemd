@@ -1,0 +1,25 @@
+# description	: Wayfire dots file with Xfce
+# depends	: eww xfce pavucontrol rofi thunar nerd-fonts jq
+# depends	: xdg-desktop-portal wireplumber ttf-font-awesome
+# depends	: xfce4-terminal polkit-gnome xfce4-notifyd
+# url       : https://github.com/bluebyt/Wayfire-dots/tree/main
+
+pkgname=eww-xfce-dots
+pkgver=0.6.0
+pkgrel=1
+url='https://github.com/bluebyt/Wayfire-dots'
+source=(eww.scss eww.yuck Weather.sh cpu disk display.sh eww-start3.sh
+		memory tempe uptime.sh window-title.sh wayfire.ini wf-shell.ini)
+
+build() {
+
+	install -d "$pkgdir"/usr/local/share/eww-wayfire-dots/{eww,scripts}
+	install -m 644 eww.scss  eww.yuck "$pkgdir"/usr/local/share/eww-wayfire-dots/eww
+	install -m 644 wayfire.ini wf-shell.ini "$pkgdir"/usr/local/share/eww-wayfire-dots/
+
+	scripts="Weather.sh cpu disk display.sh eww-start3.sh memory tempe uptime.sh window-title.sh"
+
+	for i in $scripts ; do
+		install -Dm 755 $i "$pkgdir"/usr/local/share/eww-wayfire-dots/scripts/$i
+	done
+}

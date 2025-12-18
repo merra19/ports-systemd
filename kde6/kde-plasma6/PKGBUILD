@@ -2,7 +2,7 @@
 # depends	: spectacle
 
 pkgname=kde-plasma6
-pkgver=6.4.4
+pkgver=6.5.2
 pkgrel=1
 url='https://kde.org/plasma-desktop'
 source=()

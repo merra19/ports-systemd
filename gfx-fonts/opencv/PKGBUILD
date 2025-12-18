@@ -17,10 +17,7 @@ noextract=(opencv_contrib-$pkgver.tar.gz)
 build() {
 	cd $pkgname-$pkgver
 
-    if [ -z "$ANT_HOME" ];then
-        echo "ANT_HOME not set.  source /etc/profile"
-        abort 1
-    fi
+    export ANT_HOME=/opt/ant
 
     tar -xf ../opencv_contrib-$pkgver.tar.gz
 

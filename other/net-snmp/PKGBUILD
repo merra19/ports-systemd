@@ -21,6 +21,7 @@ source=(https://downloads.sourceforge.net/$pkgname/$pkgname/$pkgver/$pkgname-$pk
 		e5aadf1e78c624a8e4147d4b70a7795497a50e73.patch
 		7fc7edf676c527a0cfb661f9000a3d22738cf8e6.patch
 		snmpd.service snmptrapd.service)
+backup=(etc/snmpd.conf etc/snmptrapd.conf)
 
 build() {
 	cd $pkgname-$pkgver
@@ -53,7 +54,7 @@ build() {
 		--with-sys-location='Unknown' \
 		--with-logfile='/var/log/snmpd.log' \
 		--with-mib-modules='host misc/ipfwacc ucd-snmp/diskio tunnel ucd-snmp/dlmod ucd-snmp/lmsensorsMib' \
-		--with-persistent-directory='/var/net-snmp'
+		--with-persistent-directory='/var/lib/net-snmp'
 	make NETSNMP_DONT_CHECK_VERSION=1
 
 	sed -i -e "s:install --basedir=\$\$dir:install --basedir=\$\$dir --root=${pkgdir}:" Makefile

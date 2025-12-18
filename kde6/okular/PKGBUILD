@@ -3,7 +3,7 @@
 # depends	: phonon poppler qca freetype zlib
 
 pkgname=okular
-pkgver=25.08.0
+pkgver=25.08.3
 pkgrel=1
 options=(!zipman)
 url='https://okular.kde.org'

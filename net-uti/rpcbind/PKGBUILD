@@ -17,7 +17,7 @@ build() {
         --prefix=/usr \
         --bindir=/usr/sbin \
         --with-rpcuser=root \
-        --enable-warmstarts 
+        --enable-warmstarts
     make
     make DESTDIR="$pkgdir" install
 }

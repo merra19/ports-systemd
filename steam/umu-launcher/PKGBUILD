@@ -8,19 +8,37 @@
 # depends	: usbutils xdg-user-dirs zenity rustc py3-maturin
 
 pkgname=umu-launcher
-pkgver=1.2.9
+pkgver=1.3.0
 pkgrel=1
 url='https://github.com/Open-Wine-Components/umu-launcher'
 source=($pkgname-$pkgver.tar.gz::https://github.com/Open-Wine-Components/umu-launcher/archive/refs/tags/$pkgver.tar.gz)
-optsflags=" -O3 -ffat-lto-objects -flto=auto "
+
+createpack() {
+    mkdir -p vendor
+    cargo vendor vendor
+    tar -cJpf $pkgname-$pkgver-cargo.tar.xz vendor/
+    cp $pkgname-$pkgver-cargo.tar.xz /sources/src/
+}
 
 build() {
     cd $pkgname-$pkgver
 
+	if [ ! -f /sources/src/$pkgname-$pkgver-cargo.tar.xz ];then
+    	createpack
+	else
+		tar -xf /sources/src/$pkgname-$pkgver-cargo.tar.xz
+	fi
+
+    mkdir -p .cargo
+    echo '[source.crates-io]' >> .cargo/config.toml
+    echo 'replace-with = "vendored-sources"' >> .cargo/config.toml
+    echo '[source.vendored-sources]' >> .cargo/config.toml
+    echo 'directory = "vendor"' >> .cargo/config.toml
+
     export RUSTUP_TOOLCHAIN=stable
     export CARGO_HOME="$srcdir"/umu-cargo
-    cargo update
-    cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+    #cargo update
+    #cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
 
     export RUSTUP_TOOLCHAIN=stable
     export CARGO_HOME="$srcdir"/umu-cargo

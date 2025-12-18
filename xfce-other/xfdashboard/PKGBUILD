@@ -6,7 +6,7 @@ pkgname=xfdashboard
 pkgver=1.1.0
 pkgrel=1
 url='https://goodies.xfce.org/projects/applications/xfdashboard/start'
-source=(https://archive.xfce.org/src/apps/xfdashboard/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
+source=(https://archive.xfce.org/src/apps/xfdashboard/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {
 	cd $pkgname-$pkgver

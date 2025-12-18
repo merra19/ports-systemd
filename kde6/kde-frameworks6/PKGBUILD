@@ -2,7 +2,7 @@
 # depends	: kuserfeedback
 
 pkgname=kde-frameworks6
-pkgver=6.17.0
+pkgver=6.20.0
 pkgrel=1
 url='https://develop.kde.org/products/frameworks'
 source=()

@@ -6,7 +6,7 @@
 # depends	: gnome-keyring
 
 pkgname=microsoft-edge
-pkgver=142.0.3595.80
+pkgver=143.0.3650.80
 pkgrel=1
 options=(!strip)
 url='https://www.microsoft.com/edge'

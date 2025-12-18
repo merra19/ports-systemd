@@ -3,7 +3,7 @@
 
 pkgname=wmctrl
 pkgver=1.07
-pkgrel=1
+pkgrel=4
 url='https://github.com/Conservatory/wmctrl'
 source=(https://dev.gentoo.org/~ionen/distfiles/$pkgname-$pkgver.tar.gz
         wmctrl-1.07-64bit-xlib.patch)

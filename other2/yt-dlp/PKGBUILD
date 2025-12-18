@@ -4,7 +4,7 @@
 # depends	: py3-pycryptodome 
 
 pkgname=yt-dlp
-pkgver=2025.11.12
+pkgver=2025.12.08
 pkgrel=1
 url='https://github.com/yt-dlp/yt-dlp'
 source=($pkgname-$pkgver.tar.gz::https://github.com/yt-dlp/yt-dlp/releases/download/$pkgver/yt-dlp.tar.gz)

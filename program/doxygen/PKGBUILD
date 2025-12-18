@@ -1,6 +1,6 @@
 # description	: Documentation system for most programming languages
 # depends	: flex bison coreutils perl python cmake sqlite 
-# depends	: ghostscript
+# depends	: ghostscript graphviz
 
 pkgname=doxygen
 pkgver=1.14.0
@@ -17,6 +17,8 @@ build() {
     cmake -B build -G "Unix Makefiles" \
         -D CMAKE_BUILD_TYPE=Release \
         -D CMAKE_INSTALL_PREFIX=/usr \
+        -D build_doc=OFF \
+        -D DOC_INSTALL_DIR=share/doc/$pkgname-$pkgver \
         -Wno-dev
     make -C build
     make DESTDIR="$pkgdir" install -C build

@@ -2,7 +2,7 @@
 # depends	: llvm libxml2 spirv-tools cmake
 
 pkgname=spirv-llvm-translator
-pkgver=20.1.5
+pkgver=21.1.2
 pkgrel=1
 url='https://github.com/KhronosGroup/SPIRV-LLVM-Translator'
 source=(https://github.com/KhronosGroup/SPIRV-LLVM-Translator/archive/v$pkgver/SPIRV-LLVM-Translator-$pkgver.tar.gz)

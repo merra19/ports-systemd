@@ -3,7 +3,7 @@
 
 pkgname=xorg-applications
 pkgver=1.0.0
-pkgrel=1
+pkgrel=2
 url='https://www.x.org/wiki'
 source=()
 noextract=(
@@ -21,7 +21,7 @@ noextract=(
     xgamma-1.0.8.tar.xz
     xhost-1.0.10.tar.xz
     xinput-1.6.4.tar.xz
-    xkbcomp-1.4.7.tar.xz
+    xkbcomp-1.5.0.tar.xz
     xkbevd-1.1.6.tar.xz
     xkbutils-1.0.6.tar.xz
     xkill-1.0.6.tar.xz

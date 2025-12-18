@@ -2,7 +2,7 @@
 # depends	: kde-frameworks6 vulkan-loader
 
 pkgname=kirigami-addons
-pkgver=1.9.0
+pkgver=1.10.0
 pkgrel=1
 url='https://invent.kde.org/libraries/kirigami-addons'
 source=(https://download.kde.org/stable/kirigami-addons/$pkgname-$pkgver.tar.xz)

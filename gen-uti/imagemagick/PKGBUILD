@@ -3,7 +3,7 @@
 # depends	: lcms2 pango perl libpng ghostscript librsvg libtiff cups
 # depends	: libwebp xorg-proto xz zlib ttf-dejavu 7zip libraw libjxl
 # depends	: curl wget xdg-utils xterm jasper libgxps ghostscript 
-# depends	: llvm ffmpeg sane 
+# depends	: llvm ffmpeg sane graphviz
 # todo      : gimp inkscape enscript potrace
 
 pkgname=imagemagick

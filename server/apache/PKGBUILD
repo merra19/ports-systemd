@@ -4,7 +4,7 @@
 
 pkgname=apache
 _pkgname=httpd
-pkgver=2.4.65
+pkgver=2.4.66
 pkgrel=1
 url='https://httpd.apache.org'
 source=(https://archive.apache.org/dist/httpd/httpd-$pkgver.tar.bz2
@@ -31,9 +31,6 @@ build() {
         -e '/SERVER_CONFIG_FILE/s:${rel_sysconfdir}/::' \
         -e '/AP_TYPES_CONFIG_FILE/s:${rel_sysconfdir}/::' \
         -i configure  &&
-
-    sed -e '/encoding.h/a # include <libxml/xmlstring.h>' \
-        -i modules/filters/mod_xml2enc.c
 
     ./configure \
         --enable-authnz-fcgi \

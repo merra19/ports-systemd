@@ -1,10 +1,10 @@
 # description	: X C-language Bindings sample implementations
 # depends	: libxcvt pixman libglvnd openssl xorg-fonts dbus
 # depends	: xkeyboard-config systemd libepoxy libtirpc libunwind
-# depends	: nettle libgcrypt xcb-utilities xmlto mesa
+# depends	: nettle libgcrypt xcb-utilities xmlto mesa udev
 
 pkgname=xlibre-xserver
-pkgver=25.0.0.15
+pkgver=25.0.0.16
 pkgrel=1
 url='https://x11libre.net'
 source=(https://github.com/X11Libre/xserver/archive/refs/tags/$pkgname-$pkgver.tar.gz
@@ -42,4 +42,11 @@ build() {
 
     install -m755 "$srcdir/xvfb-run" "$pkgdir/usr/bin/"
     install -m644 "$srcdir/xvfb-run.1" "$pkgdir/usr/share/man/man1/"
+
+    mkdir -pv "$pkgdir"/etc/X11/xorg.conf.d
+	mkdir -pv "$pkgdir"/etc/sysconfig
+	cat >> "$pkgdir"/etc/sysconfig/createfiles << "EOF"
+/tmp/.ICE-unix dir 1777 root root
+/tmp/.X11-unix dir 1777 root root
+EOF
 }

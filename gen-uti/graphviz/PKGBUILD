@@ -1,0 +1,32 @@
+# description	: Open Source Graph Visualization Software
+# depends	: meson cmake  cairo pango fontconfig libpng xorg-libs
+# depends	: aalib cups libjpeg-turbo libwebp ghostscript librsvg
+# depends	: poppler swig gcc libtool perl python tcl expat freetype
+# optional	: guile java php ruby tk freeglut
+
+pkgname=graphviz
+pkgver=13.1.2
+pkgrel=1
+url='https://www.graphviz.org'
+source=(https://gitlab.com/graphviz/graphviz/-/archive/$pkgver/$pkgname-$pkgver.tar.bz2)
+
+
+
+build() {
+	cd $pkgname-$pkgver
+
+    export CXXFLAGS+=' -fPIC -fpermissive'
+
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D CMAKE_SKIP_INSTALL_RPATH=ON
+    sed -i '/GZIP/s/:.*$/=/' build/CMakeCache.txt
+	make -C build
+    make DESTDIR="$pkgdir" install -C build
+
+    perlversion="$(awk 'NR==1 {print $1}' /var/lib/scratchpkg/db/perl)"
+
+    install -dm0755 "$pkgdir/etc/ld.so.conf.d/"
+	echo -e "/usr/lib/graphviz\n/usr/lib/graphviz/perl\n/usr/lib/perl5/${perlversion%.*}/core_perl/CORE" > "$pkgdir/etc/ld.so.conf.d/graphviz.conf"
+}

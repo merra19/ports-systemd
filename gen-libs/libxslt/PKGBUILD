@@ -2,7 +2,7 @@
 # depends	: libxml2 python
 
 pkgname=libxslt
-pkgver=1.1.43
+pkgver=1.1.45
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/libxslt'
 source=(https://download.gnome.org/sources/libxslt/1.1/$pkgname-$pkgver.tar.xz)

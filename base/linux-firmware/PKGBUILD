@@ -3,22 +3,23 @@
 
 pkgname=linux-firmware
 pkgver=20251125
-pkgrel=1
+pkgrel=2
 pkgnameparallel=parallel
 pkgverparallel=20250822
+commit=a0f0e52138e5f77fb0f358ff952447623ae0a7c4
 options=(!strip)
 url='https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git'
-source=(https://gitlab.com/kernel-firmware/linux-firmware/-/archive/$pkgver/$pkgname-$pkgver.tar.gz
+source=(https://gitlab.com/kernel-firmware/linux-firmware/-/archive/${commit}/linux-firmware-${commit}.tar.bz2
         https://mirror.lyrahosting.com/gnu/$pkgnameparallel/$pkgnameparallel-$pkgverparallel.tar.bz2)
 
 build() {
     mkdir -p kernel/x86/microcode
-    cat linux-firmware-$pkgver/amd-ucode/microcode_amd*.bin > kernel/x86/microcode/AuthenticAMD.bin
+    cat linux-firmware-$commit/amd-ucode/microcode_amd*.bin > kernel/x86/microcode/AuthenticAMD.bin
 
     echo kernel/x86/microcode/AuthenticAMD.bin | bsdcpio -o -H newc -R 0:0 > amd-ucode.img
 
     install -Dt "$pkgdir"/boot -m644 amd-ucode.img
-	
+
     cd $pkgnameparallel-$pkgverparallel
 
     ./configure --prefix=/usr --enable-static
@@ -27,7 +28,7 @@ build() {
 
     export PATH="$PATH:$srcdir"/tmp/usr/bin
 
-    cd "$srcdir"/$pkgname-$pkgver
+    cd "$srcdir"/$pkgname-$commit
 
 	## install upstream linux-firmare files
 	export ZSTD_NBTHREADS=4 ZSTD_CLEVEL=19

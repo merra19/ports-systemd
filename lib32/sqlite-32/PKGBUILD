@@ -11,7 +11,6 @@ url='https://sqlite.org'
 source=(https://sqlite.org/2025/sqlite-autoconf-$_version.tar.gz
         https://sqlite.org/2025/sqlite-doc-$_version.zip)
 noextract=(sqlite-doc-$_version.zip)
-optsflags=" -O3 -ffat-lto-objects -flto=auto "
 
 build() {
     cd sqlite-autoconf-$_version

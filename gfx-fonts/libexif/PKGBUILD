@@ -1,5 +1,5 @@
 # description	: Library for parsing, editing, and saving EXIF data
-# depends	: glibc
+# depends	: glibc graphviz
 
 pkgname=libexif
 pkgver=0.6.25

@@ -1,6 +1,11 @@
 # ports-systemd
 ports based lfs systemd
 
+bash-completion with sudo
+complete -cf sudo
+
+
+sensors-detect
 
 Docker
 	sudo usermod -aG docker <username>

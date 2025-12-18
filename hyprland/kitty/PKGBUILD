@@ -6,10 +6,11 @@
 # depends	: openssl xxhash nerd-fonts
 
 pkgname=kitty
-pkgver=0.43.1
+pkgver=0.44.0
 pkgrel=1
 url='https://sw.kovidgoyal.net/kitty'
-source=(https://github.com/kovidgoyal/$pkgname/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
+source=(https://github.com/kovidgoyal/$pkgname/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
+        kitty.conf)
 
 build() {
 	cd $pkgname-$pkgver
@@ -27,4 +28,6 @@ build() {
 
 	# remove useless "optimised" python
 	find "$pkgdir" \( -name "*.opt-1.pyc" -o -name "*.opt-2.pyc" \) -delete
+
+    install -Dm 0644 "$srcdir"/kitty.conf "$pkgdir"/usr/share/$pkgname-$pkgver/kitty.conf
 }

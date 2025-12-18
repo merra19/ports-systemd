@@ -8,7 +8,6 @@ pkgrel=1
 options=(!lto)
 url='https://p11-glue.github.io/p11-glue/p11-kit.html'
 source=(https://github.com/p11-glue/p11-kit/releases/download/$pkgver/$_pkgname-$pkgver.tar.xz)
-optsflags=" -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition "
 
 build() {
     cd $_pkgname-$pkgver

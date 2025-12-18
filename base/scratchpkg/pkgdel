@@ -1,0 +1,175 @@
+#!/bin/sh
+#
+# pkgdel - Package removal utility
+# POSIX-compliant shell script for removing installed packages
+#
+
+trap "interrupted" 1 2 3 15
+
+export LC_ALL=C
+
+interrupted() {
+	printf '\n'
+	ret 1
+}
+
+msg() {
+	printf "==> %s\n" "$1"
+}
+
+msgerr() {
+	printf "ERROR: %s\n" "$1" >&2
+}
+
+help() {	
+	cat << 'EOF'
+Usage:
+  pkgdel [ <options> <package name> ]
+
+Options:
+  -h, --help            show this help message
+  -v, --verbose         print removed files
+      --root=<path>     remove package from custom root directory
+      
+EOF
+}
+
+extract_opts() {
+	while [ $# -gt 0 ]; do
+		arg=$1
+
+		case "$arg" in
+			--*) opts="$opts $arg";;
+			-?*) rest=${arg#-}
+				while [ -n "$rest" ]; do
+					chr="${rest%"${rest#?}"}"
+					opts="$opts -$chr"
+					rest=${rest#?}
+				done
+				;;
+			*) opts="$opts $arg";;
+		esac
+
+		shift
+	done
+
+	printf '%s\n' "${opts# }"
+}
+
+parse_opts() {
+	if [ -z "$1" ]; then
+		SHOWHELP=yes
+	else
+		while [ -n "$1" ]; do
+			case $1 in
+				-h | --help) SHOWHELP="yes" ;;
+				-v | --verbose) VERBOSE_REMOVE="yes" ;;
+				--root=*) ROOT_DIR="${1#*=}" ;;
+				-*) msg "Invalid option: ($1)"; exit 1 ;;
+				*) RMNAME=$1 ;;
+			esac
+			shift
+		done
+	fi
+}
+
+ret() {
+	# remove lock file on exit
+	rm -f "$ROOT_DIR/$LOCK_FILE"
+	exit "$1"
+}
+
+isinstalled() {
+	if [ -s "$ROOT_DIR/$PKGDB_DIR/$1" ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+command -v pkgadd >/dev/null 2>&1 || {
+	msgerr "'pkgadd' not found in \$PATH!"
+	exit 1
+}
+
+parse_opts $(extract_opts "$@")
+
+PKGDB_DIR="$(pkgadd --print-dbdir)"
+PKGDB_DIR="${PKGDB_DIR##/}"              # remove leading /
+
+LOCK_FILE="var/lib/scratchpkg/spkg.lock"
+
+# show help page
+[ -n "$SHOWHELP" ] || [ -z "$RMNAME" ] && {
+	help
+	exit 0
+}
+
+# check for root access
+[ "$(id -u)" = "0" ] || {
+	printf "Removing package need root access!\n"
+	help
+	exit 1
+}
+
+# check for lock file
+[ -f "$ROOT_DIR/$LOCK_FILE" ] && {
+	msgerr "Cannot install/remove package simultaneously."
+	msgerr "remove '$ROOT_DIR/$LOCK_FILE' if no install/remove package process running."
+	exit 1
+}
+
+touch "$ROOT_DIR/$LOCK_FILE" 2>/dev/null || {
+	msgerr "Cannot create lock file in '$ROOT_DIR/$LOCK_FILE'"
+	exit 1
+}
+
+if ! isinstalled "$RMNAME"; then
+	msgerr "Package '$RMNAME' not installed."
+	ret 1
+fi
+
+name=$RMNAME
+version=$(awk 'NR==1 {print $1}' "$ROOT_DIR/$PKGDB_DIR/$name")
+release=$(awk 'NR==1 {print $2}' "$ROOT_DIR/$PKGDB_DIR/$name")
+
+if [ -z "$version" ] && [ -z "$release" ]; then
+	msgerr "Package '$RMNAME' is not installed but exists in database."
+	ret 1
+fi
+
+# Create a temporary file to store the merged package database,
+# excluding the one corresponding to the package we are deleting.
+# Checks without repeatedly reconstructing the entire DB in memory.
+tmpdb="/tmp/pkgdel.$$" 
+find "$ROOT_DIR/$PKGDB_DIR" -type f ! -name "$name" -exec cat {} + 2>/dev/null >"$tmpdb" || {
+    msgerr "Failed to build temporary DB file."
+    rm -f "$tmpdb"
+    ret 1
+}
+
+# Iterate over the package's file list in reverse order.
+# Reverse order is required because directories must be removed 
+# after their contents have been deleted.
+awk '
+    NR>1 { lines[n++] = $0 }           # Skip first line, store lines in array  
+    END { while (n--) print lines[n] } # Print lines in reverse order
+    ' "$ROOT_DIR/$PKGDB_DIR/$name" | while IFS= read -r line; do
+    case $line in
+        */) # Directory: remove only if it does not appear in any other package
+            grep -F -x -q -e "$line" "$tmpdb" || rmdir ${VERBOSE_REMOVE:+-v} "$ROOT_DIR/$line";;
+        *)  # File: always remove
+            rm ${VERBOSE_REMOVE:+-v} "$ROOT_DIR/$line";;
+    esac
+done
+
+# remove the temporary database file.
+rm -f "$tmpdb"
+
+# remove from database
+rm -f "$ROOT_DIR/$PKGDB_DIR/$name"
+
+# running ldconfig
+[ -x "$ROOT_DIR/sbin/ldconfig" ] && "$ROOT_DIR/sbin/ldconfig" -r "$ROOT_DIR/"
+
+ret 0

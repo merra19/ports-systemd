@@ -1,0 +1,29 @@
+# description	: Kernel driver for AMD Ryzen's System Management Unit
+# depends	: openssl kmod linux-api-headers
+
+pkgname=ryzen_smu
+pkgver=0.1.5
+commit=21c1e2c51832dccfac64981b345745ce0cccf524
+pkgrel=1
+options=(!lto)
+url='https://gitlab.com/leogx9r/ryzen_smu'
+source=($pkgname-$pkgver.tar.gz::https://github.com/amkillam/ryzen_smu/archive/$commit.tar.gz
+		buildmodules-ryzen_smu.sh)
+
+build() {
+    cd $pkgname-$commit
+
+	make -C userspace
+	install -d "$pkgdir"/usr/src/ryzen_smu-$pkgver/
+	cp "$srcdir"/ryzen_smu-$commit/{LICENSE,Makefile,dkms.conf,drv.c,smu.c,smu.h} "$pkgdir"/usr/src/ryzen_smu-$pkgver/
+
+	install -d "$pkgdir"/var/lib/dkms
+
+	sed -e "s/@name@/ryzen_smu/g" \
+	    -e "s/@version@/$pkgver/g" \
+	"$srcdir"/buildmodules-ryzen_smu.sh > "$pkgdir"/var/lib/dkms/buildmodules-ryzen_smu.sh
+
+	sed -i 's/CFLAGS_MODULE+=@CFLGS@//' "$pkgdir"/usr/src/ryzen_smu-$pkgver/dkms.conf
+	
+	install -Dm700 "$srcdir"/ryzen_smu-$commit/userspace/monitor_cpu "$pkgdir"/usr/bin/monitor_cpu
+}

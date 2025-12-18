@@ -3,19 +3,20 @@
 
 pkgname=itstool
 pkgver=2.0.7
-pkgrel=1
+pkgrel=2
 options=(!lto)
 url='https://itstool.org'
-source=(https://files.itstool.org/itstool/$pkgname-$pkgver.tar.bz2)
+source=(https://github.com/itstool/itstool/archive/$pkgver/$pkgname-$pkgver.tar.gz
+        https://www.linuxfromscratch.org/patches/blfs/svn/itstool-2.0.7-lxml-1.patch)
 
 build() {
     cd $pkgname-$pkgver
 
-    # First, fix some compatibility problems with Python-3.12
-    sed -i 's/re.sub(/re.sub(r/'         itstool.in &&
-    sed -i 's/re.compile(/re.compile(r/' itstool.in
+    # Apply a patch to use lxml-6.0.2 for handling the XML files instead of the deprecated 
+    # (disabled by default) Python module from libxml2-2.15.1
+    patch -Np1 -i ../itstool-2.0.7-lxml-1.patch
 
-    PYTHON=/usr/bin/python3 ./configure --prefix=/usr &&
+    PYTHON=/usr/bin/python3 ./autogen.sh --prefix=/usr &&
     make
     make DESTDIR="$pkgdir" install
 }

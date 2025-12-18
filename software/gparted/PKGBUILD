@@ -1,0 +1,20 @@
+# description	: Partition editor for graphically managing your disk partitions
+# depends	: gtkmm-3.24 parted btrfs-progs hdparm dosfstools itstool
+# depends	: e2fsprogs intltool 
+
+pkgname=gparted
+pkgver=1.7.0
+pkgrel=1
+url='https://gparted.org'
+source=(https://downloads.sourceforge.net/gparted/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --disable-doc \
+        --disable-static
+    make
+    make DESTDIR="$pkgdir" install
+}

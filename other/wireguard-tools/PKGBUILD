@@ -16,9 +16,9 @@ build() {
 	make -C src/ \
 		DESTDIR="$pkgdir" \
 		WITH_BASHCOMPLETION=yes \
-                WITH_WGQUICK=yes \
-                WITH_SYSTEMDUNITS=yes \
-                install
+        WITH_WGQUICK=yes \
+        WITH_SYSTEMDUNITS=yes \
+        install
 
     install -d "$pkgdir"/usr/share/$pkgname/examples
 	cp -r contrib/ "$pkgdir"/usr/share/$pkgname/examples/

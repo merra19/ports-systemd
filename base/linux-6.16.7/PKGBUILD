@@ -12,6 +12,7 @@ url='https://www.kernel.org'
 source=(https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver%.0}.tar.xz
         https://github.com/archlinux/linux/releases/download/$_srctag/linux-$_srctag.patch.zst
         novector.patch configarch)
+noextract=(linux-$_srctag.patch.zst)
 
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
 
@@ -154,6 +155,4 @@ build() {
     echo "Adding symlink..."
     mkdir -p "$pkgdir/usr/src"
     ln -sr "$builddir" "$pkgdir/usr/src/$pkgname"
-
-    echo $kernver > "$pkgdir"/usr/lib/modules/KERNELVERSION
 }

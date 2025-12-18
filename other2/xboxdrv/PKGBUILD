@@ -8,7 +8,7 @@ options=(!lto)
 commit=a7be45051b2c920d6dfec4d0c515c815883bdaff
 url='https://github.com/xiota/xboxdrv'
 source=($pkgname-$pkgver.tar.gz::https://github.com/xiota/xboxdrv/archive/$commit.tar.gz
-		xboxdrv.init xboxdrv.conf)
+		xboxdrv.conf)
 backup=(etc/default/xboxdrv etc/xboxdrv.conf)
 
 build() {
@@ -21,22 +21,10 @@ build() {
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build
 
-	rm -rf "$pkgdir"/usr/lib/systemd
-
 	install -d "$pkgdir"/etc/dbus-1/system.d/
 	install -m 644 data/org.seul.Xboxdrv.conf "$pkgdir"/etc/dbus-1/system.d/
 
     install -d "$pkgdir"/etc/modules-load.d
     echo "uinput" > "$pkgdir"/etc/modules-load.d/uinput.conf
-
-	install -Dm 0754 "$srcdir"/xboxdrv.init "$pkgdir"/etc/rc.d/init.d/xboxdrv
 	install -Dm 0644 "$srcdir"/xboxdrv.conf "$pkgdir"/etc/xboxdrv.conf
-
-    for i in 0 1 2 3 4 5 6; do
-        install -d "$pkgdir"/etc/rc.d/rc$i.d
-        case $i in
-            0|1|6) ln -sf ../init.d/xboxdrv "$pkgdir"/etc/rc.d/rc$i.d/K30xboxdrv ;;
-            *) ln -sf ../init.d/xboxdrv "$pkgdir"/etc/rc.d/rc$i.d/S70xboxdrv ;;
-        esac
-    done
 }

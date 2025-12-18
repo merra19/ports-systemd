@@ -17,7 +17,6 @@ build() {
         --buildtype=plain \
         -D man=true \
         -D gtk_doc=true \
-        -D session_tracking=logind \
         -D tests=true \
         build
 	ninja -C build

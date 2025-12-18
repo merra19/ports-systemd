@@ -2,7 +2,7 @@
 # depends	: rustc llvm
 
 pkgname=rust-bindgen
-pkgver=0.72.0
+pkgver=0.72.1
 pkgrel=1
 options=(!lto)
 url='https://rust-lang.github.io/rust-bindgen'

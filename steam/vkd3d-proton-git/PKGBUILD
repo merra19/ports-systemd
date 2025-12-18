@@ -3,15 +3,16 @@
 # depends	: vulkan-headers xcb-utilities xorg-proto
 
 pkgname=vkd3d-proton-git
-pkgver=2.14.1.105417a
+pkgver=3.0b
 pkgrel=1
-commit=105417aa2e9341baa8f0c15aa2046737e241a902
-dxilspirvcommit=b638587297114eecad6df11b9164889d33ff034c
+commit=734bcaaa0527efb9b2d6a1a62dc01d4186e5a6b8
+dxilspirvcommit=4e36bab794afdb7d78f56b866971009ca894fe9c
 spirvheadercommit=3b9447dc98371e96b59a6225bd062a9867e1d203
 vulkancommit=b39ab380a44b6c8df462c34e976ea9ce2d2c336b
 spirvtoolscommit=e9a8ceeddbf7e3aaadac2ab6f8a6ab6437872e88
 spirvcrosscommit=4b7bcb7e5cf71015b3299088d22004bfe4e13a5e
-dxbcspirvcommit=fa3028393571cef91f7a6a8b665f5a49466be29a
+dxbcspirvcommit=a38b5d78ed29f5fe44c2a2e157d5f7c2516df6e5
+spirvheadercommit2=c8ad050fcb29e42a2f57d9f59e97488f465c436d
 url='https://github.com/HansKristian-Work/vkd3d-proton'
 source=(https://github.com/HansKristian-Work/vkd3d-proton/archive/$commit.tar.gz
 		spirv-headers-$spirvheadercommit.tar.gz::https://github.com/KhronosGroup/SPIRV-Headers/archive/$spirvheadercommit.tar.gz
@@ -20,17 +21,25 @@ source=(https://github.com/HansKristian-Work/vkd3d-proton/archive/$commit.tar.gz
 		spirv-cross-$spirvcrosscommit.tar.gz::https://github.com/KhronosGroup/SPIRV-Cross/archive/$spirvcrosscommit.tar.gz
 		dxil-spirv-$dxilspirvcommit.tar.gz::https://github.com/HansKristian-Work/dxil-spirv/archive/$dxilspirvcommit.tar.gz
 		dxbc-spirv-$dxbcspirvcommit.tar.gz::https://github.com/doitsujin/dxbc-spirv/archive/$dxbcspirvcommit.tar.gz
+		spirv-headers-$spirvheadercommit2.tar.gz::https://github.com/KhronosGroup/SPIRV-Headers/archive/$spirvheadercommit2.tar.gz
 		dxvk-extraopts.patch)
+
+# vkd3d-proton / subprojects / dxil-spirv
+# vkd3d-proton / khronos / SPIRV-Headers
+# vkd3d-proton / khronos / Vulkan-Headers
+# vkd3d-proton / subprojects / dxil-spirv / dxbc-spirv
+# vkd3d-proton / subprojects / dxil-spirv / dxbc-spirv / submodules / SPIRV-Headers   
+# vkd3d-proton / subprojects / dxil-spirv / third_party / SPIRV-Cross
+# vkd3d-proton / subprojects / dxil-spirv / third_party / SPIRV-Tools
+# vkd3d-proton / subprojects / dxil-spirv / third_party / spirv-headers
 
 build() {
 	cp -r SPIRV-Headers-$spirvheadercommit/* vkd3d-proton-$commit/khronos/SPIRV-Headers/
-	#mv -T SPIRV-Headers-$spirvheadercommit vkd3d-proton-$commit/khronos/SPIRV-Headers 
 	mv -T Vulkan-Headers-$vulkancommit vkd3d-proton-$commit/khronos/Vulkan-Headers
 	mv -T dxil-spirv-$dxilspirvcommit vkd3d-proton-$commit/subprojects/dxil-spirv
 	
 	mv -T dxbc-spirv-$dxbcspirvcommit vkd3d-proton-$commit/subprojects/dxbc-spirv
-	cp -r SPIRV-Headers-$spirvheadercommit/* vkd3d-proton-$commit/subprojects/dxbc-spirv/submodules/spirv_headers/
-	#mv -T SPIRV-Headers-$spirvheadercommit vkd3d-proton-$commit/subprojects/dxbc-spirv/submodules
+	cp -r SPIRV-Headers-$spirvheadercommit2/* vkd3d-proton-$commit/subprojects/dxbc-spirv/submodules/spirv_headers/
 	
 	mv -T SPIRV-Cross-$spirvcrosscommit vkd3d-proton-$commit/subprojects/dxil-spirv/third_party/SPIRV-Cross
 	mv -T SPIRV-Tools-$spirvtoolscommit vkd3d-proton-$commit/subprojects/dxil-spirv/third_party/SPIRV-Tools

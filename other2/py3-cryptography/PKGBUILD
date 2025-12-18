@@ -9,8 +9,27 @@ options=(!lto)
 url='https://github.com/pyca/cryptography'
 source=(https://files.pythonhosted.org/packages/source/c/cryptography/cryptography-$pkgver.tar.gz)
 
+createpack() {
+    mkdir -p vendor
+    cargo vendor vendor
+    tar -cJpf $pkgname-$pkgver-cargo.tar.xz vendor/
+    cp $pkgname-$pkgver-cargo.tar.xz /sources/src/
+}
+
 build() {
 	cd ${pkgname#*-}-$pkgver
+
+	if [ ! -f /sources/src/$pkgname-$pkgver-cargo.tar.xz ];then
+    	createpack
+	else
+		tar -xf /sources/src/$pkgname-$pkgver-cargo.tar.xz
+	fi
+
+    mkdir -p .cargo
+    echo '[source.crates-io]' >> .cargo/config.toml
+    echo 'replace-with = "vendored-sources"' >> .cargo/config.toml
+    echo '[source.vendored-sources]' >> .cargo/config.toml
+    echo 'directory = "vendor"' >> .cargo/config.toml
 
     gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
 	python3 -m installer -d "$pkgdir" .dist/*.whl

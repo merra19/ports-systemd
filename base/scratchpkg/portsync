@@ -1,0 +1,138 @@
+#!/bin/sh
+
+msg() {
+	printf "==> %s\n" "$1"
+}
+
+die() {
+    printf "ERROR : $@"
+    exit 1
+}
+
+mkd(){
+	[ -d $1 ] || mkdir -pv $1
+}
+
+venom_git() {
+	git --git-dir="$baredir/${portdir}.git" --work-tree="$worktree/$portdir"  "$@"
+}
+
+usage() {
+cat << EOF
+Usage:
+  $0 [options]
+  
+Options:
+  -p, --prune	prune local git repository
+  -r, --reset	reset git repositories
+  -h, --help	show this help message
+      
+EOF
+exit 0
+}
+
+parse_opts() {
+	while [ "$1" ]; do
+		case $1 in
+			-p|--prune) PRN=1;;
+			-r|--reset) RST=1;;
+			-h|--help) HELP=1;;
+			       *) die "invalid options: $1";;
+		esac
+		shift
+	done
+}
+
+prune_local() {
+	# Expire all old commits and their objects
+	venom_git reflog expire --expire-unreachable=now --all
+
+	# Remove the old objects
+	venom_git gc --quiet --aggressive --prune=all
+}
+
+reset_repos(){
+	# Remove baredir and worktree
+	echo "Resetting repos..."
+	rm -rf $baredir $worktree
+	echo "Syncing repos..."
+}
+
+sync_repo() {
+	# usage:
+	#   sync_repo <repo dir> <repo url> <repo branch>
+	#
+	repodir=$1
+	portdir=${repodir##*/}
+	repourl=$2
+	# If the branch isn't indicated, the default value is "main"
+	[ -z "$3" ] && repobranch="main" || repobranch=$3
+
+	msg "fetching ports: $2"
+
+	# Check repodir
+	mkd  "$repodir" 
+	cd "$repodir"
+
+	# Check gitdir
+	[ -d "$baredir/${portdir}.git" ] || { 
+		# Init git repository
+		git init --quiet --bare "$baredir/${portdir}.git"
+
+		# Add origin
+		venom_git remote add origin "$repourl" 2>/dev/null
+ 
+		# Fetching the last commit
+		venom_git fetch --depth=1 origin "$repobranch" 
+
+		# Resets the index and working tree
+		venom_git reset --quiet --hard FETCH_HEAD 
+	
+		# Change to branch
+		venom_git checkout --quiet "$repobranch" 	
+	}
+
+	# Pull and update
+	venom_git pull --quiet $repourl $repobranch
+
+	[ "$PRN" ] && prune_local
+
+	msg "${1##*/} ports synced in $1"
+}
+
+
+parse_opts "$1" 
+
+[ "$HELP" ] && usage
+
+baredir="/var/cache/scratchpkg/repos"
+mkd "$baredir" 
+
+worktree="/sources/ports"
+mkd "$worktree" 
+
+repo_file="/etc/scratchpkg.repo"
+
+[ -e "$repo_file" ] || {
+	echo "Missing repo file: $repo_file"
+	exit 1
+	}
+
+[ "$(id -u)" = 0 ] || {
+	echo "This operation need root access!"
+	exit 1
+}
+
+[ "$RST" ] && reset_repos
+
+worktree="/sources"
+repodir=/sources/ports repourl=https://github.com/merra19/ports-blfs repobranch=lfs
+sync_repo $repodir $repourl $repobranch
+
+worktree="/sources/ports"
+
+grep -Ev '^(#|$)' $repo_file | awk '{print $1,$2,$3}' | while read -r repodir repourl repobranch ; do
+	[ "$repodir" ] && [ "$repourl" ] && sync_repo $repodir $repourl $repobranch
+done
+
+exit 0

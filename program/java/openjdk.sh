@@ -1,7 +1,7 @@
 # Begin /etc/profile.d/openjdk.sh
 
 # Set JAVA_HOME directory
-JAVA_HOME=/opt/jdk
+JAVA_HOME=/opt
 
 # Adjust PATH
 pathappend $JAVA_HOME/bin

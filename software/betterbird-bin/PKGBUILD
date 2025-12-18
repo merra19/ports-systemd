@@ -4,12 +4,12 @@
 # depends	: pango adwaita-icon-theme
 
 pkgname=betterbird-bin
-pkgver=140.5.0
-betterver=bb14
+pkgver=140.6.0
+betterver=esr-bb15-build2
 pkgrel=1
 options=(!strip)
 url='https://www.betterbird.eu'
-source=(https://www.betterbird.eu/downloads/LinuxArchive/betterbird-${pkgver}esr-${betterver}.en-US.linux-x86_64.tar.xz
+source=(https://www.betterbird.eu/downloads/LinuxArchive/betterbird-${pkgver}${betterver}.en-US.linux-x86_64.tar.xz
         eu.betterbird.Betterbird.desktop vendor-prefs.js)
 
 build() {

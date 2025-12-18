@@ -4,7 +4,7 @@
 # depends	: gsettings-desktop-schemas bubblewrap dbus fuse polkit
 # depends	: xdg-dbus-proxy xorg-applications libxau gdk-pixbuf 
 # depends	: libseccomp automake gettext pkgconf bison py3-parsing 
-# depends	: xmlto gobject-introspection libxslt gtk-doc
+# depends	: xmlto gobject-introspection libxslt gtk-doc systemd
 
 pkgname=flatpak
 pkgver=1.16.1
@@ -21,7 +21,6 @@ build() {
         --buildtype=plain \
         -D b_lto=true \
         -D b_pie=true \
-        -D systemd=disabled \
         -D dbus_config_dir=/usr/share/dbus-1/system.d \
         -D system_helper_user=flatpak \
         -D selinux_module=disabled \

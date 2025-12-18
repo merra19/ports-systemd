@@ -27,6 +27,7 @@ build() {
         --prefix=/usr \
         --disable-static \
         --disable-nls \
+        --disable-doc-build \
         --enable-default-catalog=/etc/sgml/catalog \
         --enable-http \
         --enable-default-search-path=/usr/share/sgml

@@ -3,8 +3,8 @@
 # depends	: tumbler gvfs gtk-doc
 
 pkgname=thunar
-pkgver=4.20.4
-pkgrel=2
+pkgver=4.20.6
+pkgrel=1
 url='https://docs.xfce.org/xfce/thunar/start'
 source=(https://archive.xfce.org/src/xfce/thunar/${pkgver%.*}/$pkgname-$pkgver.tar.bz2)
 

@@ -2,11 +2,11 @@
 # depends	: cmake curl llvm llvm32 xz zlib openssl lld libssh2
 
 pkgname=rustc
-pkgver=1.89.0
-pkgver2=1.88.0
-daterust=2025-06-26
+pkgver=1.91.0
+pkgver2=1.90.0
+daterust=2025-09-18
 pkgrel=1
-options=(!lto)
+#options=(!lto)
 url='https://www.rust-lang.org'
 source=(https://static.rust-lang.org/dist/$pkgname-$pkgver-src.tar.xz
         https://static.rust-lang.org/dist/${daterust}/rust-std-${pkgver2}-x86_64-unknown-linux-gnu.tar.xz
@@ -33,7 +33,7 @@ build() {
     cp ../config.toml ./bootstrap.toml
 
     # add change-id & version to config.toml
-    sed 's/YYYY/138986/' -i bootstrap.toml
+    sed 's/YYYY/146435/' -i bootstrap.toml
     sed "s/XXXX/$pkgver/g" -i bootstrap.toml
 
 	[ ! -e /usr/include/libssh2.h ] || export LIBSSH2_SYS_USE_PKG_CONFIG=1; 

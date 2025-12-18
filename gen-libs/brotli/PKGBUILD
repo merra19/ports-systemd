@@ -16,4 +16,7 @@ build() {
 		-D CMAKE_BUILD_TYPE=Release
 	make -C out
     make DESTDIR="$pkgdir" install -C out
+
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	python3 -m installer -d "$pkgdir" .dist/*.whl
 }

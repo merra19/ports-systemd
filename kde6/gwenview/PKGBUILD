@@ -3,7 +3,7 @@
 # depends	: plasma-activities 
 
 pkgname=gwenview
-pkgver=25.08.0
+pkgver=25.08.3
 pkgrel=1
 options=(!lto)
 url='https://apps.kde.org/gwenview'

@@ -16,6 +16,8 @@ build() {
     sed -i '/gtk-update-icon-cache/d' install.sh
 
     ./install.sh -s default -t all -d "$pkgdir/usr/share/icons"
-    ./install.sh -s catppuccin -t all -d "$pkgdir/usr/share/icons"
-    ./install.sh -s dracula -t all -d "$pkgdir/usr/share/icons"
+    #./install.sh -s catppuccin -t all -d "$pkgdir/usr/share/icons"
+    #./install.sh -s dracula -t all -d "$pkgdir/usr/share/icons"
+
+    find  "$pkgdir" -xtype l -delete
 }

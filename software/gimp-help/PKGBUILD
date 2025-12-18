@@ -1,0 +1,22 @@
+# description	: GNU Image Manipulation Program help files
+# depends	: gimp
+
+pkgname=gimp-help
+pkgver=3.0.0
+pkgrel=1
+options=(!strip)
+url='https://docs.gimp.org'
+source=(https://download.gimp.org/pub/gimp/help/$pkgname-$pkgver.tar.bz2)
+
+build() {
+    cd $pkgname-$pkgver
+
+    if [ -z "$ALL_LINGUAS" ];then
+        export ALL_LINGUAS="en fr"
+    fi
+    
+    ./configure \
+        --prefix=/usr
+    make
+    make DESTDIR="$pkgdir" install
+}

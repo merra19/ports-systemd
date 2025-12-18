@@ -6,7 +6,7 @@
 # depends	: wireless_tools sqlite xorg-libs 
 
 pkgname=firefox
-pkgver=140.4.0
+pkgver=140.5.0
 pkgrel=1
 options=(!lto !emptydirs !makeflags)
 url='https://www.firefox.com'

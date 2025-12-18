@@ -1,0 +1,17 @@
+# description	: A tool to display info about the system's OpenCL capabilities
+# depends	: opencl-loader opencl-headers 
+
+pkgname=clinfo
+pkgver=3.0.25.02.14
+pkgrel=1
+options=(!lto)
+url='https://github.com/Oblomov/clinfo'
+source=(https://github.com/Oblomov/clinfo/archive/$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	make
+	install -Dm755 clinfo -t "$pkgdir"/usr/bin/
+	install -Dm644 man1/clinfo.1 -t "$pkgdir"/usr/share/man/man1/
+}

@@ -29,7 +29,6 @@ build() {
         --with-pammodulesdir=/usr/lib/security \
         --enable-fhs \
         --without-ad-dc \
-        --without-systemd \
         --with-system-mitkrb5 \
         --enable-selftest \
         --disable-rpath-install 

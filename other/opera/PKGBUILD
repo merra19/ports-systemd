@@ -5,7 +5,7 @@
 # depends	: qt6
 
 pkgname=opera
-pkgver=123.0.5669.47
+pkgver=125.0.5729.21
 pkgrel=1
 url='https://www.opera.com'
 source=(https://get.geo.opera.com/ftp/pub/$pkgname/desktop/$pkgver/linux/$pkgname-stable_${pkgver}_amd64.deb
@@ -20,11 +20,9 @@ build() {
     ar x $pkgname-stable_${pkgver}_amd64.deb
     tar -xf data.tar.xz --exclude=usr/share/{lintian,menu} -C "$pkgdir/"
 
-    # get rid of the extra subfolder {i386,x86_64}-linux-gnu
-    (
-        cd "$pkgdir/usr/lib/"*-linux-gnu/
-        mv "$pkgname" ../
-    )
+    mv "$pkgdir/usr/lib/x86_64-linux-gnu/opera-stable" "$pkgdir/usr/lib/x86_64-linux-gnu/opera"
+
+    mv "$pkgdir/usr/lib/x86_64-linux-gnu/opera" "$pkgdir/usr/lib"
     rm -rf "$pkgdir/usr/lib/"*-linux-gnu
 
     # suid opera_sandbox

@@ -7,8 +7,8 @@
 # depends	: xcb-util-errors xcb-utilities yyjson systemd
 
 pkgname=wayfire
-pkgver=0.10.0
-pkgrel=2
+pkgver=0.10.1
+pkgrel=1
 url='https://github.com/WayfireWM/wayfire'
 source=(https://github.com/WayfireWM/$pkgname/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
         wayfire-session.desktop wayfire-session wayfire.env)
