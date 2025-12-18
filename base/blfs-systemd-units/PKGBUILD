@@ -1,7 +1,7 @@
 # description	: LFS bootscript
 
 pkgname=blfs-systemd-units
-pkgver=20241211
+pkgver=20251204
 pkgrel=1
 url='https://www.linuxfromscratch.org'
 source=(https://www.linuxfromscratch.org/blfs/downloads/systemd/$pkgname-$pkgver.tar.xz
