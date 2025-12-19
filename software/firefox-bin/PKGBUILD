@@ -5,7 +5,7 @@
 
 pkgname=firefox-bin
 _pkgname=firefox
-pkgver=144.0.2
+pkgver=146.0.1
 pkgrel=1
 options=(!strip)
 url='https://www.firefox.com'

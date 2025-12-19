@@ -6,12 +6,12 @@
 # depends	: gawk perl python
 
 pkgname=thunderbird
-pkgver=140.5.0
+pkgver=140.6.0
 pkgrel=1
 options=(!lto !emptydirs !makeflags)
 url='https://www.thunderbird.net'
 source=(https://archive.mozilla.org/pub/thunderbird/releases/${pkgver}esr/source/thunderbird-${pkgver}esr.source.tar.xz
-        https://www.linuxfromscratch.org/patches/blfs/svn/thunderbird-140.5.0esr-python_3.14_fixes-1.patch)
+        https://www.linuxfromscratch.org/patches/blfs/svn/thunderbird-${pkgver}esr-python_3.14_fixes-1.patch)
 
 build() {
     cd thunderbird-${pkgver}
@@ -112,7 +112,7 @@ END
     CXXFLAGS="${CXXFLAGS/-mrelax-cmpxchg-loop/}"
 
     # Fix building this package with Python 3.14
-    patch -Np1 -i ../thunderbird-140.5.0esr-python_3.14_fixes-1.patch
+    patch -Np1 -i ../thunderbird-${pkgver}esr-python_3.14_fixes-1.patch
 
 
     export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=none &&
