@@ -6,12 +6,18 @@
 # depends	: wireless_tools sqlite xorg-libs 
 
 pkgname=firefox
-pkgver=140.5.0
+pkgver=140.6.0
 pkgrel=1
 options=(!lto !emptydirs !makeflags)
 url='https://www.firefox.com'
 source=(https://archive.mozilla.org/pub/firefox/releases/${pkgver}esr/source/firefox-${pkgver}esr.source.tar.xz
+        https://www.linuxfromscratch.org/patches/blfs/svn/firefox-${pkgver}esr-ffmpeg-8.0.patch
+        https://www.linuxfromscratch.org/patches/blfs/svn/firefox-${pkgver}esr-python_3.14_fixes-1.patch
         firefox-symbolic.svg firefox.desktop org.mozilla.firefox.metainfo.xml)
+
+getversionpkg() {
+    awk 'NR==1 {print $1}' /var/lib/scratchpkg/db/$1 2>/dev/null
+}
 
 build() {
     mkdir mozbuild
@@ -119,6 +125,21 @@ END
 
     # LTO needs more open files
     #ulimit -n 8192
+
+    # Apply a patch to fix video functionality with FFmpeg-8.0.1
+    #patch -Np1 -i ../firefox-${pkgver}esr-ffmpeg-8.0.patch
+
+    # Fix building this package with Python 3.14:
+    vers="$(getversionpkg ffmpeg)"
+    if [ "${vers%%.*}" == "8" ]; then
+        patch -Np1 -i ../firefox-${pkgver}esr-python_3.14_fixes-1.patch
+    fi  
+
+    # if you are building with system ICU-78.1 or later, update one file
+    vers="$(getversionpkg icu)"
+    if [ "${vers%%.*}" != "77" ]; then
+        sed -i '/VIRAMA = 47/a CLASS_CHARACTER,' intl/lwbrk/LineBreaker.cpp
+    fi
 
     # malloc_usable_size is used in various parts of the codebase
     CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"

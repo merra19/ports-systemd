@@ -20,7 +20,7 @@ build() {
         -D BUILD_TAB2SPACE=ON \
         ../..
     make
-    make DESTDIR="$pkgdir"
+    make DESTDIR="$pkgdir" install
     rm -fv "$pkgdir"/usr/lib/libtidy.a
     install -d "$pkgdir"/usr/bin/
     install -v -m755 tab2space "$pkgdir"/usr/bin/

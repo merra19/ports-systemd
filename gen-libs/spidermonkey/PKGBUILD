@@ -2,12 +2,12 @@
 # depends	: readline zlib icu which cbindgen
 
 pkgname=spidermonkey
-pkgver=140.5.0
+pkgver=140.6.0
 pkgrel=1
 options=(!lto)
 url='https://spidermonkey.dev'
 source=(https://archive.mozilla.org/pub/firefox/releases/${pkgver}esr/source/firefox-${pkgver}esr.source.tar.xz
-        https://www.linuxfromscratch.org/patches/blfs/svn/spidermonkey-140.5.0-python_3.14_fixes-1.patch)
+        https://www.linuxfromscratch.org/patches/blfs/svn/spidermonkey-${pkgver}-python_3.14_fixes-1.patch)
 
 build() {
     cd firefox-$pkgver
@@ -18,7 +18,7 @@ build() {
     mountpoint -q /dev/shm || mount -t tmpfs devshm /dev/shm
 
     # Apply a patch to fix compatibility with Python 3.14
-    patch -Np1 -i ../spidermonkey-140.5.0-python_3.14_fixes-1.patch
+    patch -Np1 -i ../spidermonkey-${pkgver}-python_3.14_fixes-1.patch
 
     mkdir obj
     cd    obj
