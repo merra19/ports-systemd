@@ -3,7 +3,7 @@
 # depends	: linux-api-headers
 
 pkgname=xlibre-xf86-input-evdev
-pkgver=2.11.0.2
+pkgver=25.0.0
 pkgrel=1
 options=(!makeflags)
 url='https://x11libre.net'

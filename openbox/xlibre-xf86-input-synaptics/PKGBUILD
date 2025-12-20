@@ -2,7 +2,7 @@
 # depends	: libevdev xlibre-xserver
 
 pkgname=xlibre-xf86-input-synaptics
-pkgver=1.10.0.2
+pkgver=25.0.0
 pkgrel=1
 url='https://x11libre.net'
 source=(https://github.com/X11Libre/xf86-input-synaptics/archive/refs/tags/xlibre-xf86-input-synaptics-$pkgver.tar.gz)
