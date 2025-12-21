@@ -5,25 +5,24 @@
 
 pkgname=gcr
 pkgver=3.41.2
-pkgrel=3
+pkgrel=4
 url='https://gitlab.gnome.org/GNOME/gcr'
 source=(https://download.gnome.org/sources/gcr/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 
 build() {
     cd $pkgname-$pkgver
 
-    sed -i 's:"/desktop:"/org:' schema/*.xml
+    # Apply a fix for building without OpenSSH installed
+    sed '/ssh.add/d; /ssh.agent/d' -i meson.build
 
-	sed -e "/install_dir/s@,\$@ / 'gcr-$pkgver'&@" \
-    	-i docs/*/meson.build
+    sed -i 's:"/desktop:"/org:' schema/*.xml
 
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
         -D gtk_doc=true \
+        -D ssh_agent=false \
         build
 	ninja -C build
 	DESTDIR="$pkgdir" ninja install -C build
-
-    mv "$pkgdir"/usr/libexec/gcr-ssh-agent "$pkgdir"/usr/libexec/gcr-ssh-agent3
 }
