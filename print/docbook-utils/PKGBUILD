@@ -18,7 +18,7 @@ build() {
     ./configure \
         --prefix=/usr \
         --mandir=/usr/share/man
-    make 2>&1 | tee make.log
+    make
     make docdir=/usr/share/doc DESTDIR="$pkgdir" install
 
     for doctype in html ps dvi man pdf rtf tex texi txt
