@@ -4,8 +4,7 @@
 # depends	: acl cups jansson pam libtirpc dbus rpcsvc-proto fuse
 # depends	: gpgme lmdb libaio libnsl py3-markdown avahi talloc
 # depends	: libxslt gnupg libgcrypt libunwind nss vala py3-pyasn1
-# depends	: py3-cryptography py3-iso8601
-# optional	: krb5 openldap 
+# depends	: py3-cryptography py3-iso8601 krb5 openldap 
 
 pkgname=samba
 pkgver=4.23.3
@@ -19,7 +18,7 @@ build() {
     #python3 -m venv pyvenv &&
     #./pyvenv/bin/pip3 install cryptography pyasn1 iso8601
 
-    PYTHON=$PWD/pyvenv/bin/python3 \
+    #PYTHON=$PWD/pyvenv/bin/python3 \
     PATH=$PWD/pyvenv/bin:$PATH \
     ./configure \
         --prefix=/usr \
@@ -57,4 +56,6 @@ build() {
 
     install -v -m755    examples/LDAP/{get*,ol*} \
                         "$pkgdir"/etc/openldap/schema
+
+    rm -rf "$pkgdir"/run "$pkgdir"/var/lock
 }
