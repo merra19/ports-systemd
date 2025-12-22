@@ -26,4 +26,6 @@ build() {
     install -Dm 644 -v tools/udev/libsane.rules  \
                     "$pkgdir"/etc/udev/rules.d/65-scanner.rules
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+    rm -rf "$pkgdir"/run
 }

@@ -50,4 +50,6 @@ build() {
             *) ln -sf ../init.d/krb5 "$pkgdir"/etc/rc.d/rc$i.d/S28krb5 ;;
         esac
     done
+
+    rm -rf "$pkgdir"/run
 }

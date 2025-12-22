@@ -68,4 +68,6 @@ build() {
             *) ln -sf ../init.d/httpd "$pkgdir"/etc/rc.d/rc$i.d/S32httpd ;;
         esac
     done
+
+    rm -rf "$pkgdir"/run
 }

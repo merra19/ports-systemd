@@ -40,4 +40,6 @@ build() {
             *) ln -sf ../init.d/dbus "$pkgdir"/etc/rc.d/rc$i.d/S29dbus ;;
         esac
     done
+
+    rm -rf "$pkgdir"/run
 }

@@ -51,4 +51,6 @@ build() {
             *) ln -sf ../init.d/cups "$pkgdir"/etc/rc.d/rc$i.d/S35cups ;;
         esac
     done
+
+    rm -rf "$pkgdir"/run
 }

@@ -44,4 +44,6 @@ build() {
             *) ln -sf ../init.d/postgresql "$pkgdir"/etc/rc.d/rc$i.d/S34postgresql ;;
         esac
     done
+
+    rm -rf "$pkgdir"/run
 }

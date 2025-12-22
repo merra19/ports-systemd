@@ -46,4 +46,6 @@ build() {
             *) ln -sf ../init.d/fcron "$pkgdir"/etc/rc.d/rc$i.d/S40fcron ;;
         esac
     done
+
+    rm -rf "$pkgdir"/run
 }
