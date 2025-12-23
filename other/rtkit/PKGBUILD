@@ -2,21 +2,14 @@
 # depends	: dbus polkit meson
 
 pkgname=rtkit
-pkgver=0.13
-pkgrel=3
+pkgver=0.14
+pkgrel=1
 url='https://github.com/heftig/rtkit'
-source=(https://github.com/heftig/rtkit/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
-		$pkgname.hooks rtkit-0.13_daemon_verbosity.patch
-		rtkit-0.13_meson_xxd_optional.patch)
+source=(https://gitlab.freedesktop.org/pipewire/rtkit/-/archive/v${pkgver}/$pkgname-v${pkgver}.tar.bz2
+        $pkgname.hooks)
 
 build() {
-	cd $pkgname-$pkgver
-
-	# The rtkit-daemon service is a lot more verbose than other services
-	# when it doesn't have anything to do. Stop logging the debug messages
-	# by default to avoid flooding the system log.
-	patch -Np1 -i ../rtkit-0.13_daemon_verbosity.patch
-	patch -Np1 -i ../rtkit-0.13_meson_xxd_optional.patch
+	cd $pkgname-v${pkgver}
 
     meson setup \
         --prefix=/usr \
@@ -26,8 +19,6 @@ build() {
         build
     ninja -C build
     DESTDIR="$pkgdir" ninja install -C build
-
-	mv "$pkgdir"/usr/bin "$pkgdir"/usr/sbin
 
 	rm -rf "$pkgdir"/usr/lib/systemd
 
