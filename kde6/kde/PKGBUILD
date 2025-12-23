@@ -1,7 +1,7 @@
 # description	: Meta port for KDE
 # depends	: kde-pre-conf kde-frameworks6 plasma-activities-stats
 # depends	: oxygen-icons ark gwenview dolphin konsole kate okular
-# depends	: dolphin-plugins kde-plasma6 networkmanager xlibre
+# depends	: dolphin-plugins kde-plasma6 networkmanager xorg
 # depends	: xdg-desktop-portal-gtk
 # todo      : flatpak-kcm
 
