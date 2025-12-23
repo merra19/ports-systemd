@@ -1,0 +1,23 @@
+# description	: Helper library for RESTful services
+# depends	: json-glib libsoup3 make-ca gobject-introspection vala
+# depends	: py3-gi-docgen
+
+pkgname=rest
+pkgver=0.9.1
+pkgrel=1
+url='https://wiki.gnome.org/Projects/Librest'
+source=(https://download.gnome.org/sources/rest/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D examples=false \
+        -D gtk_doc=true \
+        -D vapi=true \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

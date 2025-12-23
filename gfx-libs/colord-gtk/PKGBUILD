@@ -1,0 +1,24 @@
+# description	: GTK support library for colord
+# depends	: colord gtk3 gobject-introspection gtk4 vala gtk-doc
+# depends	: docbook-xml docbook-xsl-ns libxslt
+
+pkgname=colord-gtk
+pkgver=0.3.1
+pkgrel=1
+url='https://www.fltk.org'
+source=(https://www.freedesktop.org/software/colord/releases/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D gtk4=true \
+        -D vapi=true \
+        -D docs=false \
+        -D man=true \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

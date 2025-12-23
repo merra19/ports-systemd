@@ -1,0 +1,18 @@
+# description	:  Implementation of the org.freedesktop.locale1 D-Bus protocol, which normally comes with systemd
+# depends	: glibc polkit libdaemon
+
+pkgname=blocaled
+pkgver=0.7
+pkgrel=1
+url='https://github.com/lfs-book/blocaled'
+source=(https://github.com/lfs-book/blocaled/releases/download/v$pkgver/blocaled-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make
+    make DESTDIR="$pkgdir" install
+}

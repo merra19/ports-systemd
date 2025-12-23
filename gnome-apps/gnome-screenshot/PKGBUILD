@@ -1,0 +1,22 @@
+# description	: Screenshot utility for GNOME
+# depends	: gtk3 libcanberra libhandy 
+
+pkgname=gnome-screenshot
+pkgver=41.0
+pkgrel=1
+url='https://gitlab.gnome.org/GNOME/gnome-screenshot'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    # First, fix building with newer versions of meson
+    sed -i '/merge_file/{n;d}' data/meson.build
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

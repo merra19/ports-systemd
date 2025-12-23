@@ -1,0 +1,40 @@
+# description	: Open source web browser engine GTK4
+# depends	: cairo cmake gst-plugins-base gst-plugins-bad gtk4
+# depends	: icu lcms2 libgudev libsecret libsoup3 libtasn1 libwebp
+# depends	: mesa openjpeg ruby sqlite unifdef which bubblewrap
+# depends	: enchant geoclue gobject-introspection libavif libjxl
+# depends	: hicolor-icon-theme libseccomp xdg-dbus-proxy harfbuzz
+# depends	: wayland woff2 py3-gi-docgen
+
+pkgname=webkitgtk
+pkgver=2.48.5
+pkgrel=1
+options=(!lto)
+url='https://www.webkitgtk.org'
+source=(https://webkitgtk.org/releases/$pkgname-$pkgver.tar.xz)
+optsflags="-falign-functions=32 -fno-lto -fno-semantic-interposition"
+
+build() {
+	cd $pkgname-$pkgver
+
+    cmake -B build -G Ninja \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_SKIP_INSTALL_RPATH=ON \
+        -D PORT=GTK \
+        -D LIB_INSTALL_DIR=/usr/lib \
+        -D USE_LIBBACKTRACE=OFF \
+        -D USE_LIBHYPHEN=OFF \
+        -D ENABLE_GAMEPAD=OFF \
+        -D ENABLE_MINIBROWSER=ON \
+        -D ENABLE_DOCUMENTATION=ON \
+        -D USE_WOFF2=ON \
+        -D USE_GTK4=ON \
+        -D ENABLE_JOURNALD_LOG=OFF \
+        -D ENABLE_BUBBLEWRAP_SANDBOX=ON \
+        -D USE_SYSPROF_CAPTURE=NO \
+        -D ENABLE_SPEECH_SYNTHESIS=OFF \
+        -W no-dev
+	ninja -C build
+	DESTDIR="$pkgdir" ninja install -C build
+}

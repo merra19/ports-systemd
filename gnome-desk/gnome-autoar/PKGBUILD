@@ -1,0 +1,22 @@
+# description	: Automatic archives creating and extracting library
+# depends	: libarchive gtk3 vala gtk-doc
+
+pkgname=gnome-autoar
+pkgver=0.4.5
+pkgrel=1
+url='https://gitlab.gnome.org/GNOME/gnome-autoar'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D vapi=true \
+        -D tests=true \
+        -D gtk_doc=true \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

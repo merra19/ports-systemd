@@ -1,0 +1,32 @@
+# description	: Evolution groupware backend
+# depends	: libical libsecret nss sqlite gnome-online-accounts glib
+# depends	: gobject-introspection gtk3 gtk4 icu libcanberra vala
+# depends	: libgweather blocaled gtk-doc krb5 openldap
+### webkitgtk
+
+pkgname=evolution-data-server
+pkgver=3.56.2
+pkgrel=1
+url='https://gitlab.gnome.org/GNOME/evolution/-/wikis/home'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    cmake -B build -G Ninja \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D SYSCONF_INSTALL_DIR=/etc \
+        -D ENABLE_VALA_BINDINGS=ON \
+        -D ENABLE_INSTALLED_TESTS=ON \
+        -D WITH_OPENLDAP=ON \
+        -D WITH_KRB5=ON \
+        -D ENABLE_INTROSPECTION=ON \
+        -D ENABLE_GTK_DOC=OFF \
+        -D WITH_LIBDB=OFF \
+        -D WITH_SYSTEMDUSERUNITDIR=no \
+        -D ENABLE_OAUTH2_WEBKITGTK4=OFF \
+        -D ENABLE_OAUTH2_WEBKITGTK=OFF \
+        -W no-dev
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

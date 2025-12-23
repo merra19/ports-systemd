@@ -1,0 +1,24 @@
+# description	: The Eye of GNOME image viewer
+# depends	: adwaita-icon-theme exempi gnome-desktop libhandy lcms2
+# depends	: libjpeg-turbo libpeas shared-mime-info libexif librsvg
+# depends	: gobject-introspection webp-pixbuf-loader libportal
+# depends	: gtk-doc
+
+pkgname=eog
+pkgver=47.0
+pkgrel=1
+url='https://gitlab.gnome.org/GNOME/eog"'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D libportal=true \
+        -D gtk_doc=true \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}
