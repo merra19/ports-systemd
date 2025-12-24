@@ -34,4 +34,6 @@ build() {
     chown -Rv postgres:postgres "$pkgdir"/srv/pgsql "$pkgdir"/run/postgresql
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+    rm -rf "$pkgdir"/run
 }

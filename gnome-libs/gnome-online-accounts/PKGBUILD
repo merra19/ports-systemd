@@ -1,0 +1,24 @@
+# description	: GNOME framework for accessing online accounts
+# depends	: gcr4 json-glib libadwaita rest vala keyutils krb5
+# depends	: gobject-introspection py3-gi-docgen
+
+pkgname=gnome-online-accounts
+pkgver=3.54.5
+pkgrel=1
+url='https://gitlab.gnome.org/GNOME/gnome-online-accounts'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D documentation=true \
+        -D kerberos=true \
+        -D google_client_secret=5ntt6GbbkjnTVXx-MSxbmx5e \
+        -D google_client_id=595013732528-llk8trb03f0ldpqq6nprjp1s79596646.apps.googleusercontent.com \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

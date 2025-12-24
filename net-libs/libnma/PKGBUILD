@@ -1,0 +1,22 @@
+# description	: NetworkManager GUI library
+# depends	: gcr gtk3 iso-codes networkmanager gtk4 vala
+
+pkgname=libnma
+pkgver=1.10.6
+pkgrel=1
+url='https://wiki.gnome.org/Projects/NetworkManager'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D gtk_doc=true \
+        -D libnma_gtk4=true \
+        -D mobile_broadband_provider_info=false \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

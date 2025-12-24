@@ -1,0 +1,25 @@
+# description	: A terminal emulator for GNOME
+# depends	: adwaita-icon-theme gtkmm itstool libgtop libadwaita
+# depends	: librsvg appstream-glib desktop-file-utils
+
+pkgname=gnome-system-monitor
+pkgver=48.1
+pkgrel=1 
+url='https://gitlab.gnome.org/GNOME/gnome-terminal'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    # Remove a hard dependency on Catch2, which is only used 
+    # if you are running the unit tests
+    find . -name meson.build | xargs sed -i -e '/catch2/d' &&
+    sed -i '152,162d' src/meson.build
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

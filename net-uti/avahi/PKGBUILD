@@ -52,4 +52,6 @@ MulticastDNS=no
 EOF
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+    rm -rf "$pkgdir"/run
 }

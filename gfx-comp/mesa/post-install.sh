@@ -2,7 +2,7 @@
 
 pkg_postinst() {
     echo "rebuild libva after mesa"
-    echo "scratch -I -y -f -r libva"
+    scratch -I -y -f -r libva
 }
 
 pkg_postupgrade() {

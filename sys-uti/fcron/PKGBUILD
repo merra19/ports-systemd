@@ -35,4 +35,6 @@ build() {
     install -Dm644  ../systab.orig "$pkgdir"/var/spool/fcron/systab.orig
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+    rm -rf "$pkgdir"/run
 }

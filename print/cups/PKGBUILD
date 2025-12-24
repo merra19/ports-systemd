@@ -41,4 +41,6 @@ build() {
 	install -Dm 0644 "$srcdir"/cups "$pkgdir"/etc/pam.d/cups
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+    rm -rf "$pkgdir"/run
 }

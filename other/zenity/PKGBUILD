@@ -3,7 +3,7 @@
 # depends	: glib util-linux meson 
 
 pkgname=zenity
-pkgver=4.0.5
+pkgver=4.2.1
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/zenity'
 source=(https://gitlab.gnome.org/GNOME/zenity/-/archive/$pkgver/$pkgname-$pkgver.tar.gz)

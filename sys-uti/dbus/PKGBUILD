@@ -29,4 +29,6 @@ build() {
     ln -sfv /etc/machine-id "$pkgdir"/var/lib/dbus
 
 	mv -v  "$pkgdir"/usr/share/doc/dbus{,-$pkgver}
+
+    rm -rf "$pkgdir"/run
 }

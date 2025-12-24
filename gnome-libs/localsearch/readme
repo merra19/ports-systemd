@@ -1,0 +1,6 @@
+Security options --->
+  [*]        Enable different security models                         [SECURITY]
+  [*]        Landlock support                                [SECURITY_LANDLOCK]
+  # List more Linux Security Modules here (separated with comma) if needed,
+  # for example 'landlock,lockdown,smack':
+  (landlock) Ordered list of enabled LSMs                                  [LSM]

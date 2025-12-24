@@ -40,4 +40,6 @@ build() {
     sed '/PROG_RPATH_FLAGS/d' -i "$pkgdir"/usr/bin/krb5-config
 
     install -Dm 644 $srcdir/krb5.conf "$pkgdir"/etc/krb5.conf
+
+    rm -rf "$pkgdir"/run
 }

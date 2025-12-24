@@ -1,0 +1,33 @@
+# description	: Gnome session manager
+# depends	: systemd gnome-desktop json-glib mesa upower xmlto
+# depends	: libxslt docbook-xml docbook-xsl-nons libglvnd
+
+pkgname=gnome-session
+pkgver=48.0
+pkgrel=1
+url='https://gitlab.gnome.org/GNOME/gnome-session'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    sed 's@/bin/sh@/bin/sh -l@' -i gnome-session/gnome-session.in
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+    mv -v "$pkgdir"/usr/share/doc/gnome-session{,-$pkgver}
+
+    rm -fv "$pkgdir"/usr/share/xsessions/gnome.desktop &&
+    rm -v "$pkgdir"/usr/share/wayland-sessions/gnome.desktop
+
+    install -d "$pkgdir"/usr/local/bin
+    cat > "$pkgdir"/usr/local/bin/gnome-wayland  << "EOF"
+    XDG_SESSION_TYPE=wayland dbus-run-session gnome-session
+EOF
+    chmod +x "$pkgdir"/usr/local/bin/gnome-wayland
+}

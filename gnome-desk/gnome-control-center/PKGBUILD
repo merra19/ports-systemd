@@ -1,0 +1,23 @@
+# description	: GNOME's main interface to configure various aspects of the desktop
+# depends	: accountsservice colord-gtk cups sound-theme-freedesktop
+# depends	: gnome-bluetooth gnome-online-accounts gsound libadwaita
+# depends	: gnome-settings-daemon libgtop libnma libpwquality
+# depends	: modemmanager samba shared-mime-info tecla udisks ibus
+# depends	: krb5
+
+pkgname=gnome-control-center
+pkgver=48.4
+pkgrel=1
+url='https://gitlab.gnome.org/GNOME/gnome-control-center'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

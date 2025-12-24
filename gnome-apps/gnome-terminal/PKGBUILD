@@ -1,0 +1,24 @@
+# description	: The Gnome System Monitor
+# depends	: dconf gsettings-desktop-schemas itstool libhandy pcre2
+# depends	: vte gnome-shell nautilus appstream-glib
+# depends	: desktop-file-utils
+
+pkgname=gnome-terminal
+pkgver=3.56.0
+pkgrel=1
+url='https://apps.gnome.org/SystemMonitor'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    # Fix some deprecated schema entries
+    sed -i -r 's:"(/system):"/org/gnome\1:g' src/external.gschema.xml
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

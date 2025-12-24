@@ -1,0 +1,23 @@
+# description	: Playlist parsing library
+# depends	: gobject-introspection libarchive libgcrypt cmake
+# depends	: gtk-doc
+
+pkgname=totem-pl-parser
+pkgver=3.26.6
+pkgrel=1
+url='https://developer.gnome.org/totem-pl-parser/stable'
+source=(https://download.gnome.org/sources/totem-pl-parser/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    export CFLAGS="${CFLAGS/-ftrivial-auto-var-init=zero /}"
+    export CXXFLAGS="${CXXFLAGS/-ftrivial-auto-var-init=zero /}"
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

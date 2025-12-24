@@ -5,7 +5,8 @@ pkgname=xlibre-xf86-input-libinput
 pkgver=25.0.0
 pkgrel=1
 url='https://x11libre.net'
-source=(https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/$pkgname-$pkgver.tar.gz)
+source=(https://github.com/X11Libre/xf86-input-libinput/archive/refs/tags/$pkgname-$pkgver.tar.gz
+        xorg-libinput.pc libinput-properties.h)
 
 build() {
     cd xf86-input-libinput-xlibre-xf86-input-libinput-$pkgver
@@ -22,4 +23,8 @@ build() {
         --disable-static
     make
     make DESTDIR="$pkgdir" install
+
+    install -Dm 644 "$srcdir"/xorg-libinput.pc "$pkgdir"/usr/lib/pkgconfig/xorg-libinput.pc
+    sed "s/@PACKAGE_VERSION@/$pkgver/" -i  "$pkgdir"/usr/lib/pkgconfig/xorg-libinput.pc
+    install -Dm 644 "$srcdir"/libinput-properties.h "$pkgdir"/usr/include/libinput-properties.h
 }

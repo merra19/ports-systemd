@@ -1,0 +1,24 @@
+# description	: Meta port for Gnome
+# depends	: glib gdk-pixbuf gtk3 gtk4 libadwaita at-spi2-core gcr
+# depends	: librsvg gnome-desktop gvfs dconf gstreamer py3-gobject
+# depends	: gst-plugins-base gst-plugins-good gnome-session gcr4
+# depends	: gnome-settings-daemon gnome-control-center nautilus
+# depends	: gnome-color-manager gnome-keyring evolution-data-server
+# depends	: glib-networking gedit eog mpv gnome-terminal cups
+# depends	: gnome-user-docs adwaita-icon-theme gnome-bluetooth
+# depends	: mutter gnome-shell sound-theme-freedesktop file-roller
+# depends	: gnome-shell-extensions localsearch tinysparql
+# depends	: gnome-tweaks gnome-weather gnome-system-monitor
+# depends	: gnome-clocks gnome-calculator gnome-power-manager
+# depends	: gnome-screenshot
+### yelp
+
+pkgname=gnome
+pkgver=1.0
+pkgrel=1
+url='https://www.gnome.org/'
+source=()
+
+build() {
+    install -d "$pkgdir"/usr
+}

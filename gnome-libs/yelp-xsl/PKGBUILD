@@ -1,0 +1,19 @@
+# description	: XSL stylesheets for yelp
+# depends	: libxslt itstool
+
+pkgname=yelp-xsl
+pkgver=42.4
+pkgrel=1
+url='https://gitlab.gnome.org/GNOME/yelp-xsl'
+source=(https://download.gnome.org/sources/yelp-xsl/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

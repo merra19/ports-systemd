@@ -1,0 +1,18 @@
+# description	: remove #ifdef'ed lines from a file while otherwise leaving the file alone
+# depends	: glibc
+
+pkgname=unifdef
+pkgver=2.12
+pkgrel=1
+url='https://dotat.at/prog/unifdef'
+source=(https://dotat.at/prog/unifdef/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+
+    # Fix a problem when building with gcc-15
+    sed -i 's/constexpr/unifdef_&/g' unifdef.c
+
+	make
+    make DESTDIR="$pkgdir" prefix=/usr install
+}
