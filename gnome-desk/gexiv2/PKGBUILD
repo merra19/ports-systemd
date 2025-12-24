@@ -1,0 +1,20 @@
+# description	: GObject-based wrapper around the Exiv2 library
+# depends	: exiv2 vala gtk-doc
+
+pkgname=gexiv2
+pkgver=0.14.6
+pkgrel=1
+url='https://gitlab.gnome.org/GNOME/gexiv2'
+source=(https://download.gnome.org/sources/gexiv2/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+		-D gtk_doc=true \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}
