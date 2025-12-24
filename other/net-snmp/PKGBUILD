@@ -3,8 +3,8 @@
 # depends	: py3-setuptools pcre2 openssl libpcap
 
 pkgname=net-snmp
-pkgver=5.9.4
-pkgrel=4
+pkgver=5.9.5.2
+pkgrel=1
 options=(!emptydirs !makeflags !lto)
 url='https://www.net-snmp.org'
 source=(https://downloads.sourceforge.net/$pkgname/$pkgname/$pkgver/$pkgname-$pkgver.tar.gz
@@ -33,13 +33,13 @@ build() {
 	patch -Np1 -i ../net-snmp-5.9.3-0002-Tidy-up-net-snmp-config-output.patch
 	patch -Np1 -i ../net-snmp-5.9.3-0003-Prune-Libs.private-entries-in-netsnmp-.pc.in.patch
 	patch -Np1 -i ../net-snmp-5.9.3-0004-Search-for-ltinfo-in-configure-if-needed.patch
-	patch -Np1 -i ../net-snmp-5.9.4-c99.patch
+	#patch -Np1 -i ../net-snmp-5.9.4-c99.patch
 
 	# pcre2 , Linux 6.7 compatibility parsing /proc/net/snmp
 	patch -Np1 -i ../d3e95c87b32397815f6d5bcfc844259f2552697a.patch
 	patch -Np1 -i ../346b6f8959513320e5b674fd670c49ba2cd43af5.patch
 	patch -Np1 -i ../e5aadf1e78c624a8e4147d4b70a7795497a50e73.patch
-	patch -Np1 -i ../7fc7edf676c527a0cfb661f9000a3d22738cf8e6.patch
+	#patch -Np1 -i ../7fc7edf676c527a0cfb661f9000a3d22738cf8e6.patch
 
 	./configure \
 		--prefix=/usr \
