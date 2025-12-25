@@ -2,8 +2,8 @@
 # depends	: pcre2 py3-pygments py3-six libgmp libmpfr gtk-doc
 
 pkgname=libbytesize
-pkgver=2.11
-pkgrel=2
+pkgver=2.12
+pkgrel=1
 url='https://github.com/storaged-project/libbytesize'
 source=(https://github.com/storaged-project/$pkgname/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
 

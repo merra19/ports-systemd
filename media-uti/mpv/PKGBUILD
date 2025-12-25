@@ -4,22 +4,17 @@
 # depends	: wireplumber libva libvdpau vulkan-loader wayland 
 # depends	: wayland-protocols libxkbcommon zlib xorg-proto luajit 
 # depends	: linux-api-headers libcdio-paranoia libdvdnav libdvdcss
-# depends	: libdvdread sdl2 py3-docutils
+# depends	: libdvdread sdl2-compat py3-docutils
 
 pkgname=mpv
-pkgver=0.40.0
-pkgrel=3
+pkgver=0.41.0
+pkgrel=1
 options=(!lto)
 url='https://mpv.io'
 source=(https://github.com/mpv-player/mpv/archive/refs/tags/v$pkgver/$pkgname-$pkgver.tar.gz)
 
 build() {
 	cd $pkgname-$pkgver
-
-    # Add a fix to build with FFMpeg > 7.0 
-    sed -i 's/AV_OPT_TYPE_CHANNEL_LAYOUT/AV_OPT_TYPE_CHLAYOUT/' filters/f_lavfi.c
-    # Add a fix to build with FFMpeg > 8.0 
-    #sed -i 's/FF_PROFILE_/AV_PROFILE_/' demux/demux_mkv.c
 
 	meson setup \
         --prefix=/usr \

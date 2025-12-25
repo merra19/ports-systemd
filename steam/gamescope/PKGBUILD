@@ -1,6 +1,6 @@
 # description	: Efficient micro-compositor for running games
-# depends	: wlroots sdl2 pipewire xorg-libs libdrm libxkbcommon
-# depends	: glslang vulkan-headers seatd luajit wayland glm
+# depends	: wlroots sdl2-compat pipewire xorg-libs libdrm wayland
+# depends	: libxkbcommon glslang vulkan-headers seatd luajit glm
 # depends	: libdisplay-info vulkan-loader hwdata libcap stb libxcb
 # depends	: libei libavif libinput libglvnd mesa xwayland pixman
 # depends	: xcb-utilities spirv-headers libdecor git udev

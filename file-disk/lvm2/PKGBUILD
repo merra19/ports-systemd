@@ -2,7 +2,7 @@
 # depends	: libaio util-linux readline libnvme mdadm which
 
 pkgname=lvm2
-pkgver=2.03.34
+pkgver=2.03.38
 pkgrel=1
 url='https://sourceware.org/lvm2'
 source=($pkgname-$pkgver.tgz::https://sourceware.org/pub/lvm2/LVM2.$pkgver.tgz)

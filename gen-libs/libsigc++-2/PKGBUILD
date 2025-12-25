@@ -3,12 +3,15 @@
 
 pkgname=libsigc++-2
 pkgver=2.12.1
-pkgrel=1
+pkgrel=2
 url='https://libsigcplusplus.github.io/libsigcplusplus'
 source=(https://download.gnome.org/sources/libsigc++/${pkgver%.*}/libsigc++-$pkgver.tar.xz)
 
 build() {
 	cd libsigc++-$pkgver
+
+    # First, fix detecting Boost when configuring this package
+    sed -i "s/'system',//" meson.build
 
 	meson setup \
         --prefix=/usr \

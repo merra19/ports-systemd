@@ -3,7 +3,7 @@
 # depends	: py3-pyproject-metadata py3-packaging
 
 pkgname=py3-numpy
-pkgver=2.3.2
+pkgver=2.4.0
 pkgrel=1
 url='https://numpy.org'
 source=(https://files.pythonhosted.org/packages/source/n/numpy/numpy-$pkgver.tar.gz)

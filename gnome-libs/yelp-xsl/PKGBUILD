@@ -2,7 +2,7 @@
 # depends	: libxslt itstool
 
 pkgname=yelp-xsl
-pkgver=42.4
+pkgver=49.0
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/yelp-xsl'
 source=(https://download.gnome.org/sources/yelp-xsl/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

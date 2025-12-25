@@ -2,7 +2,7 @@
 # depends	: glibc alsa-ucm-conf alsa-topology-conf elogind
 
 pkgname=alsa-lib
-pkgver=1.2.14
+pkgver=1.2.15.1
 pkgrel=1
 options=(!lto)
 url='https://alsa-project.org/wiki/Main_Page'

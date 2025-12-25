@@ -1,0 +1,21 @@
+# description	: Attributes without boilerplate
+# depends	: python py3-wheel py3-gobject py3-sphinx
+
+pkgname=blueprint-compiler
+pkgver=0.18.0
+pkgrel=1
+options=(!lto)
+url='https://github.com/python-attrs/attrs'
+source=(https://download.gnome.org/sources/blueprint-compiler/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+	cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D docs=true \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

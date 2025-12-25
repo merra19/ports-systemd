@@ -2,7 +2,7 @@
 # depends	: glibc meson pkgconf
 
 pkgname=fuse
-pkgver=3.17.4
+pkgver=3.18.1
 pkgrel=1
 options=(!lto)
 url='https://github.com/libfuse/libfuse'

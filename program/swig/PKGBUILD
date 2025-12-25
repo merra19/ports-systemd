@@ -2,7 +2,7 @@
 # depends	: zlib pcre2 boost
 
 pkgname=swig
-pkgver=4.3.1
+pkgver=4.4.1
 pkgrel=1
 options=(!lto)
 url='http://www.swig.org'

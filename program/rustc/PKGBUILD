@@ -2,7 +2,7 @@
 # depends	: cmake curl llvm llvm32 xz zlib openssl lld libssh2
 
 pkgname=rustc
-pkgver=1.91.0
+pkgver=1.92.0
 pkgver2=1.90.0
 daterust=2025-09-18
 pkgrel=1
@@ -33,7 +33,7 @@ build() {
     cp ../config.toml ./bootstrap.toml
 
     # add change-id & version to config.toml
-    sed 's/YYYY/146435/' -i bootstrap.toml
+    sed 's/YYYY/147888/' -i bootstrap.toml
     sed "s/XXXX/$pkgver/g" -i bootstrap.toml
 
 	[ ! -e /usr/include/libssh2.h ] || export LIBSSH2_SYS_USE_PKG_CONFIG=1; 

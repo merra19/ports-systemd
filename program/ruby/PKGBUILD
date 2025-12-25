@@ -3,7 +3,7 @@
 # depends	: graphviz
 
 pkgname=ruby
-pkgver=3.4.7
+pkgver=3.4.8
 pkgrel=1
 options=(!lto)
 url='https://www.ruby-lang.org'

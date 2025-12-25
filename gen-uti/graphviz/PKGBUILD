@@ -5,7 +5,7 @@
 # optional	: guile java php ruby tk freeglut
 
 pkgname=graphviz
-pkgver=13.1.2
+pkgver=14.1.1
 pkgrel=1
 url='https://www.graphviz.org'
 source=(https://gitlab.com/graphviz/graphviz/-/archive/$pkgver/$pkgname-$pkgver.tar.bz2)
@@ -16,6 +16,11 @@ build() {
 	cd $pkgname-$pkgver
 
     export CXXFLAGS+=' -fPIC -fpermissive'
+
+    # Fix a file to allow finding php if installed
+    sed -i '/ldflags/ s/ $.*&&//' cmake/FindPHP.cmake
+    # Prevent hard coding library search paths 
+    sed '/ORIGIN/d' -i lib/CMakeLists.txt
 
     cmake -B build \
         -D CMAKE_INSTALL_PREFIX=/usr \

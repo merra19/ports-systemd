@@ -6,7 +6,7 @@
 # depends	: blocaled krb5
 
 pkgname=gnome-control-center
-pkgver=48.4
+pkgver=49.2.2
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/gnome-control-center'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

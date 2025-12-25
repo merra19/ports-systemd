@@ -7,7 +7,7 @@
 # depends	: wayland woff2 py3-gi-docgen
 
 pkgname=webkitgtk
-pkgver=2.48.5
+pkgver=2.50.4
 pkgrel=1
 options=(!lto)
 url='https://www.webkitgtk.org'

@@ -3,7 +3,7 @@
 # depends	: argon2 asciidoctor
 
 pkgname=cryptsetup
-pkgver=2.8.1
+pkgver=2.8.3
 pkgrel=1
 options=(!lto)
 url='https://gitlab.com/cryptsetup/cryptsetup'

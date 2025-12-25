@@ -3,7 +3,7 @@
 # depends	: libxcrypt bluez-headers libnsl
 
 pkgname=python
-pkgver=3.13.7
+pkgver=3.14.2
 pkgrel=1
 options=(!lto)
 url='https://www.python.org'
@@ -24,6 +24,10 @@ build() {
 
 	# we set them via NODIST to not propagate them and duplicate them to modules
 	unset LDFLAGS CFLAGS CXXFLAGS CPPFLAGS
+
+    # Fix a regression that causes issues in BLFS packages like pyatspi
+    sed -e "/self.namespaceURI =/i\        self.ownerDocument = None" \
+    -i Lib/xml/dom/minidom.py
 
     ./configure \
         --prefix=/usr \

@@ -2,7 +2,7 @@
 # depends	: glibc
 
 pkgname=unrar
-pkgver=7.1.10
+pkgver=7.2.3
 pkgrel=1
 url='https://www.rarlab.com/rar_add.htm'
 source=(https://www.rarlab.com/rar/unrarsrc-$pkgver.tar.gz)

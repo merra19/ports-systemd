@@ -2,7 +2,7 @@
 # depends	: glibc
 
 pkgname=libgpg-error
-pkgver=1.55
+pkgver=1.58
 pkgrel=1
 url='https://www.gnupg.org/related_software/libgpg-error'
 source=(https://www.gnupg.org/ftp/gcrypt/libgpg-error/$pkgname-$pkgver.tar.bz2)
@@ -11,7 +11,8 @@ build() {
     cd $pkgname-$pkgver
 
 	./configure \
-        --prefix=/usr
+        --prefix=/usr \
+        --sysconfdir=/etc
     make
     make DESTDIR="$pkgdir" install
     install -v -m644 -D README "$pkgdir"/usr/share/doc/$pkgname-$pkgver/README

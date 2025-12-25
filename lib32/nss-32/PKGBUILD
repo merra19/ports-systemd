@@ -3,7 +3,7 @@
 
 pkgname=nss-32
 _pkgname=nss
-pkgver=3.115
+pkgver=3.119.1
 vrsn=$(echo $pkgver | sed 's/\./_/g')
 pkgrel=1
 options=(!lto)

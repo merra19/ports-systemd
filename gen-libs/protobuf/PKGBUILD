@@ -2,7 +2,7 @@
 # depends	: glibc abseil-cpp cmake ninja zlib
 
 pkgname=protobuf
-pkgver=32.0
+pkgver=33.2
 pkgrel=1
 options=(!lto)
 url='https://protobuf.dev'

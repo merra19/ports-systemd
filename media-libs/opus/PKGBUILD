@@ -2,7 +2,7 @@
 # depends	: glibc
 
 pkgname=opus
-pkgver=1.5.2
+pkgver=1.6
 pkgrel=1
 options=(!lto)
 url='https://opus-codec.org'

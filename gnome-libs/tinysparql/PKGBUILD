@@ -4,7 +4,7 @@
 # depends	: graphviz bash-completion snowball-stemmer
 
 pkgname=tinysparql
-pkgver=3.9.2
+pkgver=3.10.1
 pkgrel=1
 url='https://gnome.pages.gitlab.gnome.org/tinysparql'
 source=(https://download.gnome.org/sources/tinysparql/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
@@ -14,7 +14,7 @@ build() {
 
     # Fix the location to install the documentation into
     sed -e "s/'generate'/&, '--no-namespace-dir'/"         \
-        -e "/--output-dir/s/@OUTPUT@/&\/tinysparql-3.9.2/" \
+        -e "/--output-dir/s/@OUTPUT@/&\/tinysparql-$pkgver/" \
         -i docs/reference/meson.build
 
 	meson setup \

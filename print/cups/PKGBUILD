@@ -4,7 +4,7 @@
 # optional  : php
 
 pkgname=cups
-pkgver=2.4.15
+pkgver=2.4.16
 pkgrel=1
 options=(!lto)
 url='https://www.cups.org'

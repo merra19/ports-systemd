@@ -2,7 +2,7 @@
 # depends	: libdrm meson libxcb wayland xorg-libs
 
 pkgname=libva
-pkgver=2.22.0
+pkgver=2.23.0
 pkgrel=1
 url='https://github.com/intel/libva'
 source=(https://github.com/intel/libva/archive/$pkgver/$pkgname-$pkgver.tar.gz)

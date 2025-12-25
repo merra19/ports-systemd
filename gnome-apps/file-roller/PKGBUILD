@@ -3,7 +3,7 @@
 # depends	: libarchive libadwaita libportal py3-gi-docgen unrar zip
 
 pkgname=file-roller
-pkgver=44.5
+pkgver=44.6
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/file-roller'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

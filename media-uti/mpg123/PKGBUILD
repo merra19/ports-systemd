@@ -2,7 +2,7 @@
 # depends	: alsa-lib libtool
 
 pkgname=mpg123
-pkgver=1.33.2
+pkgver=1.33.4
 pkgrel=1
 url='https://www.mpg123.org'
 source=(https://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.bz2)

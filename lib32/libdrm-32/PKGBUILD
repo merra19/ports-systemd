@@ -3,7 +3,7 @@
 
 pkgname=libdrm-32
 _pkgname=libdrm
-pkgver=2.4.125
+pkgver=2.4.131
 pkgrel=1
 url='https://dri.freedesktop.org'
 source=(https://dri.freedesktop.org/libdrm/${_pkgname}-$pkgver.tar.xz)

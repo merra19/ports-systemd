@@ -1,21 +1,17 @@
 # description	: QEMU + Kernel-based Virtual Machine userland tools
-# depends	: glib pixman alsa-lib dtc libslirp sdl2 pipewire bluez
+# depends	: glib pixman alsa-lib dtc libslirp sdl2-compat pipewire
 # depends	: curl fuse gnutls gtk3 keyutils libaio libusb libgcrypt
 # depends	: libjpeg-turbo libseccomp libssh2 libpng libtasn1 pam
-# depends	: lzo nettle mesa vte py3-sphinx_rtd_theme
+# depends	: lzo nettle mesa vte py3-sphinx_rtd_theme bluez
 
 pkgname=qemu
-pkgver=10.0.3
+pkgver=10.2.0
 pkgrel=1
 url='https://www.qemu.org'
-source=(https://download.qemu.org/$pkgname-$pkgver.tar.xz
-		https://www.linuxfromscratch.org/patches/blfs/12.4/qemu-10.0.3-python_fixes-1.patch)
+source=(https://download.qemu.org/$pkgname-$pkgver.tar.xz)
 
 build() {
     cd $pkgname-$pkgver
-
-	# Fix an incompatibility with pip-25.2 and late
-    patch -Np1 -i ../qemu-10.0.3-python_fixes-1.patch
 
 	QEMU_ARCH=x86_64-softmmu
 

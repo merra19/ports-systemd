@@ -7,7 +7,7 @@
 # optional  : openldap
 
 pkgname=php
-pkgver=8.4.11
+pkgver=8.5.1
 pkgrel=1
 options=(!lto)
 url='https://www.php.net'

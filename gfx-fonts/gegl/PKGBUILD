@@ -2,11 +2,11 @@
 # depends	: meson babl json-glib glib gobject-introspection libpng 
 # depends	: pango graphviz py3-pygments py3-gobject py3-asciidoc
 # depends	: cairo gdk-pixbuf gexiv2 jasper lcms2 libraw librsvg
-# depends	: libspiro libtiff libwebp luajit poppler ruby sdl2 vala
-# depends	: v4l-utils gtk-doc ffmpeg
+# depends	: libspiro libtiff libwebp luajit poppler ruby vala
+# depends	: v4l-utils gtk-doc ffmpeg sdl2-compat
 
 pkgname=gegl
-pkgver=0.4.62
+pkgver=0.4.66
 pkgrel=1
 url='https://gegl.org'
 source=(https://download.gimp.org/pub/gegl/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

@@ -7,7 +7,7 @@
 # todo      : gnome-session 
 
 pkgname=gnome-settings-daemon
-pkgver=48.1
+pkgver=49.1
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/gnome-settings-daemon'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

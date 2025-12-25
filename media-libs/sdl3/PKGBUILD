@@ -1,0 +1,25 @@
+# description	: Simple Direct Media Layer
+# depends	: alsa-lib libsamplerate libunwind xorg-proto pipewire
+# depends	: pulseaudio libxkbcommon nasm ibus wayland-protocols
+# depends	: xorg-libs
+
+pkgname=sdl3
+_pkgname=SDL3
+pkgver=3.2.28 
+pkgrel=1
+url='https://www.libsdl.org'
+source=(https://www.libsdl.org/release/SDL3-$pkgver.tar.gz)
+
+build() {
+	cd ${_pkgname}-$pkgver
+
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=RELEASE \
+        -D SDL_TEST_LIBRARY=OFF \
+        -D SDL_STATIC=OFF \
+        -D SDL_RPATH=OFF \
+        -W no-dev
+    make -C build
+    make DESTDIR="$pkgdir" install -C build
+}
