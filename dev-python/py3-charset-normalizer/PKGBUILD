@@ -2,7 +2,7 @@
 # depends	: python py3-gpep517 py3-setuptools py3-wheel
 
 pkgname=py3-charset-normalizer
-pkgver=3.4.3
+pkgver=3.4.4
 pkgrel=1
 url='https://pypi.org/project/charset-normalizer'
 source=(https://files.pythonhosted.org/packages/source/c/charset-normalizer/charset_normalizer-$pkgver.tar.gz)

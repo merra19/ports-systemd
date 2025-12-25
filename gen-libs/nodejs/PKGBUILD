@@ -3,17 +3,21 @@
 # depends	: libuv meson which
 
 pkgname=nodejs
-pkgver=22.18.0
+pkgver=22.21.1
 pkgrel=1
 options=(!lto)
 url='https://nodejs.org'
-source=(https://nodejs.org/dist/v$pkgver/node-v$pkgver.tar.xz)
+source=(https://nodejs.org/dist/v$pkgver/node-v$pkgver.tar.xz
+        https://www.linuxfromscratch.org/patches/blfs/svn/node-v22.21.1-python_build_fix-1.patch)
 
 build() {
 	cd node-v$pkgver
 
     # shrink the build log size from ~104MiB to ~800KiB.
     export CXXFLAGS="$CXXFLAGS -Wno-class-memaccess -Wno-comment -Wno-int-in-bool-context"
+
+    # First, fix building this package with Python 3.14
+    patch -Np1 -i ../node-v22.21.1-python_build_fix-1.patch
 
 	./configure \
         --prefix=/usr \

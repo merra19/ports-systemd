@@ -3,7 +3,7 @@
 # depends	: py3-jinja2 udev
 
 pkgname=elogind
-pkgver=255.17
+pkgver=255.22
 pkgrel=1
 url='https://github.com/elogind/elogind'
 source=(https://github.com/elogind/elogind/archive/v$pkgver/$pkgname-$pkgver.tar.gz

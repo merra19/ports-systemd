@@ -2,8 +2,8 @@
 # depends	: gtk4 appstream vala xorg-proto sassc py3-gi-docgen
 
 pkgname=libadwaita
-pkgver=1.7.6
-pkgrel=2
+pkgver=1.8.2
+pkgrel=1
 url='https://gnome.pages.gitlab.gnome.org/libadwaita'
 source=(https://download.gnome.org/sources/libadwaita/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 

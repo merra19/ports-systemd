@@ -2,7 +2,7 @@
 # depends	: dbus glib libical py3-docutils readline udev
 
 pkgname=bluez
-pkgver=5.83
+pkgver=5.85
 pkgrel=1
 options=(!lto)
 url='https://www.bluez.org'

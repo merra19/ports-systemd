@@ -2,18 +2,22 @@
 # depends	: libdvdread
 
 pkgname=libdvdnav
-pkgver=6.1.1
+pkgver=7.0.0
 pkgrel=1
 url='https://www.videolan.org/developers/libdvdnav.html'
 source=(https://get.videolan.org/libdvdnav/$pkgver/$pkgname-$pkgver.tar.bz2)
 
 build() {
 	cd $pkgname-$pkgver
+
+    # First, install the documentation in a versioned directory
+    sed -i "/get_option/s/libdvdnav/&-$pkgver/" meson.build
 	
-	./configure \
+    meson setup \
         --prefix=/usr \
-		--disable-static \
-		--docdir=/usr/share/doc/$pkgname-$pkgver
-	make
-    make DESTDIR="$pkgdir" install
+        --buildtype=plain \
+        build 
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+    rm -fv "$pkgdir"/usr/lib/libdvdnav.a
 }

@@ -2,7 +2,7 @@
 # depends	: glibc ntp udev
 
 pkgname=dhcpcd
-pkgver=10.2.4
+pkgver=10.3.0
 pkgrel=1
 url='https://github.com/NetworkConfiguration/dhcpcd'
 source=(https://github.com/NetworkConfiguration/dhcpcd/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz

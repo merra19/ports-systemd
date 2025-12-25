@@ -3,7 +3,7 @@
 # depends	: openssh pam xmlto perl-io-socket-ssl
 
 pkgname=git
-pkgver=2.50.1
+pkgver=2.52.0
 pkgrel=1
 url='https://www.git-scm.com'
 source=(https://www.kernel.org/pub/software/scm/git/$pkgname-$pkgver.tar.xz)

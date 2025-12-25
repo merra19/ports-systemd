@@ -2,7 +2,7 @@
 # depends	: glib aspell aspell-en aspell-fr vala dbus-glib
 
 pkgname=enchant
-pkgver=2.8.12
+pkgver=2.8.14
 pkgrel=1
 url='https://rrthomas.github.io/enchant'
 source=(https://github.com/rrthomas/enchant/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz)

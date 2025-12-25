@@ -4,7 +4,7 @@
 
 pkgname=py3-trove-classifiers
 _pkgname=trove_classifiers
-pkgver=2025.8.6.13
+pkgver=2025.11.14.15
 pkgrel=1
 url='https://github.com/pypa/trove-classifiers'
 source=(https://files.pythonhosted.org/packages/source/t/trove_classifiers/trove_classifiers-$pkgver.tar.gz)

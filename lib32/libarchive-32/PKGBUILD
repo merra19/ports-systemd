@@ -3,7 +3,7 @@
 # depends	: pcre2-32 nettle-32 libarchive
 
 pkgname=libarchive-32
-pkgver=3.8.3
+pkgver=3.8.4
 pkgrel=1
 options=(!lto)
 url='https://www.libarchive.org'

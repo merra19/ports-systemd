@@ -3,7 +3,7 @@
 # depends	: pam libpng  libgcrypt xorg-applications
 
 pkgname=xscreensaver
-pkgver=6.12
+pkgver=6.13
 pkgrel=1
 url='https://www.jwz.org/xscreensaver'
 source=(https://www.jwz.org/xscreensaver/$pkgname-$pkgver.tar.gz

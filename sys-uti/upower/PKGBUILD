@@ -3,8 +3,8 @@
 # depends	: py3-gobject docbook-xsl-nons gtk-doc udev
 
 pkgname=upower
-pkgver=1.90.9
-pkgrel=2
+pkgver=1.91.0
+pkgrel=1
 url='https://upower.freedesktop.org'
 source=(https://gitlab.freedesktop.org/$pkgname/$pkgname/-/archive/v$pkgver/$pkgname-v$pkgver.tar.bz2
         rules)

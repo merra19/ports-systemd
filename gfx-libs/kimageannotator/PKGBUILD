@@ -3,7 +3,7 @@
 
 pkgname=kimageannotator
 _pkgname=kImageAnnotator
-pkgver=0.7.1
+pkgver=0.7.2
 pkgrel=1
 url='https://github.com/ksnip/kImageAnnotator'
 source=(https://github.com/ksnip/kImageAnnotator/archive/refs/tags/v$pkgver/kImageAnnotator-$pkgver.tar.gz)

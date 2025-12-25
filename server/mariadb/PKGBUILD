@@ -6,7 +6,7 @@
 # optional	: krb5 openldap
 
 pkgname=mariadb
-pkgver=11.8.3
+pkgver=11.8.5
 pkgrel=1
 options=(!lto)
 url='https://mariadb.org'

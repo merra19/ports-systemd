@@ -2,8 +2,8 @@
 # depends	: gtk3 gtk-doc
 
 pkgname=libgedit-amtk
-pkgver=5.9.1
-pkgrel=2
+pkgver=5.9.2
+pkgrel=1
 url='https://gitlab.gnome.org/World/gedit/libgedit-amtk'
 source=(https://gitlab.gnome.org/World/gedit/libgedit-amtk/-/archive/$pkgver/$pkgname-$pkgver.tar.bz2)
 

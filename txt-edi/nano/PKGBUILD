@@ -2,7 +2,7 @@
 # depends	: file ncurses
 
 pkgname=nano
-pkgver=8.6
+pkgver=8.7
 pkgrel=1
 url='https://www.nano-editor.org'
 source=(https://www.nano-editor.org/dist/v8/$pkgname-$pkgver.tar.xz

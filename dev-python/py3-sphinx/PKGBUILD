@@ -8,7 +8,7 @@
 # depends	: py3-roman-numerals-py
 
 pkgname=py3-sphinx
-pkgver=8.2.3
+pkgver=9.0.4
 pkgrel=1
 url='https://www.sphinx-doc.org'
 source=(https://files.pythonhosted.org/packages/source/s/sphinx/${pkgname#*-}-$pkgver.tar.gz)

@@ -3,8 +3,8 @@
 # depends	: linux-api-headers py3-sphinx py3-sphinx_rtd_theme
 
 pkgname=btrfs-progs
-pkgver=6.16
-pkgrel=3
+pkgver=6.17.1
+pkgrel=1
 url='https://btrfs.readthedocs.io/en/latest'
 source=(https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/$pkgname-v$pkgver.tar.xz)
 

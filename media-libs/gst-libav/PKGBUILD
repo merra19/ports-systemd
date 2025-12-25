@@ -2,7 +2,7 @@
 # depends	: gst-plugins-base gstreamer ffmpeg yasm meson
 
 pkgname=gst-libav
-pkgver=1.26.5
+pkgver=1.26.9
 pkgrel=1
 url='https://gstreamer.freedesktop.org/modules/gst-libav.html'
 source=(https://gstreamer.freedesktop.org/src/gst-libav/$pkgname-$pkgver.tar.xz)

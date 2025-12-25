@@ -2,7 +2,7 @@
 # depends	: python py3-wheel py3-gpep517 py3-setuptools
 
 pkgname=py3-markdown
-pkgver=3.8.2
+pkgver=3.10
 pkgrel=1
 options=(!lto)
 url='https://python-markdown.github.io'

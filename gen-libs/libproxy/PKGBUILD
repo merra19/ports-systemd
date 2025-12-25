@@ -3,8 +3,8 @@
 # depends	: gsettings-desktop-schemas py3-gi-docgen
 
 pkgname=libproxy
-pkgver=0.5.10
-pkgrel=2
+pkgver=0.5.12
+pkgrel=1
 url='https://github.com/libproxy/libproxy'
 source=(https://github.com/libproxy/libproxy/archive/$pkgver/$pkgname-$pkgver.tar.gz)
 
@@ -18,4 +18,5 @@ build() {
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build
+    rm -f "$pkgdir"/usr/lib/libproxy.a
 }

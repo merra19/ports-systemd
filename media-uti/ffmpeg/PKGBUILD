@@ -8,8 +8,8 @@
 # optional  : samba
 
 pkgname=ffmpeg
-pkgver=7.1.2
-pkgrel=2
+pkgver=8.0.1
+pkgrel=1
 url='https://ffmpeg.org'
 source=(https://ffmpeg.org/releases/$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/blfs/svn/ffmpeg-$pkgver-chromium_method-1.patch)

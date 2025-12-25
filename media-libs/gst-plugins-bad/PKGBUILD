@@ -7,7 +7,7 @@
 # depends	: vulkan-loader shaderc x265 zxing-cpp gtk3
 
 pkgname=gst-plugins-bad
-pkgver=1.26.5
+pkgver=1.26.9
 pkgrel=1
 url='https://gstreamer.freedesktop.org'
 source=(https://gstreamer.freedesktop.org/src/gst-plugins-bad/$pkgname-$pkgver.tar.xz)

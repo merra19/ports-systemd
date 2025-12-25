@@ -3,7 +3,7 @@
 # depends	: libcdio libcdio-paranoia
 
 pkgname=gst-plugins-ugly
-pkgver=1.26.5
+pkgver=1.26.9
 pkgrel=1
 url='https://gstreamer.freedesktop.org'
 source=(https://gstreamer.freedesktop.org/src/$pkgname/$pkgname-$pkgver.tar.xz)

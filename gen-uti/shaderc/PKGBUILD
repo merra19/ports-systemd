@@ -2,7 +2,7 @@
 # depends	: spirv-tools glslang cmake
 
 pkgname=shaderc
-pkgver=2025.3
+pkgver=2025.5
 pkgrel=1
 url='https://github.com/google/shaderc'
 source=(https://github.com/google/shaderc/archive/v$pkgver/$pkgname-$pkgver.tar.gz)

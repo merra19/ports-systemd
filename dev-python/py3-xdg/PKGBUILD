@@ -3,12 +3,16 @@
 
 pkgname=py3-xdg
 pkgver=0.28
-pkgrel=1
+pkgrel=2
 url='https://freedesktop.org/wiki/Software/pyxdg'
-source=(https://files.pythonhosted.org/packages/b0/25/7998cd2dec731acbd438fbf91bc619603fc5188de0a9a17699a781840452/pyxdg-$pkgver.tar.gz)
+source=(https://files.pythonhosted.org/packages/b0/25/7998cd2dec731acbd438fbf91bc619603fc5188de0a9a17699a781840452/pyxdg-$pkgver.tar.gz
+        https://www.linuxfromscratch.org/patches/blfs/svn/pyxdg-0.28-python3_14-fixes-1.patch)
 
 build() {
     cd pyxdg-$pkgver
+
+    # First, fix several problems caused by Python 3.14"
+    patch -Np1 -i ../pyxdg-0.28-python3_14-fixes-1.patch
 
     python3 setup.py build
     python3 setup.py install --skip-build --root="$pkgdir"

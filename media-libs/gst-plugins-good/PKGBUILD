@@ -5,7 +5,7 @@
 # todo      : libdv
 
 pkgname=gst-plugins-good
-pkgver=1.26.5
+pkgver=1.26.9
 pkgrel=1
 url='https://gstreamer.freedesktop.org'
 source=(https://gstreamer.freedesktop.org/src/$pkgname/$pkgname-$pkgver.tar.xz)

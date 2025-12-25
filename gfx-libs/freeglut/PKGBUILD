@@ -2,17 +2,13 @@
 # depends	: mesa glu cmake
 
 pkgname=freeglut
-pkgver=3.6.0
+pkgver=3.8.0
 pkgrel=1
 url='https://freeglut.sourceforge.net'
 source=(https://downloads.sourceforge.net/freeglut/$pkgname-$pkgver.tar.gz)
 
 build() {
 	cd $pkgname-$pkgver
-
-	# First, fix a problem when building with gcc-15
-	sed -e '/Context/s/()/(SFG_PlatformDisplay, SFG_WindowContextType)/' \
-		-i src/egl/fg_init_egl.h
 
 	cmake -B build \
         -D CMAKE_INSTALL_PREFIX=/usr \
