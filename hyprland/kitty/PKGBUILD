@@ -6,7 +6,7 @@
 # depends	: openssl xxhash nerd-fonts
 
 pkgname=kitty
-pkgver=0.44.0
+pkgver=0.45.0
 pkgrel=1
 url='https://sw.kovidgoyal.net/kitty'
 source=(https://github.com/kovidgoyal/$pkgname/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz
