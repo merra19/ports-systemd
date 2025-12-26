@@ -2,7 +2,7 @@
 # depends	: util-linux icu inih liburcu linux-api-headers
 
 pkgname=xfsprogs
-pkgver=6.15.0
+pkgver=6.17.0
 pkgrel=1
 url='https://xfs.wiki.kernel.org'
 source=(https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/$pkgname-$pkgver.tar.xz)

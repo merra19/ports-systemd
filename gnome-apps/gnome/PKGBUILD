@@ -4,7 +4,7 @@
 # depends	: gst-plugins-base gst-plugins-good gnome-session gcr4
 # depends	: gnome-settings-daemon gnome-control-center nautilus
 # depends	: gnome-color-manager gnome-keyring evolution-data-server
-# depends	: glib-networking gedit eog mpv gnome-terminal cups
+# depends	: glib-networking gedit loupe mpv gnome-terminal cups
 # depends	: gnome-user-docs adwaita-icon-theme gnome-bluetooth
 # depends	: mutter gnome-shell sound-theme-freedesktop file-roller
 # depends	: gnome-shell-extensions localsearch tinysparql

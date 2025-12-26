@@ -4,7 +4,7 @@
 # optional	: krb5
 
 pkgname=openssh
-pkgver=10.0p1
+pkgver=10.2p1
 pkgrel=1
 options=(!lto)
 url='https://www.openssh.com'

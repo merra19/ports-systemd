@@ -3,7 +3,7 @@
 
 pkgname=nspr-32
 _pkgname=nspr
-pkgver=4.37
+pkgver=4.38.2
 pkgrel=1
 options=(!lto)
 url='https://www.mozilla.org/projects/nspr'

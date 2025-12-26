@@ -3,7 +3,7 @@
 # depends	: keyutils
 
 pkgname=libnvme
-pkgver=1.15
+pkgver=1.16.1
 pkgrel=1
 url='https://github.com/linux-nvme/libnvme'
 source=(https://github.com/linux-nvme/libnvme/archive/refs/tags/v$pkgver/$pkgname-$pkgver.tar.gz)

@@ -4,7 +4,7 @@
 
 pkgname=harfbuzz-32
 _pkgname=harfbuzz
-pkgver=11.4.1
+pkgver=12.2.0
 pkgrel=1
 url='https://harfbuzz.github.io'
 source=(https://github.com/harfbuzz/harfbuzz/releases/download/$pkgver/$_pkgname-$pkgver.tar.xz)

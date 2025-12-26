@@ -2,7 +2,7 @@
 # depends	: gzip
 
 pkgname=unifont
-pkgver=16.0.04
+pkgver=17.0.01 
 pkgrel=1
 options=(!makeflags !lto)
 url='http://unifoundry.com'

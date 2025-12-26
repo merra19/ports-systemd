@@ -6,7 +6,7 @@
 # optional  : gstreamer gstreamer!!gst-plugins-base
 
 pkgname=pipewire
-pkgver=1.4.7
+pkgver=1.4.9
 pkgrel=1
 options=(!lto)
 url='https://pipewire.org'

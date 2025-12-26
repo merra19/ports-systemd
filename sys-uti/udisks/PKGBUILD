@@ -5,8 +5,8 @@
 # depends	: mdadm gtk-doc udev
 
 pkgname=udisks
-pkgver=2.10.2
-pkgrel=2
+pkgver=2.11.0
+pkgrel=1
 options=(!lto)
 url='https://www.freedesktop.org/wiki/Software/udisks'
 source=(https://github.com/storaged-project/udisks/releases/download/udisks-$pkgver/$pkgname-$pkgver.tar.bz2

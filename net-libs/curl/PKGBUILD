@@ -4,7 +4,7 @@
 # optional  : openldap
 
 pkgname=curl
-pkgver=8.16.0
+pkgver=8.17.0
 pkgrel=1
 options=(!lto)
 url='https://curl.se'
@@ -14,6 +14,9 @@ build() {
     cd $pkgname-$pkgver
 
     scratch isinstalled openldap && OPT_CURL='--with-gssapi' ||  OPT_CURL='--disable-ldap'
+
+    # First, resolve a problem with a security fix
+    sed -i 's/2F 5C/%2F %5C/' scripts/wcurl
 
 
     ./configure \

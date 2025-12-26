@@ -5,7 +5,7 @@
 # optional	: appindicator!!libdbusmenu
 
 pkgname=ibus
-pkgver=1.5.32
+pkgver=1.5.33
 ucdver=16.0.0
 pkgrel=2
 url='https://github.com/ibus/ibus/wiki'

@@ -2,7 +2,7 @@
 # depends	: glibc
 
 pkgname=icu
-pkgver=77.1
+pkgver=78.1
 vrs=$(echo $pkgver | sed 's/\./_/g')
 _version=$(echo $pkgver | sed 's/\./-/g')
 pkgrel=1

@@ -3,7 +3,7 @@
 
 pkgname=unixodbc
 _pkgname=unixODBC
-pkgver=2.3.12
+pkgver=2.3.14
 pkgrel=1
 options=(!lto)
 url='https://www.unixodbc.org'
@@ -13,6 +13,7 @@ backup=(etc/unixODBC/odbc.ini etc/unixODBC/odbcinst.ini)
 build() {
 	cd ${_pkgname}-$pkgver
 
+    autoreconf -fiv
     ./configure \
         --prefix=/usr \
         --sysconfdir=/etc/unixODBC

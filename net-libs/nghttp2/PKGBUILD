@@ -2,8 +2,8 @@
 # depends	: openssl libxml2 py3-sphinx
  
 pkgname=nghttp2
-pkgver=1.66.0
-pkgrel=2
+pkgver=1.68.0
+pkgrel=1
 url='https://nghttp2.org'
 source=(https://github.com/nghttp2/nghttp2/releases/download/v$pkgver/$pkgname-$pkgver.tar.xz)
 

@@ -1,11 +1,11 @@
 # description	: Cross-distro effort for providing metadata for software in the Linux ecosystem
-# depends	: zstd libxml2 libxmlb libyaml snowball-stemmer curl 
+# depends	: zstd libxml2 libxmlb libfyaml snowball-stemmer curl 
 # depends	: qt6 libxslt itstool py3-gi-docgen elogind
 
 pkgname=appstream
 _pkgname=AppStream
-pkgver=1.0.6
-pkgrel=2
+pkgver=1.1.1
+pkgrel=1
 options=(!lto)
 url='https://www.freedesktop.org/wiki/Distributions/AppStream'
 source=(https://www.freedesktop.org/software/appstream/releases/AppStream-$pkgver.tar.xz

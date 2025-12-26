@@ -2,8 +2,8 @@
 # depends	: pipewire glib elogind lua py3-lxml py3-sphinx_rtd_theme
 
 pkgname=wireplumber
-pkgver=0.5.10
-pkgrel=2
+pkgver=0.5.12
+pkgrel=1
 url='https://gitlab.freedesktop.org/pipewire/wireplumber'
 source=(https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/$pkgver/$pkgname-$pkgver.tar.bz2
 		pipewire-launcher.sh pipewire.desktop)

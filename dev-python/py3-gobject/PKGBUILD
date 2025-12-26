@@ -2,7 +2,7 @@
 # depends	: py3-setuptools gobject-introspection glib py3-cairo
 
 pkgname=py3-gobject
-pkgver=3.52.3
+pkgver=3.54.5
 pkgrel=1
 url='https://pygobject.gnome.org'
 source=(https://download.gnome.org/sources/pygobject/${pkgver%.*}/pygobject-$pkgver.tar.gz)

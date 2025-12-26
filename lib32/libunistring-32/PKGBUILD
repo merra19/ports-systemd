@@ -3,7 +3,7 @@
 
 pkgname=libunistring-32
 _pkgname=libunistring
-pkgver=1.3
+pkgver=1.4.1
 pkgrel=1
 url='https://www.gnu.org/software/libunistring'
 source=(https://mirror.lyrahosting.com/gnu/$_pkgname/$_pkgname-$pkgver.tar.xz)

@@ -2,7 +2,7 @@
 # depends	: libaio docbook-xml libxslt
 
 pkgname=valgrind
-pkgver=3.25.1
+pkgver=3.26.0
 pkgrel=1
 options=(!lto) 
 url='https://valgrind.org'

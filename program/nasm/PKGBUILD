@@ -2,7 +2,7 @@
 # depends	: perl
 
 pkgname=nasm
-pkgver=2.16.03
+pkgver=3.01
 pkgrel=1
 url='https://www.nasm.us'
 source=(https://www.nasm.us/pub/nasm/releasebuilds/$pkgver/nasm-$pkgver.tar.xz

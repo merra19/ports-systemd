@@ -3,8 +3,8 @@
 
 pkgname=rustc
 pkgver=1.92.0
-pkgver2=1.90.0
-daterust=2025-09-18
+pkgver2=1.91.0
+daterust=2025-10-30
 pkgrel=1
 #options=(!lto)
 url='https://www.rust-lang.org'

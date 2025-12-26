@@ -2,7 +2,7 @@
 # depends	: glibc libusb hwdata python
 
 pkgname=usbutils
-pkgver=018
+pkgver=019
 pkgrel=1
 url='https://www.kernel.org/pub/linux/utils/usb/usbutils'
 source=(https://kernel.org/pub/linux/utils/usb/usbutils/$pkgname-$pkgver.tar.xz)

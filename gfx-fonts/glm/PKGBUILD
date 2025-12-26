@@ -2,8 +2,8 @@
 # depends	: glibc cmake meson
 
 pkgname=glm
-pkgver=1.0.1
-pkgrel=2
+pkgver=1.0.2
+pkgrel=1
 options=(!lto)
 url='http://glm.g-truc.net'
 source=(https://github.com/g-truc/glm/archive/$pkgver/$pkgname-$pkgver.tar.gz)

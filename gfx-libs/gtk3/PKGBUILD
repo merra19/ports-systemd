@@ -8,8 +8,8 @@
 # todo      : tinysparql
 
 pkgname=gtk3
-pkgver=3.24.50
-pkgrel=4
+pkgver=3.24.51
+pkgrel=1
 url='https://www.gtk.org'
 source=(https://download.gnome.org/sources/gtk/${pkgver%.*}/gtk-$pkgver.tar.xz
         settings.ini $pkgname.hooks)
