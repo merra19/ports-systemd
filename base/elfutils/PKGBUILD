@@ -2,7 +2,7 @@
 # depends	: zlib xz bzip2 zstd flex m4
 
 pkgname=elfutils
-pkgver=0.193
+pkgver=0.194
 pkgrel=1
 options=(!lto)
 url='https://sourceware.org/elfutils'

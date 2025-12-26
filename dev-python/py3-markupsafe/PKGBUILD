@@ -2,7 +2,7 @@
 # depends	: python py3-wheel py3-gpep517 py3-setuptools
 
 pkgname=py3-markupsafe
-pkgver=3.0.2
+pkgver=3.0.3
 pkgrel=1
 options=(!lto)
 url='https://palletsprojects.com/p/markupsafe'

@@ -2,7 +2,7 @@
 # depends	: zlib perl
 
 pkgname=openssl
-pkgver=3.5.4
+pkgver=3.6.0
 pkgrel=1
 options=(!lto)
 url='https://openssl-library.org'

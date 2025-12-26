@@ -3,7 +3,7 @@
 
 pkgname=libxcrypt-32
 _pkgname=libxcrypt
-pkgver=4.4.52
+pkgver=4.5.2
 pkgrel=1
 url='https://github.com/besser82/libxcrypt'
 source=(https://github.com/besser82/libxcrypt/releases/download/v$pkgver/${_pkgname}-$pkgver.tar.xz)

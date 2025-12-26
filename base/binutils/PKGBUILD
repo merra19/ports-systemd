@@ -2,7 +2,7 @@
 # depends	: flex zlib bison zstd bc dejagnu
 
 pkgname=binutils
-pkgver=2.45
+pkgver=2.45.1
 pkgrel=1
 options=(!lto)
 url='https://sourceware.org/binutils'
