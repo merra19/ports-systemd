@@ -2,7 +2,7 @@
 # depends	: zlib xz
 
 pkgname=libunwind
-pkgver=1.8.2
+pkgver=1.8.3
 pkgrel=1
 url='https://savannah.nongnu.org/projects/libunwind'
 source=(https://github.com/libunwind/libunwind/releases/download/v$pkgver//$pkgname-$pkgver.tar.gz)

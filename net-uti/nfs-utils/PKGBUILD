@@ -4,17 +4,15 @@
 # optional	: krb5 openldap
 
 pkgname=nfs-utils
-pkgver=2.8.3
+pkgver=2.8.4
 pkgrel=1
 url='http://linux-nfs.org'
 source=(https://www.kernel.org/pub/linux/utils/nfs-utils/$pkgver/$pkgname-$pkgver.tar.xz
-        nfs-server.conf  0001-Fix-build-with-glibc-2.42.patch nfs-client nfs-server)
+        nfs-server.conf  nfs-client nfs-server)
 backup=(etc/sysconfig/nfs-server)
 
 build() {
     cd $pkgname-$pkgver
-
-    patch -Np1 -i ../0001-Fix-build-with-glibc-2.42.patch
 
     ./configure \
         --prefix=/usr \

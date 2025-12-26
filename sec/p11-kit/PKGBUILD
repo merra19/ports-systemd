@@ -2,8 +2,8 @@
 # depends	: libtasn1 libffi meson bash-completion gtk-doc
 
 pkgname=p11-kit
-pkgver=0.25.5
-pkgrel=2
+pkgver=0.25.10
+pkgrel=1
 options=(!lto)
 url='https://p11-glue.github.io/p11-glue/p11-kit.html'
 source=(https://github.com/p11-glue/p11-kit/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)

@@ -3,8 +3,8 @@
 # depends	: gtk3 py3-gi-docgen gtk-doc
 
 pkgname=libnotify
-pkgver=0.8.6
-pkgrel=3
+pkgver=0.8.7
+pkgrel=1
 url='https://gitlab.gnome.org/GNOME/libnotify'
 source=(https://download.gnome.org/sources/libnotify/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
 

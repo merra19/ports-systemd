@@ -6,8 +6,8 @@
 # todo      : escrow!!nss escrow!!volume_key
 
 pkgname=libblockdev
-pkgver=3.3.1
-pkgrel=2
+pkgver=3.4.0
+pkgrel=1
 options=(!lto)
 url='https://github.com/storaged-project/libblockdev'
 source=(https://github.com/storaged-project/libblockdev/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)

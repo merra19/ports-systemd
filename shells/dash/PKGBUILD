@@ -2,7 +2,7 @@
 # depends	: glibc
 
 pkgname=dash
-pkgver=0.5.12
+pkgver=0.5.13
 pkgrel=1
 url='http://gondor.apana.org.au/~herbert/dash'
 source=(http://gondor.apana.org.au/~herbert/dash/files/$pkgname-$pkgver.tar.gz)

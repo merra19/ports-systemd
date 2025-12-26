@@ -7,6 +7,7 @@ pkgrel=1
 url='https://www.gnu.org/software/libc'
 source=(https://mirror.lyrahosting.com/gnu/glibc//$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/lfs/12.4/glibc-$pkgver-fhs-1.patch
+        https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.42-upstream_fixes-1.patch
         reenable_DT_HASH.patch 
         ld.so.conf)
 nostrip="lib.*/ld-.*\.so$ lib.*/libc-.*\.so$ lib.*/libpthread-.*\.so$ lib.*/libthread_db-.*\.so$"	
@@ -22,6 +23,9 @@ build() {
     # which relies on DT_HASH to be present in these libs.
     # reconsider 2023-01
     patch -Np1 -i "$srcdir"/reenable_DT_HASH.patch
+
+    # First, apply some changes from upstream
+    patch -Np1 -i ../glibc-2.42-upstream_fixes-1.patch
 
     patch -Np1 -i ../glibc-$pkgver-fhs-1.patch
 

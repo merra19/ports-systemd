@@ -3,8 +3,8 @@
 # depends	: gtk-doc
 
 pkgname=json-glib
-pkgver=1.10.6
-pkgrel=3
+pkgver=1.10.8
+pkgrel=1
 options=(!lto)
 url='https://wiki.gnome.org/Projects/JsonGlib'
 source=(https://download.gnome.org/sources/json-glib/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

@@ -2,7 +2,7 @@
 # depends	: bash docbook-xml docbook-xsl-nons libxslt
 
 pkgname=xdg-user-dirs
-pkgver=0.18
+pkgver=0.19
 pkgrel=1
 url='https://www.freedesktop.org/wiki/Software/xdg-user-dirs'
 source=(https://user-dirs.freedesktop.org/releases/$pkgname-$pkgver.tar.gz)
@@ -11,9 +11,12 @@ backup=(etc/xdg/user-dirs.conf etc/xdg/user-dirs.defaults)
 build() {
 	cd $pkgname-$pkgver
 
-    ./configure \
+    meson setup \
         --prefix=/usr \
-        --sysconfdir=/etc 
-    make
-    make DESTDIR="$pkgdir" install
+        --buildtype=plain \
+        build
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+    rm -rvf "$pkgdir"/usr/lib/systemd
 }

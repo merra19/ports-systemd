@@ -3,8 +3,8 @@
 # depends	: gobject-introspection
 
 pkgname=libxmlb
-pkgver=0.3.23
-pkgrel=2
+pkgver=0.3.24
+pkgrel=1
 options=(!lto)
 url='https://github.com/hughsie/libxmlb'
 source=(https://github.com/hughsie/libxmlb/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)

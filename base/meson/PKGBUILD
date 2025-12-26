@@ -2,7 +2,7 @@
 # depends	: ninja python py3-setuptools py3-wheel
 
 pkgname=meson
-pkgver=1.8.3
+pkgver=1.10.0
 pkgrel=1
 url='https://mesonbuild.com'
 source=(https://github.com/mesonbuild/meson/releases/download/$pkgver/$pkgname-$pkgver.tar.gz

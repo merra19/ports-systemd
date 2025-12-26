@@ -3,7 +3,7 @@
 # depends	: py3-gi-docgen vulkan-loader
 
 pkgname=gtksourceview5
-pkgver=5.16.0 
+pkgver=5.18.0 
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/gtksourceview'
 source=(https://download.gnome.org/sources/gtksourceview/${pkgver%.*}/gtksourceview-${pkgver}.tar.xz)

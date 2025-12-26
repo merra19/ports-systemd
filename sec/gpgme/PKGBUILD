@@ -2,7 +2,7 @@
 # depends	: gnupg libassuan python 
 
 pkgname=gpgme
-pkgver=2.0.0
+pkgver=2.0.1
 pkgrel=1
 options=(!lto)
 url='https://www.gnupg.org/related_software/gpgme'
