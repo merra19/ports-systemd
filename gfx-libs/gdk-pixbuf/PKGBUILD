@@ -21,6 +21,7 @@ build() {
         -D others=enabled \
 		--wrap-mode=nofallback \
 		-D gtk_doc=true  \
+        -D glycin="$(scratch isinstalled glycin && echo "enabled" || echo "disabled")" \
         build
 	ninja -C build
     DESTDIR="$pkgdir" ninja install -C build

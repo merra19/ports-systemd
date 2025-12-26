@@ -24,6 +24,6 @@ build() {
 		sdp_lib
 		"
 	for header in $headers; do
-		install -Dm644 ./lib/$header.h -t "$pkgdir"/usr/include/bluetooth
+		install -Dm644 ./lib/bluetooth/$header.h -t "$pkgdir"/usr/include/bluetooth
 	done
 }

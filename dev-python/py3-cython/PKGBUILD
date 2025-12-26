@@ -5,7 +5,7 @@ pkgname=py3-cython
 pkgver=3.2.3
 pkgrel=1
 url='https://cython.org'
-source=(https://github.com/cython/cython/releases/download/$pkgver/cython-$pkgver.tar.gz)
+source=(https://github.com/cython/cython/releases/download/${pkgver}-1/cython-$pkgver.tar.gz)
 
 build() {
 	cd ${pkgname#*-}-$pkgver

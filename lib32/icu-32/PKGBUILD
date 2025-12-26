@@ -5,10 +5,10 @@ pkgname=icu-32
 _pkgname=icu
 pkgver=78.1
 vrs=$(echo $pkgver | sed 's/\./_/g')
-_version=$(echo $pkgver | sed 's/\./-/g')
+_pkgver=$(echo $pkgver | sed 's/\./-/g')
 pkgrel=1
 url='https://icu.unicode.org'
-source=(https://github.com/unicode-org/icu/releases/download/release-${_version}/icu4c-$vrs-src.tgz)
+source=(https://github.com/unicode-org/icu/releases/download/release-${pkgver}/icu4c-$pkgver-sources.tgz)
 
 build() {
     cd ${_pkgname}/source
