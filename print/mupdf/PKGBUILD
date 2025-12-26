@@ -20,7 +20,7 @@ build() {
 
     make prefix=/usr \
         shared=yes \
-        docdir=/usr/share/doc/-$pkgver \
+        docdir=/usr/share/doc/$pkgname-$pkgver \
         DESTDIR="$pkgdir" \
         install                            &&
 

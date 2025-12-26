@@ -17,6 +17,9 @@ build() {
 
     sed -i 's:"/desktop:"/org:' schema/*.xml
 
+    sed -e "/install_dir/s@,\$@ / 'gcr-$pkgver'&@" \
+        -i docs/*/meson.build  
+
 	meson setup \
         --prefix=/usr \
         --buildtype=plain \
