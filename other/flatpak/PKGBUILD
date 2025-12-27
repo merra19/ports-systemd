@@ -12,6 +12,7 @@ pkgrel=1
 url='https://flatpak.org'
 source=(https://github.com/flatpak/flatpak/releases/download/$pkgver/$pkgname-$pkgver.tar.xz
         $pkgname.hooks)
+SYSTEMDDIR=yes
 
 build() {
     cd $pkgname-$pkgver
@@ -34,4 +35,6 @@ build() {
     DESTDIR="$pkgdir" ninja install -C build
 
     install -Dm755 "$srcdir"/$pkgname.hooks "$pkgdir"/usr/share/blfs-bootscripts/hooks/$pkgname.hooks
+
+    rm -rf "$pkgdir/usr/lib/sysusers.d"
 }
