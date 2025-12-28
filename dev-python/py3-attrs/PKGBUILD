@@ -3,7 +3,7 @@
 # depends	: py3-hatch_fancy_pypi_readme
 
 pkgname=py3-attrs
-pkgver=25.3.0
+pkgver=25.4.0
 pkgrel=1
 options=(!lto)
 url='https://github.com/python-attrs/attrs'

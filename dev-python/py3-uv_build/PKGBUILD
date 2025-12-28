@@ -1,0 +1,15 @@
+# description	: PEP517 uv build backend
+# depends	: python py3-gpep517 py3-setuptools py3-wheel py3-maturin
+
+pkgname=py3-uv_build
+pkgver=0.9.10
+pkgrel=1
+url='https://github.com/astral-sh/uv/'
+source=(https://files.pythonhosted.org/packages/source/u/uv_build/uv_build-$pkgver.tar.gz)
+
+build() {
+    cd uv_build-$pkgver
+
+    gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+    python3 -m installer -d "$pkgdir" .dist/*.whl
+}
