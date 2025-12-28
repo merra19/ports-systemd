@@ -2,7 +2,7 @@
 # depends	: meson acl xz py3-jinja2 gperf libcap libarchive kmod
 
 pkgname=udev
-pkgver=257.8
+pkgver=258.1
 pkgrel=1
 options=(!lto)
 url='https://systemd.io'

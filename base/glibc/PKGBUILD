@@ -3,10 +3,11 @@
 
 pkgname=glibc
 pkgver=2.42
-pkgrel=1
+pkgrel=2
 url='https://www.gnu.org/software/libc'
 source=(https://mirror.lyrahosting.com/gnu/glibc//$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/lfs/12.4/glibc-$pkgver-fhs-1.patch
+        https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.42-upstream_fixes-1.patch
         reenable_DT_HASH.patch 
         ld.so.conf)
 nostrip="lib.*/ld-.*\.so$ lib.*/libc-.*\.so$ lib.*/libpthread-.*\.so$ lib.*/libthread_db-.*\.so$"	
@@ -23,6 +24,7 @@ build() {
     # reconsider 2023-01
     patch -Np1 -i "$srcdir"/reenable_DT_HASH.patch
 
+    patch -Np1 -i ../glibc-2.42-upstream_fixes-1.patch
     patch -Np1 -i ../glibc-$pkgver-fhs-1.patch
 
     # Now fix a security vulnerability
@@ -100,7 +102,6 @@ build() {
     mkdir -p "$pkgdir"/usr/lib
     ln -sv usr/lib "$pkgdir"/lib
 
-
     make install DESTDIR="$pkgdir" install_root="$pkgdir"
 
     make -s -O localedata/install-locales install DESTDIR="$pkgdir" install_root="$pkgdir"
@@ -142,4 +143,7 @@ build() {
     mkdir -p "$pkgdir"/lib64
     ln -sfv ../usr/lib/ld-linux-x86-64.so.2 "$pkgdir"/lib64
     ln -sfv ../usr/lib/ld-linux-x86-64.so.2 "$pkgdir"/lib64/ld-lsb-x86-64.so.3
+
+    # remove useless symlink
+    rm -fv "$pkgdir"/lib
 }

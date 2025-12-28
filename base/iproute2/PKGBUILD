@@ -2,7 +2,7 @@
 # depends	: linux-api-headers libmnl bison flex iptables
 
 pkgname=iproute2
-pkgver=6.16.0
+pkgver=6.18.0
 pkgrel=1
 url='https://wiki.linuxfoundation.org/networking/iproute2'
 source=(https://www.kernel.org/pub/linux/utils/net/iproute2/$pkgname-$pkgver.tar.xz)

@@ -2,19 +2,16 @@
 # depends	: glibc acl attr xz perl openssl
 
 pkgname=coreutils
-pkgver=9.7
+pkgver=9.9
 pkgrel=1
 url='https://www.gnu.org/software/coreutils'
 source=(https://mirror.lyrahosting.com/gnu/coreutils/$pkgname-$pkgver.tar.xz
-        https://www.linuxfromscratch.org/patches/lfs/12.4/$pkgname-$pkgver-i18n-1.patch
-        https://www.linuxfromscratch.org/patches/lfs/12.4/coreutils-9.7-upstream_fix-1.patch)
+        https://www.linuxfromscratch.org/patches/lfs/development/$pkgname-$pkgver-i18n-1.patch)
 
 build() {
     cd $pkgname-$pkgver
 
-    # apply a patch for a security problem identified upstream
-    patch -Np1 -i ../coreutils-9.7-upstream_fix-1.patch
-    # POSIX requires that programs from Coreutils recognize character boundaries correctly
+    # POSIX requires that  programs from Coreutils recognize character boundaries correctly
     # even in multibyte locales. The following patch fixes this non-compliance and other
     # internationalization-related bugs. 
     patch -Np1 -i ../coreutils-$pkgver-i18n-1.patch

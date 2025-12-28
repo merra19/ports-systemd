@@ -1,7 +1,7 @@
 # description	: Provides data for network services and protocol
 
 pkgname=iana-etc
-pkgver=20250807
+pkgver=20251120
 pkgrel=1
 url='https://www.iana.org/protocols'
 source=(https://github.com/Mic92/iana-etc/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)

@@ -2,7 +2,7 @@
 # depends	: zlib readline tcl icu unzip
 
 pkgname=sqlite
-pkgver=3.50.4
+pkgver=3.51.1
 _version=$(echo $pkgver |awk -F. '{print $1  $2 "0" $3 "00"}')
 pkgrel=1
 url='https://sqlite.org'

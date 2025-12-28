@@ -2,11 +2,11 @@
 # depends	: pam gzip
 
 pkgname=kbd
-pkgver=2.8.0
+pkgver=2.9.0
 pkgrel=1
 url='https://kbd-project.org'
 source=(https://www.kernel.org/pub/linux/utils/kbd/$pkgname-$pkgver.tar.xz
-        https://www.linuxfromscratch.org/patches/lfs/12.4/kbd-$pkgver-backspace-1.patch)
+        https://www.linuxfromscratch.org/patches/lfs/development/kbd-$pkgver-backspace-1.patch)
 
 build() {
     cd $pkgname-$pkgver
