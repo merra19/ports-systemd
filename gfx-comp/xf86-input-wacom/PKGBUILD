@@ -2,7 +2,7 @@
 # depends	: xorg-server graphviz
 
 pkgname=xf86-input-wacom
-pkgver=1.2.3
+pkgver=1.2.4
 pkgrel=1
 url='https://linuxwacom.github.io'
 source=(https://github.com/linuxwacom/xf86-input-wacom/releases/download/$pkgname-$pkgver/$pkgname-$pkgver.tar.bz2)
