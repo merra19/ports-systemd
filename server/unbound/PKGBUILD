@@ -15,7 +15,7 @@ backup=(etc/unbound/unbound.conf)
  build() {
 	cd $pkgname-$pkgver
   
-	PYTHON_VERSION=3.13 \
+	PYTHON_VERSION=3.14 \
 	./configure \
 		--prefix=/usr \
 		--sysconfdir=/etc \
