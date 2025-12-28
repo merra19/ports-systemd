@@ -4,7 +4,7 @@
 # depends	: graphviz bash-completion snowball-stemmer
 
 pkgname=tinysparql
-pkgver=3.9.2
+pkgver=3.10.1
 pkgrel=1
 url='https://gnome.pages.gitlab.gnome.org/tinysparql'
 source=(https://download.gnome.org/sources/tinysparql/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

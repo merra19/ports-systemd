@@ -1,0 +1,20 @@
+# description	: Unicode validation and transcoding at billions of characters per second
+# depends	: glibc cmake 
+
+pkgname=simdutf
+pkgver=7.7.1
+pkgrel=1
+url='https://simdutf.github.io/simdutf'
+source=(https://github.com/simdutf/simdutf/archive/v$pkgver/$pkgname-$pkgver.tar.gz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D BUILD_SHARED_LIBS=ON \
+        -G Ninja                      
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}
