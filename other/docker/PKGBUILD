@@ -1,16 +1,18 @@
 # description	: The core functions you need to create Docker images and run Docker containers
-# depends	: containerd runc
+# depends	: containerd runc nftables
 
 pkgname=docker
-pkgver=28.5.1
-pkgrel=1
-_moby_commit=bea959c7b793b32a893820b97c4eadc7c87fabb0
+pkgver=29.1.3
+pkgrel=2
+_moby_commit=fbf3ed25f893e6ce21336f1101590e40a13934f4
 _tini_commit=de40ad007797e0dcd8b7126f27bb87401d224240
 url='https://www.docker.com'
-source=(https://github.com/moby/moby/archive/v${pkgver}/moby-${pkgver}.tar.gz \
-	https://github.com/docker/cli/archive/v${pkgver}/cli-${pkgver}.tar.gz \
+source=($pkgname-${pkgver}.tar.gz::https://github.com/moby/moby/archive/docker-v${pkgver}.tar.gz
+	https://github.com/docker/cli/archive/v${pkgver}/cli-${pkgver}.tar.gz
 	tini-$_tini_commit.tar.gz::https://github.com/krallin/tini/archive/$_tini_commit.tar.gz
 	$pkgname.hooks docker.init )
+
+
 
 # create a fake go path directory and pushd into it
 # $1 real directory
@@ -27,11 +29,12 @@ _fake_gopath_popd() {
 }
 
 build() {
+    ln -sf moby-docker-v${pkgver} moby
 	echo 'Checking commit mismatch'
 	(
 	local _cfile
 	for _cfile in tini; do
-		. "moby-$pkgver/hack/dockerfile/install/$_cfile.installer"
+		. "moby/hack/dockerfile/install/$_cfile.installer"
 	done
 	local _commit _pkgbuild _dockerfile
 	err=0
@@ -59,7 +62,7 @@ build() {
 
 	### daemon
 	echo 'Building daemon'
-	_fake_gopath_pushd moby-$pkgver  github.com/docker/docker
+	_fake_gopath_pushd moby github.com/moby/moby/v2
 		DOCKER_GITCOMMIT=$_moby_commit \
 		VERSION=$pkgver \
 		hack/make.sh dynbinary
@@ -77,11 +80,8 @@ build() {
 	### init
 	install -Dm755 tini-$_tini_commit/tini-static "$pkgdir/usr/bin/docker-init"
 	### dockerd
-	install -Dm755 moby-$pkgver/bundles/dynbinary-daemon/dockerd "$pkgdir"/usr/bin/dockerd
-	install -Dm755 moby-$pkgver/bundles/dynbinary-daemon/docker-proxy "$pkgdir/usr/bin/docker-proxy"
-	# systemd rules
-	cd "$srcdir"/moby-$pkgver/contrib
-	install -Dm644 'udev/80-docker.rules' "$pkgdir/usr/lib/udev/rules.d/80-docker.rules"
+	install -Dm755 moby/bundles/dynbinary-daemon/dockerd "$pkgdir"/usr/bin/dockerd
+	install -Dm755 moby/bundles/dynbinary-daemon/docker-proxy "$pkgdir/usr/bin/docker-proxy"
 	### cli
 	cd "$srcdir"/cli-$pkgver
 	# binary

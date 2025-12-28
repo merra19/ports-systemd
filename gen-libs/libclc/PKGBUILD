@@ -2,7 +2,7 @@
 # depends	: spirv-llvm-translator llvm cmake
 
 pkgname=libclc
-pkgver=20.1.8
+pkgver=21.1.8
 pkgrel=1
 options=(!lto)
 url='https://libclc.llvm.org'
