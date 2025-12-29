@@ -1,0 +1,66 @@
+# description	: sendmail RDBMS
+# depends	: libnsl lmdb 
+# optional  : mariadb openldap postgresql openldap
+
+pkgname=postfix
+pkgver=3.10.7
+pkgrel=1
+url='https://www.sendmail.org'
+source=(https://ghostarchive.org/postfix/postfix-release/official/$pkgname-$pkgver.tar.gz
+        $pkgname.hooks postfix)
+backup=(etc/aliases etc/postfix/{access,aliases,canonical,generic,header_checks,main.cf,master.cf,relocated,transport,virtual})
+
+build() {
+	cd $pkgname-$pkgver
+
+    sed -i 's/.\x08//g' README_FILES/*
+
+    CCARGS="-DNO_NIS -DNO_DB"
+    AUXLIBS=""
+
+    # lmdb
+    CCARGS="$CCARGS -DHAS_LMDB"
+    AUXLIBS="$AUXLIBS -llmdb"
+    # openssl
+    CCARGS="$CCARGS -DUSE_TLS -I/usr/include/openssl/"
+    AUXLIBS="$AUXLIBS -lssl -lcrypto"
+
+    LD_LIBRARY_PATH= \
+    make CC="gcc -std=gnu17" CCARGS="$CCARGS" AUXLIBS="$AUXLIBS" makefiles
+    make
+
+    sh postfix-install -non-interactive install_root="$pkgdir" \
+        daemon_directory=/usr/lib/postfix \
+        manpage_directory=/usr/share/man  \
+        html_directory=/usr/share/doc/postfix-$pkgver/html \
+        readme_directory=/usr/share/doc/postfix-$pkgver/readme
+
+    cat >> "$pkgdir"/etc/aliases << "EOF"
+# Begin /etc/aliases
+
+MAILER-DAEMON:    postmaster
+postmaster:       root
+
+root:             <LOGIN>
+# End /etc/aliases
+EOF
+
+    # Use lmdb by default
+    echo 'default_database_type = lmdb'       >> "$pkgdir"/etc/postfix/main.cf &&
+    echo 'alias_database = lmdb:/etc/aliases' >> "$pkgdir"/etc/postfix/main.cf &&
+    echo 'alias_maps = lmdb:/etc/aliases'     >> "$pkgdir"/etc/postfix/main.cf
+    # To protect your server against the recent SMTP smuggling attacks
+    echo 'smtpd_forbid_bare_newline = normalize' >> "$pkgdir"/etc/postfix/main.cf &&
+    echo 'smtpd_forbid_bare_newline_exclusions = $mynetworks' >> "$pkgdir"/etc/postfix/main.cf
+
+	install -Dm 0754 "$srcdir"/postfix "$pkgdir"/etc/rc.d/init.d/postfix
+
+    for i in 0 1 2 3 4 5 6; do
+        install -d "$pkgdir"/etc/rc.d/rc$i.d
+        case $i in
+            0|1|6) ln -sf ../init.d/postfix "$pkgdir"/etc/rc.d/rc$i.d/K25postfix ;;
+            *) ln -sf ../init.d/postfix "$pkgdir"/etc/rc.d/rc$i.d/S35postfix ;;
+        esac
+    done
+
+}

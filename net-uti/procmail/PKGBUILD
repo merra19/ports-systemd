@@ -1,5 +1,5 @@
 # description	: Mail delivery agent/filter
-# depends	: glibc sendmail libnsl
+# depends	: glibc postfix libnsl
 
 pkgname=procmail
 pkgver=3.24
