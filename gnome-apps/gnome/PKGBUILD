@@ -4,14 +4,14 @@
 # depends	: gst-plugins-base gst-plugins-good gnome-session gcr4
 # depends	: gnome-settings-daemon gnome-control-center nautilus
 # depends	: gnome-color-manager gnome-keyring evolution-data-server
-# depends	: glib-networking gedit eog mpv gnome-terminal cups
-# depends	: gnome-user-docs adwaita-icon-theme gnome-bluetooth
-# depends	: mutter gnome-shell sound-theme-freedesktop file-roller
+# depends	: glib-networking gedit loupe mpv gnome-terminal cups
+# depends	: adwaita-icon-theme gnome-bluetooth mutter gnome-shell
+# depends	: sound-theme-freedesktop file-roller gnome-system-monitor
 # depends	: gnome-shell-extensions localsearch tinysparql
-# depends	: gnome-tweaks gnome-weather gnome-system-monitor
-# depends	: gnome-clocks gnome-calculator gnome-power-manager
-# depends	: gnome-screenshot
-### yelp
+# depends	: gnome-tweaks gnome-weather gnome-power-manager
+# depends	: gnome-clocks gnome-calculator gnome-screenshot
+# depends	:  xdg-desktop-portal-gnome gnome-disk-utility
+### yelp gnome-user-docs
 
 pkgname=gnome
 pkgver=1.0
