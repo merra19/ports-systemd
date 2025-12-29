@@ -4,11 +4,11 @@
 # depends	: wireplumber libva libvdpau vulkan-loader wayland 
 # depends	: wayland-protocols libxkbcommon zlib xorg-proto luajit 
 # depends	: linux-api-headers libcdio-paranoia libdvdnav libdvdcss
-# depends	: libdvdread sdl2 py3-docutils
+# depends	: libdvdread sdl2-compat py3-docutils
 
 pkgname=mpv
-pkgver=0.40.0
-pkgrel=3
+pkgver=0.41.0
+pkgrel=1
 options=(!lto)
 url='https://mpv.io'
 source=(https://github.com/mpv-player/mpv/archive/refs/tags/v$pkgver/$pkgname-$pkgver.tar.gz)
@@ -25,7 +25,8 @@ build() {
         --prefix=/usr \
         --buildtype=plain \
         -D x11=enabled \
-        -D sdl2="$(scratch isinstalled sdl2 && echo "enabled" || echo "disabled")" \
+        -D sdl2-video="$(scratch isinstalled sdl2-compat && echo "enabled" || echo "disabled")" \
+        -D sdl2-audio="$(scratch isinstalled sdl2-compat && echo "enabled" || echo "disabled")" \
         -D dvdnav="$(scratch isinstalled libdvdnav && echo "enabled" || echo "disabled")" \
         -D lua=enabled \
         build

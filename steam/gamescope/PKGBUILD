@@ -1,10 +1,10 @@
 # description	: Efficient micro-compositor for running games
-# depends	: wlroots sdl2 pipewire xorg-libs libdrm libxkbcommon
+# depends	: wlroots pipewire xorg-libs libdrm libxkbcommon
 # depends	: glslang vulkan-headers seatd luajit wayland glm
 # depends	: libdisplay-info vulkan-loader hwdata libcap stb libxcb
 # depends	: libei libavif libinput libglvnd mesa xwayland pixman
 # depends	: xcb-utilities spirv-headers libdecor git udev
-# depends	: wayland-protocols 
+# depends	: wayland-protocols sdl2-compat
 
 pkgname=gamescope
 pkgver=3.16.19

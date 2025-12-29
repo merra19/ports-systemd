@@ -15,7 +15,7 @@ build() {
         -D CMAKE_BUILD_TYPE=RELEASE \
         -D CMAKE_SKIP_INSTALL_RPATH=ON \
         -D SDL2COMPAT_STATIC=OFF \
-        -D SDL2COMPAT_TESTS=OFF \
+        -D SDL2COMPAT_TESTS=OFF
     make -C build
     make DESTDIR="$pkgdir" install -C build
     rm -vf "$pkgdir"/usr/lib/libSDL2_test.a

@@ -3,7 +3,7 @@
 # depends	: libpcap xorg-libs wayland alsa-lib pulseaudio mesa
 # depends	: ffmpeg giflib gnutls gtk3 cups libva vulkan-loader
 # depends	: mingw-w64-gcc opencl-headers opencl-loader
-# depends	: perl sdl2 v4l-utils mingw-w64-winpthreads
+# depends	: perl sdl2-compat v4l-utils mingw-w64-winpthreads
 # optional  : gstreamer!!gst-plugins-base
 # todo      : libgphoto2
 

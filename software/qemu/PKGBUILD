@@ -1,8 +1,8 @@
 # description	: QEMU + Kernel-based Virtual Machine userland tools
-# depends	: glib pixman alsa-lib dtc libslirp sdl2 pipewire bluez
+# depends	: glib pixman alsa-lib dtc libslirp pipewire bluez
 # depends	: curl fuse gnutls gtk3 keyutils libaio libusb libgcrypt
 # depends	: libjpeg-turbo libseccomp libssh2 libpng libtasn1 pam
-# depends	: lzo nettle mesa vte py3-sphinx_rtd_theme
+# depends	: lzo nettle mesa vte py3-sphinx_rtd_theme sdl2-compat
 
 pkgname=qemu
 pkgver=10.0.3
