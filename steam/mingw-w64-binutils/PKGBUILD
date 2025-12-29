@@ -14,8 +14,6 @@ build() {
     #do not install libiberty
     sed -i 's/install_to_$(INSTALL_DEST) //' libiberty/Makefile.in
 
-    #unset CFLAGS CXXFLAGS LDFLAGS
-    
     mkdir build-x86_64 &&
     cd    build-x86_64 &&
 
