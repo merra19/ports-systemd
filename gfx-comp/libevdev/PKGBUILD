@@ -2,7 +2,7 @@
 # depends	: meson
 
 pkgname=libevdev
-pkgver=1.13.4
+pkgver=1.13.6
 pkgrel=1
 url='https://www.freedesktop.org/wiki/Software/libevdev'
 source=(https://www.freedesktop.org/software/libevdev/$pkgname-$pkgver.tar.xz)

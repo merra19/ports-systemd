@@ -1,0 +1,22 @@
+# description	: Compatibility layer SDL 1.2 for SDL 2.0
+# depends	: cmake glu sdl3
+
+pkgname=sdl2-compat
+pkgver=2.32.60 
+pkgrel=1
+url='https://www.libsdl.org'
+source=(https://www.libsdl.org/release/$pkgname-$pkgver.tar.gz)
+
+build() {
+	cd $pkgname-$pkgver
+	
+    cmake -B build \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=RELEASE \
+        -D CMAKE_SKIP_INSTALL_RPATH=ON \
+        -D SDL2COMPAT_STATIC=OFF \
+        -D SDL2COMPAT_TESTS=OFF
+    make -C build
+    make DESTDIR="$pkgdir" install -C build
+    rm -vf "$pkgdir"/usr/lib/libSDL2_test.a
+}

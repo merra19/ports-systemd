@@ -6,7 +6,7 @@
 # depends	: gvfs localsearch
 
 pkgname=nautilus
-pkgver=48.3
+pkgver=49.2
 pkgrel=1
 url='https://apps.gnome.org/Nautilus'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

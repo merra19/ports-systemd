@@ -1,0 +1,15 @@
+# description	: Google's Protocol Buffers - Python bindings
+# depends	: python py3-gpep517 py3-setuptools py3-wheel
+
+pkgname=py3-protobuf
+pkgver=6.33.2
+pkgrel=1
+url='https://protobuf.dev'
+source=(https://files.pythonhosted.org/packages/source/p/protobuf/protobuf-$pkgver.tar.gz)
+
+build() {
+	cd protobuf-$pkgver
+	
+	python3 setup.py build
+	python3 setup.py install --skip-build --root="$pkgdir"
+}

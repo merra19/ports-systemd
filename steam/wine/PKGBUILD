@@ -1,9 +1,9 @@
 # description	: Free implementation of Windows(tm) on Unix, with Wine-Staging patchset
 # depends	: attr desktop-file-utils fontconfig freetype gcc gettext
-# depends	: libpcap xorg-libs wayland alsa-lib pulseaudio mesa
+# depends	: libpcap xorg-libs wayland alsa-lib pulseaudio mesa samba
 # depends	: ffmpeg giflib gnutls gtk3 cups libva vulkan-loader
-# depends	: mingw-w64-gcc opencl-headers opencl-loader
-# depends	: perl sdl2 v4l-utils mingw-w64-winpthreads
+# depends	: mingw-w64-gcc opencl-headers opencl-loader libunwind
+# depends	: perl sdl2-compat v4l-utils mingw-w64-winpthreads
 # optional  : gstreamer!!gst-plugins-base
 # todo      : libgphoto2
 

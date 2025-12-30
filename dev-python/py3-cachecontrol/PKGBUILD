@@ -1,9 +1,9 @@
 # description	: httplib2 caching for requests
 # depends	: python py3-gpep517 py3-setuptools py3-wheel py3-msgpack
-# depends	: py3-requests
+# depends	: py3-requests py3-uv_build
 
 pkgname=py3-cachecontrol
-pkgver=0.14.3
+pkgver=0.14.4
 pkgrel=1
 url='https://pypi.org/project/CacheControl'
 source=(https://github.com/psf/cachecontrol/archive/v$pkgver/cachecontrol-$pkgver.tar.gz)

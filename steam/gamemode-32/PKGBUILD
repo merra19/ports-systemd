@@ -1,0 +1,31 @@
+# description	: Optimise Linux system performance on demand
+# depends	: bash gcc glibc dbus-32 inih polkit libcap systemd-32
+# depends	: gamemode
+
+pkgname=gamemode-32
+pkgver=1.8.2
+pkgrel=1
+url='https://github.com/FeralInteractive/gamemode'
+source=(https://github.com/FeralInteractive/gamemode/releases/download/$pkgver/gamemode-$pkgver.tar.xz)
+
+build() {
+    cd gamemode-$pkgver
+
+	export CC="gcc -m32 -mstackrealign"
+	export CXX="g++ -m32 -mstackrealign"
+	export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+    meson setup \
+        --prefix=/usr \
+        --buildtype=release \
+        --libdir /usr/lib32 \
+        -D with-privileged-group=gamemode \
+        -D with-sd-bus-provider=no-daemon \
+        -D with-examples=false \
+        -D with-util=false \
+        build
+    ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+
+    rm -rf "${pkgdir}"/{etc,usr/include}
+}

@@ -18,10 +18,6 @@ backup=(etc/php-fpm.conf.default etc/php-fpm.d/www.conf.default etc/php.ini)
 build() {
 	cd $pkgname-$pkgver
 
-    if [ $OPTFLAGS = "yes" ];then
-        export LDFLAGS="-Wl,-O1 -Wl,--as-needed -Wl,-z,now,-z,relro,-z,separate-code -Wl,--enable-new-dtags"
-    fi
-
     ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \

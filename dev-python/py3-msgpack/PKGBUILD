@@ -2,7 +2,7 @@
 # depends	: python py3-wheel py3-setuptools py3-cython
 
 pkgname=py3-msgpack
-pkgver=1.1.1
+pkgver=1.1.2
 pkgrel=1
 url='https://msgpack.org'
 source=(msgpack-python-$pkgver.tar.gz::https://github.com/msgpack/msgpack-python/archive/v$pkgver.tar.gz)

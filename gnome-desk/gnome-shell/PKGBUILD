@@ -8,7 +8,7 @@
 # depends	: py3-gobject
 
 pkgname=gnome-shell
-pkgver=48.4
+pkgver=49.2
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/gnome-shell'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

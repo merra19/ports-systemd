@@ -6,7 +6,7 @@ pkgname=gcc
 pkgver=15.2.0
 _commit=15.2.0
 pkgrel=1
-options=(!strip)
+options=(!strip !lto)
 url='https://gcc.gnu.org'
 source=(https://mirror.lyrahosting.com/gnu/gcc/gcc-$pkgver/$pkgname-$_commit.tar.xz)
 
@@ -24,18 +24,9 @@ build() {
     mkdir -p gcc-build
     cd  gcc-build
 
-    unset CFLAGS
-    unset CXXFLAGS
-    unset LDFLAGS
+    CFLAGS=${CFLAGS/-Werror=format-security/}
+    CXXFLAGS=${CXXFLAGS/-Werror=format-security/}
 
-    export CFLAGS="-march=$MMARCH -fstack-protector -g1 -O2 -Wl,-z -Wl,now -Wl,-z -Wl,relro -Wl,-z,max-page-size=0x1000 -fPIC -falign-functions=32"
-    export CXXFLAGS="-march=$MMARCH -fstack-protector -g1 -O2 -Wl,-z,max-page-size=0x1000 -fPIC "
-    export CFLAGS_FOR_TARGET="$CFLAGS -march=$MMARCH -fstack-protector -fno-semantic-interposition "
-    export CXXFLAGS_FOR_TARGET="$CXXFLAGS -march=$MMARCH -fstack-protector -fno-semantic-interposition "
-    export FFLAGS_FOR_TARGET="$FFLAGS -march=$MMARCH  -fstack-protector -fno-semantic-interposition "
-
-    # System-dependent
-    MACHINE="x86_64-lfs-linux-gnu"
 
     ../configure \
         --prefix=/usr \
@@ -57,11 +48,11 @@ build() {
         --enable-bootstrap 
         make profiledbootstrap
 
-    export CFLAGS="-march=$MMARCH -fstack-protector -g1 -O2 -Wl,-z -Wl,now -Wl,-z -Wl,relro -Wl,-z,max-page-size=0x1000 -fPIC -falign-functions=32"
-    export CXXFLAGS="-march=$MMARCH -fstack-protector -g1 -O2 -Wl,-z,max-page-size=0x1000 -fPIC "
-    export CFLAGS_FOR_TARGET="$CFLAGS -march=$MMARCH -fstack-protector -fno-semantic-interposition "
-    export CXXFLAGS_FOR_TARGET="$CXXFLAGS -march=$MMARCH -fstack-protector -fno-semantic-interposition "
-    export FFLAGS_FOR_TARGET="$FFLAGS -march=$MMARCH  -fstack-protector -fno-semantic-interposition "
+    #export CFLAGS="-march=$MMARCH -fstack-protector -g1 -O2 -Wl,-z -Wl,now -Wl,-z -Wl,relro -Wl,-z,max-page-size=0x1000 -fPIC -falign-functions=32"
+    #export CXXFLAGS="-march=$MMARCH -fstack-protector -g1 -O2 -Wl,-z,max-page-size=0x1000 -fPIC "
+    #export CFLAGS_FOR_TARGET="$CFLAGS -march=$MMARCH -fstack-protector -fno-semantic-interposition "
+    #export CXXFLAGS_FOR_TARGET="$CXXFLAGS -march=$MMARCH -fstack-protector -fno-semantic-interposition "
+    #export FFLAGS_FOR_TARGET="$FFLAGS -march=$MMARCH  -fstack-protector -fno-semantic-interposition "
 
     make DESTDIR="$pkgdir" install 
 

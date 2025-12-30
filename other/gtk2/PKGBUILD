@@ -1,10 +1,8 @@
 # description	: Gimp ToolKit +2
 # depends	: glib gobject-introspection at-spi2-core fontconfig cairo
-# depends	: gdk-pixbuf pango shared-mime-info cups libX11 libXcursor
-# depends	: libXcomposite libXdamage libXext libXfixes libXi librsvg
-# depends	: libXrandr libXrender libXinerama xorg-proto libxslt
-# depends	: adwaita-icon-theme gnome-themes-extra gtk-doc
-# depends	: hicolor-icon-theme
+# depends	: gdk-pixbuf pango shared-mime-info cups xorg-libs librsvg
+# depends	: xorg-proto libxslt adwaita-icon-theme hicolor-icon-theme
+# depends	: gnome-themes-extra gtk-doc
 
 pkgname=gtk2
 pkgver=2.24.33

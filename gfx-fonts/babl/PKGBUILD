@@ -2,7 +2,7 @@
 # depends	: meson glib gobject-introspection  librsvg lcms2 vala
 
 pkgname=babl
-pkgver=0.1.114
+pkgver=0.1.118
 pkgrel=1
 url='https://gegl.org/babl'
 source=(https://download.gimp.org/pub/babl/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

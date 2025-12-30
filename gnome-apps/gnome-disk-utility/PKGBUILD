@@ -1,0 +1,20 @@
+# description	: Disk Utility for GNOME using udisks
+# depends	: gnome-settings-daemon itstool libdvdread libhandy xz
+# depends	: libpwquality libsecret udisks appstream-glib elogind
+
+pkgname=gnome-disk-utility
+pkgver=46.1
+pkgrel=1
+url='https://apps.gnome.org/en/DiskUtility'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

@@ -24,7 +24,7 @@ build() {
     return; \
     }' avahi-daemon/simple-protocol.c
 
-    scratch isinstalled gtk3 ||  OPT_GTK3='-disable-gtk3'
+    scratch isinstalled gtk3 ||  OPT_GTK3='--disable-gtk3'
 
 	./configure \
         --prefix=/usr \

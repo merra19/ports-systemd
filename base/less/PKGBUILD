@@ -2,7 +2,7 @@
 # depends	: ncurses
 
 pkgname=less
-pkgver=679
+pkgver=685
 pkgrel=1
 options=(!lto)
 url='https://www.greenwoodsoftware.com/less'

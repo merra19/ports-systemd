@@ -2,7 +2,7 @@
 # depends	: python py3-gpep517 py3-setuptools py3-wheel make-ca
 
 pkgname=py3-certifi
-pkgver=2025.8.3
+pkgver=2025.11.12
 pkgrel=1
 options=(!lto)
 url='https://github.com/projg2/certifi-system-store'

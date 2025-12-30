@@ -1,5 +1,5 @@
 # description	: Library for decoding mpeg-2 and mpeg-1 video
-# depends	: glibc xorg-proto sdl12-compat xorg-libs
+# depends	: glibc xorg-proto xorg-libs
 
 pkgname=libmpeg2
 pkgver=0.5.1

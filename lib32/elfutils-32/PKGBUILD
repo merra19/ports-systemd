@@ -3,7 +3,7 @@
 
 pkgname=elfutils-32
 _pkgname=elfutils
-pkgver=0.193
+pkgver=0.194
 pkgrel=1
 options=(!lto)
 url='https://sourceware.org/elfutils'

@@ -1,10 +1,10 @@
 # description	: Library providing a virtual terminal emulator widget
 # depends	: glib icu pango pcre2 gtk3 zlib lz4 libxml2 gtk4 systemd
-# depends	: gobject-introspection vala gnutls fast_float 
+# depends	: gobject-introspection vala gnutls fast_float simdutf
 # depends	: py3-gi-docgen
 
 pkgname=vte
-pkgver=0.80.3
+pkgver=0.82.2
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/vte'
 source=(https://gitlab.gnome.org/GNOME/vte/-/archive/$pkgver/$pkgname-$pkgver.tar.gz

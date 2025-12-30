@@ -3,7 +3,7 @@
 # depends	: bash-completion
 
 pkgname=util-linux
-pkgver=2.41.1
+pkgver=2.41.2
 pkgrel=1
 options=(strip)
 url='https://www.kernel.org/pub/linux/utils/util-linux'

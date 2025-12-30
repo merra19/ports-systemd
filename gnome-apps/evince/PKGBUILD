@@ -1,0 +1,27 @@
+# description	: Simple document viewer for GNOME
+# depends	: adwaita-icon-theme gsettings-desktop-schemas gtk3 glib 
+# depends	: itstool libhandy libxml2 openjpeg gnome-keyring poppler
+# depends	: gobject-introspection libarchive libsecret cups gspell
+# depends	: gnome-desktop gst-plugins-base libgxps libtiff zlib
+# depends	: py3-gi-docgen gst-plugins-good
+
+pkgname=evince
+pkgver=48.1
+pkgrel=1
+url='https://apps.gnome.org/Evince'
+source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)
+
+build() {
+    cd $pkgname-$pkgver
+
+    sed "/docs_dir/s@\$@ / 'evince-$pkgver'@" -i help/meson.build 
+
+	meson setup \
+        --prefix=/usr \
+        --buildtype=plain \
+        -D gtk_doc=true \
+        --wrap-mode=nodownload \
+        build
+	ninja -C build
+    DESTDIR="$pkgdir" ninja install -C build
+}

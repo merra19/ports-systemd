@@ -3,10 +3,12 @@
 
 pkgname=glibc
 pkgver=2.42
-pkgrel=1
+pkgrel=2
+options=(!lto)
 url='https://www.gnu.org/software/libc'
 source=(https://mirror.lyrahosting.com/gnu/glibc//$pkgname-$pkgver.tar.xz
         https://www.linuxfromscratch.org/patches/lfs/12.4/glibc-$pkgver-fhs-1.patch
+        https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.42-upstream_fixes-1.patch
         reenable_DT_HASH.patch 
         ld.so.conf)
 nostrip="lib.*/ld-.*\.so$ lib.*/libc-.*\.so$ lib.*/libpthread-.*\.so$ lib.*/libthread_db-.*\.so$"	
@@ -18,11 +20,11 @@ build() {
     [ -d glibc-$pkgver ] && ln -s glibc-$pkgver glibc
     cd glibc
 
-
     # which relies on DT_HASH to be present in these libs.
     # reconsider 2023-01
     patch -Np1 -i "$srcdir"/reenable_DT_HASH.patch
 
+    patch -Np1 -i ../glibc-2.42-upstream_fixes-1.patch
     patch -Np1 -i ../glibc-$pkgver-fhs-1.patch
 
     # Now fix a security vulnerability
@@ -40,17 +42,9 @@ build() {
     cd "$srcdir"/glibc-build
 
     echo 'int main(){}' > dummy.c
+
+    CFLAGS=${CFLAGS/-Wp,-D_FORTIFY_SOURCE=3/}
     
-    if ( gcc -march=$MMARCH -dM -E  dummy.c   |  grep "__AVX2__" );then
-        export ASFLAGS="-D__AVX__=1 -D__AVX2__=1 -msse2avx -D__FMA__=1 "
-    fi
-
-    export CFLAGS="-O3 -g1 -march=$MMARCH -m64  -Wl,-z,max-page-size=0x1000 -fPIC"
-    export ASFLAGS="-D__AVX__=1 -D__AVX2__=1 -msse2avx -D__FMA__=1 "
-    unset LDFLAGS
-    export LDFLAGS="-Wl,-z,max-page-size=0x1000 "
-
-    CC="gcc -m64 " \
     "$srcdir"/glibc/configure \
         --prefix=/usr \
         --libdir=/usr/lib \
@@ -66,16 +60,13 @@ build() {
         --host=x86_64-pc-linux-gnu
     make
 
-    export CFLAGS="-O3 -g1 -march=$MMARCH -m32  -Wl,-z,max-page-size=0x1000 -fPIC"
-    unset ASFLAGS
-    unset LDFLAGS
-    export LDFLAGS="-Wl,-z,max-page-size=0x1000 "
 
-
+    (
     cd "$srcdir"/lib32-glibc-build
 
-    CC="gcc -m32 -mstackrealign" \
-    CXX="g++ -m32 -mstackrealign" \
+    export CC="gcc -m32 -mstackrealign"
+    export CXX="g++ -m32 -mstackrealign"
+
     "$srcdir"/glibc/configure \
         --prefix=/usr \
         --libdir=/usr/lib32 \
@@ -91,6 +82,7 @@ build() {
         --disable-cet \
         libc_cv_slibdir=/usr/lib32 
     make
+    )
 
     cd "$srcdir"/glibc-build
 
@@ -99,7 +91,6 @@ build() {
 
     mkdir -p "$pkgdir"/usr/lib
     ln -sv usr/lib "$pkgdir"/lib
-
 
     make install DESTDIR="$pkgdir" install_root="$pkgdir"
 
@@ -142,4 +133,7 @@ build() {
     mkdir -p "$pkgdir"/lib64
     ln -sfv ../usr/lib/ld-linux-x86-64.so.2 "$pkgdir"/lib64
     ln -sfv ../usr/lib/ld-linux-x86-64.so.2 "$pkgdir"/lib64/ld-lsb-x86-64.so.3
+
+    # remove useless symlink
+    rm -fv "$pkgdir"/lib
 }

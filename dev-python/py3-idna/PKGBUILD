@@ -3,7 +3,7 @@
 # depends	: py3-flit-core
 
 pkgname=py3-idna
-pkgver=3.10
+pkgver=3.11
 pkgrel=1
 options=(!lto)
 url='https://github.com/kjd/idna'

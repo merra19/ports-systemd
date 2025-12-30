@@ -2,7 +2,7 @@
 # depends	: gtksourceview5 itstool libadwaita libgee libsoup3 vala
 
 pkgname=gnome-calculator
-pkgver=48.1
+pkgver=49.2
 pkgrel=1
 url='https://apps.gnome.org/Calculator'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

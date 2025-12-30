@@ -3,7 +3,7 @@
 # depends	: libyaml py3-cython
 
 pkgname=py3-yaml
-pkgver=6.0.2
+pkgver=6.0.3
 pkgrel=1
 url='https://github.com/mk-fg/pretty-yaml'
 source=(https://files.pythonhosted.org/packages/source/P/PyYAML/pyyaml-$pkgver.tar.gz)

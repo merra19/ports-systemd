@@ -2,7 +2,7 @@
 # depends	: itstool libxml2
 
 pkgname=gnome-user-docs
-pkgver=48.2
+pkgver=49.1
 pkgrel=1
 url='https://gitlab.gnome.org/GNOME/gnome-user-docs'
 source=(https://download.gnome.org/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz)

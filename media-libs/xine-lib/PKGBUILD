@@ -2,7 +2,7 @@
 # depends	: zlib xorg-libs ffmpeg alsa-lib pulseaudio libdvdnav
 # depends	: faad2 flac gdk-pixbuf glu imagemagick liba52 libdvdcss
 # depends	: libmad libmng libnsl libva libvdpau libvorbis libvpx
-# depends	: mesa sdl12-compat speex v4l-utils aalib
+# depends	: mesa speex v4l-utils aalib
 # optional  : samba
 
 pkgname=xine-lib

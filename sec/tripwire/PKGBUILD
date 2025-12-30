@@ -1,5 +1,5 @@
 # description	: Open Source File Integrity Checker and IDS
-# depends	: sendmail
+# depends	: postfix
 
 pkgname=tripwire
 pkgver=2.4.3.7
