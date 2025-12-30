@@ -24,7 +24,7 @@ build() {
     return; \
     }' avahi-daemon/simple-protocol.c
 
-    scratch isinstalled gtk3 ||  OPT_GTK3='-disable-gtk3'
+    scratch isinstalled gtk3 ||  OPT_GTK3='--disable-gtk3'
 
 	./configure \
         --prefix=/usr \
@@ -40,9 +40,9 @@ build() {
         --disable-qt5 \
         --enable-core-docs \
         --with-distro=none \
+        --disable-gtk3 \
 		--with-systemdsystemunitdir=no \
-        --with-dbus-system-address='unix:path=/run/dbus/system_bus_socket' \
-        $OPT_GTK3
+        --with-dbus-system-address='unix:path=/run/dbus/system_bus_socket'
 	make
     make DESTDIR="$pkgdir" install
 
