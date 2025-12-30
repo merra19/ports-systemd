@@ -59,12 +59,4 @@ backup=(etc/openldap/ldap.conf etc/openldap/slapd.conf etc/openldap/slapd.ldif)
 	install -Dm 0754 "$srcdir"/slapd "$pkgdir"/etc/rc.d/init.d/slapd
 
     install -Dm 0644 "$srcdir"/slapdconfig "$pkgdir"/etc/sysconfig/slapd
-
-    for i in 0 1 2 3 4 5 6; do
-        install -d "$pkgdir"/etc/rc.d/rc$i.d
-        case $i in
-            0|1|6) ln -sf ../init.d/slapd "$pkgdir"/etc/rc.d/rc$i.d/K46slapd ;;
-            *) ln -sf ../init.d/slapd "$pkgdir"/etc/rc.d/rc$i.d/S25slapd ;;
-        esac
-    done
 }
