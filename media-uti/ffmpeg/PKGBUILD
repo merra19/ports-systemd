@@ -2,10 +2,9 @@
 # depends	: bzip2 libass freetype lame gnutls libvorbis libvpx opus 
 # depends	: x264 x265 alsa-lib yasm dav1d libaom fdk-aac libva
 # depends	: libdrm libjxl libwebp openjpeg speexdsp vulkan-loader
-# depends	: v4l-utils libvdpau fontconfig fribidi pulseaudio
+# depends	: v4l-utils libvdpau fontconfig fribidi pulseaudio samba
 # depends	: libcdio-paranoia libplacebo libdvdnav
 # todo      : frei0r
-# optional  : samba
 
 pkgname=ffmpeg
 pkgver=7.1.2

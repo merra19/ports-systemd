@@ -1,7 +1,6 @@
 # description	: Port of OpenBSD's free SSH release
-# depends	: pam which net-tools libxcrypt zlib shadow
+# depends	: pam which net-tools libxcrypt zlib shadow krb5
 # depends	: xorg-applications
-# optional	: krb5
 
 pkgname=openssh
 pkgver=10.0p1

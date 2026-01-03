@@ -1,7 +1,7 @@
 # description	: X C-language Bindings sample implementations
 # depends	: libxcvt pixman libglvnd openssl xorg-fonts dbus
 # depends	: xkeyboard-config systemd libepoxy libtirpc libunwind
-# depends	: nettle libgcrypt xcb-utilities xmlto mesa udev
+# depends	: nettle libgcrypt xcb-utilities xmlto mesa
 
 pkgname=xlibre-xserver
 pkgver=25.1.0

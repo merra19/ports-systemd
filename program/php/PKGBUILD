@@ -3,8 +3,7 @@
 # depends	: enchant libxslt freetype libexif libjpeg-turbo libpng 
 # depends	: libtiff libwebp gdbm xz libxcrypt bzip2 curl acl zlib
 # depends	: libffi libgmp icu readline openssl apache tidy-html5
-# depends	: unixodbc postgresql xorg-libs mariadb
-# optional  : openldap
+# depends	: unixodbc postgresql xorg-libs mariadb openldap
 
 pkgname=php
 pkgver=8.4.11

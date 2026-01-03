@@ -1,7 +1,7 @@
 # description	: HTTP and WebDAV client library
 # depends	: gnutls libproxy libxml2 xmlto expat libtool zlib
-# optional  : krb5
-
+# depends   : krb5
+ 
 pkgname=neon
 pkgver=0.35.0
 pkgrel=1

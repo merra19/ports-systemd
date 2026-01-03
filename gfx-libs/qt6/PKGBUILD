@@ -4,8 +4,8 @@
 # depends	: xcb-utilities sqlite mesa mtdev libinput libglvnd cups
 # depends	: vulkan-headers libproxy alsa-lib make-ca jasper libmng
 # depends	: libtiff libwebp wayland bluez llvm pciutils pulseaudio 
-# depends	: protobuf systemd
-# optional  : krb5 mariadb unixodbc postgresql
+# depends	: protobuf systemd krb5
+# optional  : mariadb unixodbc postgresql
 # todo      : gst-plugins-base ibus sdl2 speech-dispatcher
 
 pkgname=qt6

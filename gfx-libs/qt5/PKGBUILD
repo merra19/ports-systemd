@@ -4,8 +4,8 @@
 # depends	: libglvnd mesa libdrm mtdev libjpeg-turbo libinput 
 # depends	: libxkbcommon libpng systemd vulkan-headers xorg-proto
 # depends	: linux-api-headers xcb-utilities libproxy xorg-libs 
-# depends	: libxkbcommon at-spi2-core ibus
-# optional	: krb5!!openldap unixodbc postgresql 
+# depends	: libxkbcommon at-spi2-core ibus openldap krb5
+# optional	: unixodbc postgresql 
 
 pkgname=qt5
 pkgver=5.15.17

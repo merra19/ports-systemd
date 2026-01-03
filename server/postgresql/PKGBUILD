@@ -2,7 +2,7 @@
 # depends	: less intltool icu pam perl python readline openssl tcl 
 # depends	: libxml2 zlib zstd util-linux libxslt openjade
 # depends	: docbook-dtd45 docbook-dsssl docbook-utils perl-sgmlspm
-# optional	: krb5 openldap
+# depends	: krb5 openldap
 
 pkgname=postgresql
 pkgver=17.7

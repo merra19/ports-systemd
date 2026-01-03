@@ -4,7 +4,7 @@
 # depends	: ffmpeg giflib gnutls gtk3 cups libva vulkan-loader
 # depends	: mingw-w64-gcc opencl-headers opencl-loader libunwind
 # depends	: perl sdl2-compat v4l-utils mingw-w64-winpthreads
-# optional  : gstreamer!!gst-plugins-base
+# depends   : gst-plugins-base gst-plugins-good
 # todo      : libgphoto2
 
 pkgname=wine-staging

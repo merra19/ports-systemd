@@ -2,7 +2,7 @@
 # depends	: zlib cmake libarchive ffmpeg gtk3 jasper libavif libexif
 # depends	: libjpeg-turbo libpng libtiff libwebp openjpeg v4l-utils
 # depends	: apache-ant java protobuf py3-numpy xine-lib
-# optional  : gstreamer!!gst-plugins-base
+# depends   : gstreamer!!gst-plugins-base
 
 pkgname=opencv
 pkgver=4.12.0

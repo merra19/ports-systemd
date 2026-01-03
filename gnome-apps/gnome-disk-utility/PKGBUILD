@@ -1,6 +1,6 @@
 # description	: Disk Utility for GNOME using udisks
 # depends	: gnome-settings-daemon itstool libdvdread libhandy xz
-# depends	: libpwquality libsecret udisks appstream-glib elogind
+# depends	: libpwquality libsecret udisks appstream-glib
 
 pkgname=gnome-disk-utility
 pkgver=46.1

@@ -4,7 +4,7 @@
 # depends	: vulkan-loader wayland-protocols linux-api-headers libvpx
 # depends	: shaderc colord xorg-proto py3-gobject libcloudproviders
 # depends	: adwaita-icon-theme py3-gi-docgen py3-docutils
-# optional  : gstreamer!!gst-plugins-good gstreamer!!gst-plugins-bad
+# depends	: gst-plugins-good gst-plugins-bad
 # todo      : tinysparql
 
 

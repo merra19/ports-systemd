@@ -1,6 +1,6 @@
 # description	: sendmail RDBMS
 # depends	: libnsl lmdb 
-# optional  : mariadb openldap postgresql openldap
+# optional  : mariadb openldap postgresql
 
 pkgname=postfix
 pkgver=3.10.7

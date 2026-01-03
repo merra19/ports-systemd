@@ -1,6 +1,5 @@
 # description	: Allows users or groups to run commands as other users
-# depends	: zlib pam openssl libxcrypt
-# optional  : openldap
+# depends	: zlib pam openssl libxcrypt openldap
 
 pkgname=sudo
 pkgver=1.9.17p2
